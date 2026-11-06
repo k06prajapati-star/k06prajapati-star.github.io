@@ -239,6 +239,58 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 @media (max-width:860px){ .mnl-wrap{grid-template-columns:minmax(0, 1fr)} .mnl-book{order:-1} .mnl-nav{display:none} .mnl-tabs{display:none} }
 @media (prefers-reduced-motion:reduce){ .leaf,.bk3{transition:none} .pg.slide-l,.pg.slide-r{animation:none} }
 
+/* 07 · the ledger */
+.ldg{padding:clamp(80px, 14vh, 160px) 0 clamp(60px, 10vh, 120px)}
+.ldg-wrap{max-width:1320px;margin:0 auto;padding:0 max(24px, env(safe-area-inset-right, 0px)) 0 max(24px, env(safe-area-inset-left, 0px))}
+.ldg-head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.ldg-head h2{font-family:var(--about);font-weight:400;font-size:clamp(30px, 3.6vw, 48px);line-height:1.08}
+.ldg-head h2 em{font-style:italic;color:var(--active)}
+.ldg-head .tag{font-family:var(--mono);font-size:12px;letter-spacing:0.04em;color:var(--ink-2);text-transform:lowercase;max-width:90ch}
+.ldg-grid{display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);gap:16px;align-items:start}
+.ldg-try{padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.lt-q{font-family:var(--about);font-size:clamp(22px, 2.1vw, 28px);line-height:1.2}
+.lt-ctx{font-family:var(--mono);font-size:11px;color:var(--ink-3);text-transform:lowercase}
+.lt-in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center}
+.lt-in input{width:100%;accent-color:var(--active);height:28px}
+.lt-in output{font-family:var(--display);font-weight:300;font-size:30px;min-width:4.6ch;text-align:right}
+.lt-rules{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3)}
+.lt-gd{min-height:46px}
+.lt-btns{display:flex;flex-wrap:wrap;gap:8px}
+.lt-b{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:10px 14px;border:1px solid var(--rule);background:transparent;color:var(--ink);cursor:pointer;transition:border-color 200ms ease-out, background 200ms ease-out}
+.lt-b:hover,.lt-b:focus-visible{border-color:var(--ink-2)}
+.lt-b small{color:var(--ink-3);margin-left:6px;font-size:10px}
+.lt-go{border-color:var(--active);color:var(--active)}
+.lt-go:hover,.lt-go:focus-visible{background:rgba(255,107,53,0.1);border-color:var(--active)}
+.lt-x{color:var(--ink-3);border-style:dashed}
+.lt-b[disabled]{opacity:.35;cursor:default}
+.lt-out{min-height:0}
+.lt-out .res{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px;border-top:1px solid var(--rule);padding-top:12px}
+.lt-out .res b{display:block;font-family:var(--display);font-weight:300;font-size:clamp(26px, 2.6vw, 36px);line-height:1}
+.lt-out .res small{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3)}
+.lt-out .res b.or{color:var(--active)}
+.lt-out p{font-family:var(--mono);font-size:11px;line-height:1.6;color:var(--ink-2);text-transform:lowercase;margin-top:10px}
+.lt-out .again{margin-top:10px}
+.ldg-side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ldg-d2{padding:14px 16px}
+.d2{width:100%;height:auto;display:block;margin:6px 0 8px}
+.d2 .tk path{stroke:rgba(255,255,255,0.35)}
+.d2t{font-family:var(--mono);font-size:9px;fill:rgba(255,255,255,0.5);letter-spacing:0.04em}
+.d2h{stroke:var(--active);stroke-width:1.4;stroke-dasharray:4 5;opacity:.8}
+.d2l{font-family:var(--mono);font-size:9.5px;fill:var(--active)}
+.d2o{fill:none;stroke:var(--active);stroke-width:1.4}
+.ldg-n{font-family:var(--mono);font-size:11px;line-height:1.6;color:var(--ink-2);text-transform:lowercase}
+.ldg-m{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:12px}
+.ldg-m div{border-top:1px solid var(--rule);padding-top:8px}
+.ldg-m b{display:block;font-family:var(--display);font-weight:300;font-size:clamp(30px, 3vw, 42px);line-height:1;color:var(--ink-3)}
+.ldg-m small{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3)}
+.ldg-rules{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:16px;margin-top:28px}
+.ldg-rules div{border-top:1px solid var(--rule);padding-top:10px}
+.ldg-rules p{font-size:clamp(16px, 1.3vw, 18px);line-height:1.5;color:var(--ink-2);margin-top:6px}
+.ldg-foot{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-top:22px;font-family:var(--mono);font-size:10.5px;line-height:1.6;color:var(--ink-3);text-transform:lowercase}
+.ldg-foot span{max-width:80ch}
+.ldg-foot a{color:var(--active);text-decoration:none;border-bottom:1px solid rgba(255,107,53,0.4);white-space:nowrap;text-transform:lowercase}
+@media (max-width:900px){ .ldg-grid,.ldg-rules{grid-template-columns:minmax(0, 1fr)} }
+@media (max-width:520px){ .ldg-m{grid-template-columns:minmax(0,1fr)} .lt-out .res{grid-template-columns:repeat(3,minmax(0,1fr))} .lt-b{flex:1 1 auto} }
 /* 07 · connect */
 .cnx{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden}
 .cnx-glow{position:absolute;inset:0;pointer-events:none}
@@ -872,10 +924,61 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     </div>
   </section>
   <!-- 07 · CONNECT -->
+
+  <!-- 07 · the ledger: is it working, and is the learning getting faster -->
+  <section class="ldg" id="ledger" aria-label="The ledger">
+    <div class="ldg-wrap">
+      <header class="ldg-head rv"><span class="label" style="color:var(--active)">07 · the ledger</span><h2>Is it working? Score the learning, <em>not just the calls.</em></h2><p class="tag">research is a function of learning · so the process is measured on how fast it learns · from 6 nov 2026 · early numbers only · nothing back-filled</p></header>
+
+      <div class="ldg-grid">
+        <article class="panel ldg-try rv" style="--d:1" id="lt">
+          <div class="kh"><span class="label">i · commit before you look</span><span class="chip">try it · fictional</span></div>
+          <p class="lt-q">NFC, the company from 02. How many units did it ship last quarter?</p>
+          <p class="lt-ctx">the quarter before: 1,000k · units in thousands</p>
+          <div class="lt-in"><input type="range" id="lt-r" min="900" max="1150" step="1" value="1000" aria-label="Your estimate, thousands of units"><output id="lt-v" for="lt-r">1,000k</output></div>
+          <div class="lt-rules"><span>score starts at 100</span><span>−10 per hint</span><span>see the answer first → 0</span></div>
+          <div class="gd work lt-gd" id="lt-gd"><svg class="gd-m" viewBox="40 -6 80 152" aria-hidden="true"><path class="gl" d="M62 112 V140 M98 112 V140 M56 140 h12 M92 140 h12"/><path class="gf" d="M48 58 L80 74 L80 116 L48 100 Z"/><path class="gf" d="M80 74 L112 58 L112 100 L80 116 Z"/><g class="gd-card"><rect class="gf" x="63" y="-4" width="34" height="40" rx="2" style="stroke:#FF6B35"/><path d="M70 10 h20 M70 18 h14" stroke="#FF6B35" stroke-width="3"/></g><g class="gd-lid"><path class="gf" d="M80 42 L112 58 L80 74 L48 58 Z"/></g><g class="gd-ant"><path class="gl" d="M80 58 V26"/><circle class="go gd-tip" cx="80" cy="24" r="3.6"/></g><ellipse class="gf" cx="64" cy="84" rx="8" ry="9"/><g class="gd-eye"><circle class="go" cx="64" cy="84" r="4"/></g><path class="gt" d="M88 80 l16 -8 M88 86 l16 -8 M88 92 l10 -5"/></svg><span class="gd-kp" aria-hidden="true">KP</span><span class="gd-t">i won’t give you the number. i can give you a hint.</span></div>
+          <div class="lt-btns"><button type="button" class="lt-b" id="lt-hint">a hint <small id="lt-hn">3 left</small></button><button type="button" class="lt-b lt-go" id="lt-lock">lock it in</button><button type="button" class="lt-b lt-x" id="lt-peek">just tell me</button></div>
+          <div class="lt-out" id="lt-out" aria-live="polite"></div>
+        </article>
+
+        <div class="ldg-side">
+          <article class="panel ldg-d2 rv" style="--d:2">
+            <div class="kh"><span class="label">ii · the second derivative</span><span class="label dim">ramp time per name</span></div>
+            <svg class="d2" viewBox="0 0 420 210" role="img" aria-label="The hypothesis: days to a first defensible view fall with each name in the same space. No data plotted yet.">
+              <path d="M44 16 V176 H408" fill="none" stroke="rgba(255,255,255,0.35)"/>
+              <g class="tk"><path d="M44 56 h-4 M44 96 h-4 M44 136 h-4"/></g>
+              <text x="38" y="20" text-anchor="end" class="d2t">days</text>
+              <text x="408" y="196" text-anchor="end" class="d2t">1st name · 2nd · 3rd · … in the same space</text>
+              <path class="d2h" d="M60 40 C 120 96, 170 124, 230 140 S 340 158, 400 162" fill="none"/>
+              <text x="96" y="156" class="d2l">the hypothesis: each name costs less than the last</text>
+              <circle cx="60" cy="40" r="4" class="d2o"/>
+              <text x="70" y="36" class="d2t">first point lands when the first ramp closes</text>
+            </svg>
+            <p class="ldg-n">the first derivative is speed: ideas a week. the second is whether the speed itself improves: does the vault make the next name cheaper? that’s the part that compounds.</p>
+          </article>
+          <div class="ldg-m rv" style="--d:3">
+            <div><b>—</b><small>1st derivative · ideas a week</small></div>
+            <div><b>—</b><small>2nd derivative · ramp-time decay</small></div>
+            <div><b>—</b><small>calibration · brier score, sealed calls</small></div>
+          </div>
+          <p class="vl-honest rv" style="--d:3">kept honest: these stay as dashes until there’s real data · collecting since 6 nov 2026</p>
+        </div>
+      </div>
+
+      <div class="ldg-rules rv" style="--d:4">
+        <div><span class="label">tutor, not crutch · 1</span><p>Commit before you look. A guess, then the source, then the gap. The gap is the lesson.</p></div>
+        <div><span class="label">tutor, not crutch · 2</span><p>Claude asks, I explain. If the explanation breaks on “why?”, I don’t understand it yet.</p></div>
+        <div><span class="label">tutor, not crutch · 3</span><p>Recall from my own vault. Five questions a day, answered from memory, not re-read.</p></div>
+      </div>
+      <p class="ldg-foot rv" style="--d:5"><span>in a study of ~1,000 students, an AI that gave answers lifted practice scores 48% and cut exam scores 17%. one that gave hints didn’t hurt · bastani et al., pnas 2025</span><a href="https://kathanprajapati.substack.com" target="_blank" rel="noopener">the longer argument → substack</a></p>
+    </div>
+  </section>
+
   <section class="cnx" id="connect" aria-label="Connect">
     <div class="cnx-glow" aria-hidden="true"><i></i></div>
     <div class="cnx-wrap">
-      <span class="label rv" style="color:var(--active)">07 · connect</span>
+      <span class="label rv" style="color:var(--active)">08 · connect</span>
       <h2 class="rv" style="--d:1">If you’re building something like this too, or thinking about it, feel free to reach out by <em>email.</em></h2>
       <div class="cnx-mail rv" style="--d:2" id="cnx-mail"></div>
       <p class="label dim rv" style="--d:3">or follow the work</p>
@@ -1537,7 +1640,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       txt(c, RN1[i], lq[0], lq[1], hot ? OR : mem ? BL : WH, 0.75 * e * (eA > 0 ? lerp(1, 0.35, eA) : 1) * (dA > 0 && !hot ? lerp(1, 0.3, dA) : 1) * (narrow ? 1 - 0.85 * E : 1) * kR, narrow ? 10 : 11);
     }
     /* ii · the questions: commodity ones caught by the rings, hard ones kept at the core */
-    var answered = 0, kept = 0;
+    var answered = 0, kept = 0, trayB = P(-330, -186, 0)[1] + 26, tshift = narrow ? 0 : Math.min(0, (capTop(ch1) - 34) - trayB);
     if (aB > 0.01 && p > 0.10) Q1.forEach(function(q){
       if (q.hard) {
         var u = (p - q.t) / 0.07; if (u < 0) return;
@@ -1548,12 +1651,12 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       var u2 = (p - q.t) / 0.05; if (u2 < 0) return;
       if (u2 < 1) { var x2 = lerp(-620, xs[q.k], u2); cdot(c, P, x2, q.y, q.z, 2.2, WH, 0.85 * aB); if (q.lab) { var ep = P(x2, q.y, q.z); if (!narrow || (ep[0] > 60 && ep[0] < w - 60)) txt(c, q.lab, ep[0], ep[1] - 9, WH, 0.6 * aB, 10); } return; }
       var v = clamp((p - q.t - 0.05) / 0.035, 0, 1), vv = ease(v), tx = -330 + (q.slot % 28) * 24, ty = -186 - Math.floor(q.slot / 28) * 12;
-      cdot(c, P, lerp(xs[q.k], tx, vv), lerp(q.y, ty, vv) + Math.sin(vv * Math.PI) * 36, lerp(q.z, 0, vv), 2.2, v < 0.12 ? WH : GR, 0.9 * aB);
+      var shv = tshift * vv; cdot(c, shv ? function(x, y, z){ var r = P(x, y, z).slice(); r[1] += shv; return r; } : P, lerp(xs[q.k], tx, vv), lerp(q.y, ty, vv) + Math.sin(vv * Math.PI) * 36, lerp(q.z, 0, vv), 2.2, v < 0.12 ? WH : GR, 0.9 * aB);
       if (v >= 1) answered++;
     });
     var aT = aB * ramp(p, 0.11, 0.15);
     if (aT > 0.01) {
-      var tl = P(-330, -186, 0); txt(c, 'answered · agents, minutes · ' + answered, tl[0] - 4, tl[1] + 26, GR, aT, 11, 'left'); c.font = '11px "IBM Plex Mono", ui-monospace, monospace'; var tw0 = c.measureText('answered · agents, minutes · ' + answered).width; stamp(c, tl[0] + tw0 + 8, tl[1] + 22, 'QA · I check it', GR, aT, 8, 0, 'left');
+      var tl = P(-330, -186, 0); txt(c, 'answered · agents, minutes · ' + answered, tl[0] - 4, tl[1] + 26 + tshift, GR, aT, 11, 'left'); c.font = '11px "IBM Plex Mono", ui-monospace, monospace'; var tw0 = c.measureText('answered · agents, minutes · ' + answered).width; stamp(c, tl[0] + tw0 + 8, tl[1] + 22 + tshift, 'QA · I check it', GR, aT, 8, 0, 'left');
       var kl = P(xs[3], narrow ? R1[3] + 34 : -R1[3] - 30, 0); txt(c, 'kept for me · ' + kept, kl[0], kl[1] + 4, OR, aT, 11);
       var bw = Math.min(520, w - 32), bx = (w - bw) / 2, by = narrow ? 62 : 74, cw = bw / 10, hardDays = 0;
       for (var d = 0; d < 10; d++) { var on = d >= 7 || (d >= 1 && p > 0.15 + d * 0.024); if (on) hardDays++; c.fillStyle = on ? rgba(OR, 0.22 * aT) : rgba(WH, 0.06 * aT); c.fillRect(bx + d * cw + 2, by, cw - 4, 18); c.strokeStyle = on ? rgba(OR, 0.85 * aT) : rgba(WH, 0.25 * aT); c.lineWidth = 1; c.strokeRect(bx + d * cw + 2.5, by + 0.5, cw - 5, 17); }
@@ -1773,6 +1876,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     var e = ease(ramp(p, 0.01, 0.06)), fade = 1 - 0.55 * ramp(p, 0.56, 0.62);
     var sc = narrow ? Math.min(w / 1050, h / 1500) : Math.min(w / 1700, h / 820);
     var P = makeProj(-0.45, 0.12, sc, narrow ? w * 0.68 : w * 0.40, narrow ? h * 0.21 : h * 0.47);
+    if (!narrow) { var lowY = P(-400, -164, 0)[1] + 16, room = capTop(ch2) - 30; if (lowY > room) P = makeProj(-0.45, 0.12, sc, w * 0.40, h * 0.47 - (lowY - room)); }
     seg(c, P, [-600, 0, 0], [320, 0, 0], WH, 0.22 * e * fade, 1, [14, 5, 3, 5]);
     if (e < 1) cylinder(c, P, -60, 60, 0, 1 - e, GR);
     var tx = TS.map(function(t){ return t.x * e; });
@@ -1792,7 +1896,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
         else if (lp >= 0.7) {
           var v = clamp((lp - 0.7) / 0.3, 0, 1), vd = T.verdict;
           if (vd === 'holds') { ang = lerp(lp < 1 ? 1.2 : 0, 0, v); col = GR; tag = 'pass ' + T.hits + '/7'; tcol = GR; }
-          else if (vd === 'falls') { var vf = clamp((p - (BT0 + ti * BTW) - 0.7 * BTW) / 0.04, 0, 1); dx = -26 * vf; dy = 140 * vf * vf; ang = vf * 9; al = 0.85 * (1 - vf); col = '#FF8A8A'; tag = 'fail ' + T.hits + '/7'; tcol = '#FF8A8A'; lal = 0.35; }
+          else if (vd === 'falls') { var vf = clamp((p - (BT0 + ti * BTW) - 0.7 * BTW) / 0.04, 0, 1); dx = -26 * vf; dy = 80 * vf * vf; ang = vf * 9; al = 0.85 * (1 - vf) * (1 - vf); col = '#FF8A8A'; tag = 'fail ' + T.hits + '/7'; tcol = '#FF8A8A'; lal = 0.35; }
           else { hollow = true; col = '#8A94A6'; al = 0.6; dx = -14 * v; tag = 'n/a'; tcol = '#8A94A6'; lal = 0.4; }
         }
         if (lp >= 0 && lp < 1) lal = 1;
@@ -1889,7 +1993,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     var p = chP(ch3), f = fitCanvas(c3), c = f.x, w = f.w, h = f.h, narrow = w < 760;
     var sh3 = ease(ramp(p, 0.37, 0.41)), X0 = narrow ? 34 : w * lerp(0.16, 0.06, sh3), X1 = narrow ? w - 34 : w * lerp(0.84, 0.58, sh3), Y0 = narrow ? h * 0.13 : h * 0.17, Y1 = narrow ? h * 0.33 : h * 0.52;
     var NX = function(n){ return X0 + n.c * (X1 - X0); }, NY = function(n){ return Y0 + n.y * (Y1 - Y0); };
-    var CT3 = capTop(ch3), MX = (X0 + X1) / 2, MY = narrow ? h * 0.47 : Math.min(h * 0.70, CT3 - 34), FYb = narrow ? h * 0.38 : Math.min(h * 0.605, MY - 58);
+    var CT3 = capTop(ch3), MX = (X0 + X1) / 2, MY = narrow ? h * 0.47 : Math.min(h * 0.70, CT3 - 52), FYb = narrow ? h * 0.38 : Math.min(h * 0.605, MY - 58);
     var FXY = function(j){ return narrow ? [X0 + ((j % 6) + 0.5) / 6 * (X1 - X0), FYb + Math.floor(j / 6) * 24] : [X0 + (j + 0.5) / 12 * (X1 - X0), FYb + (j % 2) * 14]; };
     var app = ramp(p, 0.01, 0.06), lowA = narrow ? 1 - ramp(p, 0.38, 0.42) : 1;
     /* tier headers */
@@ -2074,7 +2178,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       /* iv · the event and the price */
       var prA = ramp(p, 0.55, 0.57) * bA;
       if (prA > 0.01) {
-        var gx0 = narrow ? 24 : w * 0.08, gx1 = narrow ? w - 24 : w * 0.54, gy0 = narrow ? h * 0.36 : h * 0.50, gy1 = narrow ? h * 0.56 : h * 0.70;
+        var gx0 = narrow ? 24 : w * 0.08, gx1 = narrow ? w - 24 : w * 0.54, gy1 = narrow ? h * 0.56 : Math.min(h * 0.70, capTop(ch4) - 62), gy0 = narrow ? h * 0.36 : Math.min(h * 0.50, gy1 - h * 0.17);
         var PR = [70, 72, 74, 73, 76, 78, 77, 79, 80, 79, 81, 60, 52, 47, 45, 44, 45, 44, 46, 47], prog = clamp((p - 0.555) / 0.11, 0, 1) * (PR.length - 1);
         var PX = function(i){ return lerp(gx0, gx1, i / (PR.length - 1)); }, PY = function(v){ return lerp(gy1, gy0, (v - 35) / 55); };
         c.strokeStyle = rgba(WH, 0.15 * prA); c.beginPath(); c.moveTo(gx0, gy1); c.lineTo(gx1, gy1); c.stroke();
@@ -2559,7 +2663,30 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     window.addEventListener('resize', function(){ if (dlg.classList.contains('on')) { size(); render(); } });
   })();
 
-  /* ---------- 07 · connect: edit the three links here ---------- */
+
+  /* ---------- 07 · the ledger: commit before you look ---------- */
+  (function(){
+    var r = el('lt-r'); if (!r) return;
+    var ACT = 1028, HINTS = ['the second shift came in mid-quarter, so count half of it', 'distributor inventory went from 8 weeks to 5: they bought less than they sold', 'last quarter’s guide said “low single-digit growth”'], used = 0, peek = false, done = false;
+    var out = el('lt-out'), g = el('lt-gd'), gt = g.querySelector('.gd-t');
+    function fmt(v){ return v.toLocaleString('en-GB') + 'k'; }
+    function upd(){ el('lt-v').textContent = fmt(+r.value); }
+    r.addEventListener('input', upd); upd();
+    el('lt-hint').addEventListener('click', function(){ if (done || used >= HINTS.length) return; gt.textContent = 'hint ' + (used + 1) + ' · ' + HINTS[used]; used++; el('lt-hn').textContent = (HINTS.length - used) + ' left'; if (used >= HINTS.length) el('lt-hint').disabled = true; });
+    function finish(){
+      done = true; var guess = +r.value, err = Math.abs(guess - ACT) / ACT * 100, score = peek ? 0 : Math.max(0, Math.round(100 - err * 10 - used * 10));
+      r.disabled = true; el('lt-hint').disabled = true; el('lt-lock').disabled = true; el('lt-peek').disabled = true;
+      g.className = 'gd stop lt-gd'; gt.innerHTML = peek ? 'that’s the crutch. <b>the answer without the thinking scores 0.</b>' : 'logged before the reveal · <b>the gap is yours to explain</b>';
+      out.innerHTML = '<div class="res"><div><b>' + (peek ? '—' : fmt(guess)) + '</b><small>your guess</small></div><div><b>' + fmt(ACT) + '</b><small>actual · fictional</small></div><div><b class="or">' + score + '</b><small>score · ' + (peek ? 'peeked' : err.toFixed(1) + '% off · ' + used + ' hint' + (used === 1 ? '' : 's')) + '</small></div></div>' +
+        '<p>' + (peek ? 'the tool will always hand you the answer. the score is what makes you think first, which is the part that builds judgement.' : err < 1.5 ? 'close. next step: write down why you landed there, so the reasoning gets scored too, not just the number.' : 'the miss is the useful part: which hint would have moved you, and why didn’t you weigh it? that line goes in the decision journal.') + '</p><button type="button" class="lt-b again" id="lt-again">try again</button>';
+      el('lt-again').addEventListener('click', reset);
+    }
+    function reset(){ used = 0; peek = false; done = false; r.disabled = false; r.value = 1000; upd(); ['lt-hint', 'lt-lock', 'lt-peek'].forEach(function(id){ el(id).disabled = false; }); el('lt-hn').textContent = HINTS.length + ' left'; g.className = 'gd work lt-gd'; gt.textContent = 'i won’t give you the number. i can give you a hint.'; out.innerHTML = ''; }
+    el('lt-lock').addEventListener('click', function(){ if (!done) finish(); });
+    el('lt-peek').addEventListener('click', function(){ if (!done) { peek = true; finish(); } });
+  })();
+
+  /* ---------- 08 · connect: edit the three links here ---------- */
   (function(){
     var CONTACT = {
       email: 'kathan.prajapati@outlook.com',
