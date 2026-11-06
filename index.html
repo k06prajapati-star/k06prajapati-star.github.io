@@ -811,7 +811,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
         <p>None of it is fixed. It isn’t quite art and it isn’t quite science. It’s a craft: staying open, and watching how each new piece of information changes what I think I know.</p>
         <p class="sig">AI is the speed tool. The judgement stays mine.</p>
         <ul class="traits">
-          <li><b>scalable</b><span>agents give the width, I give the depth</span></li>
+          <li><b>scalable</b><span>agents take the friction out of reaching the point of judgement · that’s where the work is</span></li>
           <li><b>deeper</b><span>commodity questions in minutes, the hours go to the hard ones</span></li>
           <li><b>evolving</b><span>every lens is tested, retired or replaced as the edge decays</span></li>
           <li><b>uncorrelated</b><span>idiosyncratic by design: paid for being right, not for where the market goes</span></li>
@@ -1148,6 +1148,10 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 <script>
 (function(){
   var root = document.documentElement;
+  /* scroll-driven values are set on the few elements that use them, and only when they change:
+     writing them on the root restyled the whole page every frame */
+  var VT = { '--rcap': '.rcap,.rsteps', '--rtitle': '.rtitle', '--bp': '.bg-grid', '--nb': '#c1nb', '--k2': '#c2p', '--k3': '#c3p', '--nb5': '.nb5', '--prog': '.progress' }, VC = {}, VE = {};
+  function setV(n, v){ v = String(v); if (VC[n] === v) return; VC[n] = v; if (n === '--endf') return; var els = VE[n] || (VE[n] = VT[n] ? Array.prototype.slice.call(document.querySelectorAll(VT[n])) : [root]); els.forEach(function(e){ e.style.setProperty(n, v); }); }
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var clamp = function(v, a, b){ return Math.max(a, Math.min(b, v)); };
   var ramp = function(p, a, b){ return clamp((p - a) / (b - a), 0, 1); };
@@ -1235,9 +1239,13 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
   var stepsBox = el('rsteps'), lift = [0, 0, 0, 0, 0], curActive = -1, lastA = -2;
   BLOCKS.forEach(function(b, i){ var bt = document.createElement('button'); bt.type = 'button'; bt.textContent = b.n; bt.setAttribute('aria-label', 'Go to ' + b.name); bt.addEventListener('click', function(){ goTo(i); }); stepsBox.appendChild(bt); });
   function goTo(i){ var vh = window.innerHeight, q = 0.18 + PER * (i + 0.55), top = rod.getBoundingClientRect().top + window.scrollY; window.scrollTo({ top: top + q * (rod.offsetHeight - vh), behavior: reduce ? 'auto' : 'smooth' }); }
+  /* scroll smoothing: a mouse wheel moves in steps, so every scroll-driven scene eases toward the scroll
+     position instead of jumping to it · time-based, so it advances once per frame however often it's asked */
+  var SM = {};
+  function smooth(key, target){ if (reduce) return target; var now = performance.now(), o = SM[key]; if (!o) { o = SM[key] = { v: target, t: now }; return target; } var dt = now - o.t; if (dt > 0) { if (dt > 250 || Math.abs(target - o.v) > 0.25) o.v = target; else o.v += (target - o.v) * (1 - Math.exp(-dt / 85)); if (Math.abs(target - o.v) < 0.0002) o.v = target; o.t = now; } return o.v; }
   function rodFrame(){
     var vh = window.innerHeight, r = rod.getBoundingClientRect();
-    var p = reduce ? 0.9 : clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
+    var p = reduce ? 0.9 : smooth('rod', clamp(-r.top / Math.max(1, r.height - vh), 0, 1));
     for (var i = 0; i < 5; i++) lift[i] += ((i === curActive ? 1 : 0) - lift[i]) * 0.15;
     g.setTransform(DPR, 0, 0, DPR, 0, 0); g.clearRect(0, 0, W, H);
     var active = drawRod(p);
@@ -1246,9 +1254,9 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       if (active >= 0) { var b = BLOCKS[active]; el('r-n').textContent = b.n + ' / 05'; el('r-h').textContent = b.name; el('r-p').textContent = b.sub; }
       Array.prototype.forEach.call(stepsBox.children, function(bt, j){ bt.classList.toggle('on', j === active); bt.classList.toggle('done', j < active); });
     }
-    root.style.setProperty('--rcap', active >= 0 ? 1 : 0);
-    root.style.setProperty('--rtitle', (ramp(p, 0.02, 0.06) * (1 - ramp(p, 0.16, 0.19))).toFixed(3));
-    var cnr = el('connect').getBoundingClientRect(), endF = ease(clamp((vh - cnr.top) / (vh * 0.9), 0, 1)); root.style.setProperty('--bp', (ease(ramp(p, 0.04, 0.16)) * (1 - endF)).toFixed(3)); root.style.setProperty('--endf', endF.toFixed(3));
+    setV('--rcap', active >= 0 ? 1 : 0);
+    setV('--rtitle', (ramp(p, 0.02, 0.06) * (1 - ramp(p, 0.16, 0.19))).toFixed(3));
+    var cnr = el('connect').getBoundingClientRect(), endF = ease(clamp((vh - cnr.top) / (vh * 0.9), 0, 1)); setV('--bp', (ease(ramp(p, 0.04, 0.16)) * (1 - endF)).toFixed(3)); setV('--endf', endF.toFixed(3));
     el('r-dive').style.pointerEvents = active >= 0 ? 'auto' : 'none';
     curActive = active;
   }
@@ -1608,15 +1616,19 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
   var ch1 = el('ch1'), c1 = el('c1cv'), ch2 = el('ch2'), c2 = el('c2cv'), capMemo = {};
   /* on phones, keep each chapter's floating panel just above its caption block, however tall the caption gets */
   function seatPanel(id, sec){ var pn = el(id); if (!pn) return; if (window.innerWidth > 760) { pn.style.bottom = ''; return; } var cp = sec.querySelector('.ccap'); if (!cp) return; var sr = sec.querySelector('.cstage').getBoundingClientRect(), ct = cp.getBoundingClientRect().top; pn.style.bottom = Math.round(sr.bottom - ct + 14) + 'px'; var hd = sec.querySelector('.chead'), top = (hd ? hd.getBoundingClientRect().bottom : sr.top) + 10, avail = ct - 14 - top, ph = pn.offsetHeight; pn.style.transformOrigin = '50% 100%'; pn.style.transform = ph > avail && avail > 80 ? 'scale(' + (avail / ph).toFixed(3) + ')' : ''; }
-  function chP(sec){ if (sec.id === 'ch2') seatPanel('c2p', sec); else if (sec.id === 'ch3') seatPanel('c3p', sec); var vh = window.innerHeight, r = sec.getBoundingClientRect(); return reduce ? 1 : clamp(-r.top / Math.max(1, r.height - vh), 0, 1); }
+  function chP(sec){ if (sec.id === 'ch2') seatPanel('c2p', sec); else if (sec.id === 'ch3') seatPanel('c3p', sec); return chRaw(sec); }
+  function chRaw(sec){ var vh0 = window.innerHeight, r0 = sec.getBoundingClientRect(); return reduce ? 1 : smooth(sec.id, clamp(-r0.top / Math.max(1, r0.height - vh0), 0, 1)); }
+  function chPold(sec){ var vh = window.innerHeight, r = sec.getBoundingClientRect(); return reduce ? 1 : clamp(-r.top / Math.max(1, r.height - vh), 0, 1); }
   function onScreen(sec){ var r = sec.getBoundingClientRect(); return r.bottom > 0 && r.top < window.innerHeight; }
   /* every canvas label goes through a per-frame queue: drawn last (on top of the drawing), strongest first,
      kept inside the canvas, and never on top of another label · readability over completeness */
-  var LQ = new Map();
+  var LQ = new Map(), RSV = new Map();
+  /* space already taken by stamps and big numerals, so labels give way to them */
+  function reserve(c, x0, y0, x1, y1){ var T = c.getTransform(), pts = [[x0, y0], [x1, y0], [x0, y1], [x1, y1]].map(function(p){ return [T.a * p[0] + T.c * p[1] + T.e, T.b * p[0] + T.d * p[1] + T.f]; }); var b = [Math.min.apply(null, pts.map(function(p){ return p[0]; })), Math.min.apply(null, pts.map(function(p){ return p[1]; })), Math.max.apply(null, pts.map(function(p){ return p[0]; })), Math.max.apply(null, pts.map(function(p){ return p[1]; }))]; var r = RSV.get(c); if (!r) { r = []; RSV.set(c, r); } r.push(b); if (!LQ.has(c)) { LQ.set(c, []); queueMicrotask(function(){ flushLabels(c); }); } }
   function txt(c, s, x, y, col, al, size, align){ if (al <= 0.01 || !s) return; var q = LQ.get(c); if (!q) { q = []; LQ.set(c, q); queueMicrotask(function(){ flushLabels(c); }); } q.push([String(s), x, y, col, al, size || 11, align || 'center', c.getTransform(), q.length]); }
   function flushLabels(c){
-    var q = LQ.get(c); LQ.delete(c); if (!q || !q.length) return;
-    var cv = c.canvas, W = cv.width, H = cv.height, placed = [];
+    var q = LQ.get(c); LQ.delete(c); if (!q || !q.length) { RSV.delete(c); return; }
+    var cv = c.canvas, W = cv.width, H = cv.height, placed = (RSV.get(c) || []).slice(); RSV.delete(c);
     q.sort(function(a, b){ return (b[4] - a[4]) || (a[8] - b[8]); });
     c.save();
     q.forEach(function(L){
@@ -1643,10 +1655,10 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
   }, gdMemo = {};
   function guide(id, ph){ var g = GUIDE[id] && GUIDE[id][ph], n = el(id + 'g'); if (!g || !n) return; var k = g[0] + g[1]; if (gdMemo[id] === k) return; gdMemo[id] = k; n.className = 'gd ' + g[0]; n.querySelector('.gd-t').innerHTML = g[0] === 'me' ? 'my call · ' + g[1] : g[1]; }
   /* the top of a chapter's caption block, in canvas coordinates, so drawings can stay clear of it */
-  function capTop(sec){ var g = sec.querySelector('.ccap'), cv = sec.querySelector('canvas'); if (!g || !cv) return 1e9; return g.getBoundingClientRect().top - cv.getBoundingClientRect().top; }
+  function capTop(sec){ var now = performance.now(); if (sec._ct != null && now - sec._ctT < 400) return sec._ct; var g = sec.querySelector('.ccap'), cv = sec.querySelector('canvas'); if (!g || !cv) return 1e9; sec._ctT = now; return (sec._ct = g.getBoundingClientRect().top - cv.getBoundingClientRect().top); }
   function cap(id, ph, k, h, q){
     guide(id, ph);
-    var s = ph + k + h + q; if (capMemo[id] === s) return; capMemo[id] = s;
+    var s = ph + k + h + q; if (capMemo[id] === s) return; capMemo[id] = s; var cs0 = el('ch' + id.slice(1)); if (cs0) cs0._ct = null;
     el(id + 'k').textContent = k; el(id + 'h').textContent = h; el(id + 'q').textContent = q;
     Array.prototype.forEach.call(el(id + 'rail').children, function(li, j){ li.classList.toggle('on', j === ph); li.classList.toggle('done', j < ph); });
   }
@@ -1748,7 +1760,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     /* iv · the drivers and the spectrum */
     if (dA > 0.01) {
       [210, 330, 270].forEach(function(a, j){ var ra = a * Math.PI / 180, kk = ramp(p, 0.63 + j * 0.014, 0.65 + j * 0.014), y = Math.sin(ra) * 80, z = Math.cos(ra) * 80; seg(c, P, [0, Math.sin(ra) * 45, Math.cos(ra) * 45], [0, y, z], OR, 0.7 * dA * kk, 1.2); cdot(c, P, 0, y, z, 5, OR, dA * kk); var lp = P(0, y * 1.3, z * 1.3); txt(c, 'kpi ' + (j + 1), lp[0], lp[1] + 4, OR, 0.95 * dA * kk, 11); });
-      var cp = P(0, 0, 0); c.font = '300 ' + Math.max(20, Math.round(50 * sc)) + 'px Fraunces, Georgia, serif'; c.textAlign = 'center'; c.fillStyle = rgba(WH, dA); c.fillText(p > 0.70 ? '5 ↑' : '5', cp[0], cp[1] + Math.max(7, 17 * sc));
+      var cp = P(0, 0, 0); c.font = '300 ' + Math.max(20, Math.round(50 * sc)) + 'px Fraunces, Georgia, serif'; c.textAlign = 'center'; c.fillStyle = rgba(WH, dA); c.fillText(p > 0.70 ? '5 ↑' : '5', cp[0], cp[1] + Math.max(7, 17 * sc)); if (dA > 0.25) { var fz5 = Math.max(20, Math.round(50 * sc)), w5 = c.measureText(p > 0.70 ? '5 ↑' : '5').width; reserve(c, cp[0] - w5 / 2 - 3, cp[1] + Math.max(7, 17 * sc) - fz5 * 0.75, cp[0] + w5 / 2 + 3, cp[1] + Math.max(7, 17 * sc) + 4); }
     }
     /* v · the quality spectrum: the rings collapse into one point, and it lands among the rest of coverage */
     var sA = ramp(p, 0.73, 0.76) * (pr < 0.78 ? 1 : 0);
@@ -1848,7 +1860,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     if (ph === 3) cap('c1', 3, 'iv · the drivers', 'Three numbers carry the cash.', '1–3 KPIs, each tied to a line in the model · the 80/20: the lines that carry the answer');
     if (ph === 4) cap('c1', 4, 'v · the spectrum', p < 0.79 ? 'Every business goes on the quality spectrum.' : 'Paid for travel along it, not position on it.', p < 0.79 ? 'broken → phenomenal · predictability of the cash sets the multiple · I set the score, the evidence sets the direction · after thomas li' : '5 ↑ the long · 9 ↓ the short · 3 ↑ poor to OK, priced for decline · 8 → already priced · 2 → a low price is not a discount');
     if (ph === 5) cap('c1', 5, 'vi · relative value → the delta', rvq < 0.18 ? 'Now price the quality.' : rvq < 0.40 ? 'Cheap for its quality, against expensive for its quality.' : rvq < 0.52 ? 'Then let it move.' : 'Ideas are the dots that leave the diagonal.', rvq < 0.18 ? 'spectrum score against the multiple, across one subsector · the line is what the market pays for quality · after allen white, stephen parlett' : rvq < 0.40 ? 'long one, short the other · the market and the sector cancel out · what’s left is my read on the businesses' : rvq < 0.52 ? 'change in quality across · change in expectations up · on the diagonal, it’s priced' : 'we trade the increment △1 · every name moves every quarter, so the pipeline never runs dry');
-    root.style.setProperty('--nb', (rvq >= 0 ? ramp(rvq, 0.52, 0.58) : 0).toFixed(3));
+    setV('--nb', (rvq >= 0 ? ramp(rvq, 0.52, 0.58) : 0).toFixed(3));
     if (ph === 6) cap('c1', 6, 'vii · compounding', n2 > 0.5 ? 'The next name in the space starts at the drivers.' : 'Every pass leaves a note.', n2 > 0.5 ? 'to understand one name, understand the space · the space is learned once' : 'my vault, real structure · ordered by week of last edit · the live version is just below');
   }
 
@@ -1887,6 +1899,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     var r = hh / 2; c.moveTo(-ww / 2 + r, -r); c.lineTo(ww / 2 - r, -r); c.arc(ww / 2 - r, 0, r, -Math.PI / 2, Math.PI / 2); c.lineTo(-ww / 2 + r, r); c.arc(-ww / 2 + r, 0, r, Math.PI / 2, Math.PI * 1.5); c.closePath();
     c.fillStyle = rgba(col, 0.10 * al); c.fill(); c.stroke();
     c.fillStyle = rgba(col, al); c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(t, 0, 0.5);
+    if (al > 0.25) reserve(c, -ww / 2 - 2, -r - 2, ww / 2 + 2, r + 2);
     c.restore(); return ww;
   }
   function btChart(c, x0, y0, W2, H2, T, lp, al, narrow){
@@ -2005,7 +2018,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       var changed = false; for (var j = 0; j < 6; j++) { var want = j < applied; if (kOn[j] !== want) { kOn[j] = want; changed = true; } }
       kRatio = kRender(changed);
     }
-    root.style.setProperty('--k2', ramp(p, 0.55, 0.59).toFixed(3));
+    setV('--k2', ramp(p, 0.55, 0.59).toFixed(3));
     el('c2p').classList.toggle('mod', p > 0.645);
     var ph = p < 0.075 ? 0 : p < 0.355 ? 1 : p < 0.56 ? 2 : p < 0.65 ? 3 : p < 0.92 ? 4 : 5;
     if (ph === 0) cap('c2', 0, 'i · the telescope', 'Everything in. Only what’s new out.', 'reddit · sell-side notes · substack · youtube · podcasts · filings · alt data · in build');
@@ -2137,7 +2150,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       Array.prototype.forEach.call(el('fo').children, function(li, j){ li.classList.toggle('in', fi[j]); });
       el('fob').classList.toggle('in', p > 0.86);
     }
-    root.style.setProperty('--k3', (ramp(p, 0.40, 0.43)).toFixed(3));
+    setV('--k3', (ramp(p, 0.40, 0.43)).toFixed(3));
     if (ph === 0) cap('c3', 0, 'i · join the chain', 'Become a member of the supply chain.', 'build relationships with the CFOs and IR · read what they read · know every nuance before it’s material · after thomas li');
     if (ph === 1) cap('c3', 1, 'ii · the funnels', 'As many primary research funnels as we can build.', 'each funnel reaches a different node · the creativity is in the funnels nobody else has built');
     if (ph === 2) cap('c3', 2, 'iii · the question', 'Rank the question, not the stock.', 'debate-moving × answerable × durable · one weak score kills it · 12 of 27 earns research hours');
@@ -2337,7 +2350,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     function frame(now){
       if (!on) return;
       var f = fitCanvas(cvs), c = f.x; if (f.w !== W2 || f.h !== H2) size();
-      var vh = window.innerHeight, rr = sec.getBoundingClientRect(), pR = reduce ? 0.6 : clamp(-rr.top / Math.max(1, rr.height - vh), 0, 1), pv = clamp(pR / 0.6, 0, 1), out = ease(ramp(pR, 0.6, 0.7));
+      var vh = window.innerHeight, rr = sec.getBoundingClientRect(), pR = reduce ? 0.6 : smooth('void', clamp(-rr.top / Math.max(1, rr.height - vh), 0, 1)), pv = clamp(pR / 0.6, 0, 1), out = ease(ramp(pR, 0.6, 0.7));
       /* the long dark: after the line lands, everything drains away and there's just scroll */
       cvs.style.opacity = (1 - ramp(pR, 0.62, 0.8)).toFixed(3); stage.style.setProperty('--vbg', (1 - ramp(pR, 0.7, 0.95)).toFixed(3));
       var t = (now - t0) / 1000, capA = 1 - ramp(pv, 0.16, 0.28), z = ease(ramp(pv, 0.20, 0.52)), fadeAll = 1 - ramp(pv, 0.46, 0.62);
@@ -2511,7 +2524,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
         if (!narrow) { txt(c, 'every score is a note', lcx + Math.cos(a5) * LR * 0.62, lcy + Math.sin(a5) * LR * 0.62 + 26, OR, 0.9 * vk, 10, 'center'); txt(c, 'the next ramp starts further in', lcx + 14, lcy - LR * 0.75, BL, 0.9 * vk, 10, 'left'); }
       }
     }
-    root.style.setProperty('--nb5', (ramp(p, 0.72, 0.75) * (1 - ramp(p, 0.84, 0.86))).toFixed(3));
+    setV('--nb5', (ramp(p, 0.72, 0.75) * (1 - ramp(p, 0.84, 0.86))).toFixed(3));
     var ph = p < 0.17 ? 0 : p < 0.36 ? 1 : p < 0.52 ? 2 : p < 0.68 ? 3 : p < 0.85 ? 4 : 5;
     if (ph === 0) cap('c5', 0, 'i · triangulate', 'Conviction is triangulation.', 'the business · the ramp · the drivers · risk/reward · primary research · positioning · each line from an earlier block · after stephen parlett');
     if (ph === 1) cap('c5', 1, 'ii · downside first', p < 0.30 ? 'Start with what I can lose.' : 'Then write the kill switch.', p < 0.30 ? 'max size = the loss I accept ÷ the worst-case downside · after allen white' : 'an observable that ends the thesis, written before entry · when it’s wrong, out right away · after ozu kerkan');
@@ -2825,7 +2838,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 
   /* ---------- loop ---------- */
   var ticking = false, rodOn = false;
-  function frame(){ ticking = false; rodFrame(); ch1Frame(); ch2Frame(); ch3Frame(); ch4Frame(); ch5Frame(); var dh = document.documentElement.scrollHeight - window.innerHeight; root.style.setProperty('--prog', dh > 0 ? (window.scrollY / dh).toFixed(4) : 0); }
+  function frame(){ ticking = false; rodFrame(); ch1Frame(); ch2Frame(); ch3Frame(); ch4Frame(); ch5Frame(); var dh = document.documentElement.scrollHeight - window.innerHeight; setV('--prog', dh > 0 ? (window.scrollY / dh).toFixed(4) : 0); }
   function onScroll(){ if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   var vis = 0;
   function idle(now){ if (vis <= 0) { rodOn = false; return; } flowT = reduce ? 0 : now / 40; rodFrame(); ch1Frame(); ch2Frame(); ch3Frame(); ch4Frame(); ch5Frame(); requestAnimationFrame(idle); }
