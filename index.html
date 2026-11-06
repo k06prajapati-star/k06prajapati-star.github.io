@@ -282,6 +282,12 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (max-width:760px){ .mq{grid-template-columns:1fr;gap:10px} .o-foot .dim{display:none} }
 @media (prefers-reduced-motion:reduce){ .mq-track{animation:none} }
+/* about me: pinned, read like a scene */
+.open-pin.locked{height:320vh;height:320svh}
+.open-pin.locked .open{position:sticky;top:0;height:100vh;height:100svh;min-height:0;overflow:hidden}
+.open.pinned .o-top,.open.pinned .o-body h1,.open.pinned .o-write,.open.pinned .o-foot,.open.pinned .mq{opacity:1;animation:none}
+.open.pinned [data-st]{opacity:0;will-change:opacity, transform}
+@media (min-width:761px){ .open-pin .o-body{padding:clamp(20px, 5vh, 72px) 0 clamp(16px, 3vh, 40px)} .open-pin .o-body h1{font-size:min(clamp(72px, 11vw, 168px), 21vh)} .open-pin .o-write{gap:min(16px, 1.6vh)} .open-pin .o-write p{font-size:min(clamp(19px,1.6vw,23px), 2.6vh)} }
 /* reveal on arrival */
 .rv{opacity:0;transform:translateY(18px);transition:opacity 800ms ease-out, transform 800ms cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d, 0) * 110ms)}
 .rv.in{opacity:1;transform:none}
@@ -484,17 +490,33 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 .feed button.on .box::after{content:'';width:7px;height:4px;border-left:1.5px solid var(--void);border-bottom:1.5px solid var(--void);transform:rotate(-45deg) translate(1px, -1px)}
 .feed li.drop{display:grid;grid-template-columns:84px minmax(0, 1fr);gap:10px;padding:8px 10px 8px 12px;border:1px dashed rgba(255,255,255,0.16)}
 .feed li.drop .t{color:var(--ink-3);text-decoration:line-through;font-size:16px}
-.sheet{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
-.sheet th{font-weight:400;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);text-align:right;padding:6px 8px;border-bottom:1px solid var(--rule)}
-.sheet th:first-child,.sheet td:first-child,.sheet th.f{text-align:left}
-.sheet td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,0.08);text-align:right;transition:background 300ms ease-out, color 300ms ease-out}
-.sheet td.f{color:var(--ink-3);font-size:11px;text-align:left}
-.sheet tr.in td.v{color:var(--learn)}
-.sheet tr.out td:first-child{color:var(--ink)}
-.sheet tr.key td{border-top:1px solid var(--rule)}
-.sheet tr.key td.v{color:var(--ink);font-weight:600}
-.sheet td.aim{outline:1px solid var(--active);outline-offset:-1px}
-.sheet td.hit{background:rgba(255,107,53,0.28);color:var(--ink) !important}
+.xl{background:#fff;color:#1F1F1F;border:1px solid #C8C8C8;box-shadow:0 18px 40px rgba(0,0,0,0.45);font-family:Aptos, Calibri, 'Segoe UI', Arial, sans-serif;font-size:13px;overflow:hidden}
+.xl-tb{display:flex;align-items:center;gap:10px;background:#1E6C41;color:#fff;padding:6px 10px;font-size:12px}
+.xl-ic{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#fff;color:#1E6C41;font-weight:700;font-size:11px;border-radius:2px}
+.xl-sv{margin-left:auto;opacity:.75;font-size:11px}
+.xl-fb{display:grid;grid-template-columns:64px 28px minmax(0,1fr);align-items:stretch;border-bottom:1px solid #D4D4D4;background:#fff;font-size:12.5px}
+.xl-nb{padding:4px 8px;border-right:1px solid #D4D4D4;color:#1F1F1F}
+.xl-fx{padding:4px 0;text-align:center;border-right:1px solid #D4D4D4;color:#777;font-style:italic;font-family:Georgia, serif}
+.xl-f{padding:4px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:Aptos, Calibri, 'Segoe UI', Arial, sans-serif}
+.xl-grid{overflow-x:auto}
+.sheet{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13px;table-layout:fixed}
+.sheet th{font-weight:400;background:#F3F3F3;color:#555;border:1px solid #D4D4D4;padding:2px 6px;font-size:11.5px;text-align:center}
+.sheet th.rn{width:34px}
+.sheet td.rn{background:#F3F3F3;color:#555;text-align:center;font-size:11.5px;width:34px;padding:2px 4px}
+.sheet td{border:1px solid #E1E1E1;padding:3px 8px;height:24px;text-align:right;color:#1F1F1F;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:cell;transition:background 300ms ease-out}
+.sheet td.lb{text-align:left}
+.sheet tr.hd td{font-weight:700;border-bottom:1px solid #8A8A8A}
+.sheet tr.hd td.lb{font-weight:700}
+.sheet tr.in td.v{color:#0000FF}
+.sheet tr.key td{font-weight:700;border-top:1px solid #8A8A8A}
+.sheet tr.key td.v{background:#F2F7F4}
+.sheet td.sel{outline:2px solid #1E6C41;outline-offset:-2px}
+.sheet td.aim{outline:2px dashed var(--active);outline-offset:-2px}
+.sheet td.hit{background:#FCE4D6 !important}
+.xl-tabs{display:flex;gap:0;background:#F3F3F3;border-top:1px solid #D4D4D4;font-size:12px}
+.xl-tabs span{padding:5px 14px;color:#555;border-right:1px solid #D4D4D4}
+.xl.xs{font-size:12px;box-shadow:0 10px 26px rgba(0,0,0,0.4)} .xl.xs .xl-tb{padding:4px 8px;font-size:11px} .xl.xs .xl-fb{font-size:11.5px} .xl.xs .sheet{font-size:12px} .xl.xs .sheet td{height:21px;padding:2px 7px} .xl.xs .xl-tabs{font-size:11px} .xl.xs .xl-tabs span{padding:3px 12px}
+.xl-tabs span.on{background:#fff;color:#1E6C41;font-weight:700;box-shadow:inset 0 -2px 0 #1E6C41}
 .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3)}
 .legend i{font-style:normal;color:var(--learn)}
 .rr{margin-top:18px;padding-top:16px;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:12px}
@@ -535,7 +557,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
   .cc-steps button.st{grid-template-columns:36px minmax(0, 1fr);row-gap:2px}
   .cc-steps .ss{grid-column:2}
   .stations{grid-template-columns:repeat(2, minmax(0, 1fr))}
-  .sheet td.f,.sheet th.f{display:none}
+  .sheet td.lb{font-size:12px} .xl-tabs span:nth-child(n+3){display:none}
   .feed button{grid-template-columns:minmax(0, 1fr) 22px;row-gap:4px}
   .feed .s{grid-column:1;grid-row:1;padding-top:0}
   .feed .box{grid-row:1;grid-column:2;margin-top:0}
@@ -582,13 +604,13 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 .kfeed .t{font-family:var(--about);font-size:16px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kfeed b{font-family:var(--mono);font-weight:400;font-size:9px;text-transform:uppercase;letter-spacing:0.06em;text-align:right}
 .kfeed b.bull{color:var(--research)} .kfeed b.bear{color:#FF8A8A}
-.ksheet{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums}
-.ksheet th{font-weight:400;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);text-align:right;padding:3px 6px;border-bottom:1px solid var(--rule)}
-.ksheet th:first-child,.ksheet td:first-child{text-align:left}
-.ksheet td{padding:4px 6px;text-align:right;border-bottom:1px solid rgba(255,255,255,0.07);transition:background 300ms ease-out}
-.ksheet tr.in td.v{color:var(--learn)}
-.ksheet tr.key td{color:var(--ink);font-weight:600;border-top:1px solid var(--rule)}
-.ksheet td.hit{background:rgba(255,107,53,0.32)}
+
+
+
+
+
+
+
 .krr{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin:12px 0 4px}
 .krr b{display:block;font-family:var(--display);font-weight:300;font-size:40px;line-height:1}
 .krr .chip.or{border-color:var(--active);color:var(--active)}
@@ -680,6 +702,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       <h2 class="v-big" id="vbig" aria-label="I’m building a scalable process for finding an edge, and then for finding the next one."><span class="ln">I’m building a scalable process</span><span class="ln">for finding an edge,</span><span class="ln">and then for finding <em>the next one.</em></span></h2>
     </div>
   </section>
+  <div class="open-pin" id="openpin">
   <section class="open" id="top" aria-label="About me">
     <header class="o-top"><span class="o-name">Kathan Prajapati</span><span class="label dim">the mandate for this page</span></header>
     <div class="o-body">
@@ -699,6 +722,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     <div class="mq" aria-label="Phoenix Learning, Claude Academy, Effective Altruism"><div class="mq-win"><div class="mq-track"><div class="mq-set"><span class="lg lg-p" role="img" aria-label="Phoenix Learning" title="Phoenix Learning"><i></i></span><span class="lg lg-c" role="img" aria-label="Claude Academy" title="Claude Academy"><i></i></span><span class="lg lg-e" role="img" aria-label="Effective Altruism" title="Effective Altruism"><i></i></span></div><div class="mq-set"><span class="lg lg-p" role="img" aria-label="Phoenix Learning" title="Phoenix Learning"><i></i></span><span class="lg lg-c" role="img" aria-label="Claude Academy" title="Claude Academy"><i></i></span><span class="lg lg-e" role="img" aria-label="Effective Altruism" title="Effective Altruism"><i></i></span></div><span aria-hidden="true" style="display:contents"><div class="mq-set"><span class="lg lg-p" role="img" aria-label="Phoenix Learning" title="Phoenix Learning"><i></i></span><span class="lg lg-c" role="img" aria-label="Claude Academy" title="Claude Academy"><i></i></span><span class="lg lg-e" role="img" aria-label="Effective Altruism" title="Effective Altruism"><i></i></span></div><div class="mq-set"><span class="lg lg-p" role="img" aria-label="Phoenix Learning" title="Phoenix Learning"><i></i></span><span class="lg lg-c" role="img" aria-label="Claude Academy" title="Claude Academy"><i></i></span><span class="lg lg-e" role="img" aria-label="Effective Altruism" title="Effective Altruism"><i></i></span></div></span></div></div></div>
     <footer class="o-foot"><span class="label">↓ the process</span><span class="label dim">what I've built, block by block</span></footer>
   </section>
+  </div>
 
 
   <!-- 2 · THE ROD: what's built -->
@@ -752,7 +776,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       <ol class="crail" id="c2rail" aria-hidden="true"><li>telescope</li><li class="qa">backtest</li><li>filter</li><li>screen</li><li>model</li><li>risk / reward</li></ol>
       <div class="cpanel" id="c2p">
         <div class="panel kscr"><div class="kh"><span class="label">daily screen · NFC</span><span class="chip">illustrative · fictional</span></div><ul class="kfeed" id="kfeed"></ul></div>
-        <div class="panel kmod"><div class="kh"><span class="label">the model</span><span class="label dim" id="kpx">price $21 · blue = input</span></div><table class="ksheet" id="ksheet"></table><div class="krr"><div><span class="label dim">risk to reward</span><b id="krr">1.3 : 1</b></div><span class="chip" id="kgate"></span></div><div id="kbar"></div></div>
+        <div class="panel kmod"><div class="kh"><span class="label">the model</span><span class="label dim" id="kpx">price $21 · blue = input</span></div><div class="xl xs"><div class="xl-tb"><span class="xl-ic" aria-hidden="true">X</span><span>NFC_model.xlsx</span><span class="xl-sv">saved</span></div><div class="xl-fb"><span class="xl-nb" id="k-nb">C11</span><span class="xl-fx">fx</span><span class="xl-f" id="k-f">=C9*C10</span></div><div class="xl-grid"><table class="sheet ksheet" id="ksheet"></table></div><div class="xl-tabs"><span class="on">Model</span><span>Screen</span><span>Log</span></div></div><div class="krr"><div><span class="label dim">risk to reward</span><b id="krr">1.3 : 1</b></div><span class="chip" id="kgate"></span></div><div id="kbar"></div></div>
       </div>
       <div class="ccap" aria-live="polite"><span class="label" id="c2k"></span><h3 id="c2h"></h3><p id="c2q"></p></div>
       <button type="button" class="cmore" data-b="1">the detail ↗</button>
@@ -917,8 +941,13 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
         </div>
         <div class="panel">
           <div class="ws-h"><span class="label">the model</span><span class="label dim">price $21.00 · 10.0m shares · tax 25%</span></div>
-          <table class="sheet" id="sheet"></table>
-          <div class="legend"><span><i>blue</i> = input</span><span>white = formula</span><span>orange = just moved</span></div>
+          <div class="xl" id="xl">
+            <div class="xl-tb"><span class="xl-ic" aria-hidden="true">X</span><span>NFC_model.xlsx</span><span class="xl-sv">saved</span></div>
+            <div class="xl-fb"><span class="xl-nb" id="xl-nb">C11</span><span class="xl-fx">fx</span><span class="xl-f" id="xl-f">=C9*C10</span></div>
+            <div class="xl-grid"><table class="sheet" id="sheet"></table></div>
+            <div class="xl-tabs"><span class="on">Model</span><span>Screen</span><span>Comps</span><span>Log</span></div>
+          </div>
+          <div class="legend"><span><i>blue</i> = input</span><span>black = formula</span><span>orange fill = just moved</span><span>hover a cell for its formula</span></div>
           <div class="rr" id="rr"></div>
         </div>
       </div>
@@ -1342,10 +1371,15 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
   }
   function aim(i){ Array.prototype.forEach.call(el('sheet').querySelectorAll('td.aim'), function(td){ td.classList.remove('aim'); }); if (i < 0) return; FEED[i].hits.forEach(function(h){ var td = el('c-' + h[1] + '-' + h[0]); if (td) td.classList.add('aim'); }); }
   function fmt(v, d){ return v.toFixed(d); }
+  var XF = { rev: '=COL2*COL3/1000', gp: '=COL4*COL5/100', ebit: '=COL6-COL7', eps: '=COL8*(1-25%)/10', val: '=COL9*COL10' };
+  function xlSel(td){ Array.prototype.forEach.call(el('sheet').querySelectorAll('td.sel'), function(t){ t.classList.remove('sel'); }); td.classList.add('sel'); el('xl-nb').textContent = td.getAttribute('data-ref'); el('xl-f').textContent = td.getAttribute('data-f') || td.textContent; }
   function buildSheet(){
-    var t = '<thead><tr><th>line</th><th class="f">how</th><th>bear</th><th>base</th><th>bull</th></tr></thead><tbody>';
-    ROWS.forEach(function(r){ t += '<tr class="' + (r.in ? 'in' : 'out') + (r.key ? ' key' : '') + '"><td>' + r.l + '</td><td class="f">' + r.f + '</td>' + CASES.map(function(k){ return '<td class="v" id="c-' + r.k + '-' + k + '"></td>'; }).join('') + '</tr>'; });
+    var L = ['B', 'C', 'D'], t = '<colgroup><col style="width:34px"><col style="width:40%"><col><col><col></colgroup><thead><tr><th class="rn"></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead><tbody>';
+    t += '<tr class="hd"><td class="rn">1</td><td class="lb" data-ref="A1">NFC · $m unless stated</td><td data-ref="B1">Bear</td><td data-ref="C1">Base</td><td data-ref="D1">Bull</td></tr>';
+    ROWS.forEach(function(r, i){ var rn = i + 2; t += '<tr class="' + (r.in ? 'in' : 'out') + (r.key ? ' key' : '') + '"><td class="rn">' + rn + '</td><td class="lb" data-ref="A' + rn + '">' + r.l + '</td>' + CASES.map(function(k, j){ var f = XF[r.k] ? XF[r.k].replace(/COL/g, L[j]) : ''; return '<td class="v" id="c-' + r.k + '-' + k + '" data-ref="' + L[j] + rn + '"' + (f ? ' data-f="' + f + '"' : '') + '></td>'; }).join('') + '</tr>'; });
     el('sheet').innerHTML = t + '</tbody>';
+    Array.prototype.forEach.call(el('sheet').querySelectorAll('td[data-ref]'), function(td){ td.addEventListener('mouseenter', function(){ xlSel(td); }); td.addEventListener('click', function(){ xlSel(td); }); });
+    var d = el('c-val-base'); if (d) d.classList.add('sel');
   }
   function renderModel(flash){
     var c = calc();
@@ -1674,14 +1708,16 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
   var KROWS = ['u', 'asp', 'rev', 'gm', 'ebit', 'eps', 'val'], kOn = [false, false, false, false, false, false], kLast = null, kState = '';
   (function(){
     el('kfeed').innerHTML = FEED.map(function(it, i){ return '<li><span class="s">' + it.src + '</span><span class="t">' + KSHORT[i] + '</span><b class="' + it.side + '">' + it.side + '</b></li>'; }).join('');
-    var t = '<thead><tr><th>line</th><th>bear</th><th>base</th><th>bull</th></tr></thead><tbody>';
-    ROWS.forEach(function(r){ if (KROWS.indexOf(r.k) < 0) return; t += '<tr class="' + (r.in ? 'in' : '') + (r.key ? ' key' : '') + '"><td>' + r.l + '</td>' + CASES.map(function(k){ return '<td class="v" id="k-' + r.k + '-' + k + '"></td>'; }).join('') + '</tr>'; });
+    var L = ['B', 'C', 'D'], t = '<colgroup><col style="width:30px"><col style="width:38%"><col><col><col></colgroup><thead><tr><th class="rn"></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead><tbody><tr class="hd"><td class="rn">1</td><td class="lb">NFC · $m</td><td>Bear</td><td>Base</td><td>Bull</td></tr>';
+    ROWS.forEach(function(r, i){ if (KROWS.indexOf(r.k) < 0) return; var rn = i + 2; t += '<tr class="' + (r.in ? 'in' : 'out') + (r.key ? ' key' : '') + '"><td class="rn">' + rn + '</td><td class="lb">' + r.l + '</td>' + CASES.map(function(k, j){ var f = XF[r.k] ? XF[r.k].replace(/COL/g, L[j]) : ''; return '<td class="v" id="k-' + r.k + '-' + k + '" data-ref="' + L[j] + rn + '"' + (f ? ' data-f="' + f + '"' : '') + '></td>'; }).join('') + '</tr>'; });
     el('ksheet').innerHTML = t + '</tbody>';
+    var kd = el('k-val-base'); if (kd) kd.classList.add('sel');
   })();
   var kPx = PRICE;
+  function kSel(td){ Array.prototype.forEach.call(el('ksheet').querySelectorAll('td.sel'), function(t){ t.classList.remove('sel'); }); td.classList.add('sel'); el('k-nb').textContent = td.getAttribute('data-ref'); el('k-f').textContent = td.getAttribute('data-f') || td.textContent; }
   function kRender(flash){
     var save = on.slice(); for (var i = 0; i < on.length; i++) on[i] = kOn[i]; var c = calc(); for (var j = 0; j < on.length; j++) on[j] = save[j];
-    ROWS.forEach(function(r){ if (KROWS.indexOf(r.k) < 0) return; CASES.forEach(function(k){ var td = el('k-' + r.k + '-' + k), s = c[k][r.k].toFixed(r.d); if (flash && kLast && kLast[k][r.k].toFixed(r.d) !== s) { td.classList.remove('hit'); void td.offsetWidth; td.classList.add('hit'); setTimeout(function(){ td.classList.remove('hit'); }, 900); } td.textContent = s; }); });
+    ROWS.forEach(function(r){ if (KROWS.indexOf(r.k) < 0) return; CASES.forEach(function(k){ var td = el('k-' + r.k + '-' + k), s = c[k][r.k].toFixed(r.d); if (flash && kLast && kLast[k][r.k].toFixed(r.d) !== s) { kSel(td); td.classList.remove('hit'); void td.offsetWidth; td.classList.add('hit'); setTimeout(function(){ td.classList.remove('hit'); }, 900); } td.textContent = s; }); });
     kLast = c;
     var bull = c.bull.val, bear = c.bear.val, PX = kPx, ratio = (bull - PX) / Math.max(0.01, PX - bear), pass = ratio >= 2, sx = function(v){ return clamp(v / 45, 0, 1) * 100; }; kTrig = (bull + 2 * bear) / 3;
     el('krr').textContent = ratio.toFixed(1) + ' : 1';
@@ -1767,7 +1803,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       cap('c2', 1, 'ii · QA-01 · hold point · the backtest', 'Every source is a screw. Test it before it holds weight.', active >= 0 ? T.name + ' vs reported ' + T.kpi + ' · ' + (activeLp < 0.7 ? 'testing the last 8 quarters' : vt[T.verdict]) : 'three of five scraped feeds fall off or don’t fit · alt data works for a quarter or two, then seasonality · after stephen parlett'); }
     if (ph === 2) cap('c2', 2, 'iii · the filter', '~1,200 items a day, from the sources that held. Six survive.', 'new against my notes · new against consensus');
     if (ph === 3) cap('c2', 3, 'iv · the screen', 'A daily screen: what changed, per name.', 'each item tagged bull or bear, and to the line it moves · illustrative, fictional company');
-    if (ph === 4) cap('c2', 4, 'v · the model', applied === 0 ? 'Does it move a line in the model?' : applied < 4 ? 'Each item moves a cell. The cell moves the value.' : applied === 4 ? 'Four bull items: ' + kRatio.toFixed(1) + ' : 1. It clears the gate.' : 'Then the bears: back to ' + kRatio.toFixed(1) + ' : 1. Not yet.', applied >= 5 ? 'no siding with the bulls on bull evidence alone' : 'blue = input · white = formula · gate 2 : 1');
+    if (ph === 4) cap('c2', 4, 'v · the model', applied === 0 ? 'Does it move a line in the model?' : applied < 4 ? 'Each item moves a cell. The cell moves the value.' : applied === 4 ? 'Four bull items: ' + kRatio.toFixed(1) + '\u00a0:\u00a01. It clears the gate.' : 'Then the bears: back to ' + kRatio.toFixed(1) + '\u00a0:\u00a01. Not yet.', applied >= 5 ? 'no siding with the bulls on bull evidence alone' : 'blue = input · black = formula · gate 2\u00a0:\u00a01');
     el('c2k').style.color = ph === 1 ? '#3DDC84' : '';
     if (ph === 5) cap('c2', 5, 'vi · risk to reward', p < 0.93 ? 'Only what moves the model matters.' : 'No new information. A lower price clears the gate.', p < 0.93 ? 'the answer isn’t the data · it’s what the data does to the range' : 'price trigger: attractive at $' + (Math.floor(kTrig * 10) / 10).toFixed(1) + ' if nothing else changes · the reverse: +10–20% on no news is a worse bet, so trim · after khajavi');
   }
@@ -2127,6 +2163,26 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     size(); requestAnimationFrame(frame);
   })();
 
+
+  /* about me: pin it and let it play line by line, then hold so it can be read */
+  (function(){
+    var pin = el('openpin'), o = el('top'); if (!pin || !o || reduce) return;
+    var seq = [o.querySelector('.o-top'), o.querySelector('.o-body h1')].concat(Array.prototype.slice.call(o.querySelectorAll('.o-write > p'))).concat(Array.prototype.slice.call(o.querySelectorAll('.traits li'))).concat([o.querySelector('.mq'), o.querySelector('.o-foot')]).filter(Boolean);
+    var T = [0.00, 0.03, 0.10, 0.20, 0.30, 0.38, 0.42, 0.46, 0.50, 0.56, 0.60];
+    seq.forEach(function(n){ n.setAttribute('data-st', ''); });
+    var enabled = false;
+    function fits(){ pin.classList.remove('locked'); o.classList.remove('pinned'); o.style.zoom = ''; if (window.innerWidth <= 760) return false; var r = window.innerHeight / o.offsetHeight; if (r >= 1) return true; if (r >= 0.76) { o.style.zoom = r.toFixed(3); return true; } return false; }
+    function setup(){ enabled = fits(); if (enabled) { pin.classList.add('locked'); o.classList.add('pinned'); } else seq.forEach(function(n){ n.style.opacity = ''; n.style.transform = ''; n.removeAttribute('data-st'); }); if (enabled) seq.forEach(function(n){ n.setAttribute('data-st', ''); }); tick(); }
+    function tick(){
+      if (!enabled) return;
+      var r = pin.getBoundingClientRect(), p = clamp(-r.top / Math.max(1, r.height - window.innerHeight), 0, 1);
+      if (r.top > 0) p = -clamp(r.top / window.innerHeight, 0, 1) * 0.0; /* not yet pinned */
+      seq.forEach(function(n, i){ var t = T[Math.min(i, T.length - 1)], k = ease(clamp((p - t) / 0.07, 0, 1)); if (i < 2) k = Math.max(k, ease(clamp(1 - r.top / window.innerHeight, 0, 1))); n.style.opacity = k.toFixed(3); n.style.transform = 'translateY(' + ((1 - k) * 14).toFixed(1) + 'px)'; });
+    }
+    window.addEventListener('scroll', function(){ requestAnimationFrame(tick); }, { passive: true });
+    window.addEventListener('resize', function(){ setup(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(setup); setup();
+  })();
   (function(){ var o = document.querySelector('.open'); if (!o) return; if (!('IntersectionObserver' in window)) { o.classList.add('in'); return; } new IntersectionObserver(function(es, ob){ es.forEach(function(e){ if (e.isIntersecting) { o.classList.add('in'); ob.disconnect(); } }); }, { threshold: 0.25 }).observe(o); })();
   /* 05 · conviction and compounding: triangulate, downside first, hedge the factors, size on evidence, score it, let it compound */
   var ch5 = el('ch5'), c5 = el('c5cv');
