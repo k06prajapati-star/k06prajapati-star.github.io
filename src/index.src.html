@@ -104,7 +104,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 .nb b{font-family:var(--mono);font-style:normal;font-weight:400;font-size:11px;color:var(--active);margin-right:8px}
 .nb cite{display:block;font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);margin-top:6px}
 @media (max-width:980px){ .nb{display:none} }
-/* 06 · the operating manual */
+/* 06 · the operating manual · white board cover, engineering-paper pages */
 .mnl{padding:clamp(120px, 22vh, 220px) 0 clamp(120px, 20vh, 200px);background:linear-gradient(rgba(10,26,47,0), rgba(10,26,47,0.55) 30%, rgba(10,26,47,0.55) 70%, rgba(10,26,47,0))}
 .mnl-wrap{max-width:1200px;margin:0 auto;padding:0 max(24px, env(safe-area-inset-right, 0px)) 0 max(24px, env(safe-area-inset-left, 0px));display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);gap:clamp(32px, 6vw, 96px);align-items:center}
 .mnl-txt{display:flex;flex-direction:column;gap:16px}
@@ -114,23 +114,24 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 .mnl-book{perspective:1600px;display:flex;justify-content:center;cursor:pointer;outline:none}
 .bk3{position:relative;width:min(340px, 70vw);aspect-ratio:0.72;transform-style:preserve-3d;transform:rotateY(-24deg) rotateX(6deg);transition:transform 600ms cubic-bezier(.2,.7,.2,1)}
 .mnl-book:hover .bk3,.mnl-book:focus-visible .bk3{transform:rotateY(-10deg) rotateX(2deg) translateY(-6px)}
-.bk3-cover{position:absolute;inset:0;transform:translateZ(22px);box-shadow:0 30px 60px rgba(0,0,0,0.55)}
-.bk3-spine{position:absolute;top:0;bottom:0;left:0;width:44px;transform-origin:left;transform:rotateY(-90deg) translateX(-22px) translateZ(0);background:#0B1F38;border:1px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;transform:translateX(-22px) rotateY(-90deg);}
-.bk3-spine span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10px;letter-spacing:0.18em;color:rgba(255,255,255,0.75);white-space:nowrap}
-.bk3-pages{position:absolute;top:6px;bottom:6px;right:-2px;width:44px;transform-origin:right;transform:translateX(0) rotateY(90deg) translateZ(-22px);background:repeating-linear-gradient(90deg, #e9e4d6 0 1px, #cfc8b6 1px 3px);}
-.cv{position:relative;width:100%;height:100%;background-color:#0E2948;background-image:linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);background-size:14px 14px;border:1px solid rgba(255,255,255,0.35);display:flex;flex-direction:column;padding:8% 9%;color:#fff;overflow:hidden}
-.cv::before{content:'';position:absolute;left:0;top:0;bottom:0;width:7%;background:linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0))}
-.cv-top,.cv-bot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:0.62em;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);border-bottom:1px solid rgba(255,255,255,0.4);padding-bottom:0.6em}
-.cv-bot{border-bottom:0;border-top:1px solid rgba(255,255,255,0.4);padding-top:0.6em;padding-bottom:0;margin-top:auto}
-.cv-art{margin:14% 0 8%}
+.bk3-cover{position:absolute;inset:0;transform:translateZ(22px);box-shadow:0 30px 60px rgba(0,0,0,0.6)}
+.bk3-spine{position:absolute;top:0;bottom:0;left:0;width:44px;background:#16191E;border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;transform:translateX(-22px) rotateY(-90deg)}
+.bk3-spine span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:9px;letter-spacing:0.18em;color:#F2F0EA;white-space:nowrap}
+.bk3-spine::after{content:'';position:absolute;left:0;right:0;top:18px;height:4px;background:#E8562A}
+.bk3-pages{position:absolute;top:6px;bottom:6px;right:-2px;width:44px;transform-origin:right;transform:rotateY(90deg) translateZ(-22px);background:repeating-linear-gradient(90deg, #f6f4ee 0 1px, #d9d5ca 1px 3px)}
+.cv{position:relative;width:100%;height:100%;background-color:#F4F2EC;background-image:linear-gradient(rgba(22,25,30,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(22,25,30,0.05) 1px, transparent 1px);background-size:14px 14px;border:1px solid rgba(22,25,30,0.25);display:flex;flex-direction:column;padding:8% 9%;color:#16191E;overflow:hidden}
+.cv::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6%;background:linear-gradient(90deg, rgba(22,25,30,0.12), rgba(22,25,30,0))}
+.cv::after{content:'';position:absolute;left:9%;right:9%;top:30%;height:3px;background:#E8562A;opacity:0}
+.cv-top,.cv-bot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:0.62em;letter-spacing:0.12em;text-transform:uppercase;color:rgba(22,25,30,0.7);border-bottom:1.5px solid #16191E;padding-bottom:0.6em}
+.cv-bot{border-bottom:0;border-top:1.5px solid #16191E;padding-top:0.6em;padding-bottom:0;margin-top:auto}
+.cv-art{margin:8% 0 6%}
 .cv-art svg{width:100%;display:block}
-.cv h2{font-family:var(--display);font-weight:300;font-size:2.7em;line-height:0.95;letter-spacing:-0.01em}
-.cv-sub{font-family:var(--mono);font-size:0.62em;letter-spacing:0.06em;text-transform:lowercase;color:rgba(255,255,255,0.75);margin-top:0.9em;max-width:22em}
-.cv-stamp{position:absolute;right:8%;bottom:16%;transform:rotate(-8deg);border:1.5px solid #FF6B35;color:#FF6B35;border-radius:999px;padding:0.3em 0.9em;font-family:var(--mono);font-weight:600;font-size:0.55em;letter-spacing:0.1em;text-transform:uppercase}
-.cv.back{align-items:center;justify-content:center}
-.cv.back p{font-family:var(--mono);font-size:0.7em;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7)}
+.cv h2{font-family:var(--display);font-weight:400;font-size:2.7em;line-height:0.95;letter-spacing:-0.01em;color:#16191E}
+.cv-sub{font-family:var(--mono);font-size:0.6em;letter-spacing:0.05em;text-transform:lowercase;color:rgba(22,25,30,0.7);margin-top:0.9em;max-width:24em}
+.cv-stamp{position:relative;align-self:flex-end;margin-top:0.9em;transform:rotate(-6deg);border:1.5px solid #E8562A;color:#E8562A;border-radius:999px;padding:0.3em 0.9em;font-family:var(--mono);font-weight:600;font-size:0.55em;letter-spacing:0.1em;text-transform:uppercase;background:rgba(244,242,236,0.85)}
 .bk3-cover .cv{font-size:min(15px, 4.2vw)}
-.mnl-dlg{position:fixed;inset:0;z-index:70;background:radial-gradient(90% 80% at 50% 50%, #12161C 0%, #050607 75%);opacity:0;pointer-events:none;transition:opacity 400ms ease-out;display:flex;flex-direction:column}
+/* the reader */
+.mnl-dlg{position:fixed;inset:0;z-index:70;background:radial-gradient(90% 80% at 50% 50%, #1A1D22 0%, #070809 75%);opacity:0;pointer-events:none;transition:opacity 400ms ease-out;display:flex;flex-direction:column}
 .mnl-dlg.on{opacity:1;pointer-events:auto}
 .mnl-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:calc(14px + env(safe-area-inset-top, 0px)) 20px 10px;flex-wrap:wrap}
 .mnl-bar > button{min-height:40px;padding:0 14px;background:transparent;border:1px solid rgba(255,255,255,0.6);cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase}
@@ -140,11 +141,12 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 .mnl-room{flex:1;display:flex;align-items:center;justify-content:center;gap:14px;padding:0 10px 24px}
 .mnl-nav{width:44px;height:44px;border:1px solid rgba(255,255,255,0.5);background:transparent;cursor:pointer;font-size:16px;flex:none}
 .mnl-nav:disabled{opacity:0.2;cursor:default}
-.mnl-stage{position:relative;display:flex;perspective:2400px;transform-style:preserve-3d;box-shadow:0 40px 90px rgba(0,0,0,0.6)}
-.pg{position:relative;width:50%;height:100%;overflow:hidden;background-color:#0E2440;background-image:linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px);background-size:1.1em 1.1em;color:#fff;display:flex;flex-direction:column}
+.mnl-stage{position:relative;display:flex;perspective:2400px;transform-style:preserve-3d;box-shadow:0 40px 90px rgba(0,0,0,0.65)}
+/* engineering paper */
+.pg{--pi:#16191E;--p2:rgba(22,25,30,0.72);--p3:rgba(22,25,30,0.48);--pr:rgba(22,25,30,0.22);position:relative;width:50%;height:100%;overflow:hidden;background-color:#F2F0EA;background-image:linear-gradient(rgba(22,25,30,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(22,25,30,0.045) 1px, transparent 1px);background-size:1.1em 1.1em;color:var(--pi);display:flex;flex-direction:column}
 .mnl-stage.single .pg{width:100%}
-.pg.l{box-shadow:inset -2.2em 0 2.4em -1.6em rgba(0,0,0,0.6)}
-.pg.r{box-shadow:inset 2.2em 0 2.4em -1.6em rgba(0,0,0,0.6)}
+.pg.l{box-shadow:inset -2.2em 0 2.4em -1.8em rgba(0,0,0,0.28)}
+.pg.r{box-shadow:inset 2.2em 0 2.4em -1.8em rgba(0,0,0,0.28)}
 .pg.none{background:transparent;box-shadow:none}
 .pg.covp{background:none;box-shadow:none}
 .pg.covp .cv{font-size:1em}
@@ -156,67 +158,75 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 .leaf .bc{transform:rotateY(180deg)}
 .pg.slide-l{animation:slL 420ms ease-out} .pg.slide-r{animation:slR 420ms ease-out}
 @keyframes slL{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}} @keyframes slR{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:none}}
-.pg-h{display:flex;justify-content:space-between;margin:1.6em 1.8em 0;padding-bottom:0.5em;border-bottom:1px solid rgba(255,255,255,0.35);font-family:var(--mono);font-size:0.55em;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7)}
-.pg-f{margin:auto 1.8em 1.2em;padding-top:0.5em;border-top:1px solid rgba(255,255,255,0.2);display:flex;justify-content:flex-end;font-family:var(--mono);font-size:0.55em;color:rgba(255,255,255,0.6)}
+.pg-h{display:flex;justify-content:space-between;margin:1.6em 1.8em 0;padding-bottom:0.5em;border-bottom:1.5px solid var(--pi);font-family:var(--mono);font-size:0.55em;letter-spacing:0.12em;text-transform:uppercase;color:var(--p2)}
+.pg-f{margin:auto 1.8em 1.2em;padding-top:0.5em;border-top:1px solid var(--pr);display:flex;justify-content:flex-end;font-family:var(--mono);font-size:0.55em;color:var(--p3)}
 .pg.l .pg-f{justify-content:flex-start}
-.pg-b{padding:1.4em 1.8em 0;display:flex;flex-direction:column;gap:0.9em;min-height:0}
+.pg-b{padding:1.2em 1.8em 0;display:flex;flex-direction:column;gap:0.8em;min-height:0}
 .pg-b.blank{flex:1}
 .pg h2{font-family:var(--about);font-weight:400;font-size:1.65em;line-height:1.1}
-.pg h2.big{font-size:2.3em;line-height:1.02} .pg h2 em{font-style:italic;color:#FF6B35}
-.pg h3{font-family:var(--display);font-weight:300;font-size:1.5em;line-height:1.05}
-.pg .kick{font-family:var(--mono);font-size:0.58em;letter-spacing:0.12em;text-transform:uppercase;color:#FF6B35}
-.pg .kick.sm{font-size:0.52em;color:rgba(255,255,255,0.6)}
-.pg .lede{font-family:var(--about);font-size:0.98em;line-height:1.4;color:rgba(255,255,255,0.85)}
-.pg .lede.sm{font-size:0.85em} .pg .lede em{color:#FF6B35}
-.pg .note{font-family:var(--mono);font-size:0.52em;line-height:1.6;color:rgba(255,255,255,0.55);text-transform:lowercase}
+.pg h2.big{font-size:2.3em;line-height:1.02} .pg h2 em{font-style:italic;color:#E8562A}
+.pg h3{font-family:var(--display);font-weight:400;font-size:1.45em;line-height:1.05}
+.pg .kick{font-family:var(--mono);font-size:0.58em;letter-spacing:0.12em;text-transform:uppercase;color:#E8562A}
+.pg .kick.sm{font-size:0.52em;color:var(--p3)}
+.pg .lede{font-family:var(--about);font-size:0.98em;line-height:1.4;color:var(--p2)}
+.pg .lede.sm{font-size:0.82em} .pg .lede em{color:#E8562A}
+.pg .note{font-family:var(--mono);font-size:0.52em;line-height:1.6;color:var(--p3);text-transform:lowercase}
 .toc{list-style:none;margin:0.4em 0;padding:0;display:flex;flex-direction:column;gap:0.35em;font-family:var(--about);font-size:1em}
-.toc li{display:flex;gap:0.8em;border-bottom:1px dotted rgba(255,255,255,0.25);padding-bottom:0.25em}
-.toc b{font-family:var(--mono);font-weight:400;font-size:0.6em;color:#FF6B35;width:2em;padding-top:0.35em}
-.warn{display:flex;gap:0.9em;border:1px solid #FF6B35;padding:0.8em;background:rgba(255,107,53,0.08)}
-.warn .tri{flex:none;width:1.6em;height:1.6em;clip-path:polygon(50% 0, 100% 100%, 0 100%);background:#FF6B35;color:#0E2440;font-family:var(--mono);font-weight:600;font-size:0.9em;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0.05em}
-.warn b{font-family:var(--mono);font-weight:400;font-size:0.55em;letter-spacing:0.1em;text-transform:uppercase;color:#FF6B35}
-.warn .me{list-style:none;margin:0.4em 0 0;padding:0;display:flex;flex-wrap:wrap;gap:0.3em 0.9em;font-family:var(--about);font-size:0.85em}
-.parts{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.56em}
-.parts th{font-weight:400;text-align:left;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.35);padding:0.3em 0.4em}
-.parts td{padding:0.15em 0.4em;border-bottom:1px solid rgba(255,255,255,0.08);vertical-align:middle}
-.parts tr.grp td{color:#FF6B35;letter-spacing:0.1em;text-transform:uppercase;padding-top:0.7em;border-bottom:1px solid rgba(255,107,53,0.4)}
-.parts td.no{color:rgba(255,255,255,0.55);width:2.4em} .parts td.bd{width:2.6em} .parts td.bd svg{width:2.3em;height:2.3em;display:block}
-.parts td.ok{color:#3DDC84;text-align:right} .parts td.tb{color:rgba(255,255,255,0.5);text-align:right}
-.asm{width:100%;display:block}
-.asm .t{font-family:var(--mono);font-size:9px;fill:rgba(255,255,255,0.85)} .asm .t.sm{font-size:7.5px;fill:rgba(255,255,255,0.6)} .asm .t.or{fill:#FF6B35} .asm .t.bl{fill:#8FB0FF}
-.steps,.lad{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0.8em}
+.toc li{display:flex;gap:0.8em;border-bottom:1px dotted var(--pr);padding-bottom:0.25em}
+.toc b{font-family:var(--mono);font-weight:400;font-size:0.6em;color:#E8562A;width:2em;padding-top:0.35em}
+.warn{display:flex;gap:0.9em;border:1.5px solid #E8562A;padding:0.8em;background:rgba(232,86,42,0.07)}
+.warn .tri{flex:none;width:1.6em;height:1.6em;clip-path:polygon(50% 0, 100% 100%, 0 100%);background:#E8562A;color:#F2F0EA;font-family:var(--mono);font-weight:600;font-size:0.9em;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0.05em}
+.warn b{font-family:var(--mono);font-weight:400;font-size:0.55em;letter-spacing:0.1em;text-transform:uppercase;color:#E8562A}
+.warn .me{list-style:none;margin:0.4em 0 0;padding:0;display:flex;flex-direction:column;gap:0.25em;font-family:var(--about);font-size:0.85em}
+.warn .me li::before{content:'—  ';color:#E8562A}
+.fig{width:100%;display:block}
+.fig .t,.ports .t{font-family:var(--mono);font-size:8.5px;fill:#16191E} .fig .t.sm{font-size:7px;fill:rgba(22,25,30,0.7)} .fig .t.xs,.ports .t.xs{font-size:6.2px;fill:rgba(22,25,30,0.78)} .fig .t.b,.ports .t.b{font-weight:600}
+.ports{width:100%;display:block}
+.steps,.lad{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0.7em}
 .steps li,.lad li{display:flex;gap:0.8em;align-items:flex-start}
-.steps b,.lad b{flex:none;width:1.7em;height:1.7em;border-radius:50%;border:1px solid #fff;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:400;font-size:0.62em}
-.steps span,.lad span{font-family:var(--about);font-size:0.86em;line-height:1.35;color:rgba(255,255,255,0.85)}
-.steps strong,.lad strong{display:block;font-family:var(--mono);font-weight:400;font-size:0.68em;letter-spacing:0.08em;text-transform:uppercase;color:#fff;margin-bottom:0.15em}
-.lad li.no b{border-color:#FF8A8A;color:#FF8A8A} .lad li.no strong{color:#FF8A8A}
-.lad.lv b{border-radius:2px;border-color:#3DDC84;color:#3DDC84;width:2em}
-.stmp{display:inline-block;align-self:flex-start;border:1.5px solid #3DDC84;color:#3DDC84;border-radius:999px;padding:0.2em 0.8em;font-family:var(--mono);font-weight:600;font-size:0.5em;letter-spacing:0.1em;text-transform:uppercase;transform:rotate(-3deg)}
-.stmp.w{border-color:#fff;color:#fff} .stmp.d{border-color:rgba(255,255,255,0.55);color:rgba(255,255,255,0.7);border-style:dashed} .stmp.g{border-color:#3DDC84;color:#3DDC84}
-.pg-b.ag{gap:0.8em}
+.steps b,.lad b{flex:none;min-width:1.8em;height:1.8em;padding:0 0.3em;border:1.2px solid var(--pi);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:400;font-size:0.6em}
+.steps span,.lad span{font-family:var(--about);font-size:0.84em;line-height:1.35;color:var(--p2)}
+.steps strong,.lad strong{display:block;font-family:var(--mono);font-weight:600;font-size:0.66em;letter-spacing:0.08em;text-transform:uppercase;color:var(--pi);margin-bottom:0.15em}
+.lad.lv b{border-color:#1FA463;color:#1FA463}
+.stmp{display:inline-block;align-self:flex-start;border:1.5px solid #1FA463;color:#1FA463;border-radius:999px;padding:0.2em 0.8em;font-family:var(--mono);font-weight:600;font-size:0.5em;letter-spacing:0.1em;text-transform:uppercase;transform:rotate(-3deg)}
+.stmp.w{border-color:var(--pi);color:var(--pi)} .stmp.d{border-color:var(--p3);color:var(--p2);border-style:dashed} .stmp.g{border-color:#1FA463;color:#1FA463}
+table.own,table.icd,table.fm,table.mx,table.parts{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.52em;color:var(--pi)}
+table.own th,table.fm th,table.mx th,table.parts th{font-weight:600;text-align:left;letter-spacing:0.08em;text-transform:uppercase;border-bottom:1.5px solid var(--pi);padding:0.35em 0.4em;color:var(--p2)}
+table.own td,table.fm td,table.icd td{padding:0.45em 0.4em;border-bottom:1px solid var(--pr);vertical-align:top;line-height:1.45;text-transform:lowercase}
+table.own td.w,table.fm td.w{font-weight:600}
+table.cad td.lv{color:#1FA463;font-weight:600;white-space:nowrap}
+table.icd td.n{color:#E8562A;width:2em} table.icd td.k{font-weight:600;width:8em;text-transform:uppercase;letter-spacing:0.06em}
+table.mx{font-size:0.48em} table.mx td{padding:0.18em 0.4em;border-bottom:1px solid rgba(22,25,30,0.1)} table.mx th:not(:first-child),table.mx td:not(:first-child){text-align:center;width:2.6em}
+table.mx td i{display:inline-block;width:0.8em;height:0.8em;border-radius:50%;background:#1FA463}
+table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:none;border:1.2px dashed #1FA463}
+.calc{border:1.5px solid var(--pi);padding:0.7em;display:flex;flex-direction:column;gap:0.25em;align-items:center;text-align:center}
+.calc span{font-family:var(--mono);font-size:0.5em;letter-spacing:0.08em;text-transform:uppercase;color:var(--p3)}
+.calc b{font-family:var(--mono);font-weight:600;font-size:0.72em}
+.parts td{padding:0.12em 0.4em;border-bottom:1px solid rgba(22,25,30,0.1);vertical-align:middle}
+.parts tr.grp td{color:#E8562A;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding-top:0.7em;border-bottom:1px solid rgba(232,86,42,0.5)}
+.parts td.no{color:var(--p3);width:2.4em} .parts td.bd{width:2.6em} .parts td.bd svg{width:2.2em;height:2.2em;display:block}
+.parts td.ok{color:#1FA463;text-align:right;font-weight:600} .parts td.tb{color:var(--p3);text-align:right}
+.pg-b.ag{gap:0.7em}
 .agtop{display:flex;gap:1em;align-items:center}
-.agtop svg{width:4.6em;height:4.6em;flex:none}
+.agtop svg{width:4.2em;height:4.2em;flex:none}
 .agtop > div{display:flex;flex-direction:column;gap:0.4em}
-.agn{font-size:1.55em !important}
-.agf{font-family:var(--about);font-size:0.92em;line-height:1.38;color:rgba(255,255,255,0.88)}
-.sec{border-top:1px solid rgba(255,255,255,0.25);padding-top:0.5em;display:flex;flex-direction:column;gap:0.4em}
-.mev,.nv{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0.35em;font-family:var(--mono);font-size:0.56em;line-height:1.5}
-.mev li{display:flex;justify-content:space-between;gap:1em} .mev em{font-style:normal;color:#3DDC84;flex:none;border:1px solid #3DDC84;padding:0 0.4em;height:1.5em;line-height:1.4em}
-.nv li{display:flex;gap:0.6em;color:rgba(255,255,255,0.8)} .nv li::before{content:'✕';color:#FF8A8A}
-.io{display:grid;grid-template-columns:1fr auto 1fr;gap:0.6em;align-items:center;border:1px dashed rgba(255,255,255,0.35);padding:0.6em;font-family:var(--mono);font-size:0.52em;color:rgba(255,255,255,0.7);text-transform:lowercase}
-.tblk{width:100%;border-collapse:collapse;margin-top:0.4em;font-family:var(--mono);font-size:0.5em;color:#fff}
-.tblk td{border:1px solid rgba(255,255,255,0.45);padding:0.35em 0.5em;vertical-align:top;text-transform:lowercase}
-.tblk b{display:block;font-weight:400;font-size:0.85em;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.15em}
-.io b{display:block;font-weight:400;color:#fff;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.2em}
-.io i{font-style:normal;color:#FF6B35;font-size:1.4em}
-.ts{display:flex;flex-direction:column;gap:0.9em}
-.tsr{border-left:2px solid #FF6B35;padding-left:0.8em;display:flex;flex-direction:column;gap:0.25em}
-.tsr .sy{font-family:var(--about);font-style:italic;font-size:0.95em;color:#fff}
-.tsr p{font-family:var(--about);font-size:0.8em;line-height:1.35;color:rgba(255,255,255,0.8)}
-.tsr b{font-family:var(--mono);font-weight:400;font-size:0.65em;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-right:0.6em}
-.sig{margin-top:1em;display:flex;flex-direction:column;gap:0.2em;border-top:1px solid rgba(255,255,255,0.35);padding-top:0.6em;font-family:var(--mono);font-size:0.55em;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em}
-.sig b{font-family:var(--about);font-style:italic;font-weight:400;font-size:2.2em;letter-spacing:0;text-transform:none;color:#fff}
-.pg .lines{display:flex;flex-direction:column;gap:1.4em;margin-top:1em} .pg .lines i{display:block;height:1px;background:rgba(255,255,255,0.18)}
+.agn{font-size:1.5em !important}
+.agf{font-family:var(--about);font-size:0.88em;line-height:1.36;color:var(--p2)}
+.sec{border-top:1px solid var(--pr);padding-top:0.45em;display:flex;flex-direction:column;gap:0.35em}
+.mev,.nv{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0.3em;font-family:var(--mono);font-size:0.54em;line-height:1.5}
+.mev li{display:flex;justify-content:space-between;gap:1em} .mev em{font-style:normal;color:#1FA463;font-weight:600;flex:none;border:1.2px solid #1FA463;padding:0 0.4em;height:1.5em;line-height:1.35em}
+.nv li{display:flex;gap:0.6em;color:var(--p2)} .nv li::before{content:'✕';color:#D64545}
+.tblk{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.48em;color:var(--pi)}
+.tblk td{border:1.2px solid var(--pi);padding:0.35em 0.5em;vertical-align:top;text-transform:lowercase}
+.tblk b{display:block;font-weight:600;font-size:0.85em;letter-spacing:0.1em;text-transform:uppercase;color:var(--p3);margin-bottom:0.15em}
+.ts{display:flex;flex-direction:column;gap:0.8em}
+.tsr{border-left:2px solid #E8562A;padding-left:0.8em;display:flex;flex-direction:column;gap:0.2em}
+.tsr .sy{font-family:var(--about);font-style:italic;font-size:0.95em;color:var(--pi)}
+.tsr p{font-family:var(--about);font-size:0.8em;line-height:1.35;color:var(--p2)}
+.tsr b{font-family:var(--mono);font-weight:600;font-size:0.62em;letter-spacing:0.1em;text-transform:uppercase;color:var(--p3);margin-right:0.6em}
+.sig{margin-top:1em;display:flex;flex-direction:column;gap:0.2em;border-top:1.5px solid var(--pi);padding-top:0.6em;font-family:var(--mono);font-size:0.55em;color:var(--p3);text-transform:uppercase;letter-spacing:0.1em}
+.sig b{font-family:var(--about);font-style:italic;font-weight:400;font-size:2.2em;letter-spacing:0;text-transform:none;color:var(--pi)}
+.pg .lines{display:flex;flex-direction:column;gap:1.4em;margin-top:1em} .pg .lines i{display:block;height:1px;background:var(--pr)}
 @media (max-width:860px){ .mnl-wrap{grid-template-columns:minmax(0, 1fr)} .mnl-book{order:-1} .mnl-nav{display:none} .mnl-tabs{display:none} }
 @media (prefers-reduced-motion:reduce){ .leaf,.bk3{transition:none} .pg.slide-l,.pg.slide-r{animation:none} }
 
@@ -768,9 +778,9 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       <div class="mnl-txt rv">
         <span class="label" style="color:var(--active)">06 · the agent layer</span>
         <h2>Speed and creativity. <em>Never the judgement.</em></h2>
-        <p>Every assistant, what it does, how it’s scored and what it may never do, bound into one operating manual. It’s more art than science, so it reads like the instructions for a machine that’s still being built.</p>
+        <p>How the system is engineered: the layers, who may write what, how every part is evaluated and how it fails safely. Then a datasheet for each assistant. It’s more art than science, so it reads like the manual for a machine that’s still being built.</p>
         <button type="button" class="dive" id="mnl-open"><i aria-hidden="true"></i>open the manual</button>
-        <p class="vl-honest">parts list · assembly · the rules · one page per assistant · troubleshooting · warranty</p>
+        <p class="vl-honest">architecture · the evaluation system · parts list · datasheets · failure modes · warranty</p>
       </div>
       <div class="mnl-book rv" style="--d:2" id="mnl-book" role="button" tabindex="0" aria-label="Open the operating manual"></div>
     </div>
@@ -2211,7 +2221,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
   }
   Array.prototype.forEach.call(document.querySelectorAll('.cmore5'), function(b){ b.addEventListener('click', function(){ var v = el('vault'); if (v) window.scrollTo({ top: v.getBoundingClientRect().top + window.scrollY - 20, behavior: reduce ? 'auto' : 'smooth' }); }); });
 
-  /* ---------- 06 · the operating manual: the agent layer as a book you open ---------- */
+  /* ---------- 06 · the operating manual: the agent layer as an engineering manual you open ---------- */
   (function(){
     if (!el('mnl')) return;
     var AG = [
@@ -2243,12 +2253,12 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     var BN = ['01 zero to one', '02 commerciality', '03 primary research', '04 second order', '05 conviction'];
     var LV = ['self-check', 'a separate evaluator', 'deterministic code', 'reality · prices and prints', 'me'];
 
-    var BC = [BL, GR, GR, WH, OR], P = [];
+    var INK = '#16191E', PAPER = '#F2F0EA', BC = ['#3D6FE0', '#1FA463', '#1FA463', '#7C8693', '#E8562A'], P = [];
+    var RUN = { 'ramp assistant': 'on demand · each new ramp', 'ecosystem mapper': 'on demand · each new subsector', 'spectrum-mapper': 'when coverage is added · quarterly refresh', 'telescope': 'daily · before the screen', 'backtester · QA-01': 'quarterly · and on every new source', 'sourcers × 6': 'idea-sweep · weekly', 'triage': 'idea-sweep · weekly', 'bull-bear-framer': 'on every promotion', 'model updater': 'daily · after the telescope', 'trigger-monitor': 'evening-wrap · daily', 'research assistant': 'before every call', 'panel keeper': 'after every call', 'triangulation checker · QA-02': 'on every logged answer', 'read-through-mapper': 'idea-sweep · weekly', 'flow-scout': 'idea-sweep · weekly', 'consensus mapper': 'before each event', 'crowding scanner': 'weekly', 'inversion': 'challenge · morning-brief', 'expression-checker': 'before any size change', 'kill-switch watcher': 'daily', 'scorekeeper · QA': 'at +1, +3, +6, +12 months · post-mortem', 'librarian': 'weekly' };
     function esc(s){ return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-    /* a small character for each assistant: body by block, eyes open when built, a prop for what it does */
     function buddy(a, sz){
-      var col = BC[a.b], pl = a.s !== 'built', dash = pl ? ' stroke-dasharray="5 4"' : '', st = 'stroke="' + col + '" stroke-width="3" fill="rgba(10,26,47,0.9)"' + dash, h = '<svg viewBox="0 0 120 120" width="' + sz + '" height="' + sz + '" aria-hidden="true">';
-      h += '<ellipse cx="60" cy="112" rx="30" ry="4" fill="rgba(0,0,0,0.35)"/>';
+      var col = BC[a.b], pl = a.s !== 'built', dash = pl ? ' stroke-dasharray="5 4"' : '', st = 'stroke="' + col + '" stroke-width="3.5" fill="' + INK + '"' + dash, h = '<svg viewBox="0 0 120 120" width="' + sz + '" height="' + sz + '" aria-hidden="true">';
+      h += '<ellipse cx="60" cy="112" rx="30" ry="4" fill="rgba(22,25,30,0.15)"/>';
       if (a.b === 0) h += '<circle cx="60" cy="64" r="38" ' + st + '/>';
       else if (a.b === 1) h += '<rect x="22" y="26" width="76" height="76" rx="18" ' + st + '/>';
       else if (a.b === 2) h += '<polygon points="60,22 96,43 96,85 60,106 24,85 24,43" ' + st + '/>';
@@ -2256,93 +2266,126 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       else h += '<path d="M24 30 Q60 18 96 30 L96 62 Q96 92 60 106 Q24 92 24 62 Z" ' + st + '/>';
       var ey = a.b === 3 ? 72 : 60;
       if (pl) h += '<path d="M44 ' + ey + ' q6 4 12 0 M64 ' + ey + ' q6 4 12 0" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/>';
-      else h += '<circle cx="50" cy="' + ey + '" r="5" fill="#fff"/><circle cx="70" cy="' + ey + '" r="5" fill="#fff"/><circle cx="51.5" cy="' + (ey - 1.5) + '" r="1.6" fill="#0A1A2F"/><circle cx="71.5" cy="' + (ey - 1.5) + '" r="1.6" fill="#0A1A2F"/>';
+      else h += '<circle cx="50" cy="' + ey + '" r="5" fill="#fff"/><circle cx="70" cy="' + ey + '" r="5" fill="#fff"/><circle cx="51.5" cy="' + (ey - 1.5) + '" r="1.6" fill="' + INK + '"/><circle cx="71.5" cy="' + (ey - 1.5) + '" r="1.6" fill="' + INK + '"/>';
       h += '<path d="M52 ' + (ey + 14) + ' q8 ' + (pl ? 2 : 6) + ' 16 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>';
-      var n = a.n;
-      if (/telescope/.test(n)) h += '<g transform="rotate(-28 92 26)"><rect x="76" y="20" width="34" height="11" rx="2" fill="#0A1A2F" stroke="#fff" stroke-width="2"/><rect x="106" y="18" width="7" height="15" rx="1.5" fill="#fff"/></g>';
-      else if (/QA|checker|backtest/.test(n)) h += '<circle cx="94" cy="28" r="13" fill="#0A1A2F" stroke="#3DDC84" stroke-width="2.5"/><path d="M88 28 l4 4 l8 -9" stroke="#3DDC84" stroke-width="2.5" fill="none"/>';
-      else if (/librarian/.test(n)) h += '<rect x="80" y="14" width="26" height="20" rx="2" fill="#0A1A2F" stroke="#5B8CFF" stroke-width="2"/><path d="M93 14 v20" stroke="#5B8CFF" stroke-width="2"/>';
-      else if (/inversion/.test(n)) h += '<path d="M86 40 V10 L108 18 L86 26" fill="#FF8A8A" stroke="#FF8A8A" stroke-width="2"/>';
-      else if (/expression|sizing/.test(n)) h += '<path d="M82 30 h26 M95 18 v24" stroke="#FF6B35" stroke-width="3"/><circle cx="95" cy="30" r="14" fill="none" stroke="#FF6B35" stroke-width="2"/>';
-      else if (/kill/.test(n)) h += '<rect x="82" y="14" width="24" height="24" rx="4" fill="#0A1A2F" stroke="#FF8A8A" stroke-width="2"/><circle cx="94" cy="26" r="6" fill="#FF8A8A"/>';
-      else if (/research|panel/.test(n)) h += '<circle cx="92" cy="24" r="10" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M99 31 l9 9" stroke="#fff" stroke-width="3" stroke-linecap="round"/>';
-      else if (/map|mapper/.test(n)) h += '<path d="M80 16 l9 4 l9 -4 l9 4 v18 l-9 -4 l-9 4 l-9 -4 Z" fill="#0A1A2F" stroke="#fff" stroke-width="2"/>';
-      else if (/flow|crowding/.test(n)) h += '<path d="M94 8 v18" stroke="#fff" stroke-width="2"/><circle cx="102" cy="30" r="6" fill="#FF6B35"/><path d="M94 8 L102 30" stroke="#fff" stroke-width="1.5"/>';
-      else if (/score/.test(n)) h += '<rect x="82" y="12" width="22" height="28" rx="2" fill="#0A1A2F" stroke="#fff" stroke-width="2"/><path d="M87 22 h12 M87 28 h12 M87 34 h8" stroke="#3DDC84" stroke-width="2"/>';
-      else h += '<path d="M60 26 V10" stroke="#fff" stroke-width="2"/><circle cx="60" cy="8" r="4" fill="#FF6B35"/>';
+      var n = a.n, K = INK, F = PAPER;
+      if (/telescope/.test(n)) h += '<g transform="rotate(-28 92 26)"><rect x="76" y="20" width="34" height="11" rx="2" fill="' + F + '" stroke="' + K + '" stroke-width="2"/><rect x="106" y="18" width="7" height="15" rx="1.5" fill="' + K + '"/></g>';
+      else if (/QA|checker|backtest/.test(n)) h += '<circle cx="94" cy="28" r="13" fill="' + F + '" stroke="#1FA463" stroke-width="2.5"/><path d="M88 28 l4 4 l8 -9" stroke="#1FA463" stroke-width="2.5" fill="none"/>';
+      else if (/librarian/.test(n)) h += '<rect x="80" y="14" width="26" height="20" rx="2" fill="' + F + '" stroke="#3D6FE0" stroke-width="2"/><path d="M93 14 v20" stroke="#3D6FE0" stroke-width="2"/>';
+      else if (/inversion/.test(n)) h += '<g transform="translate(94 26)"><path d="M-10 -6 a10 10 0 0 1 18 -2 M10 6 a10 10 0 0 1 -18 2" fill="none" stroke="#E8562A" stroke-width="2.5"/><path d="M8 -12 l0 6 l-6 0 M-8 12 l0 -6 l6 0" fill="none" stroke="#E8562A" stroke-width="2.5"/></g>';
+      else if (/expression/.test(n)) h += '<path d="M82 30 h26 M95 18 v24" stroke="#E8562A" stroke-width="3"/><circle cx="95" cy="30" r="14" fill="none" stroke="#E8562A" stroke-width="2"/>';
+      else if (/kill/.test(n)) h += '<rect x="82" y="14" width="24" height="24" rx="4" fill="' + F + '" stroke="#D64545" stroke-width="2"/><circle cx="94" cy="26" r="6" fill="#D64545"/>';
+      else if (/research|panel/.test(n)) h += '<circle cx="92" cy="24" r="10" fill="none" stroke="' + K + '" stroke-width="2.5"/><path d="M99 31 l9 9" stroke="' + K + '" stroke-width="3" stroke-linecap="round"/>';
+      else if (/map/.test(n)) h += '<path d="M80 16 l9 4 l9 -4 l9 4 v18 l-9 -4 l-9 4 l-9 -4 Z" fill="' + F + '" stroke="' + K + '" stroke-width="2"/>';
+      else if (/flow|crowding/.test(n)) h += '<path d="M94 8 L102 30" stroke="' + K + '" stroke-width="1.8"/><circle cx="102" cy="30" r="6" fill="#E8562A"/>';
+      else if (/score/.test(n)) h += '<rect x="82" y="12" width="22" height="28" rx="2" fill="' + F + '" stroke="' + K + '" stroke-width="2"/><path d="M87 22 h12 M87 28 h12 M87 34 h8" stroke="#1FA463" stroke-width="2"/>';
+      else h += '<path d="M60 26 V10" stroke="' + K + '" stroke-width="2"/><circle cx="60" cy="8" r="4" fill="#E8562A"/>';
       return h + '</svg>';
     }
     function hd(k, sec){ return '<header class="pg-h"><span>' + k + '</span><span>' + (sec || 'KP-06 · operating manual') + '</span></header>'; }
     function ft(){ return '<footer class="pg-f"><span class="pn"></span></footer>'; }
+    function mk(id, c){ return '<marker id="' + id + '" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="' + c + '"/></marker>'; }
+    var DEFS = '<defs>' + mk('mk', INK) + mk('mo', '#E8562A') + mk('mg', '#1FA463') + mk('mb', '#3D6FE0') + '</defs>';
     var PART = 0;
     function owner(a){ if (a.q || /backtest|checker|score/.test(a.n)) return 'eval owner'; if (/triage|framer|inversion|expression|kill/.test(a.n)) return 'reviewer · PM'; if (/telescope|librarian|model updater|crowding|sourcers/.test(a.n)) return 'system owner'; return 'researcher · me'; }
-    /* ---- the pages ---- */
-    P.push({ sec: 'intro', h: hd('inside cover') + '<div class="pg-b"><p class="kick">how to use this manual</p><h2>Read it like the instructions for a machine you’re still building.</h2><ol class="toc"><li><b>i</b>principles</li><li><b>ii</b>parts list</li><li><b>iii</b>assembly</li><li><b>iv</b>the rules</li><li><b>v</b>one page per assistant</li><li><b>vi</b>troubleshooting</li><li><b>vii</b>warranty</li></ol><p class="note">built parts have open eyes and solid lines. parts not yet assembled are drawn dashed, eyes closed. names match the real agent files. no prompts are printed here.</p></div>' + ft() });
-    P.push({ sec: 'principles', h: hd('i · principles') + '<div class="pg-b"><h2 class="big">Speed and creativity.<br><em>Never the judgement.</em></h2><p class="lede">The assistants do the work that would come out the same for anyone who ran it. The hours they free go to the questions only I can answer.</p><div class="warn"><span class="tri">!</span><div><b>stays with the operator</b><ul class="me">' + ['what to be curious about', 'the 10-K read', 'the spectrum score', 'management and the panel', 'the side', 'the size', 'the exit'].map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ul></div></div><p class="note">after toyota’s jidoka: the machine runs the line, and stops itself the moment something is wrong. any worker can pull the cord.</p></div>' + ft() });
-    function partsPage(blocks, title){
-      var h = hd('ii · parts list', title) + '<div class="pg-b"><table class="parts"><thead><tr><th>part</th><th></th><th>assistant</th><th>status</th></tr></thead><tbody>';
-      blocks.forEach(function(b){ h += '<tr class="grp"><td colspan="4">' + BN[b] + '</td></tr>'; AG.forEach(function(a){ if (a.b !== b) return; h += '<tr><td class="no">' + String(a.part).padStart(2, '0') + '</td><td class="bd">' + buddy(a, 30) + '</td><td>' + esc(a.n) + '</td><td class="' + (a.s === 'built' ? 'ok' : 'tb') + '">' + (a.s === 'built' ? 'built' : 'to build') + '</td></tr>'; }); });
-      return h + '</tbody></table></div>' + ft();
-    }
     AG.forEach(function(a){ a.part = ++PART; });
-    P.push({ sec: 'parts', h: partsPage([0, 1], 'parts 01–' + String(AG.filter(function(a){ return a.b <= 1; }).length).padStart(2, '0')) });
-    P.push({ sec: 'parts', h: partsPage([2, 3, 4], 'continued') .replace('</tbody></table></div>', '</tbody></table><p class="kick sm">also in the box</p><p class="note">scouts, context not ideas · ' + CTX.join(' · ') + '</p><p class="note">skills that run the line · ' + SK.map(function(k){ return k[0]; }).join(' · ') + '</p></div>') });
-    /* assembly diagram */
-    var asm = '<svg class="asm" viewBox="0 0 300 330" aria-label="How the parts fit together">' +
-      '<rect x="20" y="6" width="260" height="34" rx="2" fill="rgba(255,107,53,0.12)" stroke="#FF6B35"/><text x="150" y="27" text-anchor="middle" class="t or">the operator · can stop anything</text>' +
-      '<path d="M150 40 v18" stroke="#FF6B35" stroke-dasharray="3 3" marker-end="url(#ma)"/>' +
-      '<rect x="20" y="60" width="260" height="34" rx="2" fill="none" stroke="#fff"/><text x="150" y="81" text-anchor="middle" class="t">A · skills run the line, in a fixed order</text>' +
-      '';
-    for (var i = 0; i < 5; i++) { var x = 22 + i * 52; asm += '<rect x="' + x + '" y="112" width="48" height="96" rx="2" fill="none" stroke="' + BC[i] + '"/><text x="' + (x + 24) + '" y="128" text-anchor="middle" class="t sm">0' + (i + 1) + '</text>'; AG.filter(function(a){ return a.b === i; }).forEach(function(a, j){ asm += '<circle cx="' + (x + 12 + (j % 3) * 12) + '" cy="' + (142 + Math.floor(j / 3) * 16) + '" r="4.5" fill="' + (a.s === 'built' ? BC[i] : 'none') + '" stroke="' + BC[i] + '"' + (a.s === 'built' ? '' : ' stroke-dasharray="2 2"') + '/>'; }); asm += '<path d="M' + (x + 24) + ' 208 v22" stroke="#fff" stroke-dasharray="2 3"/>'; }
-    asm += '<text x="20" y="106" class="t sm">B · assistants, one block each · QA between stages</text>' +
-      '<rect x="20" y="232" width="260" height="40" rx="2" fill="rgba(91,140,255,0.12)" stroke="#5B8CFF"/><text x="150" y="250" text-anchor="middle" class="t bl">C · the vault · the shared workspace</text><text x="150" y="264" text-anchor="middle" class="t sm">they talk through files · one writer per file</text>' +
-      '<path d="M280 252 q16 0 16 -40 v-110 q0 -40 -16 -40" stroke="#5B8CFF" fill="none" stroke-dasharray="3 3" marker-end="url(#mb)"/><text x="291" y="120" class="t sm bl" transform="rotate(90 291 120)">compounds back in</text>' +
-      '<defs><marker id="ma" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#fff"/></marker><marker id="mb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5B8CFF"/></marker></defs>' +
-      '<text x="20" y="300" class="t sm">fig. 1 · not to scale</text></svg>';
-    P.push({ sec: 'assembly', h: hd('iii · assembly', 'fig. 1') + '<div class="pg-b"><h3>How the parts fit</h3>' + asm + '</div>' + ft() });
-    P.push({ sec: 'assembly', h: hd('iii · assembly', 'steps') + '<div class="pg-b"><h3>Assembly, in order</h3><ol class="steps"><li><b>1</b><span><strong>Mount the QA first.</strong> The backtester and the scorekeeper go in before anything else. Without them you can’t tell whether any other part works.</span></li><li><b>2</b><span><strong>Then the ramp assistant.</strong> The biggest time saving: it clears the commodity questions so the ramp goes to the hard ones.</span></li><li><b>3</b><span><strong>Then primary research.</strong> The research assistant and the panel keeper. This is where the edge is.</span></li><li><b>4</b><span><strong>Then the librarian.</strong> It makes compounding automatic: it proposes, I approve.</span></li><li><b>5</b><span><strong>Wire every part to the vault, never to each other.</strong> Agents talk through files.</span></li></ol><p class="note">a five-step chain of 90%-reliable parts is 59% reliable. so check every link, not just the end.</p></div>' + ft() });
-    /* the rules */
-    P.push({ sec: 'rules', h: hd('iv · the rules', 'where they may work') + '<div class="pg-b"><h3>Where the parts may work</h3><ol class="lad">' + [['read', 'the vault, filings, prices, the web'], ['propose', 'to staging, never to the canonical notes'], ['append', 'evidence lines, each with its source, date and agent'], ['compute', 'deterministic maths only']].map(function(r, i){ return '<li><b>' + (i + 1) + '</b><span><strong>' + r[0] + '</strong>' + r[1] + '</span></li>'; }).join('') + '<li class="no"><b>✕</b><span><strong>never</strong>pick the side · set the size · approve their own work · act outside the vault · touch anything that could be MNPI</span></li></ol><div class="stmp">QA · permissions</div></div>' + ft() });
-    P.push({ sec: 'rules', h: hd('iv · the rules', 'how evals are graded') + '<div class="pg-b"><h3>How each part is tested</h3><p class="lede sm">Every eval in this manual carries a level. The higher the level, the less the part is grading itself.</p><ol class="lad lv">' + LV.map(function(l, i){ return '<li><b>L' + i + '</b><span><strong>' + l + '</strong>' + ['never enough on its own', 'the builder never grades itself', 'it reconciles, or it fails', 'the prices and the prints decide', 'reviewed by me, then logged'][i] + '</span></li>'; }).join('') + '</ol><p class="note">and the traps: goodhart’s law (rotate and hide some tests) · look-ahead (score forward, not back) · echo (a claim cited by two agents is still one claim)</p></div>' + ft() });
-    /* one page per assistant */
+    var nPl = AG.filter(function(a){ return a.s !== 'built'; }).length;
+
+    /* ---- front matter ---- */
+    P.push({ sec: 'intro', h: hd('inside cover') + '<div class="pg-b"><p class="kick">how to use this manual</p><h2>The instructions for a machine that’s still being built.</h2><ol class="toc"><li><b>i</b>principles</li><li><b>ii</b>system architecture</li><li><b>iii</b>the evaluation system</li><li><b>iv</b>parts list</li><li><b>v</b>part datasheets</li><li><b>vi</b>failure modes</li><li><b>vii</b>warranty</li></ol><p class="note">solid lines and open eyes: built. dashed lines and closed eyes: designed, not yet assembled. names match the real agent files. no prompts are printed here.</p></div>' + ft() });
+    P.push({ sec: 'principles', h: hd('i · principles') + '<div class="pg-b"><h2 class="big">Speed and creativity.<br><em>Never the judgement.</em></h2><p class="lede">The system does the work that would come out the same for anyone who ran it. The hours it frees go to the questions only I can answer.</p><div class="warn"><span class="tri">!</span><div><b>design constraints</b><ul class="me"><li>the operator holds every decision</li><li>no part grades itself</li><li>parts talk through files, never to each other</li><li>every claim carries its origin</li><li>a failed check halts the line</li></ul></div></div><p class="note">after toyota’s jidoka: the machine runs the line, and stops itself the moment something is wrong. any worker can pull the cord.</p></div>' + ft() });
+
+    /* ---- ii · architecture ---- */
+    var L = [['L5', 'operator', 'side · size · exit · can halt any layer', '#E8562A', 'rgba(232,86,42,0.10)'], ['L4', 'orchestration', '6 skills · idea-sweep · morning-brief · evening-wrap …', INK, 'rgba(22,25,30,0.03)'], ['L3', 'agents', '', INK, 'rgba(22,25,30,0.03)'], ['L2', 'QA hold points', 'QA-01 · QA-02 · QA-03 · the scorekeeper', '#1FA463', 'rgba(31,164,99,0.10)'], ['L1', 'shared state · the vault', '', '#3D6FE0', 'rgba(61,111,224,0.09)'], ['L0', 'sources', 'filings · prices · alt data · the web · the panel', INK, 'rgba(22,25,30,0.03)']];
+    var LY = [8, 56, 104, 206, 248, 310], LH = [36, 36, 90, 30, 50, 30];
+    var a1 = '<svg class="fig" viewBox="0 0 300 368" aria-label="Layered architecture">' + DEFS;
+    L.forEach(function(l, i){ a1 += '<rect x="34" y="' + LY[i] + '" width="256" height="' + LH[i] + '" fill="' + l[4] + '" stroke="' + l[3] + '" stroke-width="1"/><text x="6" y="' + (LY[i] + 13) + '" class="t b" fill="' + l[3] + '">' + l[0] + '</text><text x="42" y="' + (LY[i] + 13) + '" class="t b">' + l[1] + '</text>'; if (l[2]) a1 += '<text x="42" y="' + (LY[i] + 27) + '" class="t sm">' + l[2] + '</text>'; });
+    for (var c = 0; c < 5; c++) { var x = 42 + c * 49; a1 += '<rect x="' + x + '" y="122" width="44" height="66" fill="#fff" stroke="' + BC[c] + '"/><text x="' + (x + 22) + '" y="134" text-anchor="middle" class="t sm">0' + (c + 1) + '</text>'; AG.filter(function(a){ return a.b === c; }).forEach(function(a, j){ a1 += '<circle cx="' + (x + 10 + (j % 3) * 12) + '" cy="' + (146 + Math.floor(j / 3) * 13) + '" r="4" fill="' + (a.s === 'built' ? BC[c] : '#fff') + '" stroke="' + BC[c] + '"' + (a.s === 'built' ? '' : ' stroke-dasharray="2 2"') + '/>'; }); }
+    ['canonical', 'staging', 'tracker', 'scorecard', 'sources'].forEach(function(s, i){ var x = 42 + i * 49; a1 += '<rect x="' + x + '" y="270" width="44" height="22" fill="#fff" stroke="#3D6FE0" stroke-width="0.8"/><text x="' + (x + 22) + '" y="284" text-anchor="middle" class="t xs">' + s + '</text>'; });
+    a1 += '<path d="M276 310 V292" stroke="' + INK + '" marker-end="url(#mk)"/><path d="M276 248 V236" stroke="#1FA463" marker-end="url(#mg)"/><path d="M276 206 V190" stroke="#1FA463" marker-end="url(#mg)"/>';
+    a1 += '<path d="M160 92 V120" stroke="' + INK + '" stroke-dasharray="3 3" marker-end="url(#mk)"/><path d="M150 190 V268" stroke="#3D6FE0" marker-end="url(#mb)"/><path d="M20 44 V300" stroke="#E8562A" stroke-dasharray="2 3"/><path d="M20 300 h12" stroke="#E8562A" stroke-dasharray="2 3" marker-end="url(#mo)"/>';
+    a1 += '<text x="6" y="356" class="t xs">— data   - - control   ·· veto (L5 can stop any layer)   fig. 1</text></svg>';
+    P.push({ sec: 'arch', h: hd('ii · system architecture', 'fig. 1 · the layers') + '<div class="pg-b"><h3>Six layers, one direction of authority</h3>' + a1 + '</div>' + ft() });
+    P.push({ sec: 'arch', h: hd('ii · system architecture', 'reading fig. 1') + '<div class="pg-b"><h3>How to read it</h3><ol class="steps"><li><b>L0</b><span><strong>sources</strong>Raw inputs. Never trusted on arrival.</span></li><li><b>L1</b><span><strong>shared state</strong>The vault is the only place parts meet. Each file has one writer; everyone else reads or proposes.</span></li><li><b>L2</b><span><strong>QA hold points</strong>Data rises through a check before any agent may use it. A failure halts the line, it doesn’t route around it.</span></li><li><b>L3</b><span><strong>agents</strong>One block each. They read L1, write to staging or their own file, and never call each other.</span></li><li><b>L4</b><span><strong>orchestration</strong>Skills run agents in a fixed order on a schedule. Agents don’t pick who runs next.</span></li><li><b>L5</b><span><strong>operator</strong>Every decision that moves capital. The cord runs down the side of the drawing: any layer can be stopped.</span></li></ol></div>' + ft() });
+    /* fig. 2 · one item through the system */
+    var LN = ['source', 'telescope', 'QA-01', 'model', 'triage', 'inversion', 'me', 'score'], lx = function(i){ return 22 + i * 37; };
+    var MSG = [[0, 1, 'new item'], [1, 2, 'trusted source?', 'g'], [2, 1, 'pass 6/7', 'g'], [1, 3, 'moves units · base'], [3, 4, 'R/R 2.5 : 1'], [4, 5, 'promote · framed'], [5, 6, 'the other side'], [6, 7, 'call sealed · side · size', 'o'], [7, 7, '+3M · scored'], [7, 0, '→ the vault · a note', 'b']];
+    var f2 = '<svg class="fig" viewBox="0 0 300 360" aria-label="One item through the system">' + DEFS;
+    LN.forEach(function(n, i){ f2 += '<rect x="' + (lx(i) - 17) + '" y="4" width="34" height="18" fill="' + (n === 'me' ? 'rgba(232,86,42,0.12)' : n === 'QA-01' ? 'rgba(31,164,99,0.12)' : '#fff') + '" stroke="' + (n === 'me' ? '#E8562A' : n === 'QA-01' ? '#1FA463' : INK) + '" stroke-width="0.8"/><text x="' + lx(i) + '" y="16" text-anchor="middle" class="t xs">' + n + '</text><path d="M' + lx(i) + ' 22 V330" stroke="rgba(22,25,30,0.3)" stroke-dasharray="2 3"/>'; });
+    MSG.forEach(function(m, k){ var y = 44 + k * 28, c2 = m[3] === 'g' ? '#1FA463' : m[3] === 'o' ? '#E8562A' : m[3] === 'b' ? '#3D6FE0' : INK, mk2 = m[3] === 'g' ? 'mg' : m[3] === 'o' ? 'mo' : m[3] === 'b' ? 'mb' : 'mk';
+      if (m[0] === m[1]) f2 += '<path d="M' + lx(m[0]) + ' ' + y + ' h14 v10 h-12" fill="none" stroke="' + c2 + '" marker-end="url(#' + mk2 + ')"/><text x="' + (lx(m[0]) - 4) + '" y="' + (y + 4) + '" text-anchor="end" class="t xs">' + m[2] + '</text>';
+      else { var x1 = lx(m[0]), x2 = lx(m[1]), dir = x2 > x1 ? 1 : -1; f2 += '<path d="M' + x1 + ' ' + y + ' H' + (x2 - dir * 3) + '" stroke="' + c2 + '" stroke-width="1.1" marker-end="url(#' + mk2 + ')"/><text x="' + ((x1 + x2) / 2) + '" y="' + (y - 4) + '" text-anchor="middle" class="t xs">' + (k + 1) + ' · ' + m[2] + '</text>'; } });
+    f2 += '<text x="6" y="352" class="t xs">fig. 2 · sequence · one screen item, from arrival to compounding</text></svg>';
+    P.push({ sec: 'arch', h: hd('ii · system architecture', 'fig. 2 · the sequence') + '<div class="pg-b"><h3>One item, end to end</h3>' + f2 + '</div>' + ft() });
+    /* fig. 3 · who may write what */
+    var OWN = [['spectrum', 'me', 'spectrum-mapper', 'all sourcers'], ['daily screen', 'telescope', '·', 'model updater, me'], ['model inputs', 'me', 'model updater', 'triage, framer'], ['source register', 'backtester', '·', 'telescope'], ['tracker', 'framer, triage', 'trigger-monitor', 'everyone'], ['panel', 'panel keeper', 'research asst.', 'me'], ['scorecard', 'scorekeeper', '·', 'post-mortem'], ['staging', 'any agent', '·', 'librarian, me'], ['canonical notes', 'me', 'librarian', 'every agent']];
+    P.push({ sec: 'arch', h: hd('ii · system architecture', 'fig. 3 · write ownership') + '<div class="pg-b"><h3>Who may write what</h3><p class="lede sm">One writer per file. Everyone else proposes or reads. It keeps the record auditable, and stops one part’s guess becoming another part’s fact.</p><table class="own"><thead><tr><th>file · L1</th><th>writes</th><th>proposes</th><th>reads</th></tr></thead><tbody>' + OWN.map(function(r){ return '<tr><td>' + r[0] + '</td><td class="w">' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td></tr>'; }).join('') + '</tbody></table><p class="note">every line appended carries source · date · agent. an inferred line is labelled as inferred.</p></div>' + ft() });
+    /* the contract every part implements */
+    var ICD = [['role', 'one line, and the block it serves'], ['reads first', 'the vault notes it must read before it searches'], ['sources', 'what it may use · what it may not'], ['output', 'a fixed schema, with a word limit'], ['run by', 'the skill and schedule that call it'], ['never', 'side · size · self-approval · outside actions'], ['eval', 'metric, threshold, independence level'], ['stop', 'when it halts and flags instead of guessing'], ['owner', 'the role that reviews it']];
+    P.push({ sec: 'arch', h: hd('ii · system architecture', 'ICD-01 · the part contract') + '<div class="pg-b"><h3>The interface every part implements</h3><table class="icd"><tbody>' + ICD.map(function(r, i){ return '<tr><td class="n">' + String(i + 1).padStart(2, '0') + '</td><td class="k">' + r[0] + '</td><td>' + r[1] + '</td></tr>'; }).join('') + '</tbody></table><p class="note">a part without an eval is a part trusted on feel. it doesn’t ship.</p><div class="stmp">ICD-01 · rev a</div></div>' + ft() });
+
+    /* ---- iii · the evaluation system ---- */
+    var EV = ['spec', 'test set', 'run sealed', 'grade', 'gate', 'log', 'review'], EVs = ['metric + threshold, written before the part is built', 'held out · rotating · some of it hidden', 'outputs timestamped before they resolve', 'at an independence level, L0 to L4', 'pass · fail · retire', 'scorecard · source register', 'quarterly post-mortem · tune or retire'];
+    var f4 = '<svg class="fig" viewBox="0 0 300 300" aria-label="The evaluation loop">' + DEFS + '<circle cx="150" cy="150" r="104" fill="none" stroke="rgba(22,25,30,0.25)" stroke-dasharray="3 4"/>';
+    EV.forEach(function(e, i){ var an = -Math.PI / 2 + i * Math.PI * 2 / 7, x = 150 + Math.cos(an) * 104, y = 150 + Math.sin(an) * 104, gate = e === 'gate'; f4 += gate ? '<polygon points="' + x + ',' + (y - 15) + ' ' + (x + 15) + ',' + y + ' ' + x + ',' + (y + 15) + ' ' + (x - 15) + ',' + y + '" fill="#fff" stroke="#1FA463" stroke-width="1.5"/>' : '<circle cx="' + x + '" cy="' + y + '" r="12" fill="#fff" stroke="' + (e === 'grade' ? '#1FA463' : INK) + '" stroke-width="1.2"/>'; f4 += '<text x="' + x + '" y="' + (y + 3.5) + '" text-anchor="middle" class="t xs b">' + (i + 1) + '</text>'; var lx2 = 150 + Math.cos(an) * 136, ly2 = 150 + Math.sin(an) * 132, al = Math.cos(an) > 0.25 ? 'start' : Math.cos(an) < -0.25 ? 'end' : 'middle'; f4 += '<text x="' + lx2 + '" y="' + (ly2 + 3) + '" text-anchor="' + al + '" class="t sm b">' + e + '</text>'; });
+    f4 += '<text x="150" y="146" text-anchor="middle" class="t b">every part,</text><text x="150" y="160" text-anchor="middle" class="t b">every cycle</text><text x="150" y="292" text-anchor="middle" class="t xs">fig. 4 · the evaluation loop · a fail at 5 halts the line</text></svg>';
+    P.push({ sec: 'evals', h: hd('iii · the evaluation system', 'fig. 4 · the loop') + '<div class="pg-b"><h3>How every part is tested</h3>' + f4 + '</div>' + ft() });
+    P.push({ sec: 'evals', h: hd('iii · the evaluation system', 'the steps') + '<div class="pg-b"><h3>The seven steps</h3><ol class="steps">' + EV.map(function(e, i){ return '<li><b>' + (i + 1) + '</b><span><strong>' + e + '</strong>' + EVs[i] + '</span></li>'; }).join('') + '</ol><p class="note">the spec comes first for the same reason the answer is logged before it resolves: you can’t move the target after you’ve seen the shot.</p></div>' + ft() });
+    P.push({ sec: 'evals', h: hd('iii · the evaluation system', 'grading · L0 to L4') + '<div class="pg-b"><h3>The independence ladder</h3><p class="lede sm">The higher the level, the less the part is grading itself. Every eval in this manual carries one.</p><ol class="lad lv">' + LV.map(function(l, i){ return '<li><b>L' + i + '</b><span><strong>' + l + '</strong>' + ['never enough on its own', 'a separate model or agent · the builder never grades itself', 'schema, reconciliation, citations present · it passes or it fails', 'the prices and the prints decide · hit rate, calibration', 'sampled, reviewed by me, then logged'][i] + '</span></li>'; }).join('') + '</ol></div>' + ft() });
+    var CAD = [['every run', 'L2', 'schema · reconciliation · a citation on every claim', 'halt on fail'], ['daily', 'L2–L3', 'triggers · kill criteria · the screen', 'alert'], ['weekly', 'L1 · L4', 'a 10% sample of each part’s output, audited', 'flag · fix'], ['quarterly', 'L3', 'hit rate by lens · calibration · my calls vs the sealed AI forecast', 'tune or retire'], ['two bad quarters', 'L3', 'a lens or source below its threshold', 'switched off']];
+    P.push({ sec: 'evals', h: hd('iii · the evaluation system', 'cadence') + '<div class="pg-b"><h3>When each check runs</h3><table class="own cad"><thead><tr><th>when</th><th>level</th><th>what</th><th>on fail</th></tr></thead><tbody>' + CAD.map(function(r){ return '<tr><td class="w">' + r[0] + '</td><td class="lv">' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td></tr>'; }).join('') + '</tbody></table><div class="calc"><span>why check every link</span><b>0.9 × 0.9 × 0.9 × 0.9 × 0.9 = 0.59</b><span>five 90% parts in a chain are 59% reliable</span></div></div>' + ft() });
+    var MX = '<table class="mx"><thead><tr><th>part</th>' + [0, 1, 2, 3, 4].map(function(i){ return '<th>L' + i + '</th>'; }).join('') + '</tr></thead><tbody>' + AG.map(function(a){ return '<tr class="' + (a.s === 'built' ? '' : 'pl') + '"><td>' + esc(a.n) + '</td>' + [0, 1, 2, 3, 4].map(function(i){ return '<td>' + (a.lv.indexOf(i) >= 0 ? '<i></i>' : '') + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table>';
+    P.push({ sec: 'evals', h: hd('iii · the evaluation system', 'coverage matrix') + '<div class="pg-b"><h3>Where each part is tested</h3>' + MX + '<p class="note">no part is tested at L0 alone. most reach L2 or L3, where the code or the market decides.</p></div>' + ft() });
+    P.push({ sec: 'evals', h: hd('iii · the evaluation system', 'keeping the tests honest') + '<div class="pg-b"><h3>Keeping the tests honest</h3><div class="ts">' + [['Goodhart’s law', 'A part learns to pass the test, not to do the job.', 'Rotate the test set every quarter, and keep part of it hidden.'], ['Look-ahead', 'A backtest that saw the answer looks brilliant.', 'Score forward, or strictly out-of-sample.'], ['Anchoring', 'My call drifts toward the model’s.', 'The AI forecast is sealed before mine. Track how often we agree.'], ['Echo', 'Two parts cite the same claim, so it looks confirmed.', 'Count evidence by origin, not by mentions.']].map(function(t){ return '<div class="tsr"><p class="sy">' + t[0] + '</p><p><b>risk</b>' + t[1] + '</p><p><b>guard</b>' + t[2] + '</p></div>'; }).join('') + '</div></div>' + ft() });
+
+    /* ---- iv · parts list ---- */
+    function partsPage(blocks, title){
+      var h = hd('iv · parts list', title) + '<div class="pg-b"><table class="parts"><thead><tr><th>part</th><th></th><th>assistant</th><th>status</th></tr></thead><tbody>';
+      blocks.forEach(function(b){ h += '<tr class="grp"><td colspan="4">' + BN[b] + '</td></tr>'; AG.forEach(function(a){ if (a.b !== b) return; h += '<tr><td class="no">' + String(a.part).padStart(2, '0') + '</td><td class="bd">' + buddy(a, 28) + '</td><td>' + esc(a.n) + '</td><td class="' + (a.s === 'built' ? 'ok' : 'tb') + '">' + (a.s === 'built' ? 'built' : 'to build') + '</td></tr>'; }); });
+      return h + '</tbody></table>';
+    }
+    P.push({ sec: 'parts', h: partsPage([0, 1], 'parts 01–10') + '</div>' + ft() });
+    P.push({ sec: 'parts', h: partsPage([2, 3, 4], 'parts 11–22') + '<p class="note">also in the box · scouts, context not ideas: ' + CTX.join(' · ') + '</p></div>' + ft() });
+
+    /* ---- v · part datasheets ---- */
     AG.forEach(function(a){
-      var h = hd('v · part ' + String(a.part).padStart(2, '0'), BN[a.b]) + '<div class="pg-b ag"><div class="agtop">' + buddy(a, 96) + '<div><h3 class="agn">' + esc(a.n) + '</h3><span class="stmp ' + (a.s === 'built' ? (a.q ? 'g' : 'w') : 'd') + '">' + (a.s === 'built' ? 'built' : 'not yet assembled') + '</span></div></div>' +
-        '<p class="agf">' + esc(a.f) + '</p>' +
-        '<div class="sec"><span class="kick sm">how it’s scored</span><ul class="mev">' + a.e.map(function(e, j){ return '<li><span>' + esc(e) + '</span><em>L' + a.lv[j] + '</em></li>'; }).join('') + '</ul></div>' +
-        '<div class="sec"><span class="kick sm">never</span><ul class="nv">' + a.c.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>' +
-        '<div class="io"><span><b>in</b>' + esc(a.r) + '</span><i>→</i><span><b>out</b>' + esc(a.w) + '</span></div>' +
-        '<table class="tblk"><tr><td><b>part</b>' + String(a.part).padStart(2, '0') + '</td><td><b>block</b>' + BN[a.b] + '</td><td><b>reviewed by</b>' + owner(a) + '</td></tr><tr><td><b>status</b>' + (a.s === 'built' ? 'built' : 'design') + '</td><td><b>top eval</b>L' + Math.max.apply(null, a.lv) + ' · ' + LV[Math.max.apply(null, a.lv)] + '</td><td><b>rev</b>a</td></tr></table></div>' + ft();
+      var ports = '<svg class="ports" viewBox="0 0 300 54" aria-hidden="true">' + DEFS + '<rect x="2" y="12" width="92" height="30" fill="#fff" stroke="' + INK + '" stroke-width="0.8"/><text x="48" y="24" text-anchor="middle" class="t xs b">IN · L0/L1</text><text x="48" y="35" text-anchor="middle" class="t xs">' + (a.r.length > 24 ? esc(a.r.slice(0, 23)) + '…' : esc(a.r)) + '</text>' +
+        '<path d="M94 27 H110" stroke="' + INK + '" marker-end="url(#mk)"/><rect x="112" y="6" width="76" height="42" fill="' + (a.s === 'built' ? 'rgba(22,25,30,0.06)' : '#fff') + '" stroke="' + BC[a.b] + '" stroke-width="1.4"' + (a.s === 'built' ? '' : ' stroke-dasharray="4 3"') + '/><text x="150" y="24" text-anchor="middle" class="t xs b">PART ' + String(a.part).padStart(2, '0') + '</text><text x="150" y="36" text-anchor="middle" class="t xs">L3 · agent</text>' +
+        '<path d="M188 27 H204" stroke="#3D6FE0" marker-end="url(#mb)"/><rect x="206" y="12" width="92" height="30" fill="rgba(61,111,224,0.08)" stroke="#3D6FE0" stroke-width="0.8"/><text x="252" y="24" text-anchor="middle" class="t xs b">OUT · L1</text><text x="252" y="35" text-anchor="middle" class="t xs">' + (a.w.length > 24 ? esc(a.w.slice(0, 23)) + '…' : esc(a.w)) + '</text>' +
+        '<path d="M150 6 V0" stroke="#E8562A" stroke-dasharray="2 2"/></svg>';
+      var h = hd('v · datasheet · part ' + String(a.part).padStart(2, '0'), BN[a.b]) + '<div class="pg-b ag"><div class="agtop">' + buddy(a, 84) + '<div><h3 class="agn">' + esc(a.n) + '</h3><span class="stmp ' + (a.s === 'built' ? (a.q ? 'g' : 'w') : 'd') + '">' + (a.s === 'built' ? 'built' : 'not yet assembled') + '</span></div></div>' +
+        '<p class="agf">' + esc(a.f) + '</p>' + ports +
+        '<div class="sec"><span class="kick sm">eval spec</span><ul class="mev">' + a.e.map(function(e, j){ return '<li><span>' + esc(e) + '</span><em>L' + a.lv[j] + '</em></li>'; }).join('') + '</ul></div>' +
+        '<div class="sec"><span class="kick sm">never · stop conditions</span><ul class="nv">' + a.c.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>' +
+        '<table class="tblk"><tr><td><b>run by</b>' + (RUN[a.n] || 'on demand') + '</td><td><b>reviewed by</b>' + owner(a) + '</td><td><b>status</b>' + (a.s === 'built' ? 'built' : 'design') + '</td></tr><tr><td><b>writes</b>' + esc(a.w) + '</td><td><b>top eval</b>L' + Math.max.apply(null, a.lv) + ' · ' + LV[Math.max.apply(null, a.lv)] + '</td><td><b>rev</b>a</td></tr></table></div>' + ft();
       P.push({ sec: 'b' + a.b, h: h });
     });
-    /* troubleshooting */
-    var TS = [
-      ['The output reads like consensus.', 'Everyone is running the same models on the same data.', 'Move the part to the commodity layer. The edge is in the questions and the primary research.'],
-      ['Two assistants agree, so it must be true.', 'One claim, cited twice. Echo.', 'Check provenance. If both trace to one source, it’s one piece of evidence.'],
-      ['A source worked for two quarters, then stopped.', 'Seasonality, promo, a calendar shift. Decay.', 'Re-run QA-01. A failed source is dropped, never patched.'],
-      ['I feel strongly about this one.', 'Conviction tends to track internal bias.', 'Check the hit rate for this lens. Size from evidence, not from the feeling.'],
-      ['The agent wrote a confident answer to a hard question.', 'It was asked something only I can answer.', 'Pull the cord. Hard questions are left blank by design.'],
-      ['Nothing has changed, but I keep wanting to act.', 'The thesis is being reviewed daily.', 'Only risk/reward is daily. The thesis is quarterly.']
-    ];
-    [TS.slice(0, 3), TS.slice(3)].forEach(function(grp, gi){
-      P.push({ sec: 'trouble', h: hd('vi · troubleshooting', gi ? 'continued' : 'symptom · cause · fix') + '<div class="pg-b"><h3>' + (gi ? 'Troubleshooting, continued' : 'Troubleshooting') + '</h3><div class="ts">' + grp.map(function(t){ return '<div class="tsr"><p class="sy">' + t[0] + '</p><p><b>cause</b>' + t[1] + '</p><p><b>fix</b>' + t[2] + '</p></div>'; }).join('') + '</div></div>' + ft() });
+
+    /* ---- vi · failure modes ---- */
+    var FM = [['source decays', 'a false signal reaches the model', 'QA-01 quarterly re-test', 'drop the source, never patch it'], ['hallucinated citation', 'a wrong fact enters the ramp', 'L1 audit of a 10% sample', 'no citation, no answer · halt'], ['echo', 'false confirmation', 'provenance on every line', 'count evidence by origin'], ['look-ahead', 'an inflated hit rate', 'forward-only scoring', 'sealed, rotating test sets'], ['anchoring', 'my call converges on the model’s', 'sealed AI forecast vs mine', 'log both, track agreement'], ['planted instructions in scraped text', 'a part acts on someone else’s words', 'content is treated as data', 'no outside actions, ever'], ['error compounding', 'five 90% steps = 59%', 'QA between stages', 'circuit breaker halts the chain'], ['crowding in the escalator', 'size grows with the crowd', 'crowding scanner', 'the haircut halves the cap'], ['a stale vault', 'priors out of date', 'librarian · fingerprint on sync', 'weekly review']];
+    [FM.slice(0, 5), FM.slice(5)].forEach(function(g, gi){
+      P.push({ sec: 'fail', h: hd('vi · failure modes', gi ? 'FMEA · continued' : 'FMEA') + '<div class="pg-b"><h3>' + (gi ? 'Failure modes, continued' : 'Failure modes and effects') + '</h3><table class="fm"><thead><tr><th>mode</th><th>effect</th><th>detected by</th><th>mitigation</th></tr></thead><tbody>' + g.map(function(r){ return '<tr><td class="w">' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td></tr>'; }).join('') + '</tbody></table>' + (gi ? '<p class="note">when in doubt, pull the cord. a halted line costs a day. a wrong trade costs more.</p>' : '') + '</div>' + ft() });
     });
     P.push({ sec: 'warranty', h: hd('vii · warranty') + '<div class="pg-b"><h3>Warranty</h3><p class="lede">The parts are covered for speed, width and arithmetic.</p><p class="lede"><em>There is no warranty on judgement.</em> That part is the operator’s, and it’s scored like everything else.</p><p class="note">this manual is revised as the edge moves. the next edition will have fewer dashed lines.</p><div class="sig"><span>signed</span><b>Kathan Prajapati</b><span>rev a · ' + VAULT.synced.slice(0, 10) + '</span></div></div>' + ft() });
     if (P.length % 2) P.push({ sec: 'end', h: '<div class="pg-b blank"><p class="note">notes</p><div class="lines"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>' + ft() });
     P.forEach(function(pg, i){ pg.h = pg.h.replace('<span class="pn"></span>', '<span class="pn">' + (i + 1) + '</span>'); });
-    var COVER = '<div class="cv"><div class="cv-top"><span>KP-06</span><span>vol. 01</span></div><div class="cv-art">' + (function(){ var s = '<svg viewBox="0 0 240 120" aria-hidden="true">'; for (var k = 0; k < 5; k++) { var x = 14 + k * 46; s += '<rect x="' + x + '" y="44" width="' + (k === 0 ? 40 : 36) + '" height="32" rx="3" fill="none" stroke="' + BC[k] + '" stroke-width="1.6"/><ellipse cx="' + x + '" cy="60" rx="5" ry="16" fill="none" stroke="#fff" stroke-width="1"/>'; } s += '<path d="M4 60 H236" stroke="#fff" stroke-dasharray="8 3 2 3" stroke-width="0.8"/><circle cx="220" cy="22" r="4" fill="#FF6B35"/><text x="228" y="18" fill="#fff" font-family="Fraunces, serif" font-style="italic" font-size="13">α</text></svg>'; return s; })() + '</div><h2>The Agent<br>Layer</h2><p class="cv-sub">operating manual · for a process that moves with alpha</p><div class="cv-bot"><span>' + VAULT.agents.length + ' built · ' + AG.filter(function(a){ return a.s !== 'built'; }).length + ' to build</span><span>rev a</span></div><span class="cv-stamp">no warranty on judgement</span></div>';
-    var INSIDE_BACK = '<div class="pg-b blank"></div>';
-    function page(i){ if (i === -1) return { h: COVER, cover: 1 }; if (i < -1) return null; if (i >= P.length) return i === P.length ? { h: '<div class="cv back"><p>the process keeps moving · so does this manual</p></div>', cover: 1 } : null; return P[i]; }
-    /* ---- the book on the page ---- */
+
+    /* ---- the cover: white board, an exploded stack of the six layers ---- */
+    var art = '<svg viewBox="0 0 240 150" aria-hidden="true">';
+    for (var k = 0; k < 6; k++) { var y = 18 + k * 21, cl = ['#E8562A', INK, INK, '#1FA463', '#3D6FE0', INK][k]; art += '<path d="M40 ' + y + ' L120 ' + (y - 12) + ' L200 ' + y + ' L120 ' + (y + 12) + ' Z" fill="' + (k === 2 ? 'rgba(22,25,30,0.06)' : '#fff') + '" stroke="' + cl + '" stroke-width="1.2"/><text x="206" y="' + (y + 3) + '" font-family="IBM Plex Mono, monospace" font-size="7" fill="' + INK + '">L' + (5 - k) + '</text>'; if (k < 5) art += '<path d="M120 ' + (y + 12) + ' V' + (y + 9 + 12) + '" stroke="' + INK + '" stroke-dasharray="1.5 2"/>'; }
+    art += '<circle cx="66" cy="10" r="3.5" fill="#E8562A"/><text x="72" y="8" fill="' + INK + '" font-family="Fraunces, serif" font-style="italic" font-size="11">α</text></svg>';
+    var COVER = '<div class="cv"><div class="cv-top"><span>KP-06</span><span>vol. 01</span></div><div class="cv-art">' + art + '</div><h2>The Agent<br>Layer</h2><p class="cv-sub">architecture and operating manual · for a process that moves with alpha</p><span class="cv-stamp">no warranty on judgement</span><div class="cv-bot"><span>' + VAULT.agents.length + ' built · ' + nPl + ' to build</span><span>rev a</span></div></div>';
+    function page(i){ if (i === -1) return { h: COVER, cover: 1 }; if (i < -1) return null; if (i >= P.length) return null; return P[i]; }
     var shelf = el('mnl-book');
-    shelf.innerHTML = '<div class="bk3"><div class="bk3-pages"></div><div class="bk3-spine"><span>THE AGENT LAYER · OPERATING MANUAL · KP-06</span></div><div class="bk3-cover">' + COVER + '</div></div>';
+    shelf.innerHTML = '<div class="bk3"><div class="bk3-pages"></div><div class="bk3-spine"><span>THE AGENT LAYER · ARCHITECTURE AND OPERATING MANUAL · KP-06</span></div><div class="bk3-cover">' + COVER + '</div></div>';
     /* ---- the reader ---- */
-    var dlg = el('mnl-dlg'), stage = el('mnl-stage'), L = el('mnl-l'), R = el('mnl-r'), spread = -1, busy = false, single = false;
-    var SECS = [['intro', 'contents'], ['principles', 'principles'], ['parts', 'parts'], ['assembly', 'assembly'], ['rules', 'rules'], ['b0', '01'], ['b1', '02'], ['b2', '03'], ['b3', '04'], ['b4', '05'], ['trouble', 'troubleshooting'], ['warranty', 'warranty']];
+    var dlg = el('mnl-dlg'), stage = el('mnl-stage'), Lp = el('mnl-l'), R = el('mnl-r'), spread = -1, busy = false, single = false;
+    var SECS = [['intro', 'contents'], ['principles', 'principles'], ['arch', 'architecture'], ['evals', 'evaluation'], ['parts', 'parts'], ['b0', '01'], ['b1', '02'], ['b2', '03'], ['b3', '04'], ['b4', '05'], ['fail', 'failure modes'], ['warranty', 'warranty']];
     el('mnl-tabs').innerHTML = SECS.map(function(s){ return '<button type="button" data-s="' + s[0] + '">' + s[1] + '</button>'; }).join('');
     function fill(node, pg, side){ node.className = 'pg ' + side + (pg && pg.cover ? ' covp' : '') + (pg ? '' : ' none'); node.innerHTML = pg ? pg.h : ''; }
     function render(){
-      if (single) { fill(R, page(spread), 'r'); L.style.display = 'none'; }
-      else { L.style.display = ''; fill(L, page(2 * spread), 'l'); fill(R, page(2 * spread + 1), 'r'); }
+      if (single) { fill(R, page(spread), 'r'); Lp.style.display = 'none'; }
+      else { Lp.style.display = ''; fill(Lp, page(2 * spread), 'l'); fill(R, page(2 * spread + 1), 'r'); }
       el('mnl-pos').textContent = single ? (spread < 0 ? 'cover' : (spread + 1) + ' / ' + P.length) : (spread < 0 ? 'cover' : (2 * spread + 1) + '–' + Math.min(P.length, 2 * spread + 2) + ' / ' + P.length);
       var cur = single ? page(spread) : (page(2 * spread + 1) || page(2 * spread)); var cs = cur && cur.sec;
       Array.prototype.forEach.call(el('mnl-tabs').children, function(b){ b.classList.toggle('on', b.getAttribute('data-s') === cs); });
@@ -2359,13 +2402,13 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     function turn(dir){
       if (busy) return; var to = spread + dir;
       if (single) { if (to < -1 || to > P.length - 1) return; spread = to; R.classList.remove('slide-l', 'slide-r'); void R.offsetWidth; render(); R.classList.add(dir > 0 ? 'slide-l' : 'slide-r'); return; }
-      if (to < -1 || 2 * to >= P.length + 1) return;
+      if (to < -1 || 2 * to >= P.length) return;
       if (reduce) { spread = to; render(); return; }
       busy = true;
       var leaf = document.createElement('div'); leaf.className = 'leaf ' + (dir > 0 ? 'fw' : 'bw');
       var fr = document.createElement('div'), bk = document.createElement('div');
       if (dir > 0) { fill(fr, page(2 * spread + 1), 'r'); fill(bk, page(2 * spread + 2), 'l'); fill(R, page(2 * spread + 3), 'r'); }
-      else { fill(fr, page(2 * spread), 'l'); fill(bk, page(2 * spread - 1), 'r'); fill(L, page(2 * spread - 2), 'l'); }
+      else { fill(fr, page(2 * spread), 'l'); fill(bk, page(2 * spread - 1), 'r'); fill(Lp, page(2 * spread - 2), 'l'); }
       fr.classList.add('fc'); bk.classList.add('bc'); leaf.appendChild(fr); leaf.appendChild(bk); stage.appendChild(leaf);
       requestAnimationFrame(function(){ requestAnimationFrame(function(){ leaf.classList.add('go'); }); });
       setTimeout(function(){ spread = to; render(); leaf.remove(); busy = false; }, 760);
