@@ -322,6 +322,9 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 .crail li{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;border:1px solid var(--rule);padding:5px 8px;color:var(--ink-3);transition:border-color 200ms ease-out, color 200ms ease-out}
 .crail li.done{border-color:rgba(255,255,255,0.5);color:var(--ink-2)}
 .crail li.on{border-color:var(--active);color:var(--ink)}
+.crail li.qa{border-color:rgba(61,220,132,0.55);color:var(--research)}
+.crail li.qa.on{border-color:var(--research);background:rgba(61,220,132,0.14);color:var(--ink)}
+.crail li.qa::before{content:'QA · ';opacity:0.8}
 .ccap{position:absolute;left:max(28px, calc(env(safe-area-inset-left, 0px) + 28px));bottom:calc(34px + env(safe-area-inset-bottom, 0px));max-width:min(660px, calc(100% - 220px));display:flex;flex-direction:column;gap:10px}
 #ch2 .ccap{max-width:min(600px, calc(100% - min(500px, 40vw) - 90px))}
 .ccap .label{color:var(--active)}
@@ -413,7 +416,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     <div class="cstage">
       <canvas id="c2cv" aria-hidden="true"></canvas>
       <div class="chead"><span class="n">02 · commerciality</span><span class="label dim">decomposed</span></div>
-      <ol class="crail" id="c2rail" aria-hidden="true"><li>telescope</li><li>backtest</li><li>filter</li><li>screen</li><li>model</li><li>risk / reward</li></ol>
+      <ol class="crail" id="c2rail" aria-hidden="true"><li>telescope</li><li class="qa">backtest</li><li>filter</li><li>screen</li><li>model</li><li>risk / reward</li></ol>
       <div class="cpanel" id="c2p">
         <div class="panel kscr"><div class="kh"><span class="label">daily screen · NFC</span><span class="chip">illustrative · fictional</span></div><ul class="kfeed" id="kfeed"></ul></div>
         <div class="panel kmod"><div class="kh"><span class="label">the model</span><span class="label dim">price $21 · blue = input</span></div><table class="ksheet" id="ksheet"></table><div class="krr"><div><span class="label dim">risk to reward</span><b id="krr">1.3 : 1</b></div><span class="chip" id="kgate"></span></div><div id="kbar"></div></div>
@@ -1047,7 +1050,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     });
     var aT = aB * ramp(p, 0.11, 0.15);
     if (aT > 0.01) {
-      var tl = P(-330, -186, 0); txt(c, 'answered · agents, minutes · ' + answered, tl[0] - 4, tl[1] + 26, GR, aT, 11, 'left');
+      var tl = P(-330, -186, 0); txt(c, 'answered · agents, minutes · ' + answered, tl[0] - 4, tl[1] + 26, GR, aT, 11, 'left'); c.font = '11px "IBM Plex Mono", ui-monospace, monospace'; var tw0 = c.measureText('answered · agents, minutes · ' + answered).width; stamp(c, tl[0] + tw0 + 8, tl[1] + 22, 'QA · I check it', GR, aT, 8, 0, 'left');
       var kl = P(xs[3], narrow ? R1[3] + 34 : -R1[3] - 30, 0); txt(c, 'kept for me · ' + kept, kl[0], kl[1] + 4, OR, aT, 11);
       var bw = Math.min(520, w - 32), bx = (w - bw) / 2, by = narrow ? 62 : 74, cw = bw / 10, hardDays = 0;
       for (var d = 0; d < 10; d++) { var on = d >= 7 || (d >= 1 && p > 0.15 + d * 0.024); if (on) hardDays++; c.fillStyle = on ? rgba(OR, 0.22 * aT) : rgba(WH, 0.06 * aT); c.fillRect(bx + d * cw + 2, by, cw - 4, 18); c.strokeStyle = on ? rgba(OR, 0.85 * aT) : rgba(WH, 0.25 * aT); c.lineWidth = 1; c.strokeRect(bx + d * cw + 2.5, by + 0.5, cw - 5, 17); }
@@ -1123,9 +1126,22 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     if (!hollow) { c.beginPath(); c.moveTo(0, -r * 0.62); c.lineTo(0, r * 0.62); c.lineWidth = 1; c.strokeStyle = rgba(col, al * 0.5); c.stroke(); }
     c.restore();
   }
+  /* the QA layer: inspection stamps, the way a drawing marks a hold point (green = pass, coral = fail, grey = n/a) */
+  function stamp(c, x, y, s, col, al, size, rot, align){
+    if (al <= 0.01) return 0;
+    size = size || 9; c.save(); c.font = '600 ' + size + 'px "IBM Plex Mono", ui-monospace, monospace';
+    var t = s.toUpperCase(), tw = c.measureText(t).width + t.length * 0.6, hh = size + 8, ww = tw + hh, x0 = align === 'left' ? x : align === 'right' ? x - ww : x - ww / 2;
+    c.translate(x0 + ww / 2, y); c.rotate(rot || 0);
+    c.strokeStyle = rgba(col, al); c.lineWidth = 1.3; c.beginPath();
+    var r = hh / 2; c.moveTo(-ww / 2 + r, -r); c.lineTo(ww / 2 - r, -r); c.arc(ww / 2 - r, 0, r, -Math.PI / 2, Math.PI / 2); c.lineTo(-ww / 2 + r, r); c.arc(-ww / 2 + r, 0, r, Math.PI / 2, Math.PI * 1.5); c.closePath();
+    c.fillStyle = rgba(col, 0.10 * al); c.fill(); c.stroke();
+    c.fillStyle = rgba(col, al); c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(t, 0, 0.5);
+    c.restore(); return ww;
+  }
   function btChart(c, x0, y0, W2, H2, T, lp, al, narrow){
     var VC = { holds: GR, falls: '#FF8A8A', nofit: '#8A94A6' }, done = lp >= 0.7, sc2 = done ? VC[T.verdict] : OR;
-    c.fillStyle = rgba('#060708', 0.7 * al); c.fillRect(x0, y0, W2, H2); c.strokeStyle = rgba(WH, 0.22 * al); c.lineWidth = 1; c.strokeRect(x0 + 0.5, y0 + 0.5, W2 - 1, H2 - 1);
+    c.fillStyle = rgba('#060708', 0.7 * al); c.fillRect(x0, y0, W2, H2); c.strokeStyle = rgba(GR, 0.75 * al); c.lineWidth = 1; c.strokeRect(x0 + 0.5, y0 + 0.5, W2 - 1, H2 - 1);
+    c.fillStyle = rgba(GR, al); c.fillRect(x0, y0 - 18, narrow ? 172 : 210, 18); c.font = '600 9px "IBM Plex Mono", ui-monospace, monospace'; c.textAlign = 'left'; c.fillStyle = rgba('#06120B', al); c.fillText((narrow ? 'QA-01 · HOLD POINT' : 'QA-01 · HOLD POINT · BACKTEST'), x0 + 8, y0 - 6);
     txt(c, 'backtest · ' + T.name + ' vs reported ' + T.kpi, x0 + 12, y0 + 20, WH, 0.9 * al, narrow ? 10 : 11, 'left');
     txt(c, 'last 8 quarters · y/y % · illustrative', x0 + 12, y0 + 35, WH, 0.45 * al, 9, 'left');
     var px0 = x0 + 34, px1 = x0 + W2 - 16, py0 = y0 + 54, py1 = y0 + H2 - 66, lo = -10, hi = 16;
@@ -1140,7 +1156,8 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     if (!narrow) { txt(c, '— reported', px1, y0 + 20, WH, 0.6 * al, 9, 'right'); txt(c, '- - ' + T.name.split(' ')[0], px1, y0 + 33, sc2, 0.9 * al, 9, 'right'); }
     if (done) {
       var vt = T.verdict === 'holds' ? 'holds · ' + T.hits + ' of 7 right' : T.verdict === 'falls' ? 'falls off · ' + T.hits + ' of 7' : 'doesn’t fit';
-      c.font = '300 ' + (narrow ? 18 : 22) + 'px Fraunces, Georgia, serif'; c.textAlign = 'left'; c.fillStyle = rgba(VC[T.verdict], al * clamp((lp - 0.7) / 0.1, 0, 1)); c.fillText(vt, x0 + 12, y0 + H2 - 12);
+      var sv = T.verdict === 'holds' ? 'pass · ' + T.hits + ' of 7' : T.verdict === 'falls' ? 'fail · ' + T.hits + ' of 7' : 'n/a · doesn’t fit', kin = clamp((lp - 0.7) / 0.08, 0, 1);
+      stamp(c, x0 + 14, y0 + H2 - 20, sv, VC[T.verdict], al * kin, narrow ? 11 : 13, -0.05, 'left');
       if (T.why && !narrow) txt(c, T.why, px1, y0 + H2 - 14, VC[T.verdict], 0.8 * al * clamp((lp - 0.7) / 0.1, 0, 1), 9, 'right');
     }
   }
@@ -1169,14 +1186,16 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     var p = chP(ch2), f = fitCanvas(c2), c = f.x, w = f.w, h = f.h, narrow = w < 760;
     var e = ease(ramp(p, 0.01, 0.06)), fade = 1 - 0.55 * ramp(p, 0.56, 0.62);
     var sc = narrow ? Math.min(w / 1050, h / 1500) : Math.min(w / 1700, h / 820);
-    var P = makeProj(-0.45, 0.12, sc, narrow ? w * 0.68 : w * 0.35, narrow ? h * 0.21 : h * 0.47);
+    var P = makeProj(-0.45, 0.12, sc, narrow ? w * 0.68 : w * 0.40, narrow ? h * 0.21 : h * 0.47);
     seg(c, P, [-600, 0, 0], [320, 0, 0], WH, 0.22 * e * fade, 1, [14, 5, 3, 5]);
     if (e < 1) cylinder(c, P, -60, 60, 0, 1 - e, GR);
     var tx = TS.map(function(t){ return t.x * e; });
     for (var a = 0; a < 4; a++) { var an = a * Math.PI / 2; for (var k = 0; k < 2; k++) seg(c, P, [tx[k], Math.cos(an) * TS[k].r, Math.sin(an) * TS[k].r], [tx[k + 1], Math.cos(an) * TS[k + 1].r, Math.sin(an) * TS[k + 1].r], WH, 0.25 * e * fade, 1); }
     TS.forEach(function(t, i){ ring(c, P, tx[i], 0, 0, t.r, i === 1 ? OR : WH, (i === 1 ? 0.95 : 0.8) * e * fade, i === 1 ? 2 : 1.4); var lq = P(tx[i], i === 0 ? t.r + 22 : -t.r - 18, 0); if (!(narrow && i === 0)) txt(c, t.l, lq[0], lq[1] + 4, i === 1 ? OR : WH, 0.7 * e * fade, narrow ? 9 : 11); });
-    /* ii · the backtest: every source is a screw */
-    var sa = ramp(p, 0.03, 0.07) * fade, active = -1, activeLp = 0;
+    /* ii · the backtest: every source is a screw, and the hold point sits between the sources and the telescope */
+    var sa = ramp(p, 0.03, 0.07) * fade, active = -1, activeLp = 0, gA = sa * (p > BT0 && p < BT0 + TESTS.length * BTW ? 1 : 0.55);
+    ring(c, P, -400, 0, 0, 140, GR, 0.8 * gA, 1.4, [6, 5], null, flowT * 0.5);
+    var gq = P(-400, -164, 0); if (!narrow) stamp(c, gq[0], gq[1], 'QA-01 · hold point', GR, gA, 9); else stamp(c, gq[0], gq[1] + 4, 'QA-01', GR, gA, 8);
     SRC.forEach(function(s, i){
       var y = SY(i), q = P(-560, y, 0), ti = TESTI[i], T = ti >= 0 ? TESTS[ti] : null, lp = T ? (p - (BT0 + ti * BTW)) / BTW : -1;
       var col = WH, al = 0.85, ang = 0.7, hollow = false, dx = 0, dy = 0, tag = '', tcol = WH, lal = 0.75;
@@ -1186,21 +1205,21 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
         if (lp >= 0 && lp < 0.7) { ang = lp * 16; lal = 1; }
         else if (lp >= 0.7) {
           var v = clamp((lp - 0.7) / 0.3, 0, 1), vd = T.verdict;
-          if (vd === 'holds') { ang = lerp(lp < 1 ? 1.2 : 0, 0, v); col = GR; tag = '✓ ' + T.hits + '/7 · holds'; tcol = GR; }
-          else if (vd === 'falls') { var vf = clamp((p - (BT0 + ti * BTW) - 0.7 * BTW) / 0.04, 0, 1); dx = -26 * vf; dy = 140 * vf * vf; ang = vf * 9; al = 0.85 * (1 - vf); col = '#FF8A8A'; tag = '✕ ' + T.hits + '/7 · falls off'; tcol = '#FF8A8A'; lal = 0.35; }
-          else { hollow = true; col = '#8A94A6'; al = 0.6; dx = -14 * v; tag = '— doesn’t fit'; tcol = '#8A94A6'; lal = 0.4; }
+          if (vd === 'holds') { ang = lerp(lp < 1 ? 1.2 : 0, 0, v); col = GR; tag = 'pass ' + T.hits + '/7'; tcol = GR; }
+          else if (vd === 'falls') { var vf = clamp((p - (BT0 + ti * BTW) - 0.7 * BTW) / 0.04, 0, 1); dx = -26 * vf; dy = 140 * vf * vf; ang = vf * 9; al = 0.85 * (1 - vf); col = '#FF8A8A'; tag = 'fail ' + T.hits + '/7'; tcol = '#FF8A8A'; lal = 0.35; }
+          else { hollow = true; col = '#8A94A6'; al = 0.6; dx = -14 * v; tag = 'n/a'; tcol = '#8A94A6'; lal = 0.4; }
         }
         if (lp >= 0 && lp < 1) lal = 1;
       } else if (p > BT0 + TESTS.length * BTW) { tag = i === 5 ? 'the benchmark' : 'views · scored'; tcol = WH; ang = 0; }
       if (al > 0.01) screw(c, q[0] + dx, q[1] + dy, r, ang, col, al * sa, hollow);
-      var lc = T && lp >= 0 && lp < 1 ? OR : WH;
-      txt(c, narrow ? SRCN[i] : s, q[0] - r - 8, q[1] + 4, lc, lal * sa, narrow ? 9 : 11, 'right');
-      if (tag && !narrow) txt(c, tag, q[0] + r + 8, q[1] + 3, tcol, 0.85 * sa * (p > 0.36 ? 0.45 : 1), 9, 'left');
+      var lc = T && lp >= 0 && lp < 1 ? OR : WH, lab = narrow ? SRCN[i] : s;
+      txt(c, lab, q[0] - r - 8, q[1] + 4, lc, lal * sa, narrow ? 9 : 11, 'right');
+      if (tag && !narrow) { var ta = 0.9 * sa * (p > 0.36 ? 0.45 : 1); c.font = '11px "IBM Plex Mono", ui-monospace, monospace'; var lw = c.measureText(lab).width, tx0 = q[0] - r - 8 - lw - 8; if (T && T.verdict) stamp(c, tx0, q[1], tag, tcol, ta, 8, 0, 'right'); else txt(c, tag, tx0, q[1] + 3, tcol, ta, 9, 'right'); }
     });
     /* the backtest chart */
     var bA = ramp(p, 0.07, 0.09) * (1 - ramp(p, 0.345, 0.37)), shownT = active >= 0 ? active : (p < BT0 ? 0 : TESTS.length - 1), shownLp = active >= 0 ? activeLp : (p < BT0 ? 0 : 1);
     if (bA > 0.01) {
-      var bx = narrow ? 16 : w * 0.60, by = narrow ? h * 0.38 : h * 0.16, bw = narrow ? w - 32 : Math.min(w * 0.35, 520), bh = narrow ? h * 0.27 : h * 0.44;
+      var bx = narrow ? 16 : w * 0.62, by = narrow ? h * 0.38 : h * 0.16, bw = narrow ? w - 32 : Math.min(w * 0.34, 500), bh = narrow ? h * 0.27 : h * 0.44;
       btChart(c, bx, by, bw, bh, TESTS[shownT], shownLp, bA, narrow);
     }
     /* iii · the filter: only the sources that held feed it */
@@ -1234,10 +1253,11 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     var ph = p < 0.075 ? 0 : p < 0.355 ? 1 : p < 0.56 ? 2 : p < 0.65 ? 3 : p < 0.92 ? 4 : 5;
     if (ph === 0) cap('c2', 0, 'i · the telescope', 'Everything in. Only what’s new out.', 'reddit · sell-side notes · substack · youtube · podcasts · filings · alt data · in build');
     if (ph === 1) { var T = TESTS[shownT], vt = { holds: 'holds · ' + T.hits + ' of 7 quarters right', falls: 'falls off · ' + T.hits + ' of 7 · ' + T.why, nofit: 'doesn’t fit · ' + T.why };
-      cap('c2', 1, 'ii · the backtest', 'Every source is a screw. Test it before it holds weight.', active >= 0 ? T.name + ' vs reported ' + T.kpi + ' · ' + (activeLp < 0.7 ? 'testing the last 8 quarters' : vt[T.verdict]) : 'three of five scraped feeds fall off or don’t fit · alt data works for a quarter or two, then seasonality · after stephen parlett'); }
+      cap('c2', 1, 'ii · QA-01 · hold point · the backtest', 'Every source is a screw. Test it before it holds weight.', active >= 0 ? T.name + ' vs reported ' + T.kpi + ' · ' + (activeLp < 0.7 ? 'testing the last 8 quarters' : vt[T.verdict]) : 'three of five scraped feeds fall off or don’t fit · alt data works for a quarter or two, then seasonality · after stephen parlett'); }
     if (ph === 2) cap('c2', 2, 'iii · the filter', '~1,200 items a day, from the sources that held. Six survive.', 'new against my notes · new against consensus');
     if (ph === 3) cap('c2', 3, 'iv · the screen', 'A daily screen: what changed, per name.', 'each item tagged bull or bear, and to the line it moves · illustrative, fictional company');
     if (ph === 4) cap('c2', 4, 'v · the model', applied === 0 ? 'Does it move a line in the model?' : applied < 4 ? 'Each item moves a cell. The cell moves the value.' : applied === 4 ? 'Four bull items: ' + kRatio.toFixed(1) + ' : 1. It clears the gate.' : 'Then the bears: back to ' + kRatio.toFixed(1) + ' : 1. Not yet.', applied >= 5 ? 'no siding with the bulls on bull evidence alone' : 'blue = input · white = formula · gate 2 : 1');
+    el('c2k').style.color = ph === 1 ? '#3DDC84' : '';
     if (ph === 5) cap('c2', 5, 'vi · risk to reward', 'Only what moves the model matters.', 'the answer isn’t the data · it’s what the data does to the range');
   }
   Array.prototype.forEach.call(document.querySelectorAll('.cmore'), function(b){ b.addEventListener('click', function(){ openDeep(+b.getAttribute('data-b')); }); });
