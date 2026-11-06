@@ -420,6 +420,9 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
   .fo li{grid-template-columns:minmax(0, 1fr) 54px;}
   .fo .why{display:none}
 }
+#ch4{height:1000vh}
+#ch4 .ccap{max-width:min(660px, calc(100% - 220px))}
+@media (max-width:760px){ #ch4 .ccap{max-width:none} }
 </style>
 </head>
 <body>
@@ -504,7 +507,15 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       <div class="ccap" aria-live="polite"><span class="label" id="c3k"></span><h3 id="c3h"></h3><p id="c3q"></p></div>
     </div>
   </section>
-  <section class="end" aria-hidden="true"><p>04 and 05 · in build</p></section>
+  <section class="ch" id="ch4" aria-label="Second-order effects, decomposed">
+    <div class="cstage">
+      <canvas id="c4cv" aria-hidden="true"></canvas>
+      <div class="chead"><span class="n">04 · second-order effects</span><span class="label dim">decomposed</span></div>
+      <ol class="crail" id="c4rail" aria-hidden="true"><li>pendulum</li><li>pools</li><li>the boat</li><li>marginal seller</li><li>alpha curve</li><li>variant view</li></ol>
+      <div class="ccap" aria-live="polite"><span class="label" id="c4k"></span><h3 id="c4h"></h3><p id="c4q"></p></div>
+    </div>
+  </section>
+  <section class="end" aria-hidden="true"><p>05 · in build</p></section>
 </main>
 
 <!-- 3 · ONE BLOCK, IN FOCUS -->
@@ -631,7 +642,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     { n: '01', name: 'Zero to one', sub: 'understanding the business · concentric circles', col: BL, len: 1.7 },
     { n: '02', name: 'Commerciality', sub: 'the telescope · incremental information → risk to reward', col: GR, len: 1.0 },
     { n: '03', name: 'Primary research', sub: 'join the chain · many funnels · one question, many names', col: GR, len: 1.0 },
-    { n: '04', name: 'Second-order effects', sub: 'capital flows · sentiment · expectations', col: WH, len: 1.0 },
+    { n: '04', name: 'Second-order effects', sub: 'the attention pendulum · who’s in the boat · refining the variant view', col: WH, len: 1.0 },
     { n: '05', name: 'Conviction and compounding', sub: 'deploy · track · let the knowledge compound', col: OR, len: 1.3 }
   ];
   var cv = el('rcv'), g = cv.getContext('2d'), W = 0, H = 0, DPR = 1, rod = el('rod'), flowT = 0;
@@ -1058,7 +1069,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     try { history.replaceState(null, '', '#rod'); } catch (e) {}
     cancelAnimationFrame(dRaf); cancelAnimationFrame(pRaf); stopVault(); if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
-  el('r-dive').addEventListener('click', function(){ if (curActive >= 0 && curActive <= 2) { var sec = [ch1, ch2, ch3][curActive]; window.scrollTo({ top: sec.getBoundingClientRect().top + window.scrollY + 2, behavior: reduce ? 'auto' : 'smooth' }); } else if (curActive >= 0) openDeep(curActive); });
+  el('r-dive').addEventListener('click', function(){ if (curActive >= 0 && curActive <= 3) { var sec = [ch1, ch2, ch3, ch4][curActive]; window.scrollTo({ top: sec.getBoundingClientRect().top + window.scrollY + 2, behavior: reduce ? 'auto' : 'smooth' }); } else if (curActive >= 0) openDeep(curActive); });
   el('d-back').addEventListener('click', closeDeep);
   el('d-prev').addEventListener('click', function(){ openDeep((dIdx + 4) % 5); });
   el('d-next').addEventListener('click', function(){ openDeep((dIdx + 1) % 5); });
@@ -1509,13 +1520,166 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
   function ring2(c, x, y, r, col, al, lw){ if (al <= 0.01) return; c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.strokeStyle = rgba(col, al); c.lineWidth = lw || 1; c.stroke(); }
   function cdot2(c, x, y, r, col, al){ if (al <= 0.01) return; c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fillStyle = rgba(col, al); c.fill(); }
 
+  /* 04 · second-order effects: the pendulum, the pools, the boat, the marginal seller, the alpha curve, the variant view */
+  var ch4 = el('ch4'), c4 = el('c4cv');
+  var SECT = ['energy', 'healthcare', 'staples', 'industrials', 'software', 'semis', 'AI infra'];
+  var HOLD = [
+    { t: 'multi-manager pods', n: 'pods', s: 28, why: 'the next print', ex: 'first · tight stops', out: 1 },
+    { t: 'directional hedge funds', n: 'HFs', s: 20, why: 'the capex narrative', ex: 'second · a narrative crack', out: 2 },
+    { t: 'quant · momentum', n: 'quant', s: 14, why: 'the trend itself', ex: 'when momentum flips', out: 3 },
+    { t: 'macro · ETF baskets', n: 'macro', s: 12, why: 'a theme basket', ex: 'on a rotation call', out: 4 },
+    { t: 'long-only', n: 'long-only', s: 20, why: '5-year earning power', ex: 'last · on the thesis', out: 0 },
+    { t: 'retail', n: 'retail', s: 6, why: 'the story', ex: 'on the headline', out: 0 }
+  ];
+  function thetaAt(p){ var m = 0.94; if (p < 0.08) return lerp(-m, m, ease(clamp(p / 0.08, 0, 1))); if (p < 0.28) return m; if (p < 0.34) return lerp(m, -0.55 * m, ease((p - 0.28) / 0.06)); return -0.55 * m; }
+  function gam(t, tp){ return t <= 0 ? 0 : (t / tp) * Math.exp(1 - t / tp); }
+  function alphaC(t, tp){ return gam(t, tp) - 0.24 * clamp((t - tp * 2.2) / (1 - tp * 2.2), 0, 1); }
+  function ch4Frame(){
+    if (!onScreen(ch4)) return;
+    var p = chP(ch4), f = fitCanvas(c4), c = f.x, w = f.w, h = f.h, narrow = w < 760;
+    var fs = narrow ? 9 : 11;
+    /* i, ii · the pendulum and the pools */
+    var pA = ramp(p, 0.0, 0.03) * (1 - ramp(p, 0.355, 0.385));
+    if (pA > 0.01) {
+      var px = w * (narrow ? 0.5 : 0.42), py = h * (narrow ? 0.12 : 0.11), L = narrow ? Math.min(w * 0.26, h * 0.22) : Math.min(h * 0.40, w * 0.25);
+      var th = thetaAt(p) + (p > 0.08 && p < 0.28 && !reduce ? 0.035 * Math.sin(flowT * 0.035) : 0);
+      /* the arc of sectors */
+      c.save(); c.setLineDash([3, 6]); c.strokeStyle = rgba(WH, 0.25 * pA); c.beginPath(); c.arc(px, py, L + 26, Math.PI / 2 - 1.05, Math.PI / 2 + 1.05); c.stroke(); c.restore();
+      SECT.forEach(function(s, i){
+        var phi = -0.94 + i * (1.88 / 6), heat = Math.exp(-Math.pow((th - phi) / 0.42, 2)), bx = px + Math.sin(phi) * (L + 26), by = py + Math.cos(phi) * (L + 26);
+        var bl = 10 + heat * (narrow ? 34 : 64), ex = px + Math.sin(phi) * (L + 26 + bl), ey = py + Math.cos(phi) * (L + 26 + bl);
+        c.strokeStyle = rgba(heat > 0.5 ? OR : WH, (0.25 + 0.7 * heat) * pA); c.lineWidth = narrow ? 5 : 8; c.beginPath(); c.moveTo(bx, by); c.lineTo(ex, ey); c.stroke(); c.lineWidth = 1;
+        c.beginPath(); c.arc(bx, by, 4, 0, Math.PI * 2); c.fillStyle = rgba('#0A1A2F', pA); c.fill(); c.strokeStyle = rgba(WH, 0.8 * pA); c.stroke();
+        var lx = px + Math.sin(phi) * (L + 26 + bl + 14), ly = py + Math.cos(phi) * (L + 26 + bl + 14);
+        txt(c, s, lx, ly + 4, heat > 0.5 ? OR : WH, (0.45 + 0.5 * heat) * pA, fs, phi < -0.1 ? 'right' : phi > 0.1 ? 'left' : 'center');
+      });
+      if (p < 0.2) txt(c, 'attention · analyst hours by sector · illustrative', px, py + L + (narrow ? 150 : 150), WH, 0.5 * pA, 9);
+      /* trail, rod and bob */
+      for (var k = 8; k >= 1; k--) { var tk = thetaAt(p - k * 0.004), gx = px + Math.sin(tk) * L, gy = py + Math.cos(tk) * L; c.beginPath(); c.arc(gx, gy, 10, 0, Math.PI * 2); c.fillStyle = rgba(OR, 0.05 * (9 - k) / 8 * pA); c.fill(); }
+      var bxp = px + Math.sin(th) * L, byp = py + Math.cos(th) * L;
+      c.strokeStyle = rgba(WH, 0.8 * pA); c.lineWidth = 1.4; c.beginPath(); c.moveTo(px, py); c.lineTo(bxp, byp); c.stroke(); c.lineWidth = 1;
+      c.beginPath(); c.arc(px, py, 4, 0, Math.PI * 2); c.fillStyle = rgba(WH, pA); c.fill();
+      seg(c, function(x, y){ return [x, y]; }, [px - 24, py], [px + 24, py], WH, 0.6 * pA, 1);
+      c.beginPath(); c.arc(bxp, byp, narrow ? 10 : 13, 0, Math.PI * 2); c.fillStyle = rgba(OR, 0.9 * pA); c.fill();
+      txt(c, 'capital + attention', bxp + (th > 0 ? -18 : 18), byp - 18, OR, 0.9 * pA, fs, th > 0 ? 'right' : 'left');
+      /* ii · the pools */
+      var poolA = ramp(p, 0.20, 0.23) * pA;
+      if (poolA > 0.01) {
+        var hotX = px + Math.sin(0.75) * (L + (narrow ? 70 : 110)), hotY = py + Math.cos(0.75) * (L + (narrow ? 70 : 110)) + (narrow ? 34 : 46);
+        var coldX = px + Math.sin(-0.75) * (L + (narrow ? 70 : 110)), coldY = hotY;
+        if (narrow) { hotX = w * 0.74; coldX = w * 0.26; hotY = coldY = py + L + 120; }
+        stamp(c, hotX, hotY, narrow ? 'crowded · shorts' : 'crowded · pool of future shorts', '#FF8A8A', poolA, narrow ? 8 : 9);
+        stamp(c, coldX, coldY, narrow ? 'abandoned · longs' : 'abandoned · pool of future longs', GR, poolA, narrow ? 8 : 9);
+        if (p > 0.27) txt(c, narrow ? 'the swing trigger: a data point · a rate move' : 'the swing trigger: a data point · a rate move · an index change', px, py + L + (narrow ? 150 : 150), WH, 0.85 * ramp(p, 0.27, 0.29) * pA, narrow ? 9 : 11);
+      }
+    }
+    /* iii, iv · the boat, then the marginal seller */
+    var bA = ramp(p, 0.37, 0.40) * (1 - ramp(p, 0.685, 0.71));
+    if (bA > 0.01) {
+      var cxB = narrow ? w * 0.5 : w * 0.30, cyB = narrow ? h * 0.16 : h * 0.26, hw = narrow ? w * 0.40 : Math.min(w * 0.22, 300), hh = narrow ? 46 : 64;
+      /* hull */
+      c.beginPath(); c.moveTo(cxB - hw - 22, cyB); c.lineTo(cxB + hw + 22, cyB); c.quadraticCurveTo(cxB + hw, cyB + hh * 1.1, cxB + hw * 0.6, cyB + hh); c.lineTo(cxB - hw * 0.6, cyB + hh); c.quadraticCurveTo(cxB - hw, cyB + hh * 1.1, cxB - hw - 22, cyB); c.closePath();
+      c.fillStyle = rgba('#060708', 0.5 * bA); c.fill(); c.strokeStyle = rgba(WH, 0.85 * bA); c.lineWidth = 1.4; c.stroke(); c.lineWidth = 1;
+      c.save(); c.setLineDash([2, 6]); c.strokeStyle = rgba(BL, 0.6 * bA); c.beginPath(); c.moveTo(cxB - hw - 60, cyB + hh * 0.55); c.lineTo(cxB + hw + 60, cyB + hh * 0.55); c.stroke(); c.restore();
+      /* holders as cargo: width = share; the ones that leave slide off in order */
+      var tot = 100, x0 = cxB - hw + 6, wAll = hw * 2 - 12, xx = x0, ev = ramp(p, 0.56, 0.575), left = 0;
+      HOLD.forEach(function(H, i){
+        var t0 = 0.585 + (H.out - 1) * 0.022, go = H.out ? ease(ramp(p, t0, t0 + 0.03)) : 0, ww = wAll * H.s / tot, a2 = bA * (1 - go), shade = [0.55, 0.42, 0.32, 0.24, 0.14, 0.08][i], kin = ramp(p, 0.39 + i * 0.008, 0.40 + i * 0.008);
+        var yy = cyB - hh * 0.55 - go * 50, xo = xx + go * (H.out % 2 ? 60 : -60) * 1.5;
+        c.fillStyle = rgba(H.out ? OR : BL, shade * a2 * kin + 0.04 * a2); c.fillRect(xo + 1, yy, ww - 2, hh * 0.55); c.strokeStyle = rgba(H.out ? OR : BL, 0.9 * a2 * kin); c.strokeRect(xo + 1.5, yy + 0.5, ww - 3, hh * 0.55 - 1);
+        if (!narrow || ww > 40) txt(c, narrow ? H.n : H.n, xo + ww / 2, yy - 6, WH, 0.8 * a2 * kin, narrow ? 8 : 10);
+        txt(c, H.s + '%', xo + ww / 2, yy + hh * 0.33, WH, 0.9 * a2 * kin, narrow ? 8 : 10);
+        if (go > 0.05 && go < 0.95) for (var q = 0; q < 6; q++) { var qx = xo + ww / 2 + (q - 3) * 6, qy = yy + hh * 0.6 + q * 7 * go; c.fillStyle = rgba(OR, 0.6 * (1 - go)); c.fillRect(qx, qy, 2, 2); }
+        if (!H.out) left += H.s; xx += ww;
+      });
+      /* the holder list: why they hold, what makes them leave */
+      var lx0 = narrow ? 16 : w * 0.60, ly0 = narrow ? h * 0.35 : h * 0.15, rh = narrow ? 17 : 26;
+      var lA = ramp(p, 0.40, 0.43) * bA * (narrow ? 1 - ramp(p, 0.545, 0.56) : 1);
+      if (lA > 0.01) {
+        txt(c, 'who’s in the boat', lx0, ly0, WH, 0.7 * lA, 10, 'left');
+        HOLD.forEach(function(H, i){ var y = ly0 + 40 + i * rh, t0 = 0.585 + (H.out - 1) * 0.022, gone = H.out && p > t0 + 0.02; var cl = H.out ? OR : BL;
+          c.fillStyle = rgba(cl, 0.8 * lA * (gone ? 0.35 : 1)); c.fillRect(lx0, y - 8, 8, 8);
+          txt(c, H.t, lx0 + 16, y, WH, 0.9 * lA * (gone ? 0.4 : 1), narrow ? 9 : 11, 'left');
+          if (!narrow) { txt(c, H.why, lx0 + 210, y, WH, 0.55 * lA * (gone ? 0.4 : 1), 10, 'left'); txt(c, H.ex, lx0 + 370, y, gone ? '#FF8A8A' : WH, 0.75 * lA, 10, 'left'); }
+          else txt(c, H.ex, w - 16, y, gone ? '#FF8A8A' : WH, 0.7 * lA, 9, 'right');
+        });
+        if (!narrow) { txt(c, 'why they hold', lx0 + 210, ly0 + 20, WH, 0.4 * lA, 9, 'left'); txt(c, 'what makes them leave', lx0 + 370, ly0 + 20, WH, 0.4 * lA, 9, 'left'); }
+      }
+      /* crowding meters */
+      var mA = ramp(p, 0.47, 0.50) * bA * (1 - ramp(p, 0.55, 0.57));
+      if (mA > 0.01) {
+        var my = cyB + hh + (narrow ? 34 : 48);
+        txt(c, 'hedge fund ownership 62% · days to cover 9 (> 7) · momentum loading high', cxB, my, WH, 0.8 * mA, narrow ? 8 : 10);
+        stamp(c, cxB, my + 26, 'crowded · cap halved', '#FF8A8A', mA, narrow ? 8 : 9);
+      }
+      /* iv · the event and the price */
+      var prA = ramp(p, 0.55, 0.57) * bA;
+      if (prA > 0.01) {
+        var gx0 = narrow ? 24 : w * 0.08, gx1 = narrow ? w - 24 : w * 0.54, gy0 = narrow ? h * 0.36 : h * 0.50, gy1 = narrow ? h * 0.56 : h * 0.70;
+        var PR = [70, 72, 74, 73, 76, 78, 77, 79, 80, 79, 81, 60, 52, 47, 45, 44, 45, 44, 46, 47], prog = clamp((p - 0.555) / 0.11, 0, 1) * (PR.length - 1);
+        var PX = function(i){ return lerp(gx0, gx1, i / (PR.length - 1)); }, PY = function(v){ return lerp(gy1, gy0, (v - 35) / 55); };
+        c.strokeStyle = rgba(WH, 0.15 * prA); c.beginPath(); c.moveTo(gx0, gy1); c.lineTo(gx1, gy1); c.stroke();
+        c.strokeStyle = rgba(WH, 0.9 * prA); c.lineWidth = 1.6; c.beginPath();
+        for (var i = 0; i <= Math.floor(prog); i++) { if (i) c.lineTo(PX(i), PY(PR[i])); else c.moveTo(PX(i), PY(PR[i])); }
+        var fr = prog - Math.floor(prog), i0 = Math.floor(prog); if (fr > 0 && i0 < PR.length - 1) c.lineTo(lerp(PX(i0), PX(i0 + 1), fr), lerp(PY(PR[i0]), PY(PR[i0 + 1]), fr));
+        c.stroke(); c.lineWidth = 1;
+        if (prog > 10) { c.save(); c.setLineDash([3, 4]); c.strokeStyle = rgba(OR, 0.8 * prA); c.beginPath(); c.moveTo(PX(10.5), gy0 - 10); c.lineTo(PX(10.5), gy1); c.stroke(); c.restore(); txt(c, narrow ? 'the print: in line, below the whisper' : 'the print: in line with published consensus, below the whisper', narrow ? w / 2 : PX(10.5) + 8, gy0 - 2, OR, 0.9 * prA, narrow ? 9 : 10, narrow ? 'center' : 'left'); }
+        if (prog > 15.5) { var ex2 = PX(16), ey2 = PY(PR[16]); c.beginPath(); c.arc(ex2, ey2, 6, 0, Math.PI * 2); c.fillStyle = rgba(GR, prA); c.fill(); txt(c, 'the dislocation · buy after the crowd has left', narrow ? w / 2 : ex2, ey2 + 22, GR, 0.95 * prA, narrow ? 8 : 10); }
+        txt(c, 'price · illustrative', gx0, gy1 + 16, WH, 0.4 * prA, 9, 'left');
+      }
+    }
+    /* v · the alpha curve: first-order vs the second-order name */
+    var aA = ramp(p, 0.70, 0.73) * (1 - ramp(p, 0.845, 0.87));
+    if (aA > 0.01) {
+      var ax0 = narrow ? 30 : w * 0.10, ax1 = narrow ? w - 24 : w * 0.66, ay0 = narrow ? h * 0.14 : h * 0.16, ay1 = narrow ? h * 0.50 : h * 0.62, zy = lerp(ay1, ay0, 0.28 / 1.28);
+      var AX = function(t){ return lerp(ax0, ax1, t); }, AY = function(v){ return lerp(ay1, ay0, (v + 0.28) / 1.28); };
+      c.strokeStyle = rgba(WH, 0.3 * aA); c.beginPath(); c.moveTo(ax0, ay0); c.lineTo(ax0, ay1); c.moveTo(ax0, zy); c.lineTo(ax1, zy); c.stroke();
+      txt(c, 'alpha', ax0 - 8, ay0 + 8, WH, 0.5 * aA, 9, 'right'); txt(c, 'time →', ax1, zy + 16, WH, 0.5 * aA, 9, 'right');
+      var draw = ramp(p, 0.72, 0.79);
+      [[0.05, WH, 'first-order name · priced in minutes'], [0.26, OR, 'second-order name · the curve is still steep']].forEach(function(cv, j){
+        c.strokeStyle = rgba(cv[1], (j ? 1 : 0.6) * aA); c.lineWidth = j ? 2 : 1.4; c.beginPath();
+        var n = Math.floor(120 * draw); for (var s = 0; s <= n; s++) { var t = s / 120, v = alphaC(t, cv[0]); if (s) c.lineTo(AX(t), AY(v)); else c.moveTo(AX(t), AY(v)); } c.stroke(); c.lineWidth = 1;
+        var lt = j ? 0.40 : 0.13; if (draw > lt + 0.05) txt(c, narrow ? cv[2].split(' · ')[0] : cv[2], AX(lt) + 10, AY(alphaC(lt, cv[0])) + (j ? -12 : 4), cv[1], 0.9 * aA, narrow ? 9 : 10, 'left');
+      });
+      ['discovery', 'dissemination', 'consensus', 'negative alpha'].forEach(function(s, j){ txt(c, s, AX([0.10, 0.30, 0.62, 0.88][j]), ay1 + 16, WH, 0.5 * aA * ramp(p, 0.75 + j * 0.01, 0.76 + j * 0.01), narrow ? 8 : 9); });
+      var dt = clamp((p - 0.77) / 0.07, 0, 1) * 0.62; if (p > 0.77) { c.beginPath(); c.arc(AX(dt), AY(alphaC(dt, 0.26)), 6, 0, Math.PI * 2); c.fillStyle = rgba(OR, aA); c.fill(); }
+      if (p > 0.82) { c.save(); c.setLineDash([3, 4]); c.strokeStyle = rgba(WH, 0.5 * aA); c.beginPath(); c.moveTo(AX(0.6), ay0 + 20); c.lineTo(AX(0.6), ay1); c.stroke(); c.restore(); txt(c, 'consensus · exit or rotate', AX(0.6) + 8, ay0 + 30, WH, 0.8 * aA * ramp(p, 0.82, 0.83), narrow ? 8 : 10, 'left'); }
+    }
+    /* vi · the variant view, refined */
+    var vA = ramp(p, 0.86, 0.89);
+    if (vA > 0.01) {
+      var dx0 = narrow ? 24 : w * 0.10, dx1 = narrow ? w - 24 : w * 0.56, dyb = narrow ? h * 0.34 : h * 0.52, dh = narrow ? h * 0.16 : h * 0.30;
+      var DX = function(z){ return lerp(dx0, dx1, (z + 3) / 6); };
+      c.beginPath(); for (var s2 = 0; s2 <= 100; s2++) { var z = -3 + 6 * s2 / 100, yv = dyb - Math.exp(-z * z / 2) * dh * ramp(p, 0.865, 0.89); if (s2) c.lineTo(DX(z), yv); else c.moveTo(DX(z), yv); } c.strokeStyle = rgba(WH, 0.85 * vA); c.lineWidth = 1.6; c.stroke(); c.lineWidth = 1;
+      c.lineTo(DX(3), dyb); c.lineTo(DX(-3), dyb); c.closePath(); c.fillStyle = rgba(WH, 0.05 * vA); c.fill();
+      txt(c, 'what the buy-side actually believes · the whisper', DX(0), dyb - dh - 12, WH, 0.75 * vA, narrow ? 8 : 10);
+      c.strokeStyle = rgba(WH, 0.5 * vA); c.beginPath(); c.moveTo(DX(-0.5), dyb); c.lineTo(DX(-0.5), dyb + 12); c.stroke(); txt(c, 'published consensus', DX(-0.5), dyb + 26, WH, 0.5 * vA, 9);
+      var mv2 = ease(ramp(p, 0.885, 0.91)); if (mv2 > 0) { var zx = DX(1.9); c.strokeStyle = rgba(OR, vA); c.lineWidth = 2; c.beginPath(); c.moveTo(zx, dyb); c.lineTo(zx, dyb - dh * 0.9 * mv2); c.stroke(); c.lineWidth = 1; txt(c, 'my view', zx, dyb - dh * 0.9 * mv2 - 10, OR, vA, fs); }
+      /* the three second-order lenses that size and time it */
+      var rx = narrow ? 24 : w * 0.60, ry = narrow ? h * 0.42 : h * 0.20, rr = narrow ? 34 : 54;
+      [['who holds it', 'crowded → halve the size', 0.915], ['where attention is', 'abandoned → early, so start small', 0.935], ['where on the curve', 'discovery → act, then scale on proof', 0.955]].forEach(function(L2, j){
+        var kk = ramp(p, L2[2], L2[2] + 0.015) * vA; if (kk <= 0) return;
+        var y = ry + j * rr; txt(c, L2[0], rx, y, WH, 0.6 * kk, narrow ? 9 : 10, 'left'); txt(c, L2[1], rx, y + (narrow ? 14 : 18), OR, 0.95 * kk, narrow ? 10 : 13, 'left');
+      });
+      var sz = ramp(p, 0.97, 0.985); if (sz > 0) { var sy2 = ry + 3 * rr + 6, full = narrow ? w - 48 : 240; c.strokeStyle = rgba(WH, 0.4 * sz); c.strokeRect(rx + 0.5, sy2 + 0.5, full, 14); c.fillStyle = rgba(OR, 0.7 * sz); c.fillRect(rx, sy2, full * lerp(1, 0.25, sz), 15); txt(c, 'starter size · the thesis is unchanged', rx, sy2 + 32, WH, 0.7 * sz, 9, 'left'); }
+    }
+    /* captions */
+    var ph = p < 0.20 ? 0 : p < 0.36 ? 1 : p < 0.55 ? 2 : p < 0.70 ? 3 : p < 0.86 ? 4 : 5;
+    if (ph === 0) cap('c4', 0, 'i · the pendulum', 'Attention swings like a pendulum.', 'where are people spending time · where aren’t they · capital follows the attention · after thomas li');
+    if (ph === 1) cap('c4', 1, 'ii · the pools', p < 0.27 ? 'Where capital left, a pool of longs. Where it crowded, a pool of shorts.' : 'Then it swings back.', p < 0.27 ? 'what are people missing where nobody is spending time? · which names get churned first if confidence cracks?' : 'if it swings, you have the pool ready · if it doesn’t, you’re roughly flat · a convex bet, many times over');
+    if (ph === 2) cap('c4', 2, 'iii · the boat', 'Who’s in the boat with you, and why.', 'the risk isn’t the position · it’s why the others hold it and what makes them leave · after cameron khajavi, bernie ahkong');
+    if (ph === 3) cap('c4', 3, 'iv · the marginal seller', p < 0.64 ? 'The marginal seller sets the price.' : 'Buy the dislocation after the crowd has left.', p < 0.64 ? 'published consensus isn’t real consensus · the whisper is · others can hold a view longer than you can hold a position' : 'khajavi’s best trades come after the crowded holders exit · the thesis didn’t change, the holders did');
+    if (ph === 4) cap('c4', 4, 'v · the alpha curve', 'First-order is priced in minutes. The second-order name is still steep.', 'at consensus, exit or rotate, unless you have a second-order insight · lateral thinking is where the curve stays steep');
+    if (ph === 5) cap('c4', 5, 'vi · the variant view', p < 0.91 ? 'Know the distribution before you differ from it.' : 'Second order doesn’t change what’s true. It changes when you’re paid and how much you hold.', p < 0.91 ? '12-month consensus is a distribution across investor types · map it, then place your view · after bernie ahkong' : 'flow is a setup, not a thesis · every flow idea still needs a spectrum arrow');
+  }
+
   /* ---------- loop ---------- */
   var ticking = false, rodOn = false;
-  function frame(){ ticking = false; rodFrame(); ch1Frame(); ch2Frame(); ch3Frame(); var dh = document.documentElement.scrollHeight - window.innerHeight; root.style.setProperty('--prog', dh > 0 ? (window.scrollY / dh).toFixed(4) : 0); }
+  function frame(){ ticking = false; rodFrame(); ch1Frame(); ch2Frame(); ch3Frame(); ch4Frame(); var dh = document.documentElement.scrollHeight - window.innerHeight; root.style.setProperty('--prog', dh > 0 ? (window.scrollY / dh).toFixed(4) : 0); }
   function onScroll(){ if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   var vis = 0;
-  function idle(now){ if (vis <= 0) { rodOn = false; return; } flowT = reduce ? 0 : now / 40; rodFrame(); ch1Frame(); ch2Frame(); ch3Frame(); requestAnimationFrame(idle); }
-  if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function(es){ es.forEach(function(e){ vis += e.isIntersecting ? 1 : (e.target._seen ? -1 : 0); e.target._seen = e.isIntersecting; }); vis = Math.max(0, vis); if (vis > 0 && !rodOn) { rodOn = true; requestAnimationFrame(idle); } }); [rod, ch1, ch2, ch3].forEach(function(n){ io.observe(n); }); }
+  function idle(now){ if (vis <= 0) { rodOn = false; return; } flowT = reduce ? 0 : now / 40; rodFrame(); ch1Frame(); ch2Frame(); ch3Frame(); ch4Frame(); requestAnimationFrame(idle); }
+  if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function(es){ es.forEach(function(e){ vis += e.isIntersecting ? 1 : (e.target._seen ? -1 : 0); e.target._seen = e.isIntersecting; }); vis = Math.max(0, vis); if (vis > 0 && !rodOn) { rodOn = true; requestAnimationFrame(idle); } }); [rod, ch1, ch2, ch3, ch4].forEach(function(n){ io.observe(n); }); }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', function(){ resize(); onScroll(); if (dIdx === 0 && deep.classList.contains('on')) drawVault(vWeek); });
   buildCC(); buildSteps(); setCC(0); buildEco(); buildFeed(); buildSheet();
