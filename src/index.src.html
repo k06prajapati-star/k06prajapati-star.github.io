@@ -220,6 +220,30 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 @media (max-width:860px){ .mnl-wrap{grid-template-columns:minmax(0, 1fr)} .mnl-book{order:-1} .mnl-nav{display:none} .mnl-tabs{display:none} }
 @media (prefers-reduced-motion:reduce){ .leaf,.bk3{transition:none} .pg.slide-l,.pg.slide-r{animation:none} }
 
+/* 07 · connect */
+.cnx{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(90% 70% at 70% 30%, rgba(23,25,29,0.7) 0%, rgba(6,7,8,0.95) 70%)}
+.cnx-glow{position:absolute;inset:0;pointer-events:none}
+.cnx-glow i{position:absolute;left:72%;top:26%;width:12px;height:12px;border-radius:50%;background:var(--active);box-shadow:0 0 60px 30px rgba(255,107,53,0.22);animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{0%{transform:translate(0, 0)}25%{transform:translate(-40px, 24px)}50%{transform:translate(30px, 50px)}75%{transform:translate(-20px, -30px)}100%{transform:translate(50px, 10px)}}
+.cnx-wrap{position:relative;width:100%;max-width:1200px;margin:0 auto;padding:clamp(80px, 14vh, 140px) max(24px, env(safe-area-inset-right, 0px)) 40px max(24px, env(safe-area-inset-left, 0px));display:flex;flex-direction:column;gap:20px}
+.cnx h2{font-family:var(--about);font-weight:400;font-size:clamp(34px, 5vw, 72px);line-height:1.04;max-width:18ch}
+.cnx h2 em{font-style:italic;color:var(--active)}
+.cnx-sub{font-family:var(--mono);font-size:12px;letter-spacing:0.04em;color:var(--ink-3);text-transform:lowercase}
+.cnx-links{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--rule)}
+.cnx-links li{border-bottom:1px solid var(--rule)}
+.cnx-links a,.cnx-links button{width:100%;display:grid;grid-template-columns:140px minmax(0, 1fr) auto;align-items:baseline;gap:16px;padding:22px 0;text-decoration:none;color:var(--ink);background:transparent;border:0;cursor:pointer;text-align:left;transition:padding 250ms ease-out, color 200ms ease-out}
+.cnx-links .k{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3)}
+.cnx-links .v{font-family:var(--display);font-weight:300;font-size:clamp(24px, 3vw, 40px);line-height:1.1;overflow-wrap:anywhere}
+.cnx-links .ar{font-family:var(--mono);font-size:14px;color:var(--ink-3);transition:transform 250ms ease-out, color 200ms ease-out}
+.cnx-links a:hover,.cnx-links a:focus-visible{padding-left:14px}
+.cnx-links a:hover .v,.cnx-links a:focus-visible .v{color:var(--active)}
+.cnx-links a:hover .ar{transform:translateX(6px);color:var(--active)}
+.cnx-links .cp{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--rule);padding:4px 8px;background:transparent;cursor:pointer;margin-left:10px}
+.cnx-links .cp:hover{border-color:var(--active);color:var(--ink)}
+.cnx-foot{margin-top:auto;padding-top:56px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3)}
+@media (max-width:760px){ .cnx-links a{grid-template-columns:minmax(0, 1fr) auto;row-gap:4px} .cnx-links .k{grid-column:1 / -1} }
+@media (prefers-reduced-motion:reduce){ .cnx-glow i{animation:none} }
+
 /* 2 · the rod */
 .rod{height:700vh;position:relative}
 .rstage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
@@ -748,7 +772,17 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       <div class="mnl-book" id="mnl-book" role="button" tabindex="0" aria-label="Open the operating manual"></div>
     </div>
   </section>
-  <section class="end" aria-hidden="true"><p>the process keeps moving · so does this page</p></section>
+  <!-- 07 · CONNECT -->
+  <section class="cnx" id="connect" aria-label="Connect">
+    <div class="cnx-glow" aria-hidden="true"><i></i></div>
+    <div class="cnx-wrap">
+      <span class="label" style="color:var(--active)">07 · connect</span>
+      <h2>If you’re building something like this, or think part of it is wrong, <em>I’d like to hear it.</em></h2>
+      <p class="cnx-sub">red-teaming welcome · the process gets better every time someone disagrees with it</p>
+      <ul class="cnx-links" id="cnx-links"></ul>
+      <footer class="cnx-foot"><span>Kathan Prajapati</span><span id="cnx-sync"></span><span>this page moves with the process · rev a</span></footer>
+    </div>
+  </section>
 </main>
 
 <!-- 3 · ONE BLOCK, IN FOCUS -->
@@ -2344,6 +2378,22 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     var tx0 = null; stage.addEventListener('touchstart', function(e){ tx0 = e.touches[0].clientX; }, { passive: true }); stage.addEventListener('touchend', function(e){ if (tx0 === null) return; var d = e.changedTouches[0].clientX - tx0; if (Math.abs(d) > 40) turn(d < 0 ? 1 : -1); tx0 = null; });
     document.addEventListener('keydown', function(e){ if (!dlg.classList.contains('on')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowRight') turn(1); if (e.key === 'ArrowLeft') turn(-1); });
     window.addEventListener('resize', function(){ if (dlg.classList.contains('on')) { size(); render(); } });
+  })();
+
+  /* ---------- 07 · connect: edit the three links here ---------- */
+  (function(){
+    var CONTACT = {
+      email: 'kathan.prajapati@outlook.com',
+      linkedin: 'https://www.linkedin.com/in/kathan-p',
+      substack: 'https://kathanprajapati.substack.com'
+    };
+    var ul = el('cnx-links'); if (!ul) return;
+    var rows = [];
+    if (CONTACT.email) rows.push('<li><a href="mailto:' + CONTACT.email + '"><span class="k">email</span><span class="v">' + CONTACT.email + '</span><span class="ar">→</span></a></li>');
+    if (CONTACT.linkedin) rows.push('<li><a href="' + CONTACT.linkedin + '" target="_blank" rel="noopener"><span class="k">linkedin</span><span class="v">' + CONTACT.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') + '</span><span class="ar">↗</span></a></li>');
+    if (CONTACT.substack) rows.push('<li><a href="' + CONTACT.substack + '" target="_blank" rel="noopener"><span class="k">substack · writing</span><span class="v">' + CONTACT.substack.replace(/^https?:\/\//, '').replace(/\/$/, '') + '</span><span class="ar">↗</span></a></li>');
+    ul.innerHTML = rows.join('');
+    el('cnx-sync').textContent = 'vault last synced ' + VAULT.synced.slice(0, 10);
   })();
 
   /* ---------- loop ---------- */
