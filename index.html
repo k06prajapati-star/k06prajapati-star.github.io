@@ -313,6 +313,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 }
 /* 4 · the chapters: each block decomposed on scroll */
 .ch{position:relative;height:800vh}
+#ch1{height:1000vh}
 #ch2{height:1050vh}
 .cstage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .cstage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -459,7 +460,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     <div class="cstage">
       <canvas id="c1cv" aria-hidden="true"></canvas>
       <div class="chead"><span class="n">01 · zero to one</span><span class="label dim">decomposed</span></div>
-      <ol class="crail" id="c1rail" aria-hidden="true"><li>circles</li><li>questions</li><li>ecosystem</li><li>drivers</li><li>compounding</li></ol>
+      <ol class="crail" id="c1rail" aria-hidden="true"><li>circles</li><li>questions</li><li>ecosystem</li><li>drivers</li><li>spectrum</li><li>compounding</li></ol>
       <div class="ccap" aria-live="polite"><span class="label" id="c1k"></span><h3 id="c1h"></h3><p id="c1q"></p></div>
       <button type="button" class="cmore" data-b="0">the detail ↗</button>
     </div>
@@ -1091,11 +1092,13 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
   var HARDL = ['why not the alternative?', 'who keeps the margin?', 'which KPI moves it?', 'where is consensus wrong?', 'can the market see it?'];
   var Q1 = (function(){ var rnd = mulberry(7), out = [], ne = 0, nh = 0; for (var i = 0; i < 64; i++) { var hard = i % 7 === 3, k = hard ? 3 : [0, 0, 0, 0, 1, 1, 1, 2, 2, 3][Math.floor(rnd() * 10)], a = rnd() * Math.PI * 2, rr = Math.sqrt(rnd()) * (hard ? 0.3 : 0.62) * R1[k]; var q = { t: 0.11 + 0.24 * i / 64 + rnd() * 0.008, hard: hard, k: k, y: Math.sin(a) * rr, z: Math.cos(a) * rr }; if (hard) { q.slot = nh; q.lab = nh % 2 === 0 ? HARDL[(nh / 2) % 5] : ''; nh++; } else { q.slot = ne; q.lab = ne % 5 === 2 ? EASYL[Math.floor(ne / 5) % 11] : ''; ne++; } out.push(q); } return out; })();
   var FK1 = ['sup', 'cus', 'riv', 'ent', 'sub'];
+  /* coverage on the spectrum: [score, direction, label, row] (illustrative) */
+  var COV = [[1.5, 0, '', 0], [2.3, 0, '2 → dead money', 3], [3.2, 1, '3 ↑ poor → OK', 2], [4.0, -1, '', 0], [4.6, 0, '', 1], [5.7, 1, '', 0], [6.4, 0, '', 1], [6.9, -1, '', 0], [7.6, 0, '', 1], [8.2, 0, '8 → already priced', 3], [8.7, 1, '', 0], [9.2, -1, '9 ↓ best → great', 2], [9.7, 0, '', 1]];
   function ch1Frame(){
     if (!onScreen(ch1)) return;
     var p = chP(ch1), f = fitCanvas(c1), c = f.x, w = f.w, h = f.h, narrow = w < 760;
-    var e = ease(ramp(p, 0.02, 0.09)), col = ease(ramp(p, 0.40, 0.48)), E = ease(ramp(p, 0.77, 0.83));
-    var eA = ramp(p, 0.46, 0.50) * (1 - ramp(p, 0.60, 0.63)), dA = ramp(p, 0.62, 0.65) * (1 - ramp(p, 0.77, 0.80)), n2 = ramp(p, 0.93, 0.97), aB = 1 - ramp(p, 0.40, 0.44);
+    var e = ease(ramp(p, 0.02, 0.09)), col = ease(ramp(p, 0.40, 0.48)), E = ease(ramp(p, 0.875, 0.91)), kR = clamp(1 - ramp(p, 0.72, 0.745) + ramp(p, 0.875, 0.895), 0, 1);
+    var eA = ramp(p, 0.46, 0.50) * (1 - ramp(p, 0.60, 0.63)), dA = ramp(p, 0.62, 0.65) * (1 - ramp(p, 0.72, 0.745)), n2 = ramp(p, 0.96, 0.985), aB = 1 - ramp(p, 0.40, 0.44);
     var sc = (narrow ? Math.min(w / 1000, h / 1100) * lerp(1, 1.15, col) : Math.min(w / 1300, h / 820)) * (narrow ? lerp(1, 0.66, col) : 1) * lerp(1, narrow ? 0.85 : 0.82, E);
     var cx = narrow ? w * 0.5 : lerp(w * 0.5, w * 0.27, E), cy = narrow ? lerp(h * 0.40, h * 0.25, E) : lerp(h * 0.43, h * 0.45, E);
     var P = makeProj(lerp(-0.52, -Math.PI / 2, col), lerp(0.2, 0, col), sc, cx, cy);
@@ -1107,9 +1110,9 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       var hot = (eA > 0.5 && i === 1) || (dA > 0.5 && i === 3), mem = n2 > 0.5 && i < 2;
       var al = e * (dA > 0 && i < 3 ? lerp(0.85, 0.28, dA) : 0.85);
       if (i < 2) disc(c, P, xs[i], 0, 0, R1[i], BL, 0.06 * n2);
-      ring(c, P, xs[i], 0, 0, R1[i], hot ? OR : mem ? BL : WH, Math.max(al, mem ? 0.9 : 0), hot || mem ? 2 : 1.4);
+      ring(c, P, xs[i], 0, 0, R1[i], hot ? OR : mem ? BL : WH, Math.max(al, mem ? 0.9 : 0) * kR, hot || mem ? 2 : 1.4);
       var below = narrow && i % 2 === 1 && col < 0.5, lq = P(xs[i], below ? -R1[i] - 22 : R1[i] + 14, 0);
-      txt(c, RN1[i], lq[0], lq[1], hot ? OR : mem ? BL : WH, 0.75 * e * (eA > 0 ? lerp(1, 0.35, eA) : 1) * (dA > 0 && !hot ? lerp(1, 0.3, dA) : 1) * (narrow ? 1 - 0.85 * E : 1), narrow ? 10 : 11);
+      txt(c, RN1[i], lq[0], lq[1], hot ? OR : mem ? BL : WH, 0.75 * e * (eA > 0 ? lerp(1, 0.35, eA) : 1) * (dA > 0 && !hot ? lerp(1, 0.3, dA) : 1) * (narrow ? 1 - 0.85 * E : 1) * kR, narrow ? 10 : 11);
     }
     /* ii · the questions: commodity ones caught by the rings, hard ones kept at the core */
     var answered = 0, kept = 0;
@@ -1155,28 +1158,61 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     if (dA > 0.01) {
       [210, 330, 270].forEach(function(a, j){ var ra = a * Math.PI / 180, kk = ramp(p, 0.63 + j * 0.014, 0.65 + j * 0.014), y = Math.sin(ra) * 80, z = Math.cos(ra) * 80; seg(c, P, [0, Math.sin(ra) * 45, Math.cos(ra) * 45], [0, y, z], OR, 0.7 * dA * kk, 1.2); cdot(c, P, 0, y, z, 5, OR, dA * kk); var lp = P(0, y * 1.3, z * 1.3); txt(c, 'kpi ' + (j + 1), lp[0], lp[1] + 4, OR, 0.95 * dA * kk, 11); });
       var cp = P(0, 0, 0); c.font = '300 ' + Math.max(20, Math.round(50 * sc)) + 'px Fraunces, Georgia, serif'; c.textAlign = 'center'; c.fillStyle = rgba(WH, dA); c.fillText(p > 0.70 ? '5 ↑' : '5', cp[0], cp[1] + Math.max(7, 17 * sc));
-      var sb = P(0, -168, 0), sw = Math.min(440, w - 32), sx0 = cx - sw / 2, sy = sb[1] + 8, scw = sw / 10, sa = dA * ramp(p, 0.66, 0.69);
-      for (var s = 0; s < 10; s++) { var at = s === 4, to = s === 5 && p > 0.70; c.fillStyle = at ? rgba(OR, 0.25 * sa) : rgba(WH, 0.04 * sa); c.fillRect(sx0 + s * scw + 2, sy, scw - 4, 20); c.save(); if (to) c.setLineDash([3, 3]); c.strokeStyle = at || to ? rgba(OR, 0.9 * sa) : rgba(WH, 0.25 * sa); c.strokeRect(sx0 + s * scw + 2.5, sy + 0.5, scw - 5, 19); c.restore(); txt(c, String(s + 1), sx0 + s * scw + scw / 2, sy + 14, at || to ? WH : WH, (at || to ? 1 : 0.45) * sa, 10); }
-      ['broken', 'poor', 'average', 'good', 'phenomenal'].forEach(function(b, j){ txt(c, b, sx0 + (j * 2 + 1) * scw, sy + 36, WH, 0.45 * sa, 9); });
     }
-    /* v · compounding: notes peel off the rings into the vault */
-    var aV = ramp(p, 0.79, 0.83), counts = [0, 0];
+    /* v · the quality spectrum: the rings collapse into one point, and it lands among the rest of coverage */
+    var sA = ramp(p, 0.73, 0.76) * (1 - ramp(p, 0.86, 0.885));
+    if (sA > 0.01) {
+      var bx0 = narrow ? 22 : w * 0.14, bx1 = narrow ? w - 22 : w * 0.86, barY = narrow ? h * 0.36 : h * 0.42, cwS = (bx1 - bx0) / 10;
+      var SX = function(v){ return bx0 + (v - 0.5) * cwS; }, RY = function(r){ return barY - 22 - r * 20; };
+      for (var s2 = 0; s2 < 10; s2++) { var hotS = s2 === 4 || (s2 === 5 && p > 0.79); c.fillStyle = rgba(hotS ? OR : WH, (hotS ? 0.22 : 0.05) * sA); c.fillRect(bx0 + s2 * cwS + 1.5, barY, cwS - 3, 10); c.strokeStyle = rgba(hotS ? OR : WH, (hotS ? 0.8 : 0.28) * sA); c.lineWidth = 1; c.strokeRect(bx0 + s2 * cwS + 2, barY + 0.5, cwS - 4, 9); txt(c, String(s2 + 1), SX(s2 + 1), barY + 24, WH, 0.5 * sA, 9); }
+      ['broken', 'poor', 'average', 'good', 'phenomenal'].forEach(function(b, j){ txt(c, b, SX(j * 2 + 1.5), barY + 40, WH, 0.55 * sA, narrow ? 8 : 9); });
+      txt(c, 'the quality spectrum · my coverage', bx0, barY - 118, WH, 0.6 * sA, narrow ? 9 : 10, 'left');
+      COV.forEach(function(cv, i){
+        var t = 0.765 + i * 0.004, kk = ramp(p, t, t + 0.012) * sA; if (kk <= 0) return;
+        var x = SX(cv[0]), y = RY(cv[3]);
+        c.strokeStyle = rgba(WH, 0.14 * kk); c.beginPath(); c.moveTo(x, y); c.lineTo(x, barY); c.stroke();
+        if (cv[1]) { var ax = x + cv[1] * 16; c.strokeStyle = rgba(WH, 0.7 * kk); c.lineWidth = 1.2; c.beginPath(); c.moveTo(x, y); c.lineTo(ax, y); c.stroke(); c.beginPath(); c.moveTo(ax, y); c.lineTo(ax - cv[1] * 4, y - 3); c.lineTo(ax - cv[1] * 4, y + 3); c.closePath(); c.fillStyle = rgba(WH, 0.7 * kk); c.fill(); }
+        c.beginPath(); c.arc(x, y, 3.2, 0, Math.PI * 2); c.fillStyle = rgba(WH, 0.85 * kk); c.fill();
+        if (cv[2]) txt(c, narrow ? cv[2].split(' ').slice(0, 2).join(' ') : cv[2], x, y - 10, WH, 0.85 * kk * ramp(p, 0.79, 0.80), narrow ? 9 : 10);
+      });
+      /* this name: from the core of the rings onto the spectrum, then into the matrix */
+      var mv = ease(ramp(p, 0.745, 0.785)), mm = ease(ramp(p, 0.835, 0.855)), from = P(0, 0, 0);
+      var mw = Math.min(440, w - 44), mx0 = (w - mw) / 2 + (narrow ? 34 : 60), mcw = (mw - (narrow ? 68 : 120)) / 2, my0 = barY + 66, mch = narrow ? 28 : 32;
+      var cellX = mx0 + 16, cellY = my0 + 18 + mch * 0.5;
+      var nx = lerp(lerp(from[0], SX(5), mv), cellX, mm), ny = lerp(lerp(from[1], RY(2), mv), cellY, mm);
+      if (p > 0.79 && mm < 1) { c.save(); c.setLineDash([3, 3]); c.strokeStyle = rgba(OR, 0.9 * sA); c.lineWidth = 1.4; c.beginPath(); c.moveTo(SX(5), RY(2)); c.lineTo(SX(6) - 6, RY(2)); c.stroke(); c.restore(); c.beginPath(); c.moveTo(SX(6), RY(2)); c.lineTo(SX(6) - 6, RY(2) - 4); c.lineTo(SX(6) - 6, RY(2) + 4); c.closePath(); c.fillStyle = rgba(OR, 0.9 * sA); c.fill(); }
+      c.beginPath(); c.arc(nx, ny, 6, 0, Math.PI * 2); c.fillStyle = rgba(OR, sA); c.fill();
+      if (mm < 0.5) txt(c, p > 0.79 ? 'this name · 5 ↑' : 'this name', nx, ny - 12, OR, sA * (1 - mm * 2), narrow ? 10 : 11);
+      /* the business-to-stock matrix: has the market seen the move? */
+      var mA = ramp(p, 0.82, 0.84) * sA;
+      if (mA > 0.01) {
+        txt(c, 'unmarked', mx0 + mcw * 0.5, my0 + 10, WH, 0.6 * mA, 9); txt(c, 'marked · priced', mx0 + mcw * 1.5, my0 + 10, WH, 0.6 * mA, 9);
+        [['getting better', 'long', 'late · set an entry'], ['getting worse', 'short', 'late · set an entry']].forEach(function(r, ri){
+          var yy = my0 + 18 + ri * mch; txt(c, narrow ? r[0].replace('getting ', '') : r[0], mx0 - 8, yy + mch / 2 + 3, WH, 0.6 * mA, 9, 'right');
+          [r[1], r[2]].forEach(function(cl, ci){ var hit = ri === 0 && ci === 0 && mm > 0.9; c.fillStyle = rgba(hit ? OR : WH, (hit ? 0.18 : 0.04) * mA); c.fillRect(mx0 + ci * mcw + 2, yy + 2, mcw - 4, mch - 4); c.strokeStyle = rgba(hit ? OR : WH, (hit ? 0.9 : 0.3) * mA); c.strokeRect(mx0 + ci * mcw + 2.5, yy + 2.5, mcw - 5, mch - 5); if (!(hit && ci === 0)) txt(c, cl, mx0 + ci * mcw + mcw / 2, yy + mch / 2 + 4, ci === 0 ? (ri === 0 ? GR : '#FF8A8A') : WH, 0.85 * mA, narrow ? 9 : 10); else txt(c, 'long candidate', mx0 + mcw / 2 + 10, yy + mch / 2 + 4, OR, mA, narrow ? 9 : 10); });
+        });
+        txt(c, 'no real change → kill', mx0 + mcw, my0 + 18 + 2 * mch + 16, WH, 0.5 * mA, 9);
+      }
+    }
+    /* vi · compounding: notes peel off the rings into the vault */
+    var aV = ramp(p, 0.885, 0.91), counts = [0, 0];
     if (aV > 0.01) {
       var vx = narrow ? 16 : w * 0.52, vy = narrow ? h * 0.44 : h * 0.15, vw = narrow ? w - 32 : w * 0.42, vh2 = narrow ? h * 0.27 : h * 0.6;
       c.fillStyle = rgba('#060708', 0.55 * aV); c.fillRect(vx, vy, vw, vh2); c.strokeStyle = rgba(WH, 0.2 * aV); c.strokeRect(vx + 0.5, vy + 0.5, vw - 1, vh2 - 1);
-      var pad = 16, wk = ramp(p, 0.81, 0.93) * 19.6;
+      var pad = 16, wk = ramp(p, 0.895, 0.965) * 19.6;
       counts = vaultTo(c, vx + pad, vy + pad, vw - 2 * pad, vh2 - 2 * pad, wk, aV);
       txt(c, 'my vault · ' + counts[0] + ' notes · ' + counts[1] + ' links · titles hidden', vx, vy - 10, WH, 0.75 * aV, narrow ? 10 : 11, 'left');
-      for (var j = 0; j < 22; j++) { var tj = 0.79 + j * 0.0055, u3 = clamp((p - tj) / 0.035, 0, 1); if (u3 <= 0 || u3 >= 1) continue; var rk = j % 4, ra2 = j * 1.37, from = P(0, Math.sin(ra2) * R1[rk], Math.cos(ra2) * R1[rk]), tn = VL.n[(j * 37) % VL.n.length], tx2 = vx + pad + tn[0] / 1000 * (vw - 2 * pad), ty2 = vy + pad + tn[1] / 1000 * (vh2 - 2 * pad), uu3 = ease(u3); c.fillStyle = rgba(j % 3 ? BL : GR, 0.95 * aV); c.fillRect(lerp(from[0], tx2, uu3) - 4, lerp(from[1], ty2, uu3) - 3 - Math.sin(uu3 * Math.PI) * 40, 8, 6); }
+      for (var j = 0; j < 22; j++) { var tj = 0.885 + j * 0.0035, u3 = clamp((p - tj) / 0.025, 0, 1); if (u3 <= 0 || u3 >= 1) continue; var rk = j % 4, ra2 = j * 1.37, from = P(0, Math.sin(ra2) * R1[rk], Math.cos(ra2) * R1[rk]), tn = VL.n[(j * 37) % VL.n.length], tx2 = vx + pad + tn[0] / 1000 * (vw - 2 * pad), ty2 = vy + pad + tn[1] / 1000 * (vh2 - 2 * pad), uu3 = ease(u3); c.fillStyle = rgba(j % 3 ? BL : GR, 0.95 * aV); c.fillRect(lerp(from[0], tx2, uu3) - 4, lerp(from[1], ty2, uu3) - 3 - Math.sin(uu3 * Math.PI) * 40, 8, 6); }
       if (n2 > 0.01) { var sp = P(0, 0, 80); cdot(c, P, 0, 0, 80, 6, OR, n2); txt(c, 'name 2 starts here', sp[0] + 12, sp[1] + 4, OR, n2, 11, 'left'); var ml = P(0, -150, 0); txt(c, 'already in the vault', ml[0], ml[1] + 20, BL, n2, 11); }
     }
     /* the one line to read */
-    var ph = p < 0.10 ? 0 : p < 0.40 ? 1 : p < 0.61 ? 2 : p < 0.78 ? 3 : 4;
+    var ph = p < 0.10 ? 0 : p < 0.40 ? 1 : p < 0.61 ? 2 : p < 0.73 ? 3 : p < 0.875 ? 4 : 5;
     if (ph === 0) cap('c1', 0, 'i · the circles', 'Four circles, macro to micro.', 'fundamentals → ecosystem → key drivers → the quality spectrum · after rich falk-wallace');
     if (ph === 1) cap('c1', 1, 'ii · the questions', 'Commodity questions, answered in minutes. The hard ones, kept.', 'same answer for anyone who asks → an agent answers it, I check it · depends on what I’ve seen → mine');
     if (ph === 2) cap('c1', 2, 'iii · the ecosystem', 'No business exists in a vacuum.', fk ? FORCES[fk].h.toLowerCase() + ' · ' + FORCES[fk].hard : 'porter’s five forces, on the supply chain · after stephen parlett');
-    if (ph === 3) cap('c1', 3, 'iv · the drivers', 'Three numbers carry the cash.', p > 0.70 ? 'paid for travel along the spectrum, not for position on it · the lens' : '1–3 KPIs, each tied to a line in the model');
-    if (ph === 4) cap('c1', 4, 'v · compounding', n2 > 0.5 ? 'The next name in the space starts at the drivers.' : 'Every pass leaves a note.', n2 > 0.5 ? 'to understand one name, understand the space · the space is learned once' : 'my vault, growing week by week · real structure, dates approximate');
+    if (ph === 3) cap('c1', 3, 'iv · the drivers', 'Three numbers carry the cash.', '1–3 KPIs, each tied to a line in the model · the 80/20: the lines that carry the answer');
+    if (ph === 4) cap('c1', 4, 'v · the spectrum', p < 0.79 ? 'Every business goes on the quality spectrum.' : p < 0.825 ? 'Paid for travel along it, not position on it.' : 'Then: has the market seen the move?', p < 0.79 ? 'broken → phenomenal · predictability of the cash sets the multiple · I set the score, the evidence sets the direction · after thomas li' : p < 0.825 ? '5 ↑ the long · 9 ↓ the short · 3 ↑ poor to OK, priced for decline · 8 → already priced · 2 → a low price is not a discount' : 'better and unmarked → long · worse and unmarked → short · marked → late, set an entry · no real change → kill');
+    if (ph === 5) cap('c1', 5, 'vi · compounding', n2 > 0.5 ? 'The next name in the space starts at the drivers.' : 'Every pass leaves a note.', n2 > 0.5 ? 'to understand one name, understand the space · the space is learned once' : 'my vault, growing week by week · real structure, dates approximate');
   }
 
   /* 02 · the telescope: sources (each backtested), the filter, the screen, the model */
