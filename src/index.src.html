@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Serif:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
 <style>
 /* Layout, in order. 1 · about me: the mandate for the whole page. 2 · the process: one rod, five blocks, what's built.
    3 · dive deeper: one block in focus. 01 and 02 are drawn; 03 to 05 wait for Kathan. */
@@ -29,30 +29,35 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* 0 · the void */
-.void{position:relative;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(90% 70% at 50% 45%, rgba(23,25,29,0.6) 0%, rgba(6,7,8,0.9) 70%);cursor:crosshair;touch-action:pan-y}
+.void{position:relative;height:340vh}
+.v-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(90% 70% at 50% 45%, rgba(23,25,29,0.6) 0%, rgba(6,7,8,0.9) 70%);cursor:crosshair;touch-action:pan-y}
 .void canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.v-name{position:absolute;left:max(28px, calc(env(safe-area-inset-left, 0px) + 28px));top:calc(26px + env(safe-area-inset-top, 0px));font-family:var(--display);font-size:clamp(18px, 1.8vw, 24px);color:var(--ink-2);animation:rise 900ms ease-out 0.3s both}
+.v-name{position:absolute;left:max(28px, calc(env(safe-area-inset-left, 0px) + 28px));top:calc(26px + env(safe-area-inset-top, 0px));font-family:var(--display);font-size:clamp(18px, 1.8vw, 24px);color:var(--ink-2)}
 .v-cap{position:absolute;left:0;right:0;bottom:calc(84px + env(safe-area-inset-bottom, 0px));display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:0 24px;pointer-events:none}
 .v-h{font-family:var(--about);font-size:clamp(26px, 3.2vw, 44px);line-height:1.15;max-width:22ch;transition:opacity 300ms ease-out}
 .v-q{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);max-width:60ch}
-.v-down{position:absolute;left:50%;bottom:calc(30px + env(safe-area-inset-bottom, 0px));transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--active);opacity:0;transition:opacity 600ms ease-out;white-space:nowrap}
+.v-down{position:absolute;left:50%;bottom:calc(30px + env(safe-area-inset-bottom, 0px));transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--active);opacity:0;transition:opacity 600ms ease-out;white-space:nowrap;pointer-events:none}
 .v-down.on{opacity:1}
 .v-h.fade{opacity:0}
-@media (prefers-reduced-motion:reduce){ .v-name{animation:none} }
+.v-big{position:absolute;left:max(28px, 6vw);right:max(28px, 6vw);top:50%;transform:translateY(calc(-50% + var(--vb-y, 0px)));margin:0;font-family:var(--about);font-weight:400;font-size:clamp(40px, 7.4vw, 120px);line-height:1.02;letter-spacing:-0.01em;pointer-events:none;display:flex;flex-direction:column}
+.v-big .ln{display:block}
+.v-big .w{display:inline-block;opacity:0;transform:translateY(0.25em);margin-right:0.24em}
+.v-big em{font-style:italic;color:var(--active)}
+@media (prefers-reduced-motion:reduce){ .v-name{animation:none} .void{height:200vh} }
 
 /* 1 · about me, the mandate */
 .open{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;padding:calc(28px + env(safe-area-inset-top, 0px)) max(28px, calc(env(safe-area-inset-right, 0px) + 28px)) calc(28px + env(safe-area-inset-bottom, 0px)) max(28px, calc(env(safe-area-inset-left, 0px) + 28px));max-width:1320px;margin:0 auto}
-.o-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--rule);animation:rise 800ms ease-out 0.2s both}
+.o-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--rule)}
 .o-name{font-family:var(--display);font-size:clamp(22px, 2.4vw, 30px);letter-spacing:-0.01em}
 .o-body{flex:1;display:grid;grid-template-columns:minmax(0, 5fr) minmax(0, 7fr);gap:clamp(24px, 5vw, 80px);align-items:end;padding:clamp(48px, 10vh, 120px) 0 clamp(32px, 6vh, 64px)}
-.o-body h1{font-family:var(--about);font-size:clamp(72px, 11vw, 168px);line-height:0.9;letter-spacing:-0.01em;animation:rise 900ms ease-out 0.4s both}
+.o-body h1{font-family:var(--about);font-size:clamp(72px, 11vw, 168px);line-height:0.9;letter-spacing:-0.01em}
 .o-body h1 em{font-style:italic}
-.o-write{display:flex;flex-direction:column;gap:16px;padding-bottom:12px;animation:rise 900ms ease-out 0.7s both}
+.o-write{display:flex;flex-direction:column;gap:16px;padding-bottom:12px}
 .write{font-family:var(--about);font-size:clamp(20px, 1.9vw, 25px);line-height:1.5;color:var(--ink-3);font-style:italic}
 .lines{display:flex;flex-direction:column;gap:22px;padding-top:4px}
 .lines i{display:block;height:1px;background:rgba(255,255,255,0.18)}
 .lines i:nth-child(5){width:62%}
-.o-foot{display:flex;justify-content:space-between;gap:16px;padding-top:16px;border-top:1px solid var(--rule);animation:rise 800ms ease-out 1s both}
+.o-foot{display:flex;justify-content:space-between;gap:16px;padding-top:16px;border-top:1px solid var(--rule)}
 
 .o-write p{font-family:var(--about);font-size:clamp(19px, 1.6vw, 23px);line-height:1.45;color:var(--ink-2);max-width:62ch}
 .o-write p.lead{font-size:clamp(24px, 2.3vw, 32px);line-height:1.2;color:var(--ink)}
@@ -89,6 +94,16 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 .vl-honest{font-family:var(--mono);font-size:10px;line-height:1.6;color:var(--ink-3);text-transform:lowercase}
 @media (max-width:900px){ .vl-grid{grid-template-columns:minmax(0, 1fr)} .vl-fig{aspect-ratio:0.9} }
 
+.open .o-top,.open .o-body h1,.open .o-write,.open .o-foot{opacity:0}
+.open.in .o-top{animation:rise 800ms ease-out 0.05s both}.open.in .o-body h1{animation:rise 900ms ease-out 0.2s both}.open.in .o-write{animation:rise 900ms ease-out 0.45s both}.open.in .o-foot{animation:rise 800ms ease-out 0.7s both}
+@media (prefers-reduced-motion:reduce){ .open .o-top,.open .o-body h1,.open .o-write,.open .o-foot{opacity:1} }
+/* △ notes: quotes as drawing notes, in their own voice */
+.nb{position:absolute;right:max(28px, calc(env(safe-area-inset-right, 0px) + 28px));top:96px;width:min(330px, 25vw);display:flex;flex-direction:column;gap:18px;padding-left:16px;border-left:1px solid rgba(255,255,255,0.35);opacity:var(--nb, 0);pointer-events:none}
+.nb .label{font-size:10px;color:var(--ink-3)}
+.nb p{font-family:'IBM Plex Serif', Georgia, serif;font-style:italic;font-weight:300;font-size:16px;line-height:1.45;color:var(--ink)}
+.nb b{font-family:var(--mono);font-style:normal;font-weight:400;font-size:11px;color:var(--active);margin-right:8px}
+.nb cite{display:block;font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);margin-top:6px}
+@media (max-width:980px){ .nb{display:none} }
 /* 2 · the rod */
 .rod{height:700vh;position:relative}
 .rstage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
@@ -351,7 +366,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 }
 /* 4 · the chapters: each block decomposed on scroll */
 .ch{position:relative;height:800vh}
-#ch1{height:1000vh}
+#ch1{height:1300vh}
 #ch2{height:1050vh}
 .cstage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .cstage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -467,20 +482,21 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 <div class="progress" aria-hidden="true"></div>
 
 <main>
-  <!-- 0 · THE VOID: try to touch alpha -->
+  <!-- 0 · THE VOID: try to touch alpha, then a long scroll into the mandate -->
   <section class="void" id="void" aria-label="Alpha moves">
-    <canvas id="vcv0" aria-hidden="true"></canvas>
-    <span class="v-name">Kathan Prajapati</span>
-    <div class="v-cap" aria-live="polite"><p class="v-h" id="v-h">Try to touch alpha.</p><p class="v-q" id="v-q">move your cursor to it</p></div>
-    <span class="v-down" id="v-down">↓ the process that moves with it</span>
+    <div class="v-stage" id="vstage">
+      <canvas id="vcv0" aria-hidden="true"></canvas>
+      <span class="v-name" id="vname">Kathan Prajapati</span>
+      <div class="v-cap" id="vcap" aria-live="polite"><p class="v-h" id="v-h">Try to touch alpha.</p><p class="v-q" id="v-q">move your cursor to it</p></div>
+      <span class="v-down" id="v-down">keep scrolling ↓</span>
+      <h2 class="v-big" id="vbig" aria-label="I’m building a scalable process for finding an edge, and then for finding the next one."><span class="ln">I’m building a scalable process</span><span class="ln">for finding an edge,</span><span class="ln">and then for finding <em>the next one.</em></span></h2>
+    </div>
   </section>
-  <!-- 1 · ABOUT ME: the mandate for the page -->
   <section class="open" id="top" aria-label="About me">
     <header class="o-top"><span class="o-name">Kathan Prajapati</span><span class="label dim">the mandate for this page</span></header>
     <div class="o-body">
       <h1>About <em>me</em></h1>
       <div class="o-write">
-        <p class="lead">I’m building a scalable process for finding an edge, and then for finding the next one.</p>
         <p>Alpha doesn’t sit still. Every edge that works gets copied, published or priced, and then it decays. So the goal isn’t one clever idea. It’s a system that keeps producing them: one that reads deeper, asks harder questions and interprets what it finds better than the marginal holder of the stock.</p>
         <p>That means playing a different game. Not calling the next quarter faster than the pods, but understanding businesses, and the people who own them, well enough that the returns don’t depend on what the market does.</p>
         <p class="sig">AI is the speed tool. The judgement stays mine.</p>
@@ -514,7 +530,12 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     <div class="cstage">
       <canvas id="c1cv" aria-hidden="true"></canvas>
       <div class="chead"><span class="n">01 · zero to one</span><span class="label dim">decomposed</span></div>
-      <ol class="crail" id="c1rail" aria-hidden="true"><li>circles</li><li>questions</li><li>ecosystem</li><li>drivers</li><li>spectrum</li><li>compounding</li></ol>
+      <ol class="crail" id="c1rail" aria-hidden="true"><li>circles</li><li>questions</li><li>ecosystem</li><li>drivers</li><li>spectrum</li><li>the delta</li><li>compounding</li></ol>
+      <aside class="nb" id="c1nb" aria-label="Notes"><span class="label">notes</span>
+        <p><b>△1</b>We’re trading the increment: the delta between business quality and the change in expectations.<cite>my framework</cite></p>
+        <p><b>△2</b>Compare incremental business quality to the incremental difference in expectations.<cite>Thomas Li</cite></p>
+        <p><b>△3</b>The multiple pays for the level. The return comes from the change in the level.<cite>the lens · my notes</cite></p>
+      </aside>
       <div class="ccap" aria-live="polite"><span class="label" id="c1k"></span><h3 id="c1h"></h3><p id="c1q"></p></div>
       <button type="button" class="cmore" data-b="0">the detail ↗</button>
     </div>
@@ -1170,11 +1191,26 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
   var HARDL = ['why not the alternative?', 'who keeps the margin?', 'which KPI moves it?', 'where is consensus wrong?', 'can the market see it?'];
   var Q1 = (function(){ var rnd = mulberry(7), out = [], ne = 0, nh = 0; for (var i = 0; i < 64; i++) { var hard = i % 7 === 3, k = hard ? 3 : [0, 0, 0, 0, 1, 1, 1, 2, 2, 3][Math.floor(rnd() * 10)], a = rnd() * Math.PI * 2, rr = Math.sqrt(rnd()) * (hard ? 0.3 : 0.62) * R1[k]; var q = { t: 0.11 + 0.24 * i / 64 + rnd() * 0.008, hard: hard, k: k, y: Math.sin(a) * rr, z: Math.cos(a) * rr }; if (hard) { q.slot = nh; q.lab = nh % 2 === 0 ? HARDL[(nh / 2) % 5] : ''; nh++; } else { q.slot = ne; q.lab = ne % 5 === 2 ? EASYL[Math.floor(ne / 5) % 11] : ''; ne++; } out.push(q); } return out; })();
   var FK1 = ['sup', 'cus', 'riv', 'ent', 'sub'];
+  /* relative value + delta map data (illustrative): [score, dir, label, row, residual multiple vs the line]; paths are 8 quarters of [Δquality, Δexpectations] */
+  var RES = [0.5, -1, 0.8, 1.5, -0.5, 0.3, -1.2, 3.5, 0.2, 1.0, -0.6, 2.0, -0.4];
+  var RVN, RVP;
+  function buildRV(){
+    RVN = COV.map(function(cv, i){ return [cv[0], cv[1], cv[2], cv[3], RES[i]]; }); RVN.push([5, 1, 'this name', 2, -3]);
+    var rnd = mulberry(23);
+    RVP = RVN.map(function(nm, i){
+      if (nm[2] === 'this name') return [[0.4, 0.1], [1.0, 0.2], [1.3, 0.4], [1.2, 0.7], [1.0, 1.0], [0.8, 1.05], [0.6, 0.75], [0.5, 0.55]];
+      var dq = (rnd() - 0.5) * 0.8 + nm[1] * 0.4, de = dq * 0.8 + (rnd() - 0.5) * 0.3, out = [];
+      for (var k = 0; k < 8; k++) { out.push([clamp(dq, -1.9, 1.9), clamp(de, -1.9, 1.9)]); var ndq = 0.55 * dq + (rnd() - 0.5) * 1.3; de = 0.35 * de + 0.6 * dq + (rnd() - 0.5) * 0.35; dq = ndq; }
+      return out;
+    });
+  }
   /* coverage on the spectrum: [score, direction, label, row] (illustrative) */
+  var COV_ = 0;
   var COV = [[1.5, 0, '', 0], [2.3, 0, '2 → dead money', 3], [3.2, 1, '3 ↑ poor → OK', 2], [4.0, -1, '', 0], [4.6, 0, '', 1], [5.7, 1, '', 0], [6.4, 0, '', 1], [6.9, -1, '', 0], [7.6, 0, '', 1], [8.2, 0, '8 → already priced', 3], [8.7, 1, '', 0], [9.2, -1, '9 ↓ best → great', 2], [9.7, 0, '', 1]];
+  buildRV();
   function ch1Frame(){
     if (!onScreen(ch1)) return;
-    var p = chP(ch1), f = fitCanvas(c1), c = f.x, w = f.w, h = f.h, narrow = w < 760;
+    var pr = chP(ch1), p = pr < 0.78 ? pr * (0.825 / 0.78) : pr < 0.92 ? 0.825 : 0.875 + (pr - 0.92) / 0.08 * 0.125, rvq = pr >= 0.78 && pr < 0.92 ? (pr - 0.78) / 0.14 : -1, f = fitCanvas(c1), c = f.x, w = f.w, h = f.h, narrow = w < 760;
     var e = ease(ramp(p, 0.02, 0.09)), col = ease(ramp(p, 0.40, 0.48)), E = ease(ramp(p, 0.875, 0.91)), kR = clamp(1 - ramp(p, 0.72, 0.745) + ramp(p, 0.875, 0.895), 0, 1);
     var eA = ramp(p, 0.46, 0.50) * (1 - ramp(p, 0.60, 0.63)), dA = ramp(p, 0.62, 0.65) * (1 - ramp(p, 0.72, 0.745)), n2 = ramp(p, 0.96, 0.985), aB = 1 - ramp(p, 0.40, 0.44);
     var sc = (narrow ? Math.min(w / 1000, h / 1100) * lerp(1, 1.15, col) : Math.min(w / 1300, h / 820)) * (narrow ? lerp(1, 0.66, col) : 1) * lerp(1, narrow ? 0.85 : 0.82, E);
@@ -1238,7 +1274,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       var cp = P(0, 0, 0); c.font = '300 ' + Math.max(20, Math.round(50 * sc)) + 'px Fraunces, Georgia, serif'; c.textAlign = 'center'; c.fillStyle = rgba(WH, dA); c.fillText(p > 0.70 ? '5 ↑' : '5', cp[0], cp[1] + Math.max(7, 17 * sc));
     }
     /* v · the quality spectrum: the rings collapse into one point, and it lands among the rest of coverage */
-    var sA = ramp(p, 0.73, 0.76) * (1 - ramp(p, 0.86, 0.885));
+    var sA = ramp(p, 0.73, 0.76) * (pr < 0.78 ? 1 : 0);
     if (sA > 0.01) {
       var bx0 = narrow ? 22 : w * 0.14, bx1 = narrow ? w - 22 : w * 0.86, barY = narrow ? h * 0.36 : h * 0.42, cwS = (bx1 - bx0) / 10;
       var SX = function(v){ return bx0 + (v - 0.5) * cwS; }, RY = function(r){ return barY - 22 - r * 20; };
@@ -1272,7 +1308,51 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
         txt(c, 'no real change → kill', mx0 + mcw, my0 + 18 + 2 * mch + 16, WH, 0.5 * mA, 9);
       }
     }
-    /* vi · compounding: notes peel off the rings into the vault */
+    /* vi · relative value, then the delta map: the same dots, first priced, then set in motion */
+    if (rvq >= 0) {
+      var bx0r = narrow ? 22 : w * 0.14, bx1r = narrow ? w - 22 : w * 0.86, barYr = narrow ? h * 0.36 : h * 0.42, cwR = (bx1r - bx0r) / 10;
+      var SXr = function(v){ return bx0r + (v - 0.5) * cwR; }, RYr = function(r){ return barYr - 22 - r * 20; };
+      var cy0 = narrow ? h * 0.13 : h * 0.15, cy1 = narrow ? h * 0.50 : h * 0.66, sx0 = narrow ? 40 : w * 0.14, sx1 = narrow ? w - 22 : w * 0.66;
+      var SC = function(v){ return lerp(sx0, sx1, (v - 0.5) / 10); }, MY = function(m){ return lerp(cy1, cy0, (m - 4) / 22); };
+      var dx0 = narrow ? 44 : w * 0.20, dx1 = narrow ? w - 24 : w * 0.60, DX = function(v){ return lerp(dx0, dx1, (v + 2) / 4); }, DY = function(v){ return lerp(cy1, cy0, (v + 2) / 4); };
+      var mA2 = ease(ramp(rvq, 0, 0.16)), pA2 = ramp(rvq, 0.18, 0.24) * (1 - ramp(rvq, 0.38, 0.42)), dA2 = ease(ramp(rvq, 0.40, 0.52)), tq = clamp((rvq - 0.52) / 0.44, 0, 1) * 7;
+      var axA = mA2 * (1 - dA2), dlA = dA2, barF = (1 - mA2) * 0.7;
+      if (barF > 0.01) for (var sb2 = 0; sb2 < 10; sb2++) { c.strokeStyle = rgba(WH, 0.28 * barF); c.strokeRect(bx0r + sb2 * cwR + 2, barYr + 0.5, cwR - 4, 9); }
+      /* relative value axes */
+      if (axA > 0.01) {
+        c.strokeStyle = rgba(WH, 0.3 * axA); c.beginPath(); c.moveTo(sx0, cy0); c.lineTo(sx0, cy1); c.lineTo(sx1, cy1); c.stroke();
+        txt(c, 'multiple · EV/EBITDA', sx0, cy0 - 10, WH, 0.55 * axA, 9, 'left'); txt(c, 'quality score →', sx1, cy1 + 18, WH, 0.55 * axA, 9, 'right');
+        c.save(); c.setLineDash([6, 5]); c.strokeStyle = rgba(WH, 0.55 * axA); c.beginPath(); c.moveTo(SC(1), MY(4 + 1.5)); c.lineTo(SC(10), MY(4 + 15)); c.stroke(); c.restore();
+        txt(c, 'what the market pays for quality', SC(9.6), MY(4 + 1.5 * 9.6) - 10, WH, 0.6 * axA, narrow ? 8 : 9, 'right');
+        txt(c, 'expensive for its quality', SC(3), MY(4 + 1.5 * 3 + 6), '#FF8A8A', 0.85 * axA, narrow ? 9 : 10); txt(c, 'cheap for its quality', SC(8), MY(4 + 1.5 * 8 - 6), GR, 0.85 * axA, narrow ? 9 : 10);
+        txt(c, 'a cross-check, not the valuation · illustrative', sx1, cy1 + 32, WH, 0.4 * axA, 9, 'right');
+      }
+      /* delta map axes */
+      if (dlA > 0.01) {
+        c.strokeStyle = rgba(WH, 0.25 * dlA); c.beginPath(); c.moveTo(DX(-2), DY(0)); c.lineTo(DX(2), DY(0)); c.moveTo(DX(0), DY(-2)); c.lineTo(DX(0), DY(2)); c.stroke();
+        c.save(); c.setLineDash([6, 5]); c.strokeStyle = rgba(WH, 0.7 * dlA); c.lineWidth = 1.4; c.beginPath(); c.moveTo(DX(-2), DY(-2)); c.lineTo(DX(2), DY(2)); c.stroke(); c.restore(); c.lineWidth = 1;
+        txt(c, 'priced · quality and expectations moved together', DX(1.95), DY(1.95) - 10, WH, 0.7 * dlA, narrow ? 8 : 9, 'right');
+        txt(c, 'change in quality →', DX(2), DY(-2) + 18, WH, 0.55 * dlA, 9, 'right');
+        c.save(); c.translate(DX(-2) - 12, DY(-2)); c.rotate(-Math.PI / 2); txt(c, 'change in expectations →', 0, 0, WH, 0.55 * dlA, 9, 'left'); c.restore();
+        txt(c, 'better than the market thinks → long', DX(1.1), DY(-1.6), GR, 0.85 * dlA, narrow ? 8 : 10); txt(c, 'worse than the market thinks → short', DX(-1.1), DY(1.6), '#FF8A8A', 0.85 * dlA, narrow ? 8 : 10);
+        if (!narrow) { c.font = '12px "IBM Plex Mono", monospace'; c.fillStyle = rgba(OR, dlA); c.textAlign = 'left'; c.fillText('△1', DX(0.62) + 8, DY(0.62) + 18); }
+      }
+      /* the dots */
+      var qi = Math.min(6, Math.floor(tq)), qf = tq - qi, ideas = 0;
+      RVN.forEach(function(nm, i){
+        var bp = [SXr(nm[0]), RYr(nm[3])], rp = [SC(nm[0]), MY(4 + 1.5 * nm[0] + nm[4])];
+        var pth = RVP[i], dq = lerp(pth[qi][0], pth[qi + 1][0], qf), de = lerp(pth[qi][1], pth[qi + 1][1], qf), dp = [DX(dq), DY(de)];
+        var x = lerp(lerp(bp[0], rp[0], mA2), dp[0], dA2), y = lerp(lerp(bp[1], rp[1], mA2), dp[1], dA2);
+        var gap = dq - de, idea = dA2 > 0.9 && Math.abs(gap) > 0.6; if (idea) ideas++;
+        var me = nm[2] === 'this name', pairS = i === 7, col = me ? OR : idea ? (gap > 0 ? GR : '#FF8A8A') : WH;
+        if (pA2 > 0.01 && (me || pairS)) stamp(c, x + 10, y, me ? 'long · cheap' : 'short · expensive', me ? GR : '#FF8A8A', pA2, 8, 0, 'left');
+        c.beginPath(); c.arc(x, y, me ? 6 : idea ? 4.2 : 3.2, 0, Math.PI * 2); c.fillStyle = rgba(col, me || idea ? 1 : 0.8); c.fill();
+        if (me && (axA > 0.3 || dlA > 0.3)) txt(c, dlA > 0.5 ? (tq > 5.2 ? 'this name · the gap closed → paid' : 'this name') : 'this name', x, y - 12, OR, 1, narrow ? 9 : 10);
+      });
+      if (pA2 > 0.01) { var a1 = RVN[RVN.length - 1], a2 = RVN[7], p1 = [SC(a1[0]), MY(4 + 1.5 * a1[0] + a1[4])], p2 = [SC(a2[0]), MY(4 + 1.5 * a2[0] + a2[4])]; c.save(); c.setLineDash([3, 4]); c.strokeStyle = rgba(WH, 0.7 * pA2); c.beginPath(); c.moveTo(p1[0], p1[1] + 12); c.quadraticCurveTo((p1[0] + p2[0]) / 2, Math.max(p1[1], p2[1]) + 60, p2[0], p2[1] + 12); c.stroke(); c.restore(); txt(c, 'the pair · the market and the sector cancel out', (p1[0] + p2[0]) / 2, Math.max(p1[1], p2[1]) + 62, WH, 0.85 * pA2, narrow ? 8 : 10); }
+      if (dA2 > 0.9) txt(c, 'Q' + (qi + 1) + ' · ideas this quarter: ' + ideas, narrow ? DX(-2) : DX(-2), narrow ? cy1 + 36 : cy0 - 10, OR, dlA, narrow ? 10 : 11, 'left');
+    }
+    /* vii · compounding: notes peel off the rings into the vault */
     var aV = ramp(p, 0.885, 0.91), counts = [0, 0];
     if (aV > 0.01) {
       var vx = narrow ? 16 : w * 0.52, vy = narrow ? h * 0.44 : h * 0.15, vw = narrow ? w - 32 : w * 0.42, vh2 = narrow ? h * 0.27 : h * 0.6;
@@ -1284,13 +1364,15 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       if (n2 > 0.01) { var sp = P(0, 0, 80); cdot(c, P, 0, 0, 80, 6, OR, n2); txt(c, 'name 2 starts here', sp[0] + 12, sp[1] + 4, OR, n2, 11, 'left'); var ml = P(0, -150, 0); txt(c, 'already in the vault', ml[0], ml[1] + 20, BL, n2, 11); }
     }
     /* the one line to read */
-    var ph = p < 0.10 ? 0 : p < 0.40 ? 1 : p < 0.61 ? 2 : p < 0.73 ? 3 : p < 0.875 ? 4 : 5;
+    var ph = p < 0.10 ? 0 : p < 0.40 ? 1 : p < 0.61 ? 2 : p < 0.73 ? 3 : pr < 0.78 ? 4 : pr < 0.92 ? 5 : 6;
     if (ph === 0) cap('c1', 0, 'i · the circles', 'Four circles, macro to micro.', 'fundamentals → ecosystem → key drivers → the quality spectrum · after rich falk-wallace');
     if (ph === 1) cap('c1', 1, 'ii · the questions', 'Commodity questions, answered in minutes. The hard ones, kept.', 'same answer for anyone who asks → an agent answers it, I check it · depends on what I’ve seen → mine');
     if (ph === 2) cap('c1', 2, 'iii · the ecosystem', 'No business exists in a vacuum.', fk ? FORCES[fk].h.toLowerCase() + ' · ' + FORCES[fk].hard : 'porter’s five forces, on the supply chain · after stephen parlett');
     if (ph === 3) cap('c1', 3, 'iv · the drivers', 'Three numbers carry the cash.', '1–3 KPIs, each tied to a line in the model · the 80/20: the lines that carry the answer');
-    if (ph === 4) cap('c1', 4, 'v · the spectrum', p < 0.79 ? 'Every business goes on the quality spectrum.' : p < 0.825 ? 'Paid for travel along it, not position on it.' : 'Then: has the market seen the move?', p < 0.79 ? 'broken → phenomenal · predictability of the cash sets the multiple · I set the score, the evidence sets the direction · after thomas li' : p < 0.825 ? '5 ↑ the long · 9 ↓ the short · 3 ↑ poor to OK, priced for decline · 8 → already priced · 2 → a low price is not a discount' : 'better and unmarked → long · worse and unmarked → short · marked → late, set an entry · no real change → kill');
-    if (ph === 5) cap('c1', 5, 'vi · compounding', n2 > 0.5 ? 'The next name in the space starts at the drivers.' : 'Every pass leaves a note.', n2 > 0.5 ? 'to understand one name, understand the space · the space is learned once' : 'my vault, real structure · ordered by week of last edit · the live version is just below');
+    if (ph === 4) cap('c1', 4, 'v · the spectrum', p < 0.79 ? 'Every business goes on the quality spectrum.' : 'Paid for travel along it, not position on it.', p < 0.79 ? 'broken → phenomenal · predictability of the cash sets the multiple · I set the score, the evidence sets the direction · after thomas li' : '5 ↑ the long · 9 ↓ the short · 3 ↑ poor to OK, priced for decline · 8 → already priced · 2 → a low price is not a discount');
+    if (ph === 5) cap('c1', 5, 'vi · relative value → the delta', rvq < 0.18 ? 'Now price the quality.' : rvq < 0.40 ? 'Cheap for its quality, against expensive for its quality.' : rvq < 0.52 ? 'Then let it move.' : 'Ideas are the dots that leave the diagonal.', rvq < 0.18 ? 'spectrum score against the multiple, across one subsector · the line is what the market pays for quality · after allen white, stephen parlett' : rvq < 0.40 ? 'long one, short the other · the market and the sector cancel out · what’s left is my read on the businesses' : rvq < 0.52 ? 'change in quality across · change in expectations up · on the diagonal, it’s priced' : 'we trade the increment △1 · every name moves every quarter, so the pipeline never runs dry');
+    root.style.setProperty('--nb', (rvq >= 0 ? ramp(rvq, 0.52, 0.58) : 0).toFixed(3));
+    if (ph === 6) cap('c1', 6, 'vii · compounding', n2 > 0.5 ? 'The next name in the space starts at the drivers.' : 'Every pass leaves a note.', n2 > 0.5 ? 'to understand one name, understand the space · the space is learned once' : 'my vault, real structure · ordered by week of last edit · the live version is just below');
   }
 
   /* 02 · the telescope: sources (each backtested), the filter, the screen, the model */
@@ -1740,101 +1822,76 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     if (ph === 5) cap('c4', 5, 'vi · the variant view', p < 0.91 ? 'Know the distribution before you differ from it.' : 'Second order doesn’t change what’s true. It changes when you’re paid and how much you hold.', p < 0.91 ? '12-month consensus is a distribution across investor types · map it, then place your view · after bernie ahkong' : 'flow is a setup, not a thesis · every flow idea still needs a spectrum arrow');
   }
 
-  /* ---------- 0 · the void: alpha moves when you reach for it (the relocations are from my informational alpha note) ---------- */
+  /* ---------- 0 · the void: alpha moves when you reach for it, then a long scroll into the mandate ---------- */
   (function(){
-    var sec = el('void'), cvs = el('vcv0'); if (!sec) return;
+    var sec = el('void'), stage = el('vstage'), cvs = el('vcv0'); if (!sec) return;
     var STAGES = [
       { g: 'until 2000 · selective disclosure', h: 'Reg FD, 2000. Selective disclosure ends.', q: 'the edge moves to the supply chain · expert networks' },
       { g: '2000s · expert networks', h: 'The 2010–13 insider-trading cases close it off.', q: 'the edge moves again · alternative data' },
       { g: '2015 → · alt data', h: 'Then everyone buys the same data.', q: 'it decays like the rest · and moves again' },
       { g: '', h: 'Alpha never sits still. So I don’t chase it. I build a process that moves with it.', q: 'every edge gets copied, published or priced · from my notes on informational alpha' }
     ];
+    /* split the big line into words for the scroll reveal */
+    var words = [];
+    Array.prototype.forEach.call(el('vbig').querySelectorAll('.ln'), function(ln){
+      var nodes = Array.prototype.slice.call(ln.childNodes); ln.innerHTML = '';
+      nodes.forEach(function(nd){ var isEm = nd.nodeType === 1, t = isEm ? nd.textContent : nd.textContent, host = ln; if (isEm) { host = document.createElement('em'); ln.appendChild(host); }
+        t.split(/\s+/).filter(Boolean).forEach(function(wd){ var s = document.createElement('span'); s.className = 'w'; s.textContent = wd; host.appendChild(s); words.push(s); }); });
+    });
     var touch = window.matchMedia && window.matchMedia('(hover: none)').matches;
     if (touch) el('v-q').textContent = 'tap it · or just watch';
-    var W2 = 0, H2 = 0, ax = 0, ay = 0, tx = 0, ty = 0, stage = 0, ghosts = [], lastJump = 0, px = -999, py = -999, lastMove = 0, vx = -999, vy = -999, on = true, started = false, t0 = performance.now();
-    function size(){ var r = sec.getBoundingClientRect(); W2 = r.width; H2 = r.height; if (!started) { ax = tx = W2 * 0.5; ay = ty = H2 * 0.42; vx = W2 * 0.18; vy = H2 * 0.75; started = true; } }
+    var W2 = 0, H2 = 0, ax = 0, ay = 0, tx = 0, ty = 0, stg = 0, ghosts = [], lastJump = 0, px = -999, py = -999, lastMove = 0, vx = -999, vy = -999, on = true, started = false, t0 = performance.now(), pvLast = -1;
+    function size(){ var r = stage.getBoundingClientRect(); W2 = r.width; H2 = r.height; if (!started) { ax = tx = W2 * 0.5; ay = ty = H2 * 0.42; vx = W2 * 0.18; vy = H2 * 0.75; started = true; } }
     function setCap(i){ var hh = el('v-h'); hh.classList.add('fade'); setTimeout(function(){ hh.textContent = STAGES[i].h; el('v-q').textContent = STAGES[i].q; hh.classList.remove('fade'); }, 220); if (i === 3) el('v-down').classList.add('on'); }
     function jump(fx, fy, now){
       if (now - lastJump < 650) return; lastJump = now;
-      if (stage < 3) ghosts.push({ x: ax, y: ay, l: STAGES[stage].g, t: now });
-      setCap(Math.min(stage, 3)); stage = Math.min(stage + 1, 4);
-      /* away from the hand, inside a safe box (clear of the name and the caption) */
+      if (stg < 3) ghosts.push({ x: ax, y: ay, l: STAGES[stg].g, t: now });
+      setCap(Math.min(stg, 3)); stg = Math.min(stg + 1, 4);
       var best = null, bd = -1;
       for (var k = 0; k < 24; k++) { var cx = W2 * (0.14 + Math.random() * 0.72), cy = H2 * (0.16 + Math.random() * 0.42), d = Math.hypot(cx - fx, cy - fy), near = ghosts.reduce(function(m, g){ return Math.min(m, Math.hypot(cx - g.x, cy - g.y)); }, 1e9); var sc2 = d + Math.min(near, 220) * 0.8; if (d > Math.min(W2, H2) * 0.28 && sc2 > bd) { bd = sc2; best = [cx, cy]; } }
       if (best) { tx = best[0]; ty = best[1]; }
     }
-    function onMove(e){ var r = sec.getBoundingClientRect(), q = e.touches ? e.touches[0] : e; px = q.clientX - r.left; py = q.clientY - r.top; lastMove = performance.now(); }
-    sec.addEventListener('pointermove', onMove); sec.addEventListener('pointerdown', function(e){ onMove(e); if (Math.hypot(px - ax, py - ay) < 70) jump(px, py, performance.now()); });
-    sec.addEventListener('pointerleave', function(){ px = py = -999; });
+    function onMove(e){ var r = stage.getBoundingClientRect(), q = e.touches ? e.touches[0] : e; px = q.clientX - r.left; py = q.clientY - r.top; lastMove = performance.now(); }
+    stage.addEventListener('pointermove', onMove); stage.addEventListener('pointerdown', function(e){ onMove(e); if (Math.hypot(px - ax, py - ay) < 70) jump(px, py, performance.now()); });
+    stage.addEventListener('pointerleave', function(){ px = py = -999; });
     function frame(now){
       if (!on) return;
       var f = fitCanvas(cvs), c = f.x; if (f.w !== W2 || f.h !== H2) size();
-      var t = (now - t0) / 1000;
-      /* alpha drifts on its own, even when nobody reaches for it */
+      var vh = window.innerHeight, rr = sec.getBoundingClientRect(), pv = reduce ? 1 : clamp(-rr.top / Math.max(1, rr.height - vh), 0, 1);
+      var t = (now - t0) / 1000, capA = 1 - ramp(pv, 0.16, 0.28), z = ease(ramp(pv, 0.20, 0.52)), fadeAll = 1 - ramp(pv, 0.46, 0.62);
+      el('vcap').style.opacity = capA; el('vname').style.opacity = capA; el('v-down').style.opacity = el('v-down').classList.contains('on') ? capA : 0;
       var dx = Math.sin(t * 0.7) * 10 + Math.sin(t * 1.9) * 4, dy = Math.cos(t * 0.6) * 8 + Math.sin(t * 1.3) * 3;
-      ax += (tx + dx - ax) * 0.09; ay += (ty + dy - ay) * 0.09;
-      /* a hand that reaches for it if you don't */
-      var idle = now - lastMove > 3800 && stage < 4 && now - t0 > 2600, hand = idle;
-      if (idle) { vx += (ax - vx) * 0.018; vy += (ay - vy) * 0.018; if (Math.hypot(vx - ax, vy - ay) < 46) { jump(vx, vy, now); } }
+      /* as you scroll, alpha drifts to the centre and the camera falls into it */
+      var cxT = lerp(tx + dx, W2 * 0.5, z), cyT = lerp(ty + dy, H2 * 0.5, z);
+      ax += (cxT - ax) * 0.09; ay += (cyT - ay) * 0.09;
+      var playing = pv < 0.14, idle = playing && now - lastMove > 3800 && stg < 4 && now - t0 > 2600;
+      if (idle) { vx += (ax - vx) * 0.018; vy += (ay - vy) * 0.018; if (Math.hypot(vx - ax, vy - ay) < 46) jump(vx, vy, now); }
       else if (lastMove) { vx = px; vy = py; }
-      if (!idle && Math.hypot(px - ax, py - ay) < (touch ? 60 : 95)) jump(px, py, now);
-      /* where the edge used to live */
-      if (ghosts.length) { c.save(); c.setLineDash([3, 7]); c.strokeStyle = rgba(WH, 0.16); c.beginPath(); ghosts.forEach(function(g, i){ if (i) c.lineTo(g.x, g.y); else c.moveTo(g.x, g.y); }); c.lineTo(ax, ay); c.stroke(); c.restore(); }
-      ghosts.forEach(function(g){ var a = clamp((now - g.t) / 600, 0, 1); c.beginPath(); c.arc(g.x, g.y, 5, 0, Math.PI * 2); c.strokeStyle = rgba(WH, 0.35 * a); c.lineWidth = 1; c.stroke(); txt(c, g.l, g.x, g.y + 22, WH, 0.5 * a, 10); });
-      /* alpha */
-      var pulse = 0.5 + 0.5 * Math.sin(t * 2.2), gl = c.createRadialGradient(ax, ay, 0, ax, ay, 46); gl.addColorStop(0, rgba(OR, 0.28 + 0.12 * pulse)); gl.addColorStop(1, rgba(OR, 0)); c.fillStyle = gl; c.beginPath(); c.arc(ax, ay, 46, 0, Math.PI * 2); c.fill();
-      c.beginPath(); c.arc(ax, ay, 6.5, 0, Math.PI * 2); c.fillStyle = OR; c.fill();
-      c.font = 'italic 300 26px Fraunces, Georgia, serif'; c.textAlign = 'left'; c.fillStyle = rgba(WH, 0.92); c.fillText('α', ax + 14, ay - 8);
-      if (hand && vx > -500) { c.beginPath(); c.arc(vx, vy, 9, 0, Math.PI * 2); c.strokeStyle = rgba(WH, 0.45); c.lineWidth = 1.2; c.stroke(); c.beginPath(); c.arc(vx, vy, 2, 0, Math.PI * 2); c.fillStyle = rgba(WH, 0.6); c.fill(); }
+      if (playing && !idle && Math.hypot(px - ax, py - ay) < (touch ? 60 : 95)) jump(px, py, now);
+      var S = 1 + 3.2 * z, G = function(x, y){ return [ax + (x - ax) * S, ay + (y - ay) * S]; };
+      if (ghosts.length && fadeAll > 0.01) { c.save(); c.setLineDash([3, 7]); c.strokeStyle = rgba(WH, 0.16 * fadeAll); c.beginPath(); ghosts.forEach(function(g, i){ var q = G(g.x, g.y); if (i) c.lineTo(q[0], q[1]); else c.moveTo(q[0], q[1]); }); c.lineTo(ax, ay); c.stroke(); c.restore(); }
+      ghosts.forEach(function(g){ var a = clamp((now - g.t) / 600, 0, 1) * fadeAll, q = G(g.x, g.y); c.beginPath(); c.arc(q[0], q[1], 5, 0, Math.PI * 2); c.strokeStyle = rgba(WH, 0.35 * a); c.lineWidth = 1; c.stroke(); txt(c, g.l, q[0], q[1] + 22, WH, 0.5 * a, 10); });
+      /* alpha: the glow opens up as the camera falls in, then settles into a quiet ring behind the words */
+      var pulse = 0.5 + 0.5 * Math.sin(t * 2.2), gr = lerp(46, Math.max(W2, H2) * 0.75, z), ga = lerp(0.28 + 0.12 * pulse, 0.10, z) * lerp(1, 0.6, ramp(pv, 0.6, 1));
+      var gl = c.createRadialGradient(ax, ay, 0, ax, ay, gr); gl.addColorStop(0, rgba(OR, ga)); gl.addColorStop(1, rgba(OR, 0)); c.fillStyle = gl; c.beginPath(); c.arc(ax, ay, gr, 0, Math.PI * 2); c.fill();
+      var ringR = lerp(0, Math.min(W2, H2) * 0.46, ease(ramp(pv, 0.34, 0.6))); if (ringR > 1) { c.beginPath(); c.arc(ax, ay, ringR, 0, Math.PI * 2); c.strokeStyle = rgba(OR, 0.35 * (1 - ramp(pv, 0.85, 1))); c.lineWidth = 1; c.stroke(); c.save(); c.setLineDash([2, 8]); c.beginPath(); c.arc(ax, ay, ringR * 1.25, 0, Math.PI * 2); c.strokeStyle = rgba(WH, 0.12); c.stroke(); c.restore(); }
+      var dotA = 1 - ramp(pv, 0.42, 0.56);
+      if (dotA > 0.01) { c.beginPath(); c.arc(ax, ay, 6.5, 0, Math.PI * 2); c.fillStyle = rgba(OR, dotA); c.fill(); c.font = 'italic 300 ' + Math.round(26 + 60 * z) + 'px Fraunces, Georgia, serif'; c.textAlign = 'left'; c.fillStyle = rgba(WH, 0.92 * dotA); c.fillText('α', ax + 14 + 30 * z, ay - 8 - 20 * z); }
+      if (playing && idle && vx > -500) { c.beginPath(); c.arc(vx, vy, 9, 0, Math.PI * 2); c.strokeStyle = rgba(WH, 0.45 * capA); c.lineWidth = 1.2; c.stroke(); c.beginPath(); c.arc(vx, vy, 2, 0, Math.PI * 2); c.fillStyle = rgba(WH, 0.6 * capA); c.fill(); }
+      /* the words arrive one at a time */
+      if (Math.abs(pv - pvLast) > 0.0005) {
+        pvLast = pv;
+        words.forEach(function(wd, i){ var k = ease(ramp(pv, 0.52 + i * 0.022, 0.57 + i * 0.022)); wd.style.opacity = k.toFixed(3); wd.style.transform = 'translateY(' + ((1 - k) * 0.25).toFixed(3) + 'em)'; });
+        el('vbig').style.setProperty('--vb-y', (-60 * ramp(pv, 0.9, 1)).toFixed(1) + 'px');
+      }
       requestAnimationFrame(frame);
     }
     if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ es.forEach(function(e){ var was = on; on = e.isIntersecting; if (on && !was) requestAnimationFrame(frame); }); }).observe(sec);
-    if (reduce) { size(); ghosts = STAGES.slice(0, 3).map(function(s, i){ return { x: W2 * [0.25, 0.5, 0.72][i], y: H2 * [0.30, 0.22, 0.40][i], l: s.g, t: 0 }; }); tx = W2 * 0.55; ty = H2 * 0.5; stage = 4; el('v-h').textContent = STAGES[3].h; el('v-q').textContent = STAGES[3].q; el('v-down').classList.add('on'); }
+    if (reduce) { size(); ghosts = STAGES.slice(0, 3).map(function(s, i){ return { x: W2 * [0.25, 0.5, 0.72][i], y: H2 * [0.30, 0.22, 0.40][i], l: s.g, t: 0 }; }); tx = W2 * 0.55; ty = H2 * 0.5; stg = 4; el('v-h').textContent = STAGES[3].h; el('v-q').textContent = STAGES[3].q; }
     size(); requestAnimationFrame(frame);
   })();
 
-  /* ---------- 01b · the vault, live: real structure, the agents that read it, and a fingerprint ---------- */
-  (function(){
-    var V = VAULT, cv = el('vlcv'); if (!cv) return;
-    var dfmt = function(s){ var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s), M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; return m ? (+m[3]) + ' ' + M[+m[2] - 1] + ' ' + m[1] : s; };
-    el('vl-sync').textContent = 'real structure, synced from my vault on ' + dfmt(V.synced) + ' · counts, dates, links and hashes only · no titles, no text';
-    var readers = V.agents.filter(function(a){ return a[1].length; }).length;
-    el('vlstats').innerHTML = [[V.notes, 'notes, written by me'], [V.links, 'links between them'], [readers + ' / ' + V.agents.length, 'agents that read it first'], [V.edited7d, 'edited in the last 7 days']].map(function(s){ return '<div><b>' + s[0] + '</b><small>' + s[1] + '</small></div>'; }).join('');
-    var mx = Math.max.apply(null, V.wk);
-    el('vlhm').innerHTML = V.wk.map(function(c, i){ return '<i class="' + (i === V.wk.length - 1 ? 'now' : '') + '" style="height:' + Math.max(4, c / mx * 100) + '%;opacity:' + (0.35 + 0.65 * c / mx).toFixed(2) + '" title="' + c + ' notes"></i>'; }).join('');
-    el('vl-range').textContent = dfmt(V.first) + ' → ' + dfmt(V.synced);
-    el('vlroot').textContent = V.root.replace(/(.{16})/g, '$1 ').trim();
-    el('vlh').textContent = V.h.map(function(h, i){ return (i < 9 ? '00' : i < 99 ? '0' : '') + (i + 1) + '  ' + h; }).join('\n');
-    el('vlhon').textContent = 'kept honest: ' + V.agentBriefs + ' agent-written daily briefs are left out of the count · ' + V.skills + ' skills and ' + V.agents.length + ' agents run on these notes · synced on demand';
-    var hov = -1, on = false, t0 = performance.now(), rows = [];
-    function frame(now){
-      if (!on) return;
-      var f = fitCanvas(cv), c = f.x, w = f.w, h = f.h, narrow = w < 520;
-      var colW = narrow ? 0 : Math.min(170, w * 0.24), gx0 = colW + 24, gx1 = w - 20, gy0 = 24, gy1 = h - 24;
-      var X = function(n){ return gx0 + n[0] / 1000 * (gx1 - gx0); }, Y = function(n){ return gy0 + n[1] / 1000 * (gy1 - gy0); };
-      var auto = Math.floor((now - t0) / 1600) % V.agents.length, act = hov >= 0 ? hov : auto, A = V.agents[act];
-      c.lineWidth = 0.6; c.strokeStyle = 'rgba(255,255,255,0.09)';
-      V.e.forEach(function(e){ var a = V.n[e[0]], b = V.n[e[1]]; c.beginPath(); c.moveTo(X(a), Y(a)); c.lineTo(X(b), Y(b)); c.stroke(); });
-      var cols = [BL, GR, WH], last = V.weeks - 1, pulse = 0.5 + 0.5 * Math.sin(now / 400), readSet = {}; A[1].forEach(function(i){ readSet[i] = 1; });
-      V.n.forEach(function(n, i){ var fresh = n[2] >= last, rd = readSet[i]; c.beginPath(); c.arc(X(n), Y(n), rd ? 4 : fresh ? 3 + pulse : 2.3, 0, Math.PI * 2); c.fillStyle = rd ? OR : fresh ? rgba(OR, 0.55 + 0.4 * pulse) : rgba(cols[n[3]], n[3] === 2 ? 0.5 : 0.85); c.fill(); });
-      /* the agents, and what each one reads */
-      rows = [];
-      if (!narrow) {
-        var rh = (gy1 - gy0) / V.agents.length;
-        V.agents.forEach(function(a, j){ var y = gy0 + rh * (j + 0.5), isA = j === act; rows.push([y - rh / 2, y + rh / 2]); txt(c, a[0], colW, y + 3, isA ? OR : WH, isA ? 1 : (a[1].length ? 0.55 : 0.3), 10, 'right'); if (isA) a[1].forEach(function(i){ var n = V.n[i]; c.strokeStyle = rgba(OR, 0.5); c.lineWidth = 1; c.beginPath(); c.moveTo(colW + 6, y); c.bezierCurveTo(colW + 60, y, X(n) - 60, Y(n), X(n), Y(n)); c.stroke(); }); });
-      } else {
-        txt(c, A[0] + ' · reads ' + A[1].length + ' notes before it searches', 16, 18, OR, 1, 10, 'left');
-        A[1].forEach(function(i){ var n = V.n[i]; c.strokeStyle = rgba(OR, 0.4); c.beginPath(); c.moveTo(16, 24); c.lineTo(X(n), Y(n)); c.stroke(); });
-      }
-      txt(c, 'orange pulse = edited this week', gx1, h - 8, OR, 0.7, 9, 'right');
-      requestAnimationFrame(frame);
-    }
-    cv.addEventListener('mousemove', function(e){ var r = cv.getBoundingClientRect(), y = e.clientY - r.top, x = e.clientX - r.left; hov = -1; if (x < Math.min(190, r.width * 0.28)) rows.forEach(function(rw, j){ if (y >= rw[0] && y < rw[1]) hov = j; }); });
-    cv.addEventListener('mouseleave', function(){ hov = -1; });
-    if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ es.forEach(function(e){ var was = on; on = e.isIntersecting; if (on && !was) requestAnimationFrame(frame); }); }).observe(cv);
-    else { on = true; requestAnimationFrame(frame); }
-  })();
-
+  (function(){ var o = document.querySelector('.open'); if (!o) return; if (!('IntersectionObserver' in window)) { o.classList.add('in'); return; } new IntersectionObserver(function(es, ob){ es.forEach(function(e){ if (e.isIntersecting) { o.classList.add('in'); ob.disconnect(); } }); }, { threshold: 0.25 }).observe(o); })();
   /* ---------- loop ---------- */
   var ticking = false, rodOn = false;
   function frame(){ ticking = false; rodFrame(); ch1Frame(); ch2Frame(); ch3Frame(); ch4Frame(); var dh = document.documentElement.scrollHeight - window.innerHeight; root.style.setProperty('--prog', dh > 0 ? (window.scrollY / dh).toFixed(4) : 0); }
