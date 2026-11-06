@@ -52,7 +52,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 .o-foot{display:flex;justify-content:space-between;gap:16px;padding-top:16px;border-top:1px solid var(--rule);animation:rise 800ms ease-out 1s both}
 
 /* 2 · the rod */
-.rod{height:900vh;position:relative}
+.rod{height:700vh;position:relative}
 .rstage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .rstage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .rcap{position:absolute;left:max(28px, calc(env(safe-area-inset-left, 0px) + 28px));bottom:calc(44px + env(safe-area-inset-bottom, 0px));display:flex;flex-direction:column;gap:12px;max-width:min(560px, calc(100% - 56px));opacity:var(--rcap, 0);transition:opacity 300ms ease-out}
@@ -311,6 +311,59 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
   .deep,.vhead,.sd{transition:none}
   #cc .spin{animation:none}
 }
+/* 4 · the chapters: each block decomposed on scroll */
+.ch{position:relative;height:800vh}
+#ch2{height:700vh}
+.cstage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.cstage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.chead{position:absolute;left:max(28px, calc(env(safe-area-inset-left, 0px) + 28px));top:calc(26px + env(safe-area-inset-top, 0px));display:flex;gap:14px;align-items:baseline}
+.chead .n{font-family:var(--mono);font-size:12px;letter-spacing:0.08em;color:var(--active);text-transform:uppercase}
+.crail{position:absolute;right:max(28px, calc(env(safe-area-inset-right, 0px) + 28px));top:calc(20px + env(safe-area-inset-top, 0px));list-style:none;margin:0;padding:0;display:flex;gap:6px}
+.crail li{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;border:1px solid var(--rule);padding:5px 8px;color:var(--ink-3);transition:border-color 200ms ease-out, color 200ms ease-out}
+.crail li.done{border-color:rgba(255,255,255,0.5);color:var(--ink-2)}
+.crail li.on{border-color:var(--active);color:var(--ink)}
+.ccap{position:absolute;left:max(28px, calc(env(safe-area-inset-left, 0px) + 28px));bottom:calc(34px + env(safe-area-inset-bottom, 0px));max-width:min(660px, calc(100% - 220px));display:flex;flex-direction:column;gap:10px}
+#ch2 .ccap{max-width:min(600px, calc(100% - min(500px, 40vw) - 90px))}
+.ccap .label{color:var(--active)}
+.ccap h3{font-family:var(--about);font-weight:400;font-size:clamp(26px, 3.2vw, 44px);line-height:1.08}
+.ccap p{font-family:var(--mono);font-size:12px;letter-spacing:0.03em;color:var(--ink-2);line-height:1.55;min-height:3.1em;text-transform:lowercase}
+.cmore{position:absolute;right:max(28px, calc(env(safe-area-inset-right, 0px) + 28px));bottom:calc(38px + env(safe-area-inset-bottom, 0px));min-height:42px;padding:0 14px;background:rgba(10,26,47,0.6);border:1px solid rgba(255,255,255,0.6);cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase}
+.cmore:hover{border-color:var(--active)}
+.cpanel{position:absolute;right:max(28px, calc(env(safe-area-inset-right, 0px) + 28px));top:72px;width:min(500px, 40vw);display:flex;flex-direction:column;gap:10px;opacity:var(--k2, 0);transition:opacity 300ms ease-out;pointer-events:none}
+.cpanel .panel{padding:12px 14px}
+.kh{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.kh .label{font-size:10px}
+.kfeed{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.kfeed li{display:grid;grid-template-columns:78px minmax(0, 1fr) 34px;gap:8px;align-items:baseline;padding:6px 8px;border:1px solid rgba(255,255,255,0.12);opacity:0;transform:translateX(12px);transition:opacity 300ms ease-out, transform 300ms ease-out, border-color 300ms ease-out, background 300ms ease-out}
+.kfeed li.in{opacity:1;transform:none}
+.kfeed li.on{border-color:var(--active);background:rgba(255,107,53,0.10)}
+.kfeed .s{font-family:var(--mono);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3)}
+.kfeed .t{font-family:var(--about);font-size:16px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kfeed b{font-family:var(--mono);font-weight:400;font-size:9px;text-transform:uppercase;letter-spacing:0.06em;text-align:right}
+.kfeed b.bull{color:var(--research)} .kfeed b.bear{color:#FF8A8A}
+.ksheet{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums}
+.ksheet th{font-weight:400;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);text-align:right;padding:3px 6px;border-bottom:1px solid var(--rule)}
+.ksheet th:first-child,.ksheet td:first-child{text-align:left}
+.ksheet td{padding:4px 6px;text-align:right;border-bottom:1px solid rgba(255,255,255,0.07);transition:background 300ms ease-out}
+.ksheet tr.in td.v{color:var(--learn)}
+.ksheet tr.key td{color:var(--ink);font-weight:600;border-top:1px solid var(--rule)}
+.ksheet td.hit{background:rgba(255,107,53,0.32)}
+.krr{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin:12px 0 4px}
+.krr b{display:block;font-family:var(--display);font-weight:300;font-size:40px;line-height:1}
+.krr .chip.or{border-color:var(--active);color:var(--active)}
+@media (max-width:760px){
+  .chead{left:16px;top:calc(18px + env(safe-area-inset-top, 0px))}
+  .crail{display:none}
+  .ccap,#ch2 .ccap{left:16px;right:16px;bottom:calc(18px + env(safe-area-inset-bottom, 0px));max-width:none;gap:6px}
+  .ccap h3{font-size:24px}
+  .ccap p{font-size:11px;min-height:0}
+  .cmore{top:calc(10px + env(safe-area-inset-top, 0px));bottom:auto;right:16px;min-height:34px;padding:0 10px;font-size:10px}
+  .cpanel{left:16px;right:16px;width:auto;top:auto;bottom:calc(168px + env(safe-area-inset-bottom, 0px))}
+  .cpanel.mod .kscr{display:none} .cpanel:not(.mod) .kmod{display:none}
+  .kfeed .t{font-size:14px}
+  .kfeed li{grid-template-columns:62px minmax(0, 1fr) 30px}
+}
+@media (prefers-reduced-motion:reduce){ .ch{height:100vh} }
 </style>
 </head>
 <body>
@@ -346,7 +399,30 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       <div class="rsteps" id="rsteps" aria-label="Blocks"></div>
     </div>
   </section>
-  <section class="end" aria-hidden="true"><p>more to come</p></section>
+  <!-- 4 · EACH BLOCK, DECOMPOSED ON SCROLL -->
+  <section class="ch" id="ch1" aria-label="Zero to one, decomposed">
+    <div class="cstage">
+      <canvas id="c1cv" aria-hidden="true"></canvas>
+      <div class="chead"><span class="n">01 · zero to one</span><span class="label dim">decomposed</span></div>
+      <ol class="crail" id="c1rail" aria-hidden="true"><li>circles</li><li>questions</li><li>ecosystem</li><li>drivers</li><li>compounding</li></ol>
+      <div class="ccap" aria-live="polite"><span class="label" id="c1k"></span><h3 id="c1h"></h3><p id="c1q"></p></div>
+      <button type="button" class="cmore" data-b="0">the detail ↗</button>
+    </div>
+  </section>
+  <section class="ch" id="ch2" aria-label="Commerciality, decomposed">
+    <div class="cstage">
+      <canvas id="c2cv" aria-hidden="true"></canvas>
+      <div class="chead"><span class="n">02 · commerciality</span><span class="label dim">decomposed</span></div>
+      <ol class="crail" id="c2rail" aria-hidden="true"><li>telescope</li><li>filter</li><li>screen</li><li>model</li><li>risk / reward</li></ol>
+      <div class="cpanel" id="c2p">
+        <div class="panel kscr"><div class="kh"><span class="label">daily screen · NFC</span><span class="chip">illustrative · fictional</span></div><ul class="kfeed" id="kfeed"></ul></div>
+        <div class="panel kmod"><div class="kh"><span class="label">the model</span><span class="label dim">price $21 · blue = input</span></div><table class="ksheet" id="ksheet"></table><div class="krr"><div><span class="label dim">risk to reward</span><b id="krr">1.3 : 1</b></div><span class="chip" id="kgate"></span></div><div id="kbar"></div></div>
+      </div>
+      <div class="ccap" aria-live="polite"><span class="label" id="c2k"></span><h3 id="c2h"></h3><p id="c2q"></p></div>
+      <button type="button" class="cmore" data-b="1">the detail ↗</button>
+    </div>
+  </section>
+  <section class="end" aria-hidden="true"><p>03 to 05 · in build</p></section>
 </main>
 
 <!-- 3 · ONE BLOCK, IN FOCUS -->
@@ -900,19 +976,209 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     try { history.replaceState(null, '', '#rod'); } catch (e) {}
     cancelAnimationFrame(dRaf); cancelAnimationFrame(pRaf); stopVault(); if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
-  el('r-dive').addEventListener('click', function(){ if (curActive >= 0) openDeep(curActive); });
+  el('r-dive').addEventListener('click', function(){ if (curActive === 0 || curActive === 1) { var sec = curActive === 0 ? ch1 : ch2; window.scrollTo({ top: sec.getBoundingClientRect().top + window.scrollY + 2, behavior: reduce ? 'auto' : 'smooth' }); } else if (curActive >= 0) openDeep(curActive); });
   el('d-back').addEventListener('click', closeDeep);
   el('d-prev').addEventListener('click', function(){ openDeep((dIdx + 4) % 5); });
   el('d-next').addEventListener('click', function(){ openDeep((dIdx + 1) % 5); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && deep.classList.contains('on')) closeDeep(); });
   function fromHash(){ var m = /^#block-([1-5])$/.exec(location.hash); if (m) openDeep(+m[1] - 1); }
 
+  /* ---------- 4 · the chapters: each block decomposed on scroll, nothing to click ---------- */
+  var ch1 = el('ch1'), c1 = el('c1cv'), ch2 = el('ch2'), c2 = el('c2cv'), capMemo = {};
+  function chP(sec){ var vh = window.innerHeight, r = sec.getBoundingClientRect(); return reduce ? 1 : clamp(-r.top / Math.max(1, r.height - vh), 0, 1); }
+  function onScreen(sec){ var r = sec.getBoundingClientRect(); return r.bottom > 0 && r.top < window.innerHeight; }
+  function txt(c, s, x, y, col, al, size, align){ if (al <= 0.01 || !s) return; c.font = (size || 11) + 'px "IBM Plex Mono", ui-monospace, monospace'; c.textAlign = align || 'center'; c.fillStyle = rgba(col, al); c.fillText(s, x, y); }
+  function disc(c, P, x, y, z, r, col, al){ if (al <= 0.01) return; c.fillStyle = rgba(col, al); c.beginPath(); for (var t = 0; t <= 48; t++) { var a = t / 48 * Math.PI * 2, q = P(x, y + Math.cos(a) * r, z + Math.sin(a) * r); if (t) c.lineTo(q[0], q[1]); else c.moveTo(q[0], q[1]); } c.fill(); }
+  function cap(id, ph, k, h, q){
+    var s = ph + k + h + q; if (capMemo[id] === s) return; capMemo[id] = s;
+    el(id + 'k').textContent = k; el(id + 'h').textContent = h; el(id + 'q').textContent = q;
+    Array.prototype.forEach.call(el(id + 'rail').children, function(li, j){ li.classList.toggle('on', j === ph); li.classList.toggle('done', j < ph); });
+  }
+  function mulberry(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function vaultTo(c, x0, y0, w, h, wk, al){
+    var wf = Math.floor(wk), cols = [BL, GR, WH], nn = 0, ne = 0;
+    var X = function(n){ return x0 + n[0] / 1000 * w; }, Y = function(n){ return y0 + n[1] / 1000 * h; };
+    c.lineWidth = 0.6; c.strokeStyle = rgba(WH, 0.10 * al);
+    VL.e.forEach(function(e){ var a = VL.n[e[0]], b = VL.n[e[1]]; if (a[2] > wf || b[2] > wf) return; ne++; c.beginPath(); c.moveTo(X(a), Y(a)); c.lineTo(X(b), Y(b)); c.stroke(); });
+    VL.n.forEach(function(n){ if (n[2] > wf) return; nn++; var fresh = n[2] === wf && wk < 19.5; c.fillStyle = fresh ? rgba(OR, al) : rgba(cols[n[3]], (n[3] === 2 ? 0.55 : 0.9) * al); c.beginPath(); c.arc(X(n), Y(n), fresh ? 3.2 : 2.2, 0, Math.PI * 2); c.fill(); });
+    return [nn, ne];
+  }
+
+  /* 01 · four rings, exploded along their axis, then put back together */
+  var R1 = [150, 115, 80, 45], XS1 = [-360, -120, 120, 360], RN1 = ['01 fundamentals', '02 ecosystem', '03 key drivers', '04 spectrum'];
+  var EASYL = ['what they sell', 'comps spread', 'margin history', 'segment split', 'peer multiples', 'top customers', 'market share', 'revenue split', 'guidance history', 'capex history', 'share count'];
+  var HARDL = ['why not the alternative?', 'who keeps the margin?', 'which KPI moves it?', 'where is consensus wrong?', 'can the market see it?'];
+  var Q1 = (function(){ var rnd = mulberry(7), out = [], ne = 0, nh = 0; for (var i = 0; i < 64; i++) { var hard = i % 7 === 3, k = hard ? 3 : [0, 0, 0, 0, 1, 1, 1, 2, 2, 3][Math.floor(rnd() * 10)], a = rnd() * Math.PI * 2, rr = Math.sqrt(rnd()) * (hard ? 0.3 : 0.62) * R1[k]; var q = { t: 0.11 + 0.24 * i / 64 + rnd() * 0.008, hard: hard, k: k, y: Math.sin(a) * rr, z: Math.cos(a) * rr }; if (hard) { q.slot = nh; q.lab = nh % 2 === 0 ? HARDL[(nh / 2) % 5] : ''; nh++; } else { q.slot = ne; q.lab = ne % 5 === 2 ? EASYL[Math.floor(ne / 5) % 11] : ''; ne++; } out.push(q); } return out; })();
+  var FK1 = ['sup', 'cus', 'riv', 'ent', 'sub'];
+  function ch1Frame(){
+    if (!onScreen(ch1)) return;
+    var p = chP(ch1), f = fitCanvas(c1), c = f.x, w = f.w, h = f.h, narrow = w < 760;
+    var e = ease(ramp(p, 0.02, 0.09)), col = ease(ramp(p, 0.40, 0.48)), E = ease(ramp(p, 0.77, 0.83));
+    var eA = ramp(p, 0.46, 0.50) * (1 - ramp(p, 0.60, 0.63)), dA = ramp(p, 0.62, 0.65) * (1 - ramp(p, 0.77, 0.80)), n2 = ramp(p, 0.93, 0.97), aB = 1 - ramp(p, 0.40, 0.44);
+    var sc = (narrow ? Math.min(w / 1000, h / 1100) * lerp(1, 1.15, col) : Math.min(w / 1300, h / 820)) * (narrow ? lerp(1, 0.66, col) : 1) * lerp(1, narrow ? 0.85 : 0.82, E);
+    var cx = narrow ? w * 0.5 : lerp(w * 0.5, w * 0.27, E), cy = narrow ? lerp(h * 0.40, h * 0.25, E) : lerp(h * 0.43, h * 0.45, E);
+    var P = makeProj(lerp(-0.52, -Math.PI / 2, col), lerp(0.2, 0, col), sc, cx, cy);
+    var xs = XS1.map(function(x){ return x * e * (1 - col); });
+    seg(c, P, [-640, 0, 0], [480, 0, 0], WH, 0.25 * (1 - col), 1, [14, 5, 3, 5]);
+    if (e < 1) cylinder(c, P, -102, 102, 0, 1 - e, BL);
+    /* the rings */
+    for (var i = 0; i < 4; i++) {
+      var hot = (eA > 0.5 && i === 1) || (dA > 0.5 && i === 3), mem = n2 > 0.5 && i < 2;
+      var al = e * (dA > 0 && i < 3 ? lerp(0.85, 0.28, dA) : 0.85);
+      if (i < 2) disc(c, P, xs[i], 0, 0, R1[i], BL, 0.06 * n2);
+      ring(c, P, xs[i], 0, 0, R1[i], hot ? OR : mem ? BL : WH, Math.max(al, mem ? 0.9 : 0), hot || mem ? 2 : 1.4);
+      var below = narrow && i % 2 === 1 && col < 0.5, lq = P(xs[i], below ? -R1[i] - 22 : R1[i] + 14, 0);
+      txt(c, RN1[i], lq[0], lq[1], hot ? OR : mem ? BL : WH, 0.75 * e * (eA > 0 ? lerp(1, 0.35, eA) : 1) * (dA > 0 && !hot ? lerp(1, 0.3, dA) : 1) * (narrow ? 1 - 0.85 * E : 1), narrow ? 10 : 11);
+    }
+    /* ii · the questions: commodity ones caught by the rings, hard ones kept at the core */
+    var answered = 0, kept = 0;
+    if (aB > 0.01 && p > 0.10) Q1.forEach(function(q){
+      if (q.hard) {
+        var u = (p - q.t) / 0.07; if (u < 0) return;
+        if (u < 1) { var uu = ease(u), x = lerp(-620, xs[3], uu), yy = q.y * (1 - uu * 0.6), zz = q.z * (1 - uu * 0.6); cdot(c, P, x, yy, zz, 3.2, OR, aB); if (q.lab) { var hp = P(x, yy, zz); if (!narrow || (hp[0] > 70 && hp[0] < w - 70)) txt(c, q.lab, hp[0], hp[1] - 10, OR, 0.95 * aB, narrow ? 10 : 11); } }
+        else { kept++; var ang = q.slot * 0.7 + flowT * 0.02, orr = 14 + q.slot * 2.6; cdot(c, P, xs[3], Math.sin(ang) * orr, Math.cos(ang) * orr, 3, OR, aB); }
+        return;
+      }
+      var u2 = (p - q.t) / 0.05; if (u2 < 0) return;
+      if (u2 < 1) { var x2 = lerp(-620, xs[q.k], u2); cdot(c, P, x2, q.y, q.z, 2.2, WH, 0.85 * aB); if (q.lab) { var ep = P(x2, q.y, q.z); if (!narrow || (ep[0] > 60 && ep[0] < w - 60)) txt(c, q.lab, ep[0], ep[1] - 9, WH, 0.6 * aB, 10); } return; }
+      var v = clamp((p - q.t - 0.05) / 0.035, 0, 1), vv = ease(v), tx = -330 + (q.slot % 28) * 24, ty = -186 - Math.floor(q.slot / 28) * 12;
+      cdot(c, P, lerp(xs[q.k], tx, vv), lerp(q.y, ty, vv) + Math.sin(vv * Math.PI) * 36, lerp(q.z, 0, vv), 2.2, v < 0.12 ? WH : GR, 0.9 * aB);
+      if (v >= 1) answered++;
+    });
+    var aT = aB * ramp(p, 0.11, 0.15);
+    if (aT > 0.01) {
+      var tl = P(-330, -186, 0); txt(c, 'answered · agents, minutes · ' + answered, tl[0] - 4, tl[1] + 26, GR, aT, 11, 'left');
+      var kl = P(xs[3], narrow ? R1[3] + 34 : -R1[3] - 30, 0); txt(c, 'kept for me · ' + kept, kl[0], kl[1] + 4, OR, aT, 11);
+      var bw = Math.min(520, w - 32), bx = (w - bw) / 2, by = narrow ? 62 : 74, cw = bw / 10, hardDays = 0;
+      for (var d = 0; d < 10; d++) { var on = d >= 7 || (d >= 1 && p > 0.15 + d * 0.024); if (on) hardDays++; c.fillStyle = on ? rgba(OR, 0.22 * aT) : rgba(WH, 0.06 * aT); c.fillRect(bx + d * cw + 2, by, cw - 4, 18); c.strokeStyle = on ? rgba(OR, 0.85 * aT) : rgba(WH, 0.25 * aT); c.lineWidth = 1; c.strokeRect(bx + d * cw + 2.5, by + 0.5, cw - 5, 17); }
+      txt(c, 'the first two weeks · ' + hardDays + ' of 10 days on the hard questions', w / 2, by + 36, WH, 0.8 * aT, narrow ? 10 : 11);
+    }
+    /* iii · the ecosystem, face-on */
+    var fk = null;
+    if (eA > 0.01) {
+      seg(c, P, [0, 7, narrow ? -330 : -470], [0, 7, 318], WH, 0.35 * eA, 1, [6, 8]);
+      seg(c, P, [0, -9, 318], [0, -9, -286], GR, 0.55 * eA, 1);
+      for (var g2 = 0; g2 < 11; g2++) { var zz2 = (narrow ? -330 : -470) + ((g2 * 72 + flowT * 2.2) % (narrow ? 650 : 790)); cdot(c, P, 0, 7, zz2, 2, WH, 0.7 * eA); }
+      var gl = P(0, 7, -230), cl = P(0, -9, 250); txt(c, 'goods →', gl[0], gl[1] - 8, WH, 0.45 * eA, 10); txt(c, '← cash', cl[0], cl[1] + 16, GR, 0.8 * eA, 10);
+      var fi = Math.floor(clamp((p - 0.505) / 0.019, 0, 4.99)); fk = p > 0.505 ? FK1[fi] : null;
+      var NODES = [['sup', 0, -300, 'suppliers', 26], ['cus', 0, 318, 'customers', 26], ['ent', 250, 0, 'new entrants', -26], ['sub', -250, 0, 'substitutes', 30]];
+      if (!narrow) NODES.push(['inp', 0, -470, 'inputs', 26]);
+      NODES.push(['ch', 0, 205, 'channel', -22]);
+      NODES.forEach(function(n){ var isF = n[0] === fk, base = n[0] === 'inp' || n[0] === 'ch'; ring(c, P, 0, n[1], n[2], base ? 7 : 13, isF ? OR : WH, (base ? 0.4 : 0.85) * eA, isF ? 2 : 1.3); if (isF) disc(c, P, 0, n[1], n[2], 13, OR, 0.25 * eA); var q = P(0, n[1], n[2]); txt(c, n[3], q[0], q[1] + n[4], isF ? OR : WH, (base ? 0.45 : 0.8) * eA, narrow ? 10 : 11); });
+      seg(c, P, [0, 234, 0], [0, 196, 0], fk === 'ent' ? OR : WH, 0.7 * eA, 1.2); seg(c, P, [0, -232, 0], [0, -196, 0], fk === 'sub' ? OR : WH, 0.7 * eA, 1.2, [4, 4]);
+      var rh = fk === 'riv'; ring(c, P, 0, 0, 0, 185, rh ? OR : WH, (rh ? 0.8 : 0.3) * eA, 1, [3, 6], null, flowT * 0.4);
+      [30, 100, 160, 250, 300].forEach(function(a){ var ra = a * Math.PI / 180; ring(c, P, 0, Math.sin(ra) * 185, Math.cos(ra) * 185, 6, rh ? OR : WH, 0.8 * eA, 1.2); });
+      var rl = P(0, 150, 150); txt(c, 'rivals', rl[0] + 8, rl[1] - 20, rh ? OR : WH, 0.8 * eA, narrow ? 10 : 11, 'left');
+    }
+    /* iv · the drivers and the spectrum */
+    if (dA > 0.01) {
+      [210, 330, 270].forEach(function(a, j){ var ra = a * Math.PI / 180, kk = ramp(p, 0.63 + j * 0.014, 0.65 + j * 0.014), y = Math.sin(ra) * 80, z = Math.cos(ra) * 80; seg(c, P, [0, Math.sin(ra) * 45, Math.cos(ra) * 45], [0, y, z], OR, 0.7 * dA * kk, 1.2); cdot(c, P, 0, y, z, 5, OR, dA * kk); var lp = P(0, y * 1.3, z * 1.3); txt(c, 'kpi ' + (j + 1), lp[0], lp[1] + 4, OR, 0.95 * dA * kk, 11); });
+      var cp = P(0, 0, 0); c.font = '300 ' + Math.max(20, Math.round(50 * sc)) + 'px Fraunces, Georgia, serif'; c.textAlign = 'center'; c.fillStyle = rgba(WH, dA); c.fillText(p > 0.70 ? '5 ↑' : '5', cp[0], cp[1] + Math.max(7, 17 * sc));
+      var sb = P(0, -168, 0), sw = Math.min(440, w - 32), sx0 = cx - sw / 2, sy = sb[1] + 8, scw = sw / 10, sa = dA * ramp(p, 0.66, 0.69);
+      for (var s = 0; s < 10; s++) { var at = s === 4, to = s === 5 && p > 0.70; c.fillStyle = at ? rgba(OR, 0.25 * sa) : rgba(WH, 0.04 * sa); c.fillRect(sx0 + s * scw + 2, sy, scw - 4, 20); c.save(); if (to) c.setLineDash([3, 3]); c.strokeStyle = at || to ? rgba(OR, 0.9 * sa) : rgba(WH, 0.25 * sa); c.strokeRect(sx0 + s * scw + 2.5, sy + 0.5, scw - 5, 19); c.restore(); txt(c, String(s + 1), sx0 + s * scw + scw / 2, sy + 14, at || to ? WH : WH, (at || to ? 1 : 0.45) * sa, 10); }
+      ['broken', 'poor', 'average', 'good', 'phenomenal'].forEach(function(b, j){ txt(c, b, sx0 + (j * 2 + 1) * scw, sy + 36, WH, 0.45 * sa, 9); });
+    }
+    /* v · compounding: notes peel off the rings into the vault */
+    var aV = ramp(p, 0.79, 0.83), counts = [0, 0];
+    if (aV > 0.01) {
+      var vx = narrow ? 16 : w * 0.52, vy = narrow ? h * 0.44 : h * 0.15, vw = narrow ? w - 32 : w * 0.42, vh2 = narrow ? h * 0.27 : h * 0.6;
+      c.fillStyle = rgba('#060708', 0.55 * aV); c.fillRect(vx, vy, vw, vh2); c.strokeStyle = rgba(WH, 0.2 * aV); c.strokeRect(vx + 0.5, vy + 0.5, vw - 1, vh2 - 1);
+      var pad = 16, wk = ramp(p, 0.81, 0.93) * 19.6;
+      counts = vaultTo(c, vx + pad, vy + pad, vw - 2 * pad, vh2 - 2 * pad, wk, aV);
+      txt(c, 'my vault · ' + counts[0] + ' notes · ' + counts[1] + ' links · titles hidden', vx, vy - 10, WH, 0.75 * aV, narrow ? 10 : 11, 'left');
+      for (var j = 0; j < 22; j++) { var tj = 0.79 + j * 0.0055, u3 = clamp((p - tj) / 0.035, 0, 1); if (u3 <= 0 || u3 >= 1) continue; var rk = j % 4, ra2 = j * 1.37, from = P(0, Math.sin(ra2) * R1[rk], Math.cos(ra2) * R1[rk]), tn = VL.n[(j * 37) % VL.n.length], tx2 = vx + pad + tn[0] / 1000 * (vw - 2 * pad), ty2 = vy + pad + tn[1] / 1000 * (vh2 - 2 * pad), uu3 = ease(u3); c.fillStyle = rgba(j % 3 ? BL : GR, 0.95 * aV); c.fillRect(lerp(from[0], tx2, uu3) - 4, lerp(from[1], ty2, uu3) - 3 - Math.sin(uu3 * Math.PI) * 40, 8, 6); }
+      if (n2 > 0.01) { var sp = P(0, 0, 80); cdot(c, P, 0, 0, 80, 6, OR, n2); txt(c, 'name 2 starts here', sp[0] + 12, sp[1] + 4, OR, n2, 11, 'left'); var ml = P(0, -150, 0); txt(c, 'already in the vault', ml[0], ml[1] + 20, BL, n2, 11); }
+    }
+    /* the one line to read */
+    var ph = p < 0.10 ? 0 : p < 0.40 ? 1 : p < 0.61 ? 2 : p < 0.78 ? 3 : 4;
+    if (ph === 0) cap('c1', 0, 'i · the circles', 'Four circles, macro to micro.', 'fundamentals → ecosystem → key drivers → the quality spectrum · after rich falk-wallace');
+    if (ph === 1) cap('c1', 1, 'ii · the questions', 'Commodity questions, answered in minutes. The hard ones, kept.', 'same answer for anyone who asks → an agent answers it, I check it · depends on what I’ve seen → mine');
+    if (ph === 2) cap('c1', 2, 'iii · the ecosystem', 'No business exists in a vacuum.', fk ? FORCES[fk].h.toLowerCase() + ' · ' + FORCES[fk].hard : 'porter’s five forces, on the supply chain · after stephen parlett');
+    if (ph === 3) cap('c1', 3, 'iv · the drivers', 'Three numbers carry the cash.', p > 0.70 ? 'paid for travel along the spectrum, not for position on it · the lens' : '1–3 KPIs, each tied to a line in the model');
+    if (ph === 4) cap('c1', 4, 'v · compounding', n2 > 0.5 ? 'The next name in the space starts at the drivers.' : 'Every pass leaves a note.', n2 > 0.5 ? 'to understand one name, understand the space · the space is learned once' : 'my vault, growing week by week · real structure, dates approximate');
+  }
+
+  /* 02 · the telescope, then the screen, then the model */
+  var TS = [{ x: -220, r: 130, l: 'collect · transcribe · summarise · tag' }, { x: -40, r: 88, l: 'only what’s new' }, { x: 120, r: 42, l: 'the screen' }];
+  var SRC = ['reddit', 'sell-side notes', 'substack', 'youtube', 'podcasts', 'filings'], KEEP = [24, 61, 98, 135, 172, 209];
+  var P2 = (function(){ var rnd = mulberry(11), out = []; for (var i = 0; i < 230; i++) { var a = rnd() * Math.PI * 2, rr = Math.sqrt(rnd()) * 100; out.push({ t: 0.10 + 0.26 * i / 230 + rnd() * 0.006, s: i % 6, y: Math.sin(a) * rr, z: Math.cos(a) * rr, keep: KEEP.indexOf(i), dir: rnd() < 0.5 ? -1 : 1 }); } return out; })();
+  var KSHORT = ['Second shift added at the main plant', 'Distributor inventory: 5 weeks, from 8', 'Largest rival exits the low end', 'New line lists ~15% above the old', 'Top customer dual-sourcing next year', 'Freight and resin costs rising'];
+  var KROWS = ['u', 'asp', 'rev', 'gm', 'ebit', 'eps', 'val'], kOn = [false, false, false, false, false, false], kLast = null, kState = '';
+  (function(){
+    el('kfeed').innerHTML = FEED.map(function(it, i){ return '<li><span class="s">' + it.src + '</span><span class="t">' + KSHORT[i] + '</span><b class="' + it.side + '">' + it.side + '</b></li>'; }).join('');
+    var t = '<thead><tr><th>line</th><th>bear</th><th>base</th><th>bull</th></tr></thead><tbody>';
+    ROWS.forEach(function(r){ if (KROWS.indexOf(r.k) < 0) return; t += '<tr class="' + (r.in ? 'in' : '') + (r.key ? ' key' : '') + '"><td>' + r.l + '</td>' + CASES.map(function(k){ return '<td class="v" id="k-' + r.k + '-' + k + '"></td>'; }).join('') + '</tr>'; });
+    el('ksheet').innerHTML = t + '</tbody>';
+  })();
+  function kRender(flash){
+    var save = on.slice(); for (var i = 0; i < on.length; i++) on[i] = kOn[i]; var c = calc(); for (var j = 0; j < on.length; j++) on[j] = save[j];
+    ROWS.forEach(function(r){ if (KROWS.indexOf(r.k) < 0) return; CASES.forEach(function(k){ var td = el('k-' + r.k + '-' + k), s = c[k][r.k].toFixed(r.d); if (flash && kLast && kLast[k][r.k].toFixed(r.d) !== s) { td.classList.remove('hit'); void td.offsetWidth; td.classList.add('hit'); setTimeout(function(){ td.classList.remove('hit'); }, 900); } td.textContent = s; }); });
+    kLast = c;
+    var bull = c.bull.val, bear = c.bear.val, ratio = (bull - PRICE) / Math.max(0.01, PRICE - bear), pass = ratio >= 2, sx = function(v){ return clamp(v / 45, 0, 1) * 100; };
+    el('krr').textContent = ratio.toFixed(1) + ' : 1';
+    var g = el('kgate'); g.textContent = (pass ? 'clears' : 'below') + ' the 2 : 1 gate'; g.classList.toggle('or', pass);
+    el('kbar').innerHTML = '<div class="rrbar"><i class="trk"></i><i class="dn" style="left:' + sx(bear) + '%;width:' + (sx(PRICE) - sx(bear)) + '%"></i><i class="up" style="left:' + sx(PRICE) + '%;width:' + (sx(bull) - sx(PRICE)) + '%"></i><i class="px" style="left:' + sx(PRICE) + '%"></i><span class="lb" style="left:' + sx(bear) + '%">bear $' + bear.toFixed(1) + '</span><span class="lb p" style="left:' + sx(PRICE) + '%">price $' + PRICE + '</span><span class="lb" style="left:' + sx(bull) + '%">bull $' + bull.toFixed(1) + '</span></div>';
+    return ratio;
+  }
+  var kRatio = kRender(false);
+  function ch2Frame(){
+    if (!onScreen(ch2)) return;
+    var p = chP(ch2), f = fitCanvas(c2), c = f.x, w = f.w, h = f.h, narrow = w < 760;
+    var e = ease(ramp(p, 0.02, 0.09)), fade = 1 - 0.55 * ramp(p, 0.40, 0.46);
+    var sc = narrow ? Math.min(w / 1050, h / 1500) : Math.min(w / 1700, h / 820);
+    var P = makeProj(-0.45, 0.12, sc, narrow ? w * 0.68 : w * 0.34, narrow ? h * 0.21 : h * 0.47);
+    seg(c, P, [-600, 0, 0], [320, 0, 0], WH, 0.22 * e * fade, 1, [14, 5, 3, 5]);
+    if (e < 1) cylinder(c, P, -60, 60, 0, 1 - e, GR);
+    var tx = TS.map(function(t){ return t.x * e; });
+    for (var a = 0; a < 4; a++) { var an = a * Math.PI / 2; for (var k = 0; k < 2; k++) seg(c, P, [tx[k], Math.cos(an) * TS[k].r, Math.sin(an) * TS[k].r], [tx[k + 1], Math.cos(an) * TS[k + 1].r, Math.sin(an) * TS[k + 1].r], WH, 0.25 * e * fade, 1); }
+    TS.forEach(function(t, i){ ring(c, P, tx[i], 0, 0, t.r, i === 1 ? OR : WH, (i === 1 ? 0.95 : 0.8) * e * fade, i === 1 ? 2 : 1.4); var lq = P(tx[i], -t.r - 18, 0); txt(c, t.l, lq[0], lq[1] + 4, i === 1 ? OR : WH, 0.7 * e * fade, narrow ? 9 : 11); });
+    var sa = ramp(p, 0.05, 0.10) * fade;
+    SRC.forEach(function(s, i){ var q = P(-560, 125 - i * 50, 0); cdot(c, P, -560, 125 - i * 50, 0, 3, WH, 0.8 * sa); txt(c, s, q[0] - 10, q[1] + 4, WH, 0.75 * sa, narrow ? 9 : 11, 'right'); });
+    /* the flow */
+    var kept = 0, bF = 1 - ramp(p, 0.44, 0.50);
+    if (p > 0.10 && bF > 0.01) P2.forEach(function(q){
+      var u = (p - q.t) / 0.045; if (u < 0) return;
+      var sy = 125 - q.s * 50, x, y, z, col = WH, al = 0.7, r = 1.6;
+      if (u < 1) { x = lerp(-560, tx[0], u); y = lerp(sy, q.y, u); z = lerp(0, q.z, u); }
+      else { var w2 = clamp((p - q.t - 0.045) / 0.03, 0, 1);
+        if (w2 < 1) { x = lerp(tx[0], tx[1], w2); y = q.y * lerp(1, 0.6, w2); z = q.z * lerp(1, 0.6, w2); }
+        else { var v = clamp((p - q.t - 0.075) / 0.03, 0, 1);
+          if (q.keep < 0) { if (v >= 1) return; x = tx[1] + 30 * v; y = q.y * 0.6 + q.dir * 70 * v; z = q.z * 0.6; al = 0.6 * (1 - v); col = '#8A94A6'; }
+          else { x = v < 1 ? lerp(tx[1], tx[2], v) : lerp(tx[2], 300, clamp((p - q.t - 0.105) / 0.02, 0, 1)); y = q.y * 0.6 * (1 - v); z = q.z * 0.6 * (1 - v); col = OR; al = 1; r = 3.4; if (v >= 1) kept++; }
+        }
+      }
+      cdot(c, P, x, y, z, r, col, al * bF);
+    });
+    if (p > 0.10) { var ra = Math.round(1200 * clamp((p - 0.10) / 0.27, 0, 1)), lo = P(tx[0], TS[0].r + 20, 0), le = P(tx[2], TS[2].r + 40, 0); txt(c, 'read today · ' + ra.toLocaleString('en-GB'), lo[0], lo[1], WH, 0.85 * fade, 11); txt(c, 'kept · ' + Math.max(kept, p > 0.44 ? 6 : 0), le[0], le[1], OR, fade, 11); }
+    /* screen and model, driven by the same scroll */
+    var shown = 0, applied = 0;
+    var KT = [0.56, 0.60, 0.64, 0.68, 0.77, 0.82];
+    for (var i = 0; i < 6; i++) { if (p > 0.40 + i * 0.022) shown++; if (p > KT[i]) applied++; }
+    var state = shown + '|' + applied;
+    if (state !== kState) {
+      kState = state;
+      Array.prototype.forEach.call(el('kfeed').children, function(li, j){ li.classList.toggle('in', j < shown); li.classList.toggle('on', j < applied); });
+      var changed = false; for (var j = 0; j < 6; j++) { var want = j < applied; if (kOn[j] !== want) { kOn[j] = want; changed = true; } }
+      if (changed || !kLast) kRatio = kRender(true);
+    }
+    root.style.setProperty('--k2', ramp(p, 0.38, 0.42).toFixed(3));
+    el('c2p').classList.toggle('mod', p > 0.54);
+    var ph = p < 0.10 ? 0 : p < 0.38 ? 1 : p < 0.55 ? 2 : p < 0.88 ? 3 : 4;
+    if (ph === 0) cap('c2', 0, 'i · the telescope', 'Everything in. Only what’s new out.', 'reddit · sell-side notes · substack · youtube · podcasts · filings · in build');
+    if (ph === 1) cap('c2', 1, 'ii · the filter', '~1,200 items a day. Six survive.', 'new against my notes · new against consensus');
+    if (ph === 2) cap('c2', 2, 'iii · the screen', 'A daily screen: what changed, per name.', 'each item tagged bull or bear, and to the line it moves · illustrative, fictional company');
+    if (ph === 3) cap('c2', 3, 'iv · the model', applied === 0 ? 'Does it move a line in the model?' : applied < 4 ? 'Each item moves a cell. The cell moves the value.' : applied === 4 ? 'Four bull items: ' + kRatio.toFixed(1) + ' : 1. It clears the gate.' : 'Then the bears: back to ' + kRatio.toFixed(1) + ' : 1. Not yet.', applied >= 5 ? 'no siding with the bulls on bull evidence alone' : 'blue = input · white = formula · gate 2 : 1');
+    if (ph === 4) cap('c2', 4, 'v · risk to reward', 'Only what moves the model matters.', 'the answer isn’t the data · it’s what the data does to the range');
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.cmore'), function(b){ b.addEventListener('click', function(){ openDeep(+b.getAttribute('data-b')); }); });
+
   /* ---------- loop ---------- */
   var ticking = false, rodOn = false;
-  function frame(){ ticking = false; rodFrame(); var dh = document.documentElement.scrollHeight - window.innerHeight; root.style.setProperty('--prog', dh > 0 ? (window.scrollY / dh).toFixed(4) : 0); }
+  function frame(){ ticking = false; rodFrame(); ch1Frame(); ch2Frame(); var dh = document.documentElement.scrollHeight - window.innerHeight; root.style.setProperty('--prog', dh > 0 ? (window.scrollY / dh).toFixed(4) : 0); }
   function onScroll(){ if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
-  function idle(now){ if (!rodOn) return; flowT = reduce ? 0 : now / 40; rodFrame(); requestAnimationFrame(idle); }
-  if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ es.forEach(function(e){ var was = rodOn; rodOn = e.isIntersecting; if (rodOn && !was) requestAnimationFrame(idle); }); }).observe(rod);
+  var vis = 0;
+  function idle(now){ if (vis <= 0) { rodOn = false; return; } flowT = reduce ? 0 : now / 40; rodFrame(); ch1Frame(); ch2Frame(); requestAnimationFrame(idle); }
+  if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function(es){ es.forEach(function(e){ vis += e.isIntersecting ? 1 : (e.target._seen ? -1 : 0); e.target._seen = e.isIntersecting; }); vis = Math.max(0, vis); if (vis > 0 && !rodOn) { rodOn = true; requestAnimationFrame(idle); } }); [rod, ch1, ch2].forEach(function(n){ io.observe(n); }); }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', function(){ resize(); onScroll(); if (dIdx === 0 && deep.classList.contains('on')) drawVault(vWeek); });
   buildCC(); buildSteps(); setCC(0); buildEco(); buildFeed(); buildSheet();
