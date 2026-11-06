@@ -238,7 +238,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 .cnx-glow i{position:absolute;left:72%;top:24%;width:12px;height:12px;border-radius:50%;background:var(--active);box-shadow:0 0 60px 30px rgba(255,107,53,0.22);animation:drift 14s ease-in-out infinite alternate}
 @keyframes drift{0%{transform:translate(0, 0)}25%{transform:translate(-40px, 24px)}50%{transform:translate(30px, 50px)}75%{transform:translate(-20px, -30px)}100%{transform:translate(50px, 10px)}}
 .cnx-wrap{position:relative;width:100%;max-width:1100px;margin:0 auto;padding:clamp(80px, 14vh, 140px) max(24px, env(safe-area-inset-right, 0px)) 40px max(24px, env(safe-area-inset-left, 0px));display:flex;flex-direction:column;gap:22px}
-.cnx h2{font-family:var(--about);font-weight:400;font-size:clamp(40px, 6vw, 88px);line-height:1;max-width:14ch}
+.cnx h2{font-family:var(--about);font-weight:400;font-size:clamp(34px, 4.6vw, 68px);line-height:1.05;max-width:20ch}
 .cnx h2 em{font-style:italic;color:var(--active)}
 .cnx-mail a{display:grid;grid-template-columns:auto minmax(0, 1fr) auto;align-items:center;gap:clamp(16px, 2.4vw, 28px);padding:clamp(18px, 2.4vw, 28px);border:1px solid rgba(255,255,255,0.4);text-decoration:none;color:var(--ink);background:rgba(10,26,47,0.35);transition:border-color 200ms ease-out, background 200ms ease-out, transform 200ms ease-out}
 .cnx-mail a:hover,.cnx-mail a:focus-visible{border-color:var(--active);background:rgba(255,107,53,0.08);transform:translateY(-2px)}
@@ -282,7 +282,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 /* reveal on arrival */
 .rv{opacity:0;transform:translateY(18px);transition:opacity 800ms ease-out, transform 800ms cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d, 0) * 110ms)}
 .rv.in{opacity:1;transform:none}
-@media (max-width:760px){ .cnx-mail .v{font-size:min(5vw, 22px);overflow-wrap:normal;white-space:nowrap} .cnx-mail svg{width:36px} .cnx-mail a{grid-template-columns:auto minmax(0, 1fr)} .cnx-mail .ar{grid-column:1 / -1} .cnx-icons a{flex:1 1 100%} }
+@media (max-width:760px){ .cnx-glow i{left:86%;top:4%} .cnx-mail .v{font-size:min(5vw, 22px);overflow-wrap:normal;white-space:nowrap} .cnx-mail svg{width:36px} .cnx-mail a{grid-template-columns:auto minmax(0, 1fr)} .cnx-mail .ar{grid-column:1 / -1} .cnx-icons a{flex:1 1 100%} }
 @media (prefers-reduced-motion:reduce){ .cnx-glow i{animation:none} .rv{opacity:1;transform:none;transition:none} }
 
 /* 2 · the rod */
@@ -698,8 +698,9 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     <div class="o-body">
       <h1>About <em>me</em></h1>
       <div class="o-write">
-        <p>Alpha doesn’t sit still. Every edge that works gets copied, published or priced, and then it decays. So the goal isn’t one clever idea. It’s a system that keeps producing them: one that reads deeper, asks harder questions and interprets what it finds better than the marginal holder of the stock.</p>
+        <p>Alpha doesn’t sit still. Every edge that works gets copied, published or priced, and then it decays. So the goal isn’t one clever idea. It’s a system that keeps producing them: one that reads deeper, asks harder questions and, on a good day, interprets what it finds a little better than the marginal holder of the stock.</p>
         <p>That means playing a different game. Not calling the next quarter faster than the pods, but understanding businesses, and the people who own them, well enough that the returns don’t depend on what the market does.</p>
+        <p>None of it is fixed. It isn’t quite art and it isn’t quite science. It’s a craft: staying open, and watching how each new piece of information changes what I think I know.</p>
         <p class="sig">AI is the speed tool. The judgement stays mine.</p>
         <ul class="traits">
           <li><b>scalable</b><span>agents give the width, I give the depth</span></li>
@@ -747,7 +748,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
   <!-- 01b · THE VAULT, LIVE: structure only, synced on demand -->
   <section class="vlive" id="vault" aria-label="The vault, live">
     <div class="vl-wrap">
-      <div class="vl-head"><span class="label" style="color:var(--active)">01 · the vault, live</span><h2>Not for show. The machinery runs on it.</h2><p class="tag" id="vl-sync"></p></div>
+      <div class="vl-head"><span class="label" style="color:var(--active)">01 · the vault, live</span><h2>It isn’t for show. The work actually runs on it.</h2><p class="tag" id="vl-sync"></p></div>
       <div class="vl-grid">
         <div class="panel vl-fig"><canvas id="vlcv" aria-label="My vault's link graph, with the agents that read it" role="img"></canvas></div>
         <div class="vl-side">
@@ -825,7 +826,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       <div class="mnl-txt rv">
         <span class="label" style="color:var(--active)">06 · the agent layer</span>
         <h2>Speed and creativity. <em>Never the judgement.</em></h2>
-        <p>How the system is engineered: the layers, who may write what, how every part is evaluated and how it fails safely. Then a datasheet for each assistant. It’s more art than science, so it reads like the manual for a machine that’s still being built.</p>
+        <p>How the system is engineered: the layers, who may write what, how every part is evaluated and how it fails safely. Then a datasheet for each assistant. It’s not quite art and not quite science, more of a craft, so it reads like the manual for a machine that’s still being built.</p>
         <button type="button" class="dive" id="mnl-open"><i aria-hidden="true"></i>open the manual</button>
         <p class="vl-honest">architecture · the evaluation system · parts list · datasheets · failure modes · warranty</p>
       </div>
@@ -837,11 +838,11 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     <div class="cnx-glow" aria-hidden="true"><i></i></div>
     <div class="cnx-wrap">
       <span class="label rv" style="color:var(--active)">07 · connect</span>
-      <h2 class="rv" style="--d:1">If you’re looking to contact me, <em>email.</em></h2>
+      <h2 class="rv" style="--d:1">If you’re building something like this too, or thinking about it, feel free to reach out by <em>email.</em></h2>
       <div class="cnx-mail rv" style="--d:2" id="cnx-mail"></div>
       <p class="label dim rv" style="--d:3">or follow the work</p>
       <div class="cnx-icons rv" style="--d:4" id="cnx-icons"></div>
-      <p class="cnx-sub rv" style="--d:5">different perspectives welcome · the process gets better every time someone inverts it</p>
+      <p class="cnx-sub rv" style="--d:5">still learning · different perspectives welcome · the process gets better every time someone inverts it</p>
       <footer class="cnx-foot rv" style="--d:6"><span>Kathan Prajapati</span><span id="cnx-sync"></span><span>this page moves with the process · rev a</span></footer>
     </div>
   </section>
@@ -2089,7 +2090,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       { g: 'until 2000 · selective disclosure', h: 'Reg FD, 2000. Selective disclosure ends.', q: 'the edge moves to the supply chain · expert networks' },
       { g: '2000s · expert networks', h: 'The 2010–13 insider-trading cases close it off.', q: 'the edge moves again · alternative data' },
       { g: '2015 → · alt data', h: 'Then everyone buys the same data.', q: 'it decays like the rest · and moves again' },
-      { g: '', h: 'Alpha never sits still. So I don’t chase it. I build a process that moves with it.', q: 'every edge gets copied, published or priced · from my notes on informational alpha' }
+      { g: '', h: 'Alpha never sits still. So rather than chase it, I’m trying to build a process that moves with it.', q: 'every edge gets copied, published or priced · from my notes on informational alpha' }
     ];
     /* split the big line into words for the scroll reveal */
     var words = [];
@@ -2158,7 +2159,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
   (function(){
     var pin = el('openpin'), o = el('top'); if (!pin || !o || reduce) return;
     var seq = [o.querySelector('.o-top'), o.querySelector('.o-body h1')].concat(Array.prototype.slice.call(o.querySelectorAll('.o-write > p'))).concat(Array.prototype.slice.call(o.querySelectorAll('.traits li'))).concat([o.querySelector('.mq'), o.querySelector('.o-foot')]).filter(Boolean);
-    var T = [0.00, 0.03, 0.10, 0.20, 0.30, 0.38, 0.42, 0.46, 0.50, 0.56, 0.60];
+    var T = [0.00, 0.03, 0.09, 0.17, 0.26, 0.34, 0.40, 0.44, 0.48, 0.52, 0.57, 0.61];
     seq.forEach(function(n){ n.setAttribute('data-st', ''); });
     var enabled = false;
     function fits(){ pin.classList.remove('locked'); o.classList.remove('pinned'); o.style.zoom = ''; if (window.innerWidth <= 760) return false; var r = window.innerHeight / o.offsetHeight; if (r >= 1) return true; if (r >= 0.76) { o.style.zoom = r.toFixed(3); return true; } return false; }
