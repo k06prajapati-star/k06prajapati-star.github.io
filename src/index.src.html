@@ -58,6 +58,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 .lines i{display:block;height:1px;background:rgba(255,255,255,0.18)}
 .lines i:nth-child(5){width:62%}
 .o-foot{display:flex;justify-content:space-between;gap:16px;padding-top:16px;border-top:1px solid var(--rule)}
+.mq + .o-foot{border-top-color:var(--rule)}
 
 .o-write p{font-family:var(--about);font-size:clamp(19px, 1.6vw, 23px);line-height:1.45;color:var(--ink-2);max-width:62ch}
 .o-write p.lead{font-size:clamp(24px, 2.3vw, 32px);line-height:1.2;color:var(--ink)}
@@ -94,9 +95,9 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 .vl-honest{font-family:var(--mono);font-size:10px;line-height:1.6;color:var(--ink-3);text-transform:lowercase}
 @media (max-width:900px){ .vl-grid{grid-template-columns:minmax(0, 1fr)} .vl-fig{aspect-ratio:0.9} }
 
-.open .o-top,.open .o-body h1,.open .o-write,.open .o-foot{opacity:0}
-.open.in .o-top{animation:rise 800ms ease-out 0.05s both}.open.in .o-body h1{animation:rise 900ms ease-out 0.2s both}.open.in .o-write{animation:rise 900ms ease-out 0.45s both}.open.in .o-foot{animation:rise 800ms ease-out 0.7s both}
-@media (prefers-reduced-motion:reduce){ .open .o-top,.open .o-body h1,.open .o-write,.open .o-foot{opacity:1} }
+.open .o-top,.open .o-body h1,.open .o-write,.open .o-foot,.open .mq{opacity:0}
+.open.in .o-top{animation:rise 800ms ease-out 0.05s both}.open.in .o-body h1{animation:rise 900ms ease-out 0.2s both}.open.in .o-write{animation:rise 900ms ease-out 0.45s both}.open.in .o-foot{animation:rise 800ms ease-out 0.7s both}.open.in .mq{animation:rise 900ms ease-out 0.6s both}
+@media (prefers-reduced-motion:reduce){ .open .o-top,.open .o-body h1,.open .o-write,.open .o-foot,.open .mq{opacity:1} }
 /* △ notes: quotes as drawing notes, in their own voice */
 .nb{position:absolute;right:max(28px, calc(env(safe-area-inset-right, 0px) + 28px));top:96px;width:min(330px, 25vw);display:flex;flex-direction:column;gap:18px;padding-left:16px;border-left:1px solid rgba(255,255,255,0.35);opacity:var(--nb, 0);pointer-events:none}
 .nb .label{font-size:10px;color:var(--ink-3)}
@@ -252,16 +253,20 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 .cnx-sub{font-family:var(--mono);font-size:12px;letter-spacing:0.04em;color:var(--ink-3);text-transform:lowercase;margin-top:6px}
 .cnx-foot{margin-top:auto;padding-top:56px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3)}
 
-/* curiosity strip: logos only */
-.cred{max-width:1320px;margin:0 auto;padding:clamp(48px,9vh,96px) max(28px, calc(env(safe-area-inset-right,0px) + 28px)) clamp(48px,9vh,96px) max(28px, calc(env(safe-area-inset-left,0px) + 28px))}
-.cred-l{display:block;text-align:center;margin-bottom:clamp(22px,3.4vh,34px)}
-.cred-row{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:clamp(28px,7vw,110px);padding:clamp(22px,3vh,32px) 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.lg{display:flex;align-items:center;justify-content:center;height:clamp(34px,4.2vw,52px);opacity:.62;filter:grayscale(1);transition:opacity 220ms ease-out, filter 220ms ease-out}
+/* curiosity marquee: logos only, slow loop */
+.mq{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:clamp(16px,3vw,40px);padding:clamp(14px,2.2vh,22px) 0;border-top:1px solid var(--rule)}
+.mq-l{white-space:nowrap}
+.mq-win{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq-track{display:flex;width:max-content;animation:mq 70s linear infinite}
+.mq-win:hover .mq-track{animation-play-state:paused}
+.mq-set{display:flex;align-items:center;gap:clamp(56px,8vw,120px);padding-right:clamp(56px,8vw,120px)}
+.lg{display:flex;align-items:center;height:clamp(30px,3.4vw,44px);opacity:.55;filter:grayscale(1) brightness(1.6);transition:opacity 220ms ease-out, filter 220ms ease-out}
 .lg:hover{opacity:1;filter:none}
 .lg img{height:100%;width:auto;display:block}
-.lg .wm{font-family:var(--display);font-weight:300;font-size:clamp(18px,2vw,26px);letter-spacing:-0.01em;color:var(--ink);white-space:nowrap}
-.cred-foot{display:flex;justify-content:center;padding-top:clamp(18px,3vh,28px)}
-@media (max-width:760px){ .cred-row{flex-direction:column;gap:26px} }
+.lg .wm{font-family:var(--display);font-weight:300;font-size:clamp(17px,1.7vw,22px);color:var(--ink);white-space:nowrap}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (max-width:760px){ .mq{grid-template-columns:1fr;gap:10px} .o-foot .dim{display:none} }
+@media (prefers-reduced-motion:reduce){ .mq-track{animation:none} }
 /* reveal on arrival */
 .rv{opacity:0;transform:translateY(18px);transition:opacity 800ms ease-out, transform 800ms cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d, 0) * 110ms)}
 .rv.in{opacity:1;transform:none}
@@ -676,20 +681,10 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
         </ul>
       </div>
     </div>
+    <div class="mq" aria-label="What sparked the curiosity"><span class="label dim mq-l">what sparked the curiosity</span><div class="mq-win"><div class="mq-track"><div class="mq-set"><span class="lg" data-logo="phoenix" title="Phoenix Learning"><span class="wm">Phoenix Learning</span></span><span class="lg" data-logo="anthropic-academy" title="Anthropic Academy"><span class="wm">Anthropic Academy</span></span><span class="lg" data-logo="effective-altruism" title="Effective Altruism"><span class="wm">Effective Altruism</span></span></div><div class="mq-set"><span class="lg" data-logo="phoenix" title="Phoenix Learning"><span class="wm">Phoenix Learning</span></span><span class="lg" data-logo="anthropic-academy" title="Anthropic Academy"><span class="wm">Anthropic Academy</span></span><span class="lg" data-logo="effective-altruism" title="Effective Altruism"><span class="wm">Effective Altruism</span></span></div><span aria-hidden="true" style="display:contents"><div class="mq-set"><span class="lg" data-logo="phoenix" title="Phoenix Learning"><span class="wm">Phoenix Learning</span></span><span class="lg" data-logo="anthropic-academy" title="Anthropic Academy"><span class="wm">Anthropic Academy</span></span><span class="lg" data-logo="effective-altruism" title="Effective Altruism"><span class="wm">Effective Altruism</span></span></div><div class="mq-set"><span class="lg" data-logo="phoenix" title="Phoenix Learning"><span class="wm">Phoenix Learning</span></span><span class="lg" data-logo="anthropic-academy" title="Anthropic Academy"><span class="wm">Anthropic Academy</span></span><span class="lg" data-logo="effective-altruism" title="Effective Altruism"><span class="wm">Effective Altruism</span></span></div></span></div></div></div>
     <footer class="o-foot"><span class="label">↓ the process</span><span class="label dim">what I've built, block by block</span></footer>
   </section>
 
-
-  <!-- 1b · WHAT SPARKED THE CURIOSITY: logos only (drop files into data-logo slots) -->
-  <section class="cred" id="cred" aria-label="What sparked the curiosity">
-    <span class="label dim cred-l rv">what sparked the curiosity</span>
-    <div class="cred-row">
-      <span class="lg rv" style="--d:1" data-logo="phoenix" title="Phoenix Learning"><span class="wm">Phoenix Learning</span></span>
-      <span class="lg rv" style="--d:2" data-logo="anthropic-academy" title="Anthropic Academy"><span class="wm">Anthropic Academy</span></span>
-      <span class="lg rv" style="--d:3" data-logo="effective-altruism" title="Effective Altruism"><span class="wm">Effective Altruism</span></span>
-    </div>
-    <div class="cred-foot rv" style="--d:4"><span class="label">↓ the process</span></div>
-  </section>
 
   <!-- 2 · THE ROD: what's built -->
   <section class="rod" id="rod" aria-label="The process">
