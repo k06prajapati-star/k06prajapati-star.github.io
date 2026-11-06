@@ -313,7 +313,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 }
 /* 4 · the chapters: each block decomposed on scroll */
 .ch{position:relative;height:800vh}
-#ch2{height:700vh}
+#ch2{height:950vh}
 .cstage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .cstage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .chead{position:absolute;left:max(28px, calc(env(safe-area-inset-left, 0px) + 28px));top:calc(26px + env(safe-area-inset-top, 0px));display:flex;gap:14px;align-items:baseline}
@@ -413,7 +413,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     <div class="cstage">
       <canvas id="c2cv" aria-hidden="true"></canvas>
       <div class="chead"><span class="n">02 · commerciality</span><span class="label dim">decomposed</span></div>
-      <ol class="crail" id="c2rail" aria-hidden="true"><li>telescope</li><li>filter</li><li>screen</li><li>model</li><li>risk / reward</li></ol>
+      <ol class="crail" id="c2rail" aria-hidden="true"><li>telescope</li><li>backtest</li><li>filter</li><li>screen</li><li>model</li><li>risk / reward</li></ol>
       <div class="cpanel" id="c2p">
         <div class="panel kscr"><div class="kh"><span class="label">daily screen · NFC</span><span class="chip">illustrative · fictional</span></div><ul class="kfeed" id="kfeed"></ul></div>
         <div class="panel kmod"><div class="kh"><span class="label">the model</span><span class="label dim">price $21 · blue = input</span></div><table class="ksheet" id="ksheet"></table><div class="krr"><div><span class="label dim">risk to reward</span><b id="krr">1.3 : 1</b></div><span class="chip" id="kgate"></span></div><div id="kbar"></div></div>
@@ -852,7 +852,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 
   /* ---------- 3b · commerciality: the telescope ---------- */
   var STN = [
-    { h: 'Sources', p: 'reddit · sell-side notes · substack · youtube · podcasts · filings' },
+    { h: 'Sources', p: 'reddit · sell-side · substack · youtube · podcasts · filings · alt data · each backtested before it counts' },
     { h: 'The telescope', p: 'scrape · transcribe · summarise · tag by ticker' },
     { h: 'Only what’s new', p: 'new vs my notes · new vs consensus' },
     { h: 'Daily screen', p: 'what changed today, per name' },
@@ -1098,10 +1098,53 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     if (ph === 4) cap('c1', 4, 'v · compounding', n2 > 0.5 ? 'The next name in the space starts at the drivers.' : 'Every pass leaves a note.', n2 > 0.5 ? 'to understand one name, understand the space · the space is learned once' : 'my vault, growing week by week · real structure, dates approximate');
   }
 
-  /* 02 · the telescope, then the screen, then the model */
+  /* 02 · the telescope: sources (each backtested), the filter, the screen, the model */
   var TS = [{ x: -220, r: 130, l: 'collect · transcribe · summarise · tag' }, { x: -40, r: 88, l: 'only what’s new' }, { x: 120, r: 42, l: 'the screen' }];
-  var SRC = ['reddit', 'sell-side notes', 'substack', 'youtube', 'podcasts', 'filings'], KEEP = [24, 61, 98, 135, 172, 209];
-  var P2 = (function(){ var rnd = mulberry(11), out = []; for (var i = 0; i < 230; i++) { var a = rnd() * Math.PI * 2, rr = Math.sqrt(rnd()) * 100; out.push({ t: 0.10 + 0.26 * i / 230 + rnd() * 0.006, s: i % 6, y: Math.sin(a) * rr, z: Math.cos(a) * rr, keep: KEEP.indexOf(i), dir: rnd() < 0.5 ? -1 : 1 }); } return out; })();
+  var SRC = ['reddit', 'sell-side notes', 'substack', 'youtube', 'podcasts', 'filings', 'web traffic', 'app downloads', 'card panel'], KEEP = [24, 61, 98, 135, 172, 209];
+  var SRCN = ['reddit', 'sell-side', 'substack', 'youtube', 'podcasts', 'filings', 'web traffic', 'app data', 'card panel'];
+  function SY(i){ return 152 - i * 38; }
+  /* the backtest: 8 quarters of each feed against what the company reported (illustrative numbers) */
+  var REP = [4, 6, 5, 8, 7, 3, 2, 5];
+  var TESTS = [
+    { s: 0, name: 'reddit employee posts', kpi: 'capacity', sig: [3, 7, 8, 9, 6, 4, 1, 6] },
+    { s: 6, name: 'web traffic', kpi: 'revenue', sig: [5, 7, 6, 9, 12, 14, 15, 13], why: 'broke after q4 · promo and seasonality' },
+    { s: 1, name: 'channel checks', kpi: 'units', sig: [4, 5, 5, 7, 8, 4, 3, 4] },
+    { s: 7, name: 'app downloads', kpi: 'units', sig: [10, -2, 15, 3, -8, 12, 0, 6], nofit: true, why: 'B2B · sells through distributors' },
+    { s: 8, name: 'card panel', kpi: 'revenue', sig: [3, 6, 4, 8, 10, 12, 13, 11], why: 'small sample · drifted after q4' }
+  ];
+  var TESTI = SRC.map(function(){ return -1; }), BT0 = 0.08, BTW = 0.052;
+  TESTS.forEach(function(T, j){ TESTI[T.s] = j; T.marks = []; var hits = 0; for (var q = 1; q < 8; q++) { var ok = Math.sign(T.sig[q] - T.sig[q - 1]) === Math.sign(REP[q] - REP[q - 1]); T.marks.push(ok); if (ok) hits++; } T.hits = hits; T.verdict = T.nofit ? 'nofit' : hits >= 5 ? 'holds' : 'falls'; });
+  function screw(c, x, y, r, ang, col, al, hollow){
+    if (al <= 0.01) return;
+    c.save(); c.translate(x, y); c.rotate(ang);
+    c.beginPath(); c.arc(0, 0, r, 0, Math.PI * 2); c.fillStyle = hollow ? 'rgba(0,0,0,0)' : rgba('#0A1A2F', al); c.fill();
+    c.lineWidth = 1.4; c.strokeStyle = rgba(col, al); c.stroke();
+    c.beginPath(); c.moveTo(-r * 0.62, 0); c.lineTo(r * 0.62, 0); c.lineWidth = 1.6; c.stroke();
+    if (!hollow) { c.beginPath(); c.moveTo(0, -r * 0.62); c.lineTo(0, r * 0.62); c.lineWidth = 1; c.strokeStyle = rgba(col, al * 0.5); c.stroke(); }
+    c.restore();
+  }
+  function btChart(c, x0, y0, W2, H2, T, lp, al, narrow){
+    var VC = { holds: GR, falls: '#FF8A8A', nofit: '#8A94A6' }, done = lp >= 0.7, sc2 = done ? VC[T.verdict] : OR;
+    c.fillStyle = rgba('#060708', 0.7 * al); c.fillRect(x0, y0, W2, H2); c.strokeStyle = rgba(WH, 0.22 * al); c.lineWidth = 1; c.strokeRect(x0 + 0.5, y0 + 0.5, W2 - 1, H2 - 1);
+    txt(c, 'backtest · ' + T.name + ' vs reported ' + T.kpi, x0 + 12, y0 + 20, WH, 0.9 * al, narrow ? 10 : 11, 'left');
+    txt(c, 'last 8 quarters · y/y % · illustrative', x0 + 12, y0 + 35, WH, 0.45 * al, 9, 'left');
+    var px0 = x0 + 34, px1 = x0 + W2 - 16, py0 = y0 + 54, py1 = y0 + H2 - 66, lo = -10, hi = 16;
+    var X = function(q){ return lerp(px0, px1, q / 7); }, Y = function(v){ return lerp(py1, py0, (v - lo) / (hi - lo)); };
+    c.strokeStyle = rgba(WH, 0.15 * al); c.beginPath(); c.moveTo(px0, Y(0)); c.lineTo(px1, Y(0)); c.stroke();
+    txt(c, '0', px0 - 8, Y(0) + 3, WH, 0.4 * al, 9, 'right');
+    for (var q = 0; q < 8; q++) txt(c, 'q' + (q + 1), X(q), py1 + 14, WH, 0.45 * al, 9);
+    var upto = clamp(lp / 0.7, 0, 1) * 7;
+    function line(arr, col, a2, dash){ c.save(); if (dash) c.setLineDash(dash); c.strokeStyle = rgba(col, a2 * al); c.lineWidth = 1.8; c.beginPath(); for (var i = 0; i <= Math.floor(upto); i++) { if (i) c.lineTo(X(i), Y(arr[i])); else c.moveTo(X(i), Y(arr[i])); } var fr = upto - Math.floor(upto), i0 = Math.floor(upto); if (fr > 0 && i0 < 7) c.lineTo(lerp(X(i0), X(i0 + 1), fr), lerp(Y(arr[i0]), Y(arr[i0 + 1]), fr)); c.stroke(); c.restore(); }
+    line(REP, WH, 0.85); line(T.sig, sc2, 1, [5, 4]);
+    for (var m = 0; m < 7; m++) if (upto >= m + 1) txt(c, T.marks[m] ? '✓' : '✕', X(m + 1), py1 + 30, T.marks[m] ? GR : '#FF8A8A', 0.95 * al, 11);
+    if (!narrow) { txt(c, '— reported', px1, y0 + 20, WH, 0.6 * al, 9, 'right'); txt(c, '- - ' + T.name.split(' ')[0], px1, y0 + 33, sc2, 0.9 * al, 9, 'right'); }
+    if (done) {
+      var vt = T.verdict === 'holds' ? 'holds · ' + T.hits + ' of 7 right' : T.verdict === 'falls' ? 'falls off · ' + T.hits + ' of 7' : 'doesn’t fit';
+      c.font = '300 ' + (narrow ? 18 : 22) + 'px Fraunces, Georgia, serif'; c.textAlign = 'left'; c.fillStyle = rgba(VC[T.verdict], al * clamp((lp - 0.7) / 0.1, 0, 1)); c.fillText(vt, x0 + 12, y0 + H2 - 12);
+      if (T.why && !narrow) txt(c, T.why, px1, y0 + H2 - 14, VC[T.verdict], 0.8 * al * clamp((lp - 0.7) / 0.1, 0, 1), 9, 'right');
+    }
+  }
+  var P2 = (function(){ var rnd = mulberry(11), out = []; for (var i = 0; i < 230; i++) { var a = rnd() * Math.PI * 2, rr = Math.sqrt(rnd()) * 100; out.push({ t: 0.37 + 0.13 * i / 230 + rnd() * 0.004, s: i % 6, y: Math.sin(a) * rr, z: Math.cos(a) * rr, keep: KEEP.indexOf(i), dir: rnd() < 0.5 ? -1 : 1 }); } return out; })();
   var KSHORT = ['Second shift added at the main plant', 'Distributor inventory: 5 weeks, from 8', 'Largest rival exits the low end', 'New line lists ~15% above the old', 'Top customer dual-sourcing next year', 'Freight and resin costs rising'];
   var KROWS = ['u', 'asp', 'rev', 'gm', 'ebit', 'eps', 'val'], kOn = [false, false, false, false, false, false], kLast = null, kState = '';
   (function(){
@@ -1124,36 +1167,61 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
   function ch2Frame(){
     if (!onScreen(ch2)) return;
     var p = chP(ch2), f = fitCanvas(c2), c = f.x, w = f.w, h = f.h, narrow = w < 760;
-    var e = ease(ramp(p, 0.02, 0.09)), fade = 1 - 0.55 * ramp(p, 0.40, 0.46);
+    var e = ease(ramp(p, 0.01, 0.06)), fade = 1 - 0.55 * ramp(p, 0.56, 0.62);
     var sc = narrow ? Math.min(w / 1050, h / 1500) : Math.min(w / 1700, h / 820);
-    var P = makeProj(-0.45, 0.12, sc, narrow ? w * 0.68 : w * 0.34, narrow ? h * 0.21 : h * 0.47);
+    var P = makeProj(-0.45, 0.12, sc, narrow ? w * 0.68 : w * 0.35, narrow ? h * 0.21 : h * 0.47);
     seg(c, P, [-600, 0, 0], [320, 0, 0], WH, 0.22 * e * fade, 1, [14, 5, 3, 5]);
     if (e < 1) cylinder(c, P, -60, 60, 0, 1 - e, GR);
     var tx = TS.map(function(t){ return t.x * e; });
     for (var a = 0; a < 4; a++) { var an = a * Math.PI / 2; for (var k = 0; k < 2; k++) seg(c, P, [tx[k], Math.cos(an) * TS[k].r, Math.sin(an) * TS[k].r], [tx[k + 1], Math.cos(an) * TS[k + 1].r, Math.sin(an) * TS[k + 1].r], WH, 0.25 * e * fade, 1); }
-    TS.forEach(function(t, i){ ring(c, P, tx[i], 0, 0, t.r, i === 1 ? OR : WH, (i === 1 ? 0.95 : 0.8) * e * fade, i === 1 ? 2 : 1.4); var lq = P(tx[i], -t.r - 18, 0); txt(c, t.l, lq[0], lq[1] + 4, i === 1 ? OR : WH, 0.7 * e * fade, narrow ? 9 : 11); });
-    var sa = ramp(p, 0.05, 0.10) * fade;
-    SRC.forEach(function(s, i){ var q = P(-560, 125 - i * 50, 0); cdot(c, P, -560, 125 - i * 50, 0, 3, WH, 0.8 * sa); txt(c, s, q[0] - 10, q[1] + 4, WH, 0.75 * sa, narrow ? 9 : 11, 'right'); });
-    /* the flow */
-    var kept = 0, bF = 1 - ramp(p, 0.44, 0.50);
-    if (p > 0.10 && bF > 0.01) P2.forEach(function(q){
-      var u = (p - q.t) / 0.045; if (u < 0) return;
-      var sy = 125 - q.s * 50, x, y, z, col = WH, al = 0.7, r = 1.6;
+    TS.forEach(function(t, i){ ring(c, P, tx[i], 0, 0, t.r, i === 1 ? OR : WH, (i === 1 ? 0.95 : 0.8) * e * fade, i === 1 ? 2 : 1.4); var lq = P(tx[i], i === 0 ? t.r + 22 : -t.r - 18, 0); if (!(narrow && i === 0)) txt(c, t.l, lq[0], lq[1] + 4, i === 1 ? OR : WH, 0.7 * e * fade, narrow ? 9 : 11); });
+    /* ii · the backtest: every source is a screw */
+    var sa = ramp(p, 0.03, 0.07) * fade, active = -1, activeLp = 0;
+    SRC.forEach(function(s, i){
+      var y = SY(i), q = P(-560, y, 0), ti = TESTI[i], T = ti >= 0 ? TESTS[ti] : null, lp = T ? (p - (BT0 + ti * BTW)) / BTW : -1;
+      var col = WH, al = 0.85, ang = 0.7, hollow = false, dx = 0, dy = 0, tag = '', tcol = WH, lal = 0.75;
+      var r = Math.max(5, 9 * sc);
+      if (T) {
+        if (lp >= 0 && lp < 1) { active = ti; activeLp = lp; }
+        if (lp >= 0 && lp < 0.7) { ang = lp * 16; lal = 1; }
+        else if (lp >= 0.7) {
+          var v = clamp((lp - 0.7) / 0.3, 0, 1), vd = T.verdict;
+          if (vd === 'holds') { ang = lerp(lp < 1 ? 1.2 : 0, 0, v); col = GR; tag = '✓ ' + T.hits + '/7 · holds'; tcol = GR; }
+          else if (vd === 'falls') { var vf = clamp((p - (BT0 + ti * BTW) - 0.7 * BTW) / 0.04, 0, 1); dx = -26 * vf; dy = 140 * vf * vf; ang = vf * 9; al = 0.85 * (1 - vf); col = '#FF8A8A'; tag = '✕ ' + T.hits + '/7 · falls off'; tcol = '#FF8A8A'; lal = 0.35; }
+          else { hollow = true; col = '#8A94A6'; al = 0.6; dx = -14 * v; tag = '— doesn’t fit'; tcol = '#8A94A6'; lal = 0.4; }
+        }
+        if (lp >= 0 && lp < 1) lal = 1;
+      } else if (p > BT0 + TESTS.length * BTW) { tag = i === 5 ? 'the benchmark' : 'views · scored'; tcol = WH; ang = 0; }
+      if (al > 0.01) screw(c, q[0] + dx, q[1] + dy, r, ang, col, al * sa, hollow);
+      var lc = T && lp >= 0 && lp < 1 ? OR : WH;
+      txt(c, narrow ? SRCN[i] : s, q[0] - r - 8, q[1] + 4, lc, lal * sa, narrow ? 9 : 11, 'right');
+      if (tag && !narrow) txt(c, tag, q[0] + r + 8, q[1] + 3, tcol, 0.85 * sa * (p > 0.36 ? 0.45 : 1), 9, 'left');
+    });
+    /* the backtest chart */
+    var bA = ramp(p, 0.07, 0.09) * (1 - ramp(p, 0.345, 0.37)), shownT = active >= 0 ? active : (p < BT0 ? 0 : TESTS.length - 1), shownLp = active >= 0 ? activeLp : (p < BT0 ? 0 : 1);
+    if (bA > 0.01) {
+      var bx = narrow ? 16 : w * 0.60, by = narrow ? h * 0.38 : h * 0.16, bw = narrow ? w - 32 : Math.min(w * 0.35, 520), bh = narrow ? h * 0.27 : h * 0.44;
+      btChart(c, bx, by, bw, bh, TESTS[shownT], shownLp, bA, narrow);
+    }
+    /* iii · the filter: only the sources that held feed it */
+    var kept = 0, bF = 1 - ramp(p, 0.60, 0.64);
+    if (p > 0.37 && bF > 0.01) P2.forEach(function(q){
+      var u = (p - q.t) / 0.036; if (u < 0) return;
+      var sy = SY(q.s), x, y, z, col = WH, al = 0.7, r = 1.6;
       if (u < 1) { x = lerp(-560, tx[0], u); y = lerp(sy, q.y, u); z = lerp(0, q.z, u); }
-      else { var w2 = clamp((p - q.t - 0.045) / 0.03, 0, 1);
+      else { var w2 = clamp((p - q.t - 0.036) / 0.024, 0, 1);
         if (w2 < 1) { x = lerp(tx[0], tx[1], w2); y = q.y * lerp(1, 0.6, w2); z = q.z * lerp(1, 0.6, w2); }
-        else { var v = clamp((p - q.t - 0.075) / 0.03, 0, 1);
+        else { var v = clamp((p - q.t - 0.06) / 0.024, 0, 1);
           if (q.keep < 0) { if (v >= 1) return; x = tx[1] + 30 * v; y = q.y * 0.6 + q.dir * 70 * v; z = q.z * 0.6; al = 0.6 * (1 - v); col = '#8A94A6'; }
-          else { x = v < 1 ? lerp(tx[1], tx[2], v) : lerp(tx[2], 300, clamp((p - q.t - 0.105) / 0.02, 0, 1)); y = q.y * 0.6 * (1 - v); z = q.z * 0.6 * (1 - v); col = OR; al = 1; r = 3.4; if (v >= 1) kept++; }
+          else { x = v < 1 ? lerp(tx[1], tx[2], v) : lerp(tx[2], 300, clamp((p - q.t - 0.084) / 0.016, 0, 1)); y = q.y * 0.6 * (1 - v); z = q.z * 0.6 * (1 - v); col = OR; al = 1; r = 3.4; if (v >= 1) kept++; }
         }
       }
       cdot(c, P, x, y, z, r, col, al * bF);
     });
-    if (p > 0.10) { var ra = Math.round(1200 * clamp((p - 0.10) / 0.27, 0, 1)), lo = P(tx[0], TS[0].r + 20, 0), le = P(tx[2], TS[2].r + 40, 0); txt(c, 'read today · ' + ra.toLocaleString('en-GB'), lo[0], lo[1], WH, 0.85 * fade, 11); txt(c, 'kept · ' + Math.max(kept, p > 0.44 ? 6 : 0), le[0], le[1], OR, fade, 11); }
-    /* screen and model, driven by the same scroll */
-    var shown = 0, applied = 0;
-    var KT = [0.56, 0.60, 0.64, 0.68, 0.77, 0.82];
-    for (var i = 0; i < 6; i++) { if (p > 0.40 + i * 0.022) shown++; if (p > KT[i]) applied++; }
+    if (p > 0.37) { var ra = Math.round(1200 * clamp((p - 0.37) / 0.2, 0, 1)), lo = P(tx[0], TS[0].r + 46, 0), le = P(tx[2], TS[2].r + 40, 0); txt(c, 'read today · ' + ra.toLocaleString('en-GB'), lo[0], lo[1], WH, 0.85 * fade, 11); txt(c, 'kept · ' + Math.max(kept, p > 0.60 ? 6 : 0), le[0], le[1], OR, fade, 11); }
+    /* iv, v · screen and model, driven by the same scroll */
+    var shown = 0, applied = 0, KT = [0.66, 0.69, 0.72, 0.75, 0.84, 0.88];
+    for (var i = 0; i < 6; i++) { if (p > 0.56 + i * 0.016) shown++; if (p > KT[i]) applied++; }
     var state = shown + '|' + applied;
     if (state !== kState) {
       kState = state;
@@ -1161,14 +1229,16 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       var changed = false; for (var j = 0; j < 6; j++) { var want = j < applied; if (kOn[j] !== want) { kOn[j] = want; changed = true; } }
       if (changed || !kLast) kRatio = kRender(true);
     }
-    root.style.setProperty('--k2', ramp(p, 0.38, 0.42).toFixed(3));
-    el('c2p').classList.toggle('mod', p > 0.54);
-    var ph = p < 0.10 ? 0 : p < 0.38 ? 1 : p < 0.55 ? 2 : p < 0.88 ? 3 : 4;
-    if (ph === 0) cap('c2', 0, 'i · the telescope', 'Everything in. Only what’s new out.', 'reddit · sell-side notes · substack · youtube · podcasts · filings · in build');
-    if (ph === 1) cap('c2', 1, 'ii · the filter', '~1,200 items a day. Six survive.', 'new against my notes · new against consensus');
-    if (ph === 2) cap('c2', 2, 'iii · the screen', 'A daily screen: what changed, per name.', 'each item tagged bull or bear, and to the line it moves · illustrative, fictional company');
-    if (ph === 3) cap('c2', 3, 'iv · the model', applied === 0 ? 'Does it move a line in the model?' : applied < 4 ? 'Each item moves a cell. The cell moves the value.' : applied === 4 ? 'Four bull items: ' + kRatio.toFixed(1) + ' : 1. It clears the gate.' : 'Then the bears: back to ' + kRatio.toFixed(1) + ' : 1. Not yet.', applied >= 5 ? 'no siding with the bulls on bull evidence alone' : 'blue = input · white = formula · gate 2 : 1');
-    if (ph === 4) cap('c2', 4, 'v · risk to reward', 'Only what moves the model matters.', 'the answer isn’t the data · it’s what the data does to the range');
+    root.style.setProperty('--k2', ramp(p, 0.55, 0.59).toFixed(3));
+    el('c2p').classList.toggle('mod', p > 0.645);
+    var ph = p < 0.075 ? 0 : p < 0.355 ? 1 : p < 0.56 ? 2 : p < 0.65 ? 3 : p < 0.92 ? 4 : 5;
+    if (ph === 0) cap('c2', 0, 'i · the telescope', 'Everything in. Only what’s new out.', 'reddit · sell-side notes · substack · youtube · podcasts · filings · alt data · in build');
+    if (ph === 1) { var T = TESTS[shownT], vt = { holds: 'holds · ' + T.hits + ' of 7 quarters right', falls: 'falls off · ' + T.hits + ' of 7 · ' + T.why, nofit: 'doesn’t fit · ' + T.why };
+      cap('c2', 1, 'ii · the backtest', 'Every source is a screw. Test it before it holds weight.', active >= 0 ? T.name + ' vs reported ' + T.kpi + ' · ' + (activeLp < 0.7 ? 'testing the last 8 quarters' : vt[T.verdict]) : 'three of five scraped feeds fall off or don’t fit · alt data works for a quarter or two, then seasonality · after stephen parlett'); }
+    if (ph === 2) cap('c2', 2, 'iii · the filter', '~1,200 items a day, from the sources that held. Six survive.', 'new against my notes · new against consensus');
+    if (ph === 3) cap('c2', 3, 'iv · the screen', 'A daily screen: what changed, per name.', 'each item tagged bull or bear, and to the line it moves · illustrative, fictional company');
+    if (ph === 4) cap('c2', 4, 'v · the model', applied === 0 ? 'Does it move a line in the model?' : applied < 4 ? 'Each item moves a cell. The cell moves the value.' : applied === 4 ? 'Four bull items: ' + kRatio.toFixed(1) + ' : 1. It clears the gate.' : 'Then the bears: back to ' + kRatio.toFixed(1) + ' : 1. Not yet.', applied >= 5 ? 'no siding with the bulls on bull evidence alone' : 'blue = input · white = formula · gate 2 : 1');
+    if (ph === 5) cap('c2', 5, 'vi · risk to reward', 'Only what moves the model matters.', 'the answer isn’t the data · it’s what the data does to the range');
   }
   Array.prototype.forEach.call(document.querySelectorAll('.cmore'), function(b){ b.addEventListener('click', function(){ openDeep(+b.getAttribute('data-b')); }); });
 
