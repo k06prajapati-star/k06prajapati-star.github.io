@@ -286,6 +286,30 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 .open.pinned .o-top,.open.pinned .o-body h1,.open.pinned .o-write,.open.pinned .o-foot,.open.pinned .mq{opacity:1;animation:none}
 .open.pinned [data-st]{opacity:0;will-change:opacity, transform}
 @media (min-width:761px){ .open-pin .o-body{padding:clamp(20px, 5vh, 72px) 0 clamp(16px, 3vh, 40px)} .open-pin .o-body h1{font-size:min(clamp(72px, 11vw, 168px), 21vh)} .open-pin .o-write{gap:min(16px, 1.6vh)} .open-pin .o-write p{font-size:min(clamp(19px,1.6vw,23px), 2.6vh)} }
+/* the guide: where it works, an agent is working; where it's missing, it's my call */
+.gd{display:flex;align-items:center;gap:12px;min-height:46px;font-family:var(--mono);font-size:11px;letter-spacing:0.03em;text-transform:lowercase;color:var(--ink-2)}
+.gd-m{width:40px;height:auto;flex:none;overflow:visible;transition:opacity 300ms ease-out, transform 300ms ease-out}
+.gd .gl{fill:none;stroke:#DCE6F5;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.gd .gf{fill:#0E2440;stroke:#DCE6F5;stroke-width:3;stroke-linejoin:round}
+.gd .gt{stroke:#DCE6F5;stroke-width:2;opacity:.6}
+.gd .go{fill:var(--active)}
+.gd-card{opacity:0;transform:translateY(16px);transition:opacity 400ms ease-out, transform 500ms cubic-bezier(.2,.7,.2,1)}
+.gd-lid{transition:transform 450ms cubic-bezier(.2,.7,.2,1)}
+.gd-kp{display:none;flex:none;font-size:10px;letter-spacing:0.12em;color:var(--active);border:1px solid var(--active);padding:4px 7px;text-transform:uppercase}
+.gd.work .gd-m{animation:gdbob 2.6s ease-in-out infinite}
+.gd.work .gd-eye{animation:gdscan 3.2s ease-in-out infinite}
+.gd.work .gd-tip{animation:gdtip 1.6s ease-in-out infinite}
+.gd.stop .gd-lid{transform:translateY(-9px)}
+.gd.stop .gd-card{opacity:1;transform:none}
+.gd.stop .gd-t b{color:var(--active);font-weight:400}
+.gd.me .gd-m{display:none}
+.gd.me .gd-kp{display:inline-block}
+.gd.me .gd-t{color:var(--active)}
+@keyframes gdbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+@keyframes gdscan{0%,100%{transform:translateX(-2px)}50%{transform:translateX(2px)}}
+@keyframes gdtip{0%,100%{opacity:1}50%{opacity:.35}}
+@media (max-width:760px){ .gd{min-height:34px;gap:10px;font-size:10px} .gd-m{width:28px} }
+@media (prefers-reduced-motion:reduce){ .gd *{animation:none !important;transition:none !important} }
 /* reveal on arrival */
 .rv{opacity:0;transform:translateY(18px);transition:opacity 800ms ease-out, transform 800ms cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d, 0) * 110ms)}
 .rv.in{opacity:1;transform:none}
@@ -619,7 +643,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
   .ccap h3{font-size:24px}
   .ccap p{font-size:11px;min-height:0}
   .cmore{top:calc(10px + env(safe-area-inset-top, 0px));bottom:auto;right:16px;min-height:34px;padding:0 10px;font-size:10px}
-  .cpanel{left:16px;right:16px;width:auto;top:auto;bottom:calc(168px + env(safe-area-inset-bottom, 0px))}
+  .cpanel{left:16px;right:16px;width:auto;top:auto;bottom:calc(214px + env(safe-area-inset-bottom, 0px))} .xl.xs .xl-tabs{display:none}
   .cpanel.mod .kscr{display:none} .cpanel:not(.mod) .kmod{display:none}
   .kfeed .t{font-size:14px}
   .kfeed li{grid-template-columns:62px minmax(0, 1fr) 30px}
@@ -671,7 +695,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 .fob span{font-family:var(--mono);font-size:10px;color:var(--ink-2);text-transform:lowercase;line-height:1.5}
 @media (max-width:760px){
   #ch3 .ccap{max-width:none}
-  .cpanel.p3{left:16px;right:16px;width:auto;top:auto;bottom:calc(172px + env(safe-area-inset-bottom, 0px))}
+  .cpanel.p3{left:16px;right:16px;width:auto;top:auto;bottom:calc(214px + env(safe-area-inset-bottom, 0px))}
   .qr .qt,.ev p{font-size:15px} .ev.ans p{font-size:18px}
   .qr{padding:8px 10px} .dl b i{width:16px;height:7px}
   .fo li{grid-template-columns:minmax(0, 1fr) 54px;}
@@ -748,7 +772,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
         <p><b>△2</b>Compare incremental business quality to the incremental difference in expectations.<cite>Thomas Li</cite></p>
         <p><b>△3</b>The multiple pays for the level. The return comes from the change in the level.<cite>the lens · my notes</cite></p>
       </aside>
-      <div class="ccap" aria-live="polite"><span class="label" id="c1k"></span><h3 id="c1h"></h3><p id="c1q"></p></div>
+      <div class="ccap" aria-live="polite"><div class="gd" id="c1g"><svg class="gd-m" viewBox="40 -6 80 152" aria-hidden="true"><path class="gl" d="M62 112 V140 M98 112 V140 M56 140 h12 M92 140 h12"/><path class="gf" d="M48 58 L80 74 L80 116 L48 100 Z"/><path class="gf" d="M80 74 L112 58 L112 100 L80 116 Z"/><g class="gd-card"><rect class="gf" x="63" y="-4" width="34" height="40" rx="2" style="stroke:#FF6B35"/><path d="M70 10 h20 M70 18 h14" stroke="#FF6B35" stroke-width="3"/></g><g class="gd-lid"><path class="gf" d="M80 42 L112 58 L80 74 L48 58 Z"/></g><g class="gd-ant"><path class="gl" d="M80 58 V26"/><circle class="go gd-tip" cx="80" cy="24" r="3.6"/></g><ellipse class="gf" cx="64" cy="84" rx="8" ry="9"/><g class="gd-eye"><circle class="go" cx="64" cy="84" r="4"/></g><path class="gt" d="M88 80 l16 -8 M88 86 l16 -8 M88 92 l10 -5"/></svg><span class="gd-kp" aria-hidden="true">KP</span><span class="gd-t"></span></div><span class="label" id="c1k"></span><h3 id="c1h"></h3><p id="c1q"></p></div>
       <button type="button" class="cmore" data-b="0">the detail ↗</button>
     </div>
   </section>
@@ -776,7 +800,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
         <div class="panel kscr"><div class="kh"><span class="label">daily screen · NFC</span><span class="chip">illustrative · fictional</span></div><ul class="kfeed" id="kfeed"></ul></div>
         <div class="panel kmod"><div class="kh"><span class="label">the model</span><span class="label dim" id="kpx">price $21 · blue = input</span></div><div class="xl xs"><div class="xl-tb"><span class="xl-ic" aria-hidden="true">X</span><span>NFC_model.xlsx</span><span class="xl-sv">saved</span></div><div class="xl-fb"><span class="xl-nb" id="k-nb">C11</span><span class="xl-fx">fx</span><span class="xl-f" id="k-f">=C9*C10</span></div><div class="xl-grid"><table class="sheet ksheet" id="ksheet"></table></div><div class="xl-tabs"><span class="on">Model</span><span>Screen</span><span>Log</span></div></div><div class="krr"><div><span class="label dim">risk to reward</span><b id="krr">1.3 : 1</b></div><span class="chip" id="kgate"></span></div><div id="kbar"></div></div>
       </div>
-      <div class="ccap" aria-live="polite"><span class="label" id="c2k"></span><h3 id="c2h"></h3><p id="c2q"></p></div>
+      <div class="ccap" aria-live="polite"><div class="gd" id="c2g"><svg class="gd-m" viewBox="40 -6 80 152" aria-hidden="true"><path class="gl" d="M62 112 V140 M98 112 V140 M56 140 h12 M92 140 h12"/><path class="gf" d="M48 58 L80 74 L80 116 L48 100 Z"/><path class="gf" d="M80 74 L112 58 L112 100 L80 116 Z"/><g class="gd-card"><rect class="gf" x="63" y="-4" width="34" height="40" rx="2" style="stroke:#FF6B35"/><path d="M70 10 h20 M70 18 h14" stroke="#FF6B35" stroke-width="3"/></g><g class="gd-lid"><path class="gf" d="M80 42 L112 58 L80 74 L48 58 Z"/></g><g class="gd-ant"><path class="gl" d="M80 58 V26"/><circle class="go gd-tip" cx="80" cy="24" r="3.6"/></g><ellipse class="gf" cx="64" cy="84" rx="8" ry="9"/><g class="gd-eye"><circle class="go" cx="64" cy="84" r="4"/></g><path class="gt" d="M88 80 l16 -8 M88 86 l16 -8 M88 92 l10 -5"/></svg><span class="gd-kp" aria-hidden="true">KP</span><span class="gd-t"></span></div><span class="label" id="c2k"></span><h3 id="c2h"></h3><p id="c2q"></p></div>
       <button type="button" class="cmore" data-b="1">the detail ↗</button>
     </div>
   </section>
@@ -803,7 +827,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
           <div class="fob" id="fob"><b>One question, one bet.</b><span>size the question, then split it · pair the supplier against the converter that eats it</span></div>
         </div>
       </div>
-      <div class="ccap" aria-live="polite"><span class="label" id="c3k"></span><h3 id="c3h"></h3><p id="c3q"></p></div>
+      <div class="ccap" aria-live="polite"><div class="gd" id="c3g"><svg class="gd-m" viewBox="40 -6 80 152" aria-hidden="true"><path class="gl" d="M62 112 V140 M98 112 V140 M56 140 h12 M92 140 h12"/><path class="gf" d="M48 58 L80 74 L80 116 L48 100 Z"/><path class="gf" d="M80 74 L112 58 L112 100 L80 116 Z"/><g class="gd-card"><rect class="gf" x="63" y="-4" width="34" height="40" rx="2" style="stroke:#FF6B35"/><path d="M70 10 h20 M70 18 h14" stroke="#FF6B35" stroke-width="3"/></g><g class="gd-lid"><path class="gf" d="M80 42 L112 58 L80 74 L48 58 Z"/></g><g class="gd-ant"><path class="gl" d="M80 58 V26"/><circle class="go gd-tip" cx="80" cy="24" r="3.6"/></g><ellipse class="gf" cx="64" cy="84" rx="8" ry="9"/><g class="gd-eye"><circle class="go" cx="64" cy="84" r="4"/></g><path class="gt" d="M88 80 l16 -8 M88 86 l16 -8 M88 92 l10 -5"/></svg><span class="gd-kp" aria-hidden="true">KP</span><span class="gd-t"></span></div><span class="label" id="c3k"></span><h3 id="c3h"></h3><p id="c3q"></p></div>
     </div>
   </section>
   <section class="ch" id="ch4" aria-label="Second-order effects, decomposed">
@@ -811,7 +835,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       <canvas id="c4cv" aria-hidden="true"></canvas>
       <div class="chead"><span class="n">04 · second-order effects</span><span class="label dim">decomposed</span></div>
       <ol class="crail" id="c4rail" aria-hidden="true"><li>pendulum</li><li>pools</li><li>the boat</li><li>marginal seller</li><li>alpha curve</li><li>variant view</li></ol>
-      <div class="ccap" aria-live="polite"><span class="label" id="c4k"></span><h3 id="c4h"></h3><p id="c4q"></p></div>
+      <div class="ccap" aria-live="polite"><div class="gd" id="c4g"><svg class="gd-m" viewBox="40 -6 80 152" aria-hidden="true"><path class="gl" d="M62 112 V140 M98 112 V140 M56 140 h12 M92 140 h12"/><path class="gf" d="M48 58 L80 74 L80 116 L48 100 Z"/><path class="gf" d="M80 74 L112 58 L112 100 L80 116 Z"/><g class="gd-card"><rect class="gf" x="63" y="-4" width="34" height="40" rx="2" style="stroke:#FF6B35"/><path d="M70 10 h20 M70 18 h14" stroke="#FF6B35" stroke-width="3"/></g><g class="gd-lid"><path class="gf" d="M80 42 L112 58 L80 74 L48 58 Z"/></g><g class="gd-ant"><path class="gl" d="M80 58 V26"/><circle class="go gd-tip" cx="80" cy="24" r="3.6"/></g><ellipse class="gf" cx="64" cy="84" rx="8" ry="9"/><g class="gd-eye"><circle class="go" cx="64" cy="84" r="4"/></g><path class="gt" d="M88 80 l16 -8 M88 86 l16 -8 M88 92 l10 -5"/></svg><span class="gd-kp" aria-hidden="true">KP</span><span class="gd-t"></span></div><span class="label" id="c4k"></span><h3 id="c4h"></h3><p id="c4q"></p></div>
     </div>
   </section>
   <section class="ch" id="ch5" aria-label="Conviction and compounding, decomposed">
@@ -823,7 +847,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
         <p><b>△4</b>Conviction doesn’t mean anything. What you want to track is your hit rate.<cite>Thomas Li</cite></p>
         <p><b>△5</b>A batting average quoted without its denominator is just conviction wearing a number.<cite>my notes · on conviction</cite></p>
       </aside>
-      <div class="ccap" aria-live="polite"><span class="label" id="c5k"></span><h3 id="c5h"></h3><p id="c5q"></p></div>
+      <div class="ccap" aria-live="polite"><div class="gd" id="c5g"><svg class="gd-m" viewBox="40 -6 80 152" aria-hidden="true"><path class="gl" d="M62 112 V140 M98 112 V140 M56 140 h12 M92 140 h12"/><path class="gf" d="M48 58 L80 74 L80 116 L48 100 Z"/><path class="gf" d="M80 74 L112 58 L112 100 L80 116 Z"/><g class="gd-card"><rect class="gf" x="63" y="-4" width="34" height="40" rx="2" style="stroke:#FF6B35"/><path d="M70 10 h20 M70 18 h14" stroke="#FF6B35" stroke-width="3"/></g><g class="gd-lid"><path class="gf" d="M80 42 L112 58 L80 74 L48 58 Z"/></g><g class="gd-ant"><path class="gl" d="M80 58 V26"/><circle class="go gd-tip" cx="80" cy="24" r="3.6"/></g><ellipse class="gf" cx="64" cy="84" rx="8" ry="9"/><g class="gd-eye"><circle class="go" cx="64" cy="84" r="4"/></g><path class="gt" d="M88 80 l16 -8 M88 86 l16 -8 M88 92 l10 -5"/></svg><span class="gd-kp" aria-hidden="true">KP</span><span class="gd-t"></span></div><span class="label" id="c5k"></span><h3 id="c5h"></h3><p id="c5q"></p></div>
       <button type="button" class="cmore cmore5">the live vault ↑</button>
     </div>
   </section>
@@ -871,7 +895,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     <!-- 01 · zero to one: five scenes -->
     <div class="view" id="v0">
       <section class="scn">
-        <div class="scn-h"><span class="label">i · how it works</span><h3>Macro to micro, then round again.</h3><p class="tag">to understand one name, understand the space · to understand the space, understand the names</p></div>
+        <div class="scn-h"><span class="label">i · how it works</span><h3>Macro to micro, then round again.</h3><p class="tag">to understand one name, understand the space · to understand the space, understand the names · each circle runs as a claude loop: ask, check the answer against the vault, ask again until nothing new comes back</p></div>
         <div class="cc-grid">
           <div class="cc-fig" id="ccfig"><svg id="cc" viewBox="-310 -310 620 620" role="img" aria-label="Four concentric circles, from the fundamentals on the outside to the quality spectrum at the core"></svg></div>
           <ol class="cc-steps" id="ccsteps"></ol>
@@ -1436,7 +1460,16 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
   function onScreen(sec){ var r = sec.getBoundingClientRect(); return r.bottom > 0 && r.top < window.innerHeight; }
   function txt(c, s, x, y, col, al, size, align){ if (al <= 0.01 || !s) return; c.font = (size || 11) + 'px "IBM Plex Mono", ui-monospace, monospace'; c.textAlign = align || 'center'; c.fillStyle = rgba(col, al); c.fillText(s, x, y); }
   function disc(c, P, x, y, z, r, col, al){ if (al <= 0.01) return; c.fillStyle = rgba(col, al); c.beginPath(); for (var t = 0; t <= 48; t++) { var a = t / 48 * Math.PI * 2, q = P(x, y + Math.cos(a) * r, z + Math.sin(a) * r); if (t) c.lineTo(q[0], q[1]); else c.moveTo(q[0], q[1]); } c.fill(); }
+  var GUIDE = {
+    c1: [['work', 'a claude loop runs each circle: ask, check the vault, ask again until nothing new'], ['stop', 'commodity questions answered and checked · <b>the hard ones → yours</b>'], ['work', 'mapping suppliers, customers, rivals and substitutes'], ['me', 'picking the 1–3 numbers that carry the cash'], ['me', 'where it sits on the spectrum, and which way it’s moving'], ['me', 'pricing the quality against what’s expected'], ['work', 'filing every pass into the vault, linked to the space']],
+    c2: [['work', 'scraping, transcribing and tagging ~1,200 items a day'], ['work', 'backtesting each source against reported numbers'], ['work', 'dropping what’s already in my notes or in consensus'], ['work', 'tagging each item bull or bear, and the line it moves'], ['stop', 'each item mapped to its cell · <b>whether it counts → yours</b>'], ['me', 'the 2 : 1 gate, and the price that clears it']],
+    c3: [['me', 'the relationships: CFOs, IR, the people in the chain'], ['work', 'pulling filings, transcripts and call notes into each funnel'], ['me', 'ranking which question earns the research hours'], ['stop', 'checked the two sides are independent · <b>the read → yours</b>'], ['me', 'which names, which side, how big'], ['work', 'logging every call to the panel, dated before it resolves']],
+    c4: [['work', 'measuring where attention is going, sector by sector'], ['me', 'where the pools of longs and shorts are forming'], ['work', 'compiling who owns it: pods, long-only, retail'], ['me', 'who has to sell, and when they’re done'], ['me', 'whether a second-order name is still left'], ['me', 'where I differ from the whisper, and why']],
+    c5: [['me', 'how well do I know it, line by line'], ['me', 'the loss I accept, and the kill switch'], ['work', 'measuring the factors: beta, sector, momentum'], ['me', 'sizing up only on confirmed checkpoints'], ['work', 'scoring every call against what happened, sealed first'], ['work', 'turning every score into a note the next idea reads']]
+  }, gdMemo = {};
+  function guide(id, ph){ var g = GUIDE[id] && GUIDE[id][ph], n = el(id + 'g'); if (!g || !n) return; var k = g[0] + g[1]; if (gdMemo[id] === k) return; gdMemo[id] = k; n.className = 'gd ' + g[0]; n.querySelector('.gd-t').innerHTML = g[0] === 'me' ? 'my call · ' + g[1] : g[1]; }
   function cap(id, ph, k, h, q){
+    guide(id, ph);
     var s = ph + k + h + q; if (capMemo[id] === s) return; capMemo[id] = s;
     el(id + 'k').textContent = k; el(id + 'h').textContent = h; el(id + 'q').textContent = q;
     Array.prototype.forEach.call(el(id + 'rail').children, function(li, j){ li.classList.toggle('on', j === ph); li.classList.toggle('done', j < ph); });
@@ -1631,7 +1664,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     }
     /* the one line to read */
     var ph = p < 0.10 ? 0 : p < 0.40 ? 1 : p < 0.61 ? 2 : p < 0.73 ? 3 : pr < 0.78 ? 4 : pr < 0.92 ? 5 : 6;
-    if (ph === 0) cap('c1', 0, 'i · the circles', 'Four circles, macro to micro.', 'fundamentals → ecosystem → key drivers → the quality spectrum · after rich falk-wallace');
+    if (ph === 0) cap('c1', 0, 'i · the circles', 'Four circles, macro to micro.', 'fundamentals → ecosystem → key drivers → the quality spectrum · each circle runs as a claude loop · after rich falk-wallace');
     if (ph === 1) cap('c1', 1, 'ii · the questions', 'Commodity questions, answered in minutes. The hard ones, kept.', 'same answer for anyone who asks → an agent answers it, I check it · depends on what I’ve seen → mine');
     if (ph === 2) cap('c1', 2, 'iii · the ecosystem', 'No business exists in a vacuum.', fk ? FORCES[fk].h.toLowerCase() + ' · ' + FORCES[fk].hard : 'porter’s five forces, on the supply chain · after stephen parlett');
     if (ph === 3) cap('c1', 3, 'iv · the drivers', 'Three numbers carry the cash.', '1–3 KPIs, each tied to a line in the model · the 80/20: the lines that carry the answer');
