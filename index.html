@@ -114,7 +114,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 .nb cite{display:block;font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);margin-top:6px}
 @media (max-width:980px){ .nb{display:none} }
 /* 06 · the operating manual */
-.mnl{padding:clamp(80px, 14vh, 140px) 0}
+.mnl{padding:clamp(120px, 22vh, 220px) 0 clamp(120px, 20vh, 200px);background:linear-gradient(rgba(10,26,47,0), rgba(10,26,47,0.55) 30%, rgba(10,26,47,0.55) 70%, rgba(10,26,47,0))}
 .mnl-wrap{max-width:1200px;margin:0 auto;padding:0 max(24px, env(safe-area-inset-right, 0px)) 0 max(24px, env(safe-area-inset-left, 0px));display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);gap:clamp(32px, 6vw, 96px);align-items:center}
 .mnl-txt{display:flex;flex-direction:column;gap:16px}
 .mnl-txt h2{font-family:var(--about);font-weight:400;font-size:clamp(34px, 4.2vw, 58px);line-height:1.04}
@@ -230,28 +230,31 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 @media (prefers-reduced-motion:reduce){ .leaf,.bk3{transition:none} .pg.slide-l,.pg.slide-r{animation:none} }
 
 /* 07 · connect */
-.cnx{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(90% 70% at 70% 30%, rgba(23,25,29,0.7) 0%, rgba(6,7,8,0.95) 70%)}
+.cnx{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden}
 .cnx-glow{position:absolute;inset:0;pointer-events:none}
-.cnx-glow i{position:absolute;left:72%;top:26%;width:12px;height:12px;border-radius:50%;background:var(--active);box-shadow:0 0 60px 30px rgba(255,107,53,0.22);animation:drift 14s ease-in-out infinite alternate}
+.cnx-glow i{position:absolute;left:72%;top:24%;width:12px;height:12px;border-radius:50%;background:var(--active);box-shadow:0 0 60px 30px rgba(255,107,53,0.22);animation:drift 14s ease-in-out infinite alternate}
 @keyframes drift{0%{transform:translate(0, 0)}25%{transform:translate(-40px, 24px)}50%{transform:translate(30px, 50px)}75%{transform:translate(-20px, -30px)}100%{transform:translate(50px, 10px)}}
-.cnx-wrap{position:relative;width:100%;max-width:1200px;margin:0 auto;padding:clamp(80px, 14vh, 140px) max(24px, env(safe-area-inset-right, 0px)) 40px max(24px, env(safe-area-inset-left, 0px));display:flex;flex-direction:column;gap:20px}
-.cnx h2{font-family:var(--about);font-weight:400;font-size:clamp(34px, 5vw, 72px);line-height:1.04;max-width:18ch}
+.cnx-wrap{position:relative;width:100%;max-width:1100px;margin:0 auto;padding:clamp(80px, 14vh, 140px) max(24px, env(safe-area-inset-right, 0px)) 40px max(24px, env(safe-area-inset-left, 0px));display:flex;flex-direction:column;gap:22px}
+.cnx h2{font-family:var(--about);font-weight:400;font-size:clamp(40px, 6vw, 88px);line-height:1;max-width:14ch}
 .cnx h2 em{font-style:italic;color:var(--active)}
-.cnx-sub{font-family:var(--mono);font-size:12px;letter-spacing:0.04em;color:var(--ink-3);text-transform:lowercase}
-.cnx-links{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--rule)}
-.cnx-links li{border-bottom:1px solid var(--rule)}
-.cnx-links a,.cnx-links button{width:100%;display:grid;grid-template-columns:140px minmax(0, 1fr) auto;align-items:baseline;gap:16px;padding:22px 0;text-decoration:none;color:var(--ink);background:transparent;border:0;cursor:pointer;text-align:left;transition:padding 250ms ease-out, color 200ms ease-out}
-.cnx-links .k{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3)}
-.cnx-links .v{font-family:var(--display);font-weight:300;font-size:clamp(24px, 3vw, 40px);line-height:1.1;overflow-wrap:anywhere}
-.cnx-links .ar{font-family:var(--mono);font-size:14px;color:var(--ink-3);transition:transform 250ms ease-out, color 200ms ease-out}
-.cnx-links a:hover,.cnx-links a:focus-visible{padding-left:14px}
-.cnx-links a:hover .v,.cnx-links a:focus-visible .v{color:var(--active)}
-.cnx-links a:hover .ar{transform:translateX(6px);color:var(--active)}
-.cnx-links .cp{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--rule);padding:4px 8px;background:transparent;cursor:pointer;margin-left:10px}
-.cnx-links .cp:hover{border-color:var(--active);color:var(--ink)}
+.cnx-mail a{display:grid;grid-template-columns:auto minmax(0, 1fr) auto;align-items:center;gap:clamp(16px, 2.4vw, 28px);padding:clamp(18px, 2.4vw, 28px);border:1px solid rgba(255,255,255,0.4);text-decoration:none;color:var(--ink);background:rgba(10,26,47,0.35);transition:border-color 200ms ease-out, background 200ms ease-out, transform 200ms ease-out}
+.cnx-mail a:hover,.cnx-mail a:focus-visible{border-color:var(--active);background:rgba(255,107,53,0.08);transform:translateY(-2px)}
+.cnx-mail svg{width:clamp(48px, 5vw, 68px);height:auto;display:block}
+.cnx-mail .v{font-family:var(--display);font-weight:300;font-size:clamp(22px, 3.2vw, 44px);line-height:1.1;overflow-wrap:anywhere}
+.cnx-mail .ar{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--active);white-space:nowrap}
+.cnx-icons{display:flex;gap:14px;flex-wrap:wrap}
+.cnx-icons a{display:flex;align-items:center;gap:14px;padding:14px 20px 14px 14px;border:1px solid var(--rule);text-decoration:none;color:var(--ink);transition:border-color 200ms ease-out, transform 200ms ease-out}
+.cnx-icons a:hover,.cnx-icons a:focus-visible{border-color:var(--active);transform:translateY(-2px)}
+.cnx-icons svg{width:44px;height:44px;display:block;flex:none}
+.cnx-icons b{display:block;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3)}
+.cnx-icons span{font-family:var(--display);font-weight:300;font-size:20px}
+.cnx-sub{font-family:var(--mono);font-size:12px;letter-spacing:0.04em;color:var(--ink-3);text-transform:lowercase;margin-top:6px}
 .cnx-foot{margin-top:auto;padding-top:56px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3)}
-@media (max-width:760px){ .cnx-links a{grid-template-columns:minmax(0, 1fr) auto;row-gap:4px} .cnx-links .k{grid-column:1 / -1} }
-@media (prefers-reduced-motion:reduce){ .cnx-glow i{animation:none} }
+/* reveal on arrival */
+.rv{opacity:0;transform:translateY(18px);transition:opacity 800ms ease-out, transform 800ms cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d, 0) * 110ms)}
+.rv.in{opacity:1;transform:none}
+@media (max-width:760px){ .cnx-mail .v{font-size:min(5vw, 22px);overflow-wrap:normal;white-space:nowrap} .cnx-mail svg{width:36px} .cnx-mail a{grid-template-columns:auto minmax(0, 1fr)} .cnx-mail .ar{grid-column:1 / -1} .cnx-icons a{flex:1 1 100%} }
+@media (prefers-reduced-motion:reduce){ .cnx-glow i{animation:none} .rv{opacity:1;transform:none;transition:none} }
 
 /* 2 · the rod */
 .rod{height:700vh;position:relative}
@@ -772,25 +775,27 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
   <!-- 06 · THE OPERATING MANUAL -->
   <section class="mnl" id="agl" aria-label="The agent layer: operating manual">
     <div class="mnl-wrap" id="mnl">
-      <div class="mnl-txt">
+      <div class="mnl-txt rv">
         <span class="label" style="color:var(--active)">06 · the agent layer</span>
         <h2>Speed and creativity. <em>Never the judgement.</em></h2>
         <p>Every assistant, what it does, how it’s scored and what it may never do, bound into one operating manual. It’s more art than science, so it reads like the instructions for a machine that’s still being built.</p>
         <button type="button" class="dive" id="mnl-open"><i aria-hidden="true"></i>open the manual</button>
         <p class="vl-honest">parts list · assembly · the rules · one page per assistant · troubleshooting · warranty</p>
       </div>
-      <div class="mnl-book" id="mnl-book" role="button" tabindex="0" aria-label="Open the operating manual"></div>
+      <div class="mnl-book rv" style="--d:2" id="mnl-book" role="button" tabindex="0" aria-label="Open the operating manual"></div>
     </div>
   </section>
   <!-- 07 · CONNECT -->
   <section class="cnx" id="connect" aria-label="Connect">
     <div class="cnx-glow" aria-hidden="true"><i></i></div>
     <div class="cnx-wrap">
-      <span class="label" style="color:var(--active)">07 · connect</span>
-      <h2>If you’re building something like this, or think part of it is wrong, <em>I’d like to hear it.</em></h2>
-      <p class="cnx-sub">red-teaming welcome · the process gets better every time someone disagrees with it</p>
-      <ul class="cnx-links" id="cnx-links"></ul>
-      <footer class="cnx-foot"><span>Kathan Prajapati</span><span id="cnx-sync"></span><span>this page moves with the process · rev a</span></footer>
+      <span class="label rv" style="color:var(--active)">07 · connect</span>
+      <h2 class="rv" style="--d:1">If you’re looking to contact me, <em>email.</em></h2>
+      <div class="cnx-mail rv" style="--d:2" id="cnx-mail"></div>
+      <p class="label dim rv" style="--d:3">or follow the work</p>
+      <div class="cnx-icons rv" style="--d:4" id="cnx-icons"></div>
+      <p class="cnx-sub rv" style="--d:5">different perspectives welcome · the process gets better every time someone inverts it</p>
+      <footer class="cnx-foot rv" style="--d:6"><span>Kathan Prajapati</span><span id="cnx-sync"></span><span>this page moves with the process · rev a</span></footer>
     </div>
   </section>
 </main>
@@ -1009,7 +1014,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     }
     root.style.setProperty('--rcap', active >= 0 ? 1 : 0);
     root.style.setProperty('--rtitle', (ramp(p, 0.02, 0.06) * (1 - ramp(p, 0.16, 0.19))).toFixed(3));
-    root.style.setProperty('--bp', ease(ramp(p, 0.04, 0.16)).toFixed(3));
+    var cnr = el('connect').getBoundingClientRect(), endF = ease(clamp((vh - cnr.top) / (vh * 0.9), 0, 1)); root.style.setProperty('--bp', (ease(ramp(p, 0.04, 0.16)) * (1 - endF)).toFixed(3)); root.style.setProperty('--endf', endF.toFixed(3));
     el('r-dive').style.pointerEvents = active >= 0 ? 'auto' : 'none';
     curActive = active;
   }
@@ -1118,7 +1123,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
   /* ii · the first two weeks, before and now */
   var DAYS = {
     before: [['g', 'read the filings'], ['g', 'read the filings'], ['g', 'transcripts'], ['g', 'spread comps'], ['g', 'margin history'], ['g', 'model skeleton'], ['g', 'consensus recap'], ['o', 'question bank'], ['o', 'unit economics'], ['o', 'the key debate']],
-    now: [['g', 'all of that · agents · I check it'], ['o', 'question bank'], ['o', 'unit economics'], ['o', 'map the supply chain'], ['o', 'who holds pricing power'], ['o', 'which KPIs move it'], ['o', 'where consensus is wrong'], ['o', 'margin of research safety'], ['o', 'spectrum and direction'], ['o', 'red team']]
+    now: [['g', 'all of that · agents · I check it'], ['o', 'question bank'], ['o', 'unit economics'], ['o', 'map the supply chain'], ['o', 'who holds pricing power'], ['o', 'which KPIs move it'], ['o', 'where consensus is wrong'], ['o', 'margin of research safety'], ['o', 'spectrum and direction'], ['o', 'inversion']]
   };
   (function(){ var gbox = el('dgrid'); for (var i = 0; i < 10; i++) { var d = document.createElement('div'); d.className = 'day'; d.innerHTML = '<small>day ' + (i + 1) + '</small><span></span>'; gbox.appendChild(d); } })();
   function setDays(m){
@@ -2227,7 +2232,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       { b: 1, n: 'backtester · QA-01', s: 'planned', q: 1, f: 'Tests each data source against reported numbers before it can carry weight. Re-tests every quarter, because sources decay.', e: ['reproducible to the cell on re-run', 'out-of-sample hit rate ≥ 5 of 7 to pass'], lv: [2, 3], c: ['no look-ahead · forward or out-of-sample only', 'a failed source is dropped and flagged, never patched'], r: 'source histories, reported KPIs', w: 'source register · pass / fail / n/a' },
       { b: 1, n: 'sourcers × 6', s: 'built', f: 'change-detector, long-screener, short-screener, dislocation-scout, trajectory-sourcer and bear-break-detector: each hunts one kind of idea. Read-through and flows sit in 03 and 04.', e: ['hit rate by lens at +3M on the scorecard', 'a lens below 50% for two quarters is retired'], lv: [3, 3], c: ['covered names only · primary evidence', '≤ 5 candidates each per sweep', 'facts and mechanisms, never a call'], r: 'constraints, spectrum, the lens', w: 'candidates for triage' },
       { b: 1, n: 'triage', s: 'built', f: 'The sector-head filter: merges, de-duplicates, applies the constraints and the lens matrix, and ranks what earns framing.', e: ['promoted ideas beat killed ideas at +3M', 'killed winners logged and reviewed each quarter'], lv: [3, 4], c: ['decides what gets framed, never the side', 'a week with one promotion is fine'], r: 'all sourcer output, the tracker', w: 'promote / watch / kill' },
-      { b: 1, n: 'bull-bear-framer', s: 'built', f: 'Frames each promoted idea: the 1–3 debates, both cases tied to KPIs, what’s priced, and the triggers that would settle it.', e: ['the debate that resolved was one it framed', 'survives the red-team'], lv: [3, 1], c: ['both sides, always', 'every case tied to a model line'], r: 'the frame inputs, the model', w: 'the tracker · framed' },
+      { b: 1, n: 'bull-bear-framer', s: 'built', f: 'Frames each promoted idea: the 1–3 debates, both cases tied to KPIs, what’s priced, and the triggers that would settle it.', e: ['the debate that resolved was one it framed', 'survives the inversion'], lv: [3, 1], c: ['both sides, always', 'every case tied to a model line'], r: 'the frame inputs, the model', w: 'the tracker · framed' },
       { b: 1, n: 'model updater', s: 'planned', f: 'Maps each screen item to the model cell it moves, and recomputes the range and risk/reward.', e: ['reconciles to the model with zero breaks', 'sanity check: incremental $ of revenue to the bottom line'], lv: [2, 2], c: ['changes inputs only · formulas are mine', 'base-case changes need my approval'], r: 'the daily screen, the model', w: 'proposed input changes' },
       { b: 1, n: 'trigger-monitor', s: 'built', f: 'Checks every live trigger each day: price, KPI and management triggers.', e: ['missed triggers · 0', 'false alarms · tracked and falling'], lv: [3, 4], c: ['reports, never acts'], r: 'the tracker, prices, news', w: 'trigger status' },
       { b: 2, n: 'research assistant', s: 'planned', f: 'Preps calls: the questions nobody else asks, transcript diffs quarter on quarter, and management tone over time.', e: ['questions I keep from its list · rising', 'transcript diffs accurate on a sample · ≥ 95%'], lv: [4, 1], c: ['never contacts anyone', 'compliance line on every note · no MNPI'], r: 'transcripts, my question bank', w: 'call prep notes' },
@@ -2237,14 +2242,14 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       { b: 3, n: 'flow-scout', s: 'built', f: 'Tracks Thomas Li’s attention pendulum: where capital has left, where it’s crowded, and which names get churned first.', e: ['flow ideas’ hit rate at +3M', 'crowded-and-missed names fall more · backtested'], lv: [3, 2], c: ['flow is a setup, not a thesis', 'every idea needs a spectrum arrow'], r: 'performance, positioning, coverage changes', w: 'candidates for triage' },
       { b: 3, n: 'consensus mapper', s: 'planned', f: 'Maps what each investor type believes (pods, HFs, quant, macro, long-only, retail), to estimate the whisper, not the published number.', e: ['whisper error vs the print < published consensus error'], lv: [3], c: ['inference labelled as inference', 'no sell-side ratings'], r: 'positioning, transcripts, sell-side text', w: 'the distribution per name' },
       { b: 3, n: 'crowding scanner', s: 'planned', f: 'Short interest, days to cover, 13F concentration and factor loadings, per name, every week.', e: ['matches source data · 0 breaks', 'the crowding haircut backtested on past misses'], lv: [2, 3], c: ['deterministic only', 'sets the haircut, never the size'], r: 'positioning data', w: 'crowding flags' },
-      { b: 4, n: 'red-team', s: 'built', f: 'Steelmans the other side of any view, finds what consensus already prices, and names the observable that would prove me wrong.', e: ['how often it changes my mind, and whether those changes were right'], lv: [3], c: ['argues the opposite only', 'never decides', 'separate from whoever built the view'], r: 'the view and its evidence', w: 'the challenge note' },
+      { b: 4, n: 'inversion', s: 'built', f: 'Inverts any view: steelmans the other side, finds what consensus already prices, and names the observable that would prove me wrong.', e: ['how often it changes my mind, and whether those changes were right'], lv: [3], c: ['argues the opposite only', 'never decides', 'separate from whoever built the view'], r: 'the view and its evidence', w: 'the challenge note' },
       { b: 4, n: 'expression-checker', s: 'built', f: 'Shows how best to express a view: outright, pair or funding short, with the sizing and risk maths.', e: ['predicted vs realised volatility', 'maths reproducible'], lv: [3, 2], c: ['shows the maths, I size'], r: 'the view, prices, factors', w: 'the expression note' },
       { b: 4, n: 'kill-switch watcher', s: 'planned', f: 'Watches each thesis’s written kill criteria and alerts the moment one fires.', e: ['time from trigger to my decision · falling', 'missed kills · 0'], lv: [3, 4], c: ['alerts only · the exit is mine'], r: 'kill criteria, KPIs', w: 'alerts' },
       { b: 4, n: 'scorekeeper · QA', s: 'built', q: 1, f: 'Scores every call at +1, +3, +6 and +12 months: hit rate and win/loss by lens, by lane and by stage. Seals an AI forecast as the control.', e: ['reconciles to prices · deterministic', 'my calls vs the sealed AI forecast · Brier score'], lv: [2, 3], c: ['never edits a past entry', 'forecasts sealed before they resolve'], r: 'the scorecard, prices', w: 'the scorecard' },
       { b: 4, n: 'librarian', s: 'planned', f: 'Proposes what compounds: new links, merged notes, retired lenses, updated priors.', e: ['proposals I accept · rising', 'link precision on a sample'], lv: [4, 1], c: ['writes to staging only', 'never approves its own proposal'], r: 'the whole vault', w: 'staging · proposals' }
     ];
     var CTX = ['consumer-scout', 'markets-scout', 'current-affairs-scout', 'hf-industry-scout'];
-    var SK = [['idea-sweep', 'weekly · the sourcers in parallel → triage'], ['morning-brief', '07:00 · the scouts → red-team'], ['evening-wrap', '21:30 · score the watch list'], ['challenge', 'on demand · red-team a view'], ['hf-weekly', 'weekly · the industry'], ['post-mortem', 'quarterly · scorekeeper → the edge ledger']];
+    var SK = [['idea-sweep', 'weekly · the sourcers in parallel → triage'], ['morning-brief', '07:00 · the scouts → inversion'], ['evening-wrap', '21:30 · score the watch list'], ['challenge', 'on demand · invert a view'], ['hf-weekly', 'weekly · the industry'], ['post-mortem', 'quarterly · scorekeeper → the edge ledger']];
     var BN = ['01 zero to one', '02 commerciality', '03 primary research', '04 second order', '05 conviction'];
     var LV = ['self-check', 'a separate evaluator', 'deterministic code', 'reality · prices and prints', 'me'];
 
@@ -2267,7 +2272,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       if (/telescope/.test(n)) h += '<g transform="rotate(-28 92 26)"><rect x="76" y="20" width="34" height="11" rx="2" fill="#0A1A2F" stroke="#fff" stroke-width="2"/><rect x="106" y="18" width="7" height="15" rx="1.5" fill="#fff"/></g>';
       else if (/QA|checker|backtest/.test(n)) h += '<circle cx="94" cy="28" r="13" fill="#0A1A2F" stroke="#3DDC84" stroke-width="2.5"/><path d="M88 28 l4 4 l8 -9" stroke="#3DDC84" stroke-width="2.5" fill="none"/>';
       else if (/librarian/.test(n)) h += '<rect x="80" y="14" width="26" height="20" rx="2" fill="#0A1A2F" stroke="#5B8CFF" stroke-width="2"/><path d="M93 14 v20" stroke="#5B8CFF" stroke-width="2"/>';
-      else if (/red-team/.test(n)) h += '<path d="M86 40 V10 L108 18 L86 26" fill="#FF8A8A" stroke="#FF8A8A" stroke-width="2"/>';
+      else if (/inversion/.test(n)) h += '<path d="M86 40 V10 L108 18 L86 26" fill="#FF8A8A" stroke="#FF8A8A" stroke-width="2"/>';
       else if (/expression|sizing/.test(n)) h += '<path d="M82 30 h26 M95 18 v24" stroke="#FF6B35" stroke-width="3"/><circle cx="95" cy="30" r="14" fill="none" stroke="#FF6B35" stroke-width="2"/>';
       else if (/kill/.test(n)) h += '<rect x="82" y="14" width="24" height="24" rx="4" fill="#0A1A2F" stroke="#FF8A8A" stroke-width="2"/><circle cx="94" cy="26" r="6" fill="#FF8A8A"/>';
       else if (/research|panel/.test(n)) h += '<circle cx="92" cy="24" r="10" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M99 31 l9 9" stroke="#fff" stroke-width="3" stroke-linecap="round"/>';
@@ -2280,7 +2285,7 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     function hd(k, sec){ return '<header class="pg-h"><span>' + k + '</span><span>' + (sec || 'KP-06 · operating manual') + '</span></header>'; }
     function ft(){ return '<footer class="pg-f"><span class="pn"></span></footer>'; }
     var PART = 0;
-    function owner(a){ if (a.q || /backtest|checker|score/.test(a.n)) return 'eval owner'; if (/triage|framer|red-team|expression|kill/.test(a.n)) return 'reviewer · PM'; if (/telescope|librarian|model updater|crowding|sourcers/.test(a.n)) return 'system owner'; return 'researcher · me'; }
+    function owner(a){ if (a.q || /backtest|checker|score/.test(a.n)) return 'eval owner'; if (/triage|framer|inversion|expression|kill/.test(a.n)) return 'reviewer · PM'; if (/telescope|librarian|model updater|crowding|sourcers/.test(a.n)) return 'system owner'; return 'researcher · me'; }
     /* ---- the pages ---- */
     P.push({ sec: 'intro', h: hd('inside cover') + '<div class="pg-b"><p class="kick">how to use this manual</p><h2>Read it like the instructions for a machine you’re still building.</h2><ol class="toc"><li><b>i</b>principles</li><li><b>ii</b>parts list</li><li><b>iii</b>assembly</li><li><b>iv</b>the rules</li><li><b>v</b>one page per assistant</li><li><b>vi</b>troubleshooting</li><li><b>vii</b>warranty</li></ol><p class="note">built parts have open eyes and solid lines. parts not yet assembled are drawn dashed, eyes closed. names match the real agent files. no prompts are printed here.</p></div>' + ft() });
     P.push({ sec: 'principles', h: hd('i · principles') + '<div class="pg-b"><h2 class="big">Speed and creativity.<br><em>Never the judgement.</em></h2><p class="lede">The assistants do the work that would come out the same for anyone who ran it. The hours they free go to the questions only I can answer.</p><div class="warn"><span class="tri">!</span><div><b>stays with the operator</b><ul class="me">' + ['what to be curious about', 'the 10-K read', 'the spectrum score', 'management and the panel', 'the side', 'the size', 'the exit'].map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ul></div></div><p class="note">after toyota’s jidoka: the machine runs the line, and stops itself the moment something is wrong. any worker can pull the cord.</p></div>' + ft() });
@@ -2397,13 +2402,67 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       linkedin: 'https://www.linkedin.com/in/kathan-p',
       substack: 'https://kathanprajapati.substack.com'
     };
-    var ul = el('cnx-links'); if (!ul) return;
-    var rows = [];
-    if (CONTACT.email) rows.push('<li><a href="mailto:' + CONTACT.email + '"><span class="k">email</span><span class="v">' + CONTACT.email + '</span><span class="ar">→</span></a></li>');
-    if (CONTACT.linkedin) rows.push('<li><a href="' + CONTACT.linkedin + '" target="_blank" rel="noopener"><span class="k">linkedin</span><span class="v">' + CONTACT.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') + '</span><span class="ar">↗</span></a></li>');
-    if (CONTACT.substack) rows.push('<li><a href="' + CONTACT.substack + '" target="_blank" rel="noopener"><span class="k">substack · writing</span><span class="v">' + CONTACT.substack.replace(/^https?:\/\//, '').replace(/\/$/, '') + '</span><span class="ar">↗</span></a></li>');
-    ul.innerHTML = rows.join('');
+    var ICON = {
+      mail: '<svg viewBox="0 0 64 48" aria-hidden="true"><rect x="2" y="2" width="60" height="44" rx="4" fill="none" stroke="#FF6B35" stroke-width="3"/><path d="M4 6 L32 28 L60 6" fill="none" stroke="#FF6B35" stroke-width="3" stroke-linejoin="round"/></svg>',
+      linkedin: '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="1" y="1" width="46" height="46" rx="8" fill="#0A66C2"/><circle cx="14" cy="14" r="3.6" fill="#fff"/><rect x="10.6" y="20" width="6.8" height="18" fill="#fff"/><path d="M22 20 h6.4 v2.6 c1.2-2 3.4-3.2 6.2-3.2 c5 0 7.2 3 7.2 8.6 V38 h-6.8 v-9.2 c0-2.6-.8-4.2-3-4.2 c-2.4 0-3.6 1.8-3.6 4.4 V38 H22 Z" fill="#fff"/></svg>',
+      substack: '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="1" y="1" width="46" height="46" rx="8" fill="#FF6719"/><rect x="13" y="11" width="22" height="3.4" fill="#fff"/><rect x="13" y="17.4" width="22" height="3.4" fill="#fff"/><path d="M13 23.8 H35 V38 L24 32 L13 38 Z" fill="#fff"/></svg>'
+    };
+    var m = el('cnx-mail'), ic = el('cnx-icons'); if (!m) return;
+    m.innerHTML = '<a href="mailto:' + CONTACT.email + '">' + ICON.mail + '<span class="v">' + CONTACT.email + '</span><span class="ar">write to me →</span></a>';
+    var row = [];
+    if (CONTACT.linkedin) row.push('<a href="' + CONTACT.linkedin + '" target="_blank" rel="noopener" aria-label="LinkedIn">' + ICON.linkedin + '<div><b>linkedin</b><span>kathan-p</span></div></a>');
+    if (CONTACT.substack) row.push('<a href="' + CONTACT.substack + '" target="_blank" rel="noopener" aria-label="Substack">' + ICON.substack + '<div><b>substack · writing</b><span>kathanprajapati</span></div></a>');
+    ic.innerHTML = row.join('');
     el('cnx-sync').textContent = 'vault last synced ' + VAULT.synced.slice(0, 10);
+  })();
+  /* reveal on arrival, used toward the end of the page */
+  (function(){
+    var els = document.querySelectorAll('.rv'); if (!('IntersectionObserver' in window)) { Array.prototype.forEach.call(els, function(n){ n.classList.add('in'); }); return; }
+    var io2 = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io2.unobserve(e.target); } }); }, { threshold: 0.2 });
+    Array.prototype.forEach.call(els, function(n){ io2.observe(n); });
+  })();
+
+
+  /* ---------- 01b · the vault, live: real structure, the agents that read it, and a fingerprint ---------- */
+  (function(){
+    var V = VAULT, cv = el('vlcv'); if (!cv) return;
+    var dfmt = function(s){ var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s), M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; return m ? (+m[3]) + ' ' + M[+m[2] - 1] + ' ' + m[1] : s; };
+    el('vl-sync').textContent = 'real structure, synced from my vault on ' + dfmt(V.synced) + ' · counts, dates, links and hashes only · no titles, no text';
+    var readers = V.agents.filter(function(a){ return a[1].length; }).length;
+    el('vlstats').innerHTML = [[V.notes, 'notes, written by me'], [V.links, 'links between them'], [readers + ' / ' + V.agents.length, 'agents that read it first'], [V.edited7d, 'edited in the last 7 days']].map(function(s){ return '<div><b>' + s[0] + '</b><small>' + s[1] + '</small></div>'; }).join('');
+    var mx = Math.max.apply(null, V.wk);
+    el('vlhm').innerHTML = V.wk.map(function(c, i){ return '<i class="' + (i === V.wk.length - 1 ? 'now' : '') + '" style="height:' + Math.max(4, c / mx * 100) + '%;opacity:' + (0.35 + 0.65 * c / mx).toFixed(2) + '" title="' + c + ' notes"></i>'; }).join('');
+    el('vl-range').textContent = dfmt(V.first) + ' → ' + dfmt(V.synced);
+    el('vlroot').textContent = V.root.replace(/(.{16})/g, '$1 ').trim();
+    el('vlh').textContent = V.h.map(function(h, i){ return (i < 9 ? '00' : i < 99 ? '0' : '') + (i + 1) + '  ' + h; }).join('\n');
+    el('vlhon').textContent = 'kept honest: ' + V.agentBriefs + ' agent-written daily briefs are left out of the count · ' + V.skills + ' skills and ' + V.agents.length + ' agents run on these notes · synced on demand';
+    var hov = -1, on = false, t0 = performance.now(), rows = [];
+    function frame(now){
+      if (!on) return;
+      var f = fitCanvas(cv), c = f.x, w = f.w, h = f.h, narrow = w < 520;
+      var colW = narrow ? 0 : Math.min(170, w * 0.24), gx0 = colW + 24, gx1 = w - 20, gy0 = 24, gy1 = h - 24;
+      var X = function(n){ return gx0 + n[0] / 1000 * (gx1 - gx0); }, Y = function(n){ return gy0 + n[1] / 1000 * (gy1 - gy0); };
+      var auto = Math.floor((now - t0) / 1600) % V.agents.length, act = hov >= 0 ? hov : auto, A = V.agents[act];
+      c.lineWidth = 0.6; c.strokeStyle = 'rgba(255,255,255,0.09)';
+      V.e.forEach(function(e){ var a = V.n[e[0]], b = V.n[e[1]]; c.beginPath(); c.moveTo(X(a), Y(a)); c.lineTo(X(b), Y(b)); c.stroke(); });
+      var cols = [BL, GR, WH], last = V.weeks - 1, pulse = 0.5 + 0.5 * Math.sin(now / 400), readSet = {}; A[1].forEach(function(i){ readSet[i] = 1; });
+      V.n.forEach(function(n, i){ var fresh = n[2] >= last, rd = readSet[i]; c.beginPath(); c.arc(X(n), Y(n), rd ? 4 : fresh ? 3 + pulse : 2.3, 0, Math.PI * 2); c.fillStyle = rd ? OR : fresh ? rgba(OR, 0.55 + 0.4 * pulse) : rgba(cols[n[3]], n[3] === 2 ? 0.5 : 0.85); c.fill(); });
+      /* the agents, and what each one reads */
+      rows = [];
+      if (!narrow) {
+        var rh = (gy1 - gy0) / V.agents.length;
+        V.agents.forEach(function(a, j){ var y = gy0 + rh * (j + 0.5), isA = j === act; rows.push([y - rh / 2, y + rh / 2]); txt(c, a[0] === 'red-team' ? 'inversion' : a[0], colW, y + 3, isA ? OR : WH, isA ? 1 : (a[1].length ? 0.55 : 0.3), 10, 'right'); if (isA) a[1].forEach(function(i){ var n = V.n[i]; c.strokeStyle = rgba(OR, 0.5); c.lineWidth = 1; c.beginPath(); c.moveTo(colW + 6, y); c.bezierCurveTo(colW + 60, y, X(n) - 60, Y(n), X(n), Y(n)); c.stroke(); }); });
+      } else {
+        txt(c, (A[0] === 'red-team' ? 'inversion' : A[0]) + ' · reads ' + A[1].length + ' notes before it searches', 16, 18, OR, 1, 10, 'left');
+        A[1].forEach(function(i){ var n = V.n[i]; c.strokeStyle = rgba(OR, 0.4); c.beginPath(); c.moveTo(16, 24); c.lineTo(X(n), Y(n)); c.stroke(); });
+      }
+      txt(c, 'orange pulse = edited this week', gx1, h - 8, OR, 0.7, 9, 'right');
+      requestAnimationFrame(frame);
+    }
+    cv.addEventListener('mousemove', function(e){ var r = cv.getBoundingClientRect(), y = e.clientY - r.top, x = e.clientX - r.left; hov = -1; if (x < Math.min(190, r.width * 0.28)) rows.forEach(function(rw, j){ if (y >= rw[0] && y < rw[1]) hov = j; }); });
+    cv.addEventListener('mouseleave', function(){ hov = -1; });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ es.forEach(function(e){ var was = on; on = e.isIntersecting; if (on && !was) requestAnimationFrame(frame); }); }).observe(cv);
+    else { on = true; requestAnimationFrame(frame); }
   })();
 
   /* ---------- loop ---------- */
