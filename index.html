@@ -44,12 +44,21 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 .o-body{flex:1;display:grid;grid-template-columns:minmax(0, 5fr) minmax(0, 7fr);gap:clamp(24px, 5vw, 80px);align-items:end;padding:clamp(48px, 10vh, 120px) 0 clamp(32px, 6vh, 64px)}
 .o-body h1{font-family:var(--about);font-size:clamp(72px, 11vw, 168px);line-height:0.9;letter-spacing:-0.01em;animation:rise 900ms ease-out 0.4s both}
 .o-body h1 em{font-style:italic}
-.o-write{display:flex;flex-direction:column;gap:18px;padding-bottom:12px;animation:rise 900ms ease-out 0.7s both}
+.o-write{display:flex;flex-direction:column;gap:16px;padding-bottom:12px;animation:rise 900ms ease-out 0.7s both}
 .write{font-family:var(--about);font-size:clamp(20px, 1.9vw, 25px);line-height:1.5;color:var(--ink-3);font-style:italic}
 .lines{display:flex;flex-direction:column;gap:22px;padding-top:4px}
 .lines i{display:block;height:1px;background:rgba(255,255,255,0.18)}
 .lines i:nth-child(5){width:62%}
 .o-foot{display:flex;justify-content:space-between;gap:16px;padding-top:16px;border-top:1px solid var(--rule);animation:rise 800ms ease-out 1s both}
+
+.o-write p{font-family:var(--about);font-size:clamp(19px, 1.6vw, 23px);line-height:1.45;color:var(--ink-2);max-width:62ch}
+.o-write p.lead{font-size:clamp(24px, 2.3vw, 32px);line-height:1.2;color:var(--ink)}
+.o-write p.sig{color:var(--ink);font-style:italic}
+.traits{list-style:none;margin:8px 0 0;padding:16px 0 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:14px 24px}
+.traits li{display:flex;flex-direction:column;gap:4px}
+.traits b{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--active)}
+.traits span{font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--ink-2);text-transform:lowercase}
+@media (max-width:820px){ .traits{grid-template-columns:minmax(0, 1fr)} }
 
 /* 2 · the rod */
 .rod{height:700vh;position:relative}
@@ -435,10 +444,17 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     <header class="o-top"><span class="o-name">Kathan Prajapati</span><span class="label dim">the mandate for this page</span></header>
     <div class="o-body">
       <h1>About <em>me</em></h1>
-      <!-- KATHAN: write this yourself. Replace the .write line and the ruled .lines with your own <p> text. -->
       <div class="o-write">
-        <p class="write">In my own words, to come.</p>
-        <div class="lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <p class="lead">I’m building a scalable process for finding an edge, and then for finding the next one.</p>
+        <p>Alpha doesn’t sit still. Every edge that works gets copied, published or priced, and then it decays. So the goal isn’t one clever idea. It’s a system that keeps producing them: one that reads deeper, asks harder questions and interprets what it finds better than the marginal holder of the stock.</p>
+        <p>That means playing a different game. Not calling the next quarter faster than the pods, but understanding businesses, and the people who own them, well enough that the returns don’t depend on what the market does.</p>
+        <p class="sig">AI is the speed tool. The judgement stays mine.</p>
+        <ul class="traits">
+          <li><b>scalable</b><span>agents give the width, I give the depth</span></li>
+          <li><b>deeper</b><span>commodity questions in minutes, the hours go to the hard ones</span></li>
+          <li><b>evolving</b><span>every lens is tested, retired or replaced as the edge decays</span></li>
+          <li><b>uncorrelated</b><span>idiosyncratic by design: paid for being right, not for where the market goes</span></li>
+        </ul>
       </div>
     </div>
     <footer class="o-foot"><span class="label">↓ the process</span><span class="label dim">what I've built, block by block</span></footer>
