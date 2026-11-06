@@ -104,6 +104,58 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
 .nb b{font-family:var(--mono);font-style:normal;font-weight:400;font-size:11px;color:var(--active);margin-right:8px}
 .nb cite{display:block;font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);margin-top:6px}
 @media (max-width:980px){ .nb{display:none} }
+/* 06 · the agent layer */
+.agl{padding:clamp(64px, 12vh, 120px) 0}
+.agl .tag b{color:var(--ink);font-weight:400}
+.ag-me{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:12px;padding:10px 12px;border:1px solid var(--active);background:rgba(255,107,53,0.06)}
+.ag-me .label{color:var(--active);margin-right:6px}
+.ag-me span:not(.label){font-family:var(--about);font-size:17px;color:var(--ink);padding:0 8px;border-left:1px solid rgba(255,107,53,0.4)}
+.ag-sk{display:grid;grid-template-columns:repeat(6, minmax(0, 1fr));gap:6px;margin-bottom:12px}
+.agsk{display:flex;flex-direction:column;gap:3px;padding:8px 10px;border:1px solid rgba(255,255,255,0.35);border-top:2px solid #fff}
+.agsk b{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--ink)}
+.agsk i{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:lowercase;line-height:1.4}
+.ag-grid{display:grid;grid-template-columns:minmax(0, 1.55fr) minmax(0, 1fr);gap:16px;align-items:start}
+.ag-cols{display:grid;grid-template-columns:repeat(5, minmax(0, 1fr));gap:8px}
+.agcol{display:flex;flex-direction:column;gap:8px;min-width:0}
+.agcol > .label{font-size:9px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.agst{display:flex;flex-direction:column;gap:5px}
+.agc{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:7px 8px;text-align:left;background:rgba(10,26,47,0.6);border:1px solid rgba(255,255,255,0.55);cursor:pointer;transition:border-color 150ms ease-out, background 150ms ease-out}
+.agc span{font-family:var(--mono);font-size:10px;line-height:1.3;color:var(--ink)}
+.agc i{font-style:normal;font-family:var(--mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3)}
+.agc.planned{border-style:dashed;border-color:rgba(255,255,255,0.4);background:transparent}
+.agc.planned span{color:var(--ink-2)}
+.agc.qa{border-color:var(--research)} .agc.qa i{color:var(--research)}
+.agc.on{border-color:var(--active);background:rgba(255,107,53,0.12)} .agc.on span{color:var(--ink)}
+.ag-ctx{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.agctx{font-family:var(--mono);font-size:10px;color:var(--ink-2);padding:4px 8px;border:1px solid var(--rule)}
+.ag-vault{margin-top:10px;padding:10px 12px;border:1px solid var(--learn);background:rgba(91,140,255,0.08);display:flex;flex-direction:column;gap:4px}
+.ag-vault .label{color:var(--learn)}
+.ag-vault span:not(.label){font-family:var(--mono);font-size:11px;color:var(--ink-2);text-transform:lowercase}
+.ag-card{padding:16px 18px;position:sticky;top:20px;min-height:360px}
+.agh{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.chip.dash{border-style:dashed}
+.ag-card h4{margin:10px 0 6px;font-family:var(--display);font-weight:300;font-size:clamp(26px, 2.4vw, 34px);line-height:1.05}
+.agf{font-family:var(--about);font-size:19px;line-height:1.35;color:var(--ink-2);margin-bottom:12px}
+.agrow{border-top:1px solid var(--rule);padding:10px 0 8px}
+.agrow .label{font-size:9px}
+.agrow ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.agrow li{display:flex;flex-direction:column;gap:2px;font-family:var(--mono);font-size:11px;color:var(--ink);line-height:1.45}
+.agrow li em{font-style:normal;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--research)}
+.agrow ul.neg li{flex-direction:row;gap:8px;color:var(--ink-2)} .agrow ul.neg li::before{content:'✕';color:#FF8A8A;font-size:10px}
+.agio{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid var(--rule);padding-top:10px}
+.agio span{font-family:var(--mono);font-size:10px;color:var(--ink-3);display:flex;flex-direction:column;gap:3px;text-transform:lowercase}
+.agio b{font-weight:400;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-2)}
+.ag-rules{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:12px;margin:16px 0 12px}
+.ag-rules .panel{padding:12px 14px}
+.ladder{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.ladder li{display:grid;grid-template-columns:96px minmax(0, 1fr);gap:8px;align-items:baseline}
+.ladder b{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink)}
+.ladder span{font-family:var(--mono);font-size:11px;line-height:1.45;color:var(--ink-2);text-transform:lowercase}
+.ladder li.no b{color:#FF8A8A}
+.ladder.lv li{grid-template-columns:32px minmax(0, 1fr)} .ladder.lv b{color:var(--research)}
+@media (max-width:1100px){ .ag-grid{grid-template-columns:minmax(0, 1fr)} .ag-card{position:relative;top:auto} .ag-rules{grid-template-columns:minmax(0, 1fr)} .ag-sk{grid-template-columns:repeat(3, minmax(0, 1fr))} }
+@media (max-width:760px){ .ag-cols{grid-template-columns:repeat(2, minmax(0, 1fr))} .ag-sk{grid-template-columns:repeat(2, minmax(0, 1fr))} .ag-me span:not(.label){font-size:15px} }
+
 /* 2 · the rod */
 .rod{height:700vh;position:relative}
 .rstage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
@@ -617,6 +669,25 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
       </aside>
       <div class="ccap" aria-live="polite"><span class="label" id="c5k"></span><h3 id="c5h"></h3><p id="c5q"></p></div>
       <button type="button" class="cmore cmore5">the live vault ↑</button>
+    </div>
+  </section>
+  <!-- 06 · THE AGENT LAYER -->
+  <section class="agl" id="agl" aria-label="The agent layer">
+    <div class="vl-wrap">
+      <div class="vl-head"><span class="label" style="color:var(--active)">06 · the agent layer</span><h2>Speed and creativity. Never the judgement.</h2><p class="tag">how the agents are structured to work together · what each one does · how each is scored · what none of them may do · <span id="ag-count"></span></p></div>
+      <div class="ag-me"><span class="label">stays with me</span><span>what to be curious about</span><span>the 10-K read</span><span>the spectrum score</span><span>management and the panel</span><span>the side</span><span>the size</span><span>the exit</span></div>
+      <div class="ag-sk" id="ag-sk" aria-label="Skills that run the agents"></div>
+      <div class="ag-grid">
+        <div class="ag-board"><div class="ag-cols" id="ag-cols"></div><div class="ag-ctx" id="ag-ctx"></div>
+          <div class="ag-vault"><span class="label">the vault · the shared workspace</span><span>agents talk through files, not to each other · one writer per file · every claim carries its source, date and agent</span></div></div>
+        <div class="panel ag-card" id="ag-card" aria-live="polite"></div>
+      </div>
+      <div class="ag-rules">
+        <div class="panel"><div class="kh"><span class="label">where they may work</span></div><ol class="ladder"><li><b>read</b><span>the vault, filings, prices, the web</span></li><li><b>propose</b><span>to staging, never to the canonical notes</span></li><li><b>append</b><span>evidence lines with full provenance</span></li><li><b>compute</b><span>deterministic maths only</span></li><li class="no"><b>never</b><span>the side · the size · approve their own work · act outside the vault · anything that could be MNPI</span></li></ol></div>
+        <div class="panel"><div class="kh"><span class="label">how evals are graded</span><span class="stampd">QA · independence</span></div><ol class="ladder lv"><li><b>L0</b><span>self-check · never enough on its own</span></li><li><b>L1</b><span>a separate evaluator · the builder never grades itself</span></li><li><b>L2</b><span>deterministic code · reconciles or it fails</span></li><li><b>L3</b><span>reality · the prices and the prints</span></li><li><b>L4</b><span>me · reviewed, then logged</span></li></ol></div>
+        <div class="panel"><div class="kh"><span class="label">how they work together</span></div><ol class="ladder"><li><b>skills run them</b><span>fixed order · agents don’t pick who runs next</span></li><li><b>QA between stages</b><span>five 90% steps chain to 59% · so check each link</span></li><li><b>circuit breakers</b><span>failed input halts the chain and flags it</span></li><li><b>sealed forecasts</b><span>the AI’s call is logged before mine, to catch anchoring</span></li><li><b>retire what decays</b><span>a lens or source that stops earning is switched off</span></li></ol></div>
+      </div>
+      <p class="vl-honest">planned agents are designs, not code yet · names match the real agent files · no prompts are published · after toyota’s jidoka: the machine runs the line, and stops itself when something’s wrong</p>
     </div>
   </section>
   <section class="end" aria-hidden="true"><p>the process keeps moving · so does this page</p></section>
@@ -2036,6 +2107,60 @@ h1,h2,h3{font-weight:300;margin:0;text-wrap:balance} p{margin:0}
     if (ph === 5) cap('c5', 5, 'vi · compounding', p < 0.92 ? 'Every call is scored, and every score is a note.' : 'This is what compounds.', p < 0.92 ? 'the five blocks close into a loop around the vault' : 'notes aren’t transferable · a vault, and the agents that read it, are · each new name starts further in');
   }
   Array.prototype.forEach.call(document.querySelectorAll('.cmore5'), function(b){ b.addEventListener('click', function(){ var v = el('vault'); if (v) window.scrollTo({ top: v.getBoundingClientRect().top + window.scrollY - 20, behavior: reduce ? 'auto' : 'smooth' }); }); });
+
+  /* ---------- 06 · the agent layer: who does what, how each is scored, and what none of them may do ---------- */
+  (function(){
+    if (!el('agl')) return;
+    /* s: built / planned · lv: the eval's independence level (0 self · 1 separate evaluator · 2 code · 3 reality · 4 me) */
+    var AG = [
+      { b: 0, n: 'ramp assistant', s: 'planned', f: 'Answers the commodity half of the question bank from filings and transcripts, with citations. Leaves the hard half blank for me.', e: ['citation accuracy on a random 10% sample · ≥ 95%', 'hours per ramp · ≤ 10 by the fourth name in a subsector'], lv: [1, 4], c: ['no sell-side in the first pass', 'never answers a question marked hard', 'every answer cites a page'], r: 'filings, transcripts', w: 'staging · question bank' },
+      { b: 0, n: 'ecosystem mapper', s: 'planned', f: 'Builds the supplier, customer, rival and channel map from what companies disclose, and who reports when.', e: ['recall of named counterparties vs my map · ≥ 90%', 'false links · 0 unlabelled'], lv: [4, 2], c: ['named sources only', 'inferred links labelled as inferred'], r: 'filings, customs data', w: 'staging · ecosystem maps' },
+      { b: 0, n: 'spectrum-mapper', s: 'built', f: 'Proposes each name’s place on the quality spectrum, its direction, predictability and the KPIs that carry the cash.', e: ['my override rate on proposed scores · falling over time', 'direction right at +2 quarters'], lv: [4, 3], c: ['proposes, I set the score', 'covered names only'], r: 'the lens, predictability, moat notes', w: 'proposals in ideas/spectrum' },
+      { b: 1, n: 'telescope', s: 'planned', f: 'Collects, transcribes, summarises and tags each day’s inputs by ticker, then keeps only what’s new against my notes and consensus.', e: ['ticker tag precision · ≥ 98%', 'summary faithfulness, checked by a separate model · ≥ 95%', 'kept items I mark useful · rising'], lv: [2, 1, 4], c: ['only sources that passed QA-01', 'no ratings, ever', 'one summary per item, with the link'], r: 'reddit, sell-side notes, substack, youtube, podcasts, filings', w: 'the daily screen' },
+      { b: 1, n: 'backtester · QA-01', s: 'planned', q: 1, f: 'Tests each data source against reported numbers before it can carry weight. Re-tests every quarter, because sources decay.', e: ['reproducible to the cell on re-run', 'out-of-sample hit rate ≥ 5 of 7 to pass'], lv: [2, 3], c: ['no look-ahead · forward or out-of-sample only', 'a failed source is dropped and flagged, never patched'], r: 'source histories, reported KPIs', w: 'source register · pass / fail / n/a' },
+      { b: 1, n: 'sourcers × 6', s: 'built', f: 'change-detector, long-screener, short-screener, dislocation-scout, trajectory-sourcer and bear-break-detector: each hunts one kind of idea. Read-through and flows sit in 03 and 04.', e: ['hit rate by lens at +3M on the scorecard', 'a lens below 50% for two quarters is retired'], lv: [3, 3], c: ['covered names only · primary evidence', '≤ 5 candidates each per sweep', 'facts and mechanisms, never a call'], r: 'constraints, spectrum, the lens', w: 'candidates for triage' },
+      { b: 1, n: 'triage', s: 'built', f: 'The sector-head filter: merges, de-duplicates, applies the constraints and the lens matrix, and ranks what earns framing.', e: ['promoted ideas beat killed ideas at +3M', 'killed winners logged and reviewed each quarter'], lv: [3, 4], c: ['decides what gets framed, never the side', 'a week with one promotion is fine'], r: 'all sourcer output, the tracker', w: 'promote / watch / kill' },
+      { b: 1, n: 'bull-bear-framer', s: 'built', f: 'Frames each promoted idea: the 1–3 debates, both cases tied to KPIs, what’s priced, and the triggers that would settle it.', e: ['the debate that resolved was one it framed', 'survives the red-team'], lv: [3, 1], c: ['both sides, always', 'every case tied to a model line'], r: 'the frame inputs, the model', w: 'the tracker · framed' },
+      { b: 1, n: 'model updater', s: 'planned', f: 'Maps each screen item to the model cell it moves, and recomputes the range and risk/reward.', e: ['reconciles to the model with zero breaks', 'sanity check: incremental $ of revenue to the bottom line'], lv: [2, 2], c: ['changes inputs only · formulas are mine', 'base-case changes need my approval'], r: 'the daily screen, the model', w: 'proposed input changes' },
+      { b: 1, n: 'trigger-monitor', s: 'built', f: 'Checks every live trigger each day: price, KPI and management triggers.', e: ['missed triggers · 0', 'false alarms · tracked and falling'], lv: [3, 4], c: ['reports, never acts'], r: 'the tracker, prices, news', w: 'trigger status' },
+      { b: 2, n: 'research assistant', s: 'planned', f: 'Preps calls: the questions nobody else asks, transcript diffs quarter on quarter, and management tone over time.', e: ['questions I keep from its list · rising', 'transcript diffs accurate on a sample · ≥ 95%'], lv: [4, 1], c: ['never contacts anyone', 'compliance line on every note · no MNPI'], r: 'transcripts, my question bank', w: 'call prep notes' },
+      { b: 2, n: 'panel keeper', s: 'planned', f: 'Keeps the network across the chain: who sits at which node, when we last spoke, and how often they were right.', e: ['each contact scored against outcomes', 'coverage: every node in a live chain has a contact'], lv: [3, 2], c: ['no contact details ever published', 'logs what was said and when, for compliance'], r: 'my call notes', w: 'the panel' },
+      { b: 2, n: 'triangulation checker · QA-02', s: 'planned', q: 1, f: 'Passes an answer only when two independent node types agree, and logs it with a range before it resolves.', e: ['independence: the two sides share no origin', 'logged answers land inside their range · calibration'], lv: [2, 3], c: ['fails if both sides trace to one source', 'no answer without a range'], r: 'evidence, the panel', w: 'logged answers' },
+      { b: 2, n: 'read-through-mapper', s: 'built', f: 'When something happens to one company, finds which other company it changes most, and whether that one has moved.', e: ['read-through ideas’ hit rate at +3M'], lv: [3], c: ['covered names only', 'first-order effects are out of scope'], r: 'the week’s events, ecosystem maps', w: 'candidates for triage' },
+      { b: 3, n: 'flow-scout', s: 'built', f: 'Tracks Thomas Li’s attention pendulum: where capital has left, where it’s crowded, and which names get churned first.', e: ['flow ideas’ hit rate at +3M', 'crowded-and-missed names fall more · backtested'], lv: [3, 2], c: ['flow is a setup, not a thesis', 'every idea needs a spectrum arrow'], r: 'performance, positioning, coverage changes', w: 'candidates for triage' },
+      { b: 3, n: 'consensus mapper', s: 'planned', f: 'Maps what each investor type believes (pods, HFs, quant, macro, long-only, retail), to estimate the whisper, not the published number.', e: ['whisper error vs the print < published consensus error'], lv: [3], c: ['inference labelled as inference', 'no sell-side ratings'], r: 'positioning, transcripts, sell-side text', w: 'the distribution per name' },
+      { b: 3, n: 'crowding scanner', s: 'planned', f: 'Short interest, days to cover, 13F concentration and factor loadings, per name, every week.', e: ['matches source data · 0 breaks', 'the crowding haircut backtested on past misses'], lv: [2, 3], c: ['deterministic only', 'sets the haircut, never the size'], r: 'positioning data', w: 'crowding flags' },
+      { b: 4, n: 'red-team', s: 'built', f: 'Steelmans the other side of any view, finds what consensus already prices, and names the observable that would prove me wrong.', e: ['how often it changes my mind, and whether those changes were right'], lv: [3], c: ['argues the opposite only', 'never decides', 'separate from whoever built the view'], r: 'the view and its evidence', w: 'the challenge note' },
+      { b: 4, n: 'expression-checker', s: 'built', f: 'Shows how best to express a view: outright, pair or funding short, with the sizing and risk maths.', e: ['predicted vs realised volatility', 'maths reproducible'], lv: [3, 2], c: ['shows the maths, I size'], r: 'the view, prices, factors', w: 'the expression note' },
+      { b: 4, n: 'kill-switch watcher', s: 'planned', f: 'Watches each thesis’s written kill criteria and alerts the moment one fires.', e: ['time from trigger to my decision · falling', 'missed kills · 0'], lv: [3, 4], c: ['alerts only · the exit is mine'], r: 'kill criteria, KPIs', w: 'alerts' },
+      { b: 4, n: 'scorekeeper · QA', s: 'built', q: 1, f: 'Scores every call at +1, +3, +6 and +12 months: hit rate and win/loss by lens, by lane and by stage. Seals an AI forecast as the control.', e: ['reconciles to prices · deterministic', 'my calls vs the sealed AI forecast · Brier score'], lv: [2, 3], c: ['never edits a past entry', 'forecasts sealed before they resolve'], r: 'the scorecard, prices', w: 'the scorecard' },
+      { b: 4, n: 'librarian', s: 'planned', f: 'Proposes what compounds: new links, merged notes, retired lenses, updated priors.', e: ['proposals I accept · rising', 'link precision on a sample'], lv: [4, 1], c: ['writes to staging only', 'never approves its own proposal'], r: 'the whole vault', w: 'staging · proposals' }
+    ];
+    var CTX = ['consumer-scout', 'markets-scout', 'current-affairs-scout', 'hf-industry-scout'];
+    var SK = [['idea-sweep', 'weekly · the sourcers in parallel → triage'], ['morning-brief', '07:00 · the scouts → red-team'], ['evening-wrap', '21:30 · score the watch list'], ['challenge', 'on demand · red-team a view'], ['hf-weekly', 'weekly · the industry'], ['post-mortem', 'quarterly · scorekeeper → the edge ledger']];
+    var BN = ['01 zero to one', '02 commerciality', '03 primary research', '04 second order', '05 conviction'];
+    var LV = ['self-check', 'a separate evaluator', 'deterministic code', 'reality · prices and prints', 'me'];
+    var planned = AG.filter(function(a){ return a.s !== 'built'; }).length;
+    el('ag-count').innerHTML = '<b>' + VAULT.agents.length + '</b> agents and <b>' + SK.length + '</b> skills built · <b>' + planned + '</b> planned';
+    el('ag-sk').innerHTML = SK.map(function(k){ return '<span class="agsk" title="' + k[1] + '"><b>' + k[0] + '</b><i>' + k[1] + '</i></span>'; }).join('');
+    var cols = BN.map(function(b, i){ return '<div class="agcol"><span class="label">' + b + '</span><div class="agst" id="agc' + i + '"></div></div>'; }).join('');
+    el('ag-cols').innerHTML = cols;
+    AG.forEach(function(a, i){ var bt = document.createElement('button'); bt.type = 'button'; bt.className = 'agc ' + a.s + (a.q ? ' qa' : ''); bt.innerHTML = '<span>' + a.n + '</span><i>' + (a.s === 'built' ? 'built' : 'planned') + '</i>'; bt.addEventListener('click', function(){ pick(i, true); if (window.innerWidth < 1100) el('ag-card').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }); }); bt.addEventListener('mouseenter', function(){ pick(i, true); }); el('agc' + a.b).appendChild(bt); a.el = bt; });
+    el('ag-ctx').innerHTML = '<span class="label dim">context, not ideas</span>' + CTX.map(function(n){ return '<span class="agctx">' + n + '</span>'; }).join('');
+    var cur = -1, held = false, tmr = 0;
+    function pick(i, user){
+      if (user) { held = true; clearTimeout(tmr); tmr = setTimeout(function(){ held = false; }, 9000); }
+      cur = i; var a = AG[i];
+      AG.forEach(function(x, j){ x.el.classList.toggle('on', j === i); });
+      el('ag-card').innerHTML = '<div class="agh"><span class="label">' + BN[a.b] + '</span><span class="chip' + (a.s === 'built' ? '' : ' dash') + '">' + (a.s === 'built' ? 'built' : 'planned · to be built') + '</span></div>' +
+        '<h4>' + a.n + '</h4><p class="agf">' + a.f + '</p>' +
+        '<div class="agrow"><span class="label">evals</span><ul>' + a.e.map(function(e, j){ return '<li><span>' + e + '</span><em>L' + a.lv[j] + ' · ' + LV[a.lv[j]] + '</em></li>'; }).join('') + '</ul></div>' +
+        '<div class="agrow"><span class="label">constraints</span><ul class="neg">' + a.c.map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ul></div>' +
+        '<div class="agio"><span><b>reads</b>' + a.r + '</span><span><b>writes</b>' + a.w + '</span></div>';
+    }
+    pick(0, false);
+    setInterval(function(){ if (held || !onScreen(el('agl'))) return; pick((cur + 1) % AG.length, false); }, 3200);
+  })();
 
   /* ---------- loop ---------- */
   var ticking = false, rodOn = false;
