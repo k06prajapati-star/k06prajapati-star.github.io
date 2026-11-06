@@ -240,12 +240,12 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 @media (prefers-reduced-motion:reduce){ .leaf,.bk3{transition:none} .pg.slide-l,.pg.slide-r{animation:none} }
 
 /* 08 · about me */
-.me{padding:clamp(60px, 12vh, 140px) 0 clamp(40px, 8vh, 90px)}
+.abt{padding:clamp(60px, 12vh, 140px) 0 clamp(40px, 8vh, 90px)}
 .me-wrap{max-width:1320px;margin:0 auto;padding:0 max(28px, calc(env(safe-area-inset-right, 0px) + 28px)) 0 max(28px, calc(env(safe-area-inset-left, 0px) + 28px))}
 .me-body{display:grid;grid-template-columns:minmax(0, 5fr) minmax(0, 7fr);gap:clamp(24px, 5vw, 80px);align-items:start;padding:clamp(32px, 6vh, 72px) 0 clamp(24px, 4vh, 48px)}
 .me-body h2{font-family:var(--about);font-weight:400;font-size:clamp(56px, 8vw, 120px);line-height:0.9;letter-spacing:-0.01em}
 .me-body h2 em{font-style:italic}
-.me .mq{border-bottom:1px solid var(--rule)}
+.abt .mq{border-bottom:1px solid var(--rule)}
 @media (max-width:760px){ .me-body{grid-template-columns:minmax(0, 1fr)} }
 /* 07 · the ledger */
 .ldg{padding:clamp(80px, 14vh, 160px) 0 clamp(60px, 10vh, 120px)}
@@ -371,7 +371,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 @keyframes gdscan{0%,100%{transform:translateX(-2px)}50%{transform:translateX(2px)}}
 @keyframes gdtip{0%,100%{opacity:1}50%{opacity:.35}}
 @media (max-width:760px){ .gd{min-height:34px;gap:10px;font-size:10px} .gd-m{width:28px} }
-@media (min-width:761px) and (max-height:860px){ .cstage .ccap{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:18px;row-gap:8px;align-items:center} .ccap > .label{grid-row:1;grid-column:1} .ccap > .gd{grid-row:1;grid-column:2;min-height:30px;gap:10px} .ccap > h3,.ccap > p{grid-column:1 / -1} .gd-m{width:24px} .cstage .ccap h3{font-size:min(clamp(26px, 3.2vw, 44px), 5.4vh)} }
+@media (min-width:761px) and (max-height:860px){ .cstage .ccap{flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:18px;row-gap:8px} .cstage .ccap > .label{order:1;flex:none} .cstage .ccap > .gd{order:2;flex:1 1 0;min-width:0;min-height:30px;gap:10px} .cstage .ccap > h3{order:3;flex:0 0 100%} .cstage .ccap > p{order:4;flex:0 0 100%} .gd-m{width:24px} .cstage .ccap h3{font-size:min(clamp(26px, 3.2vw, 44px), 5.4vh)} }
 @media (prefers-reduced-motion:reduce){ .gd *{animation:none !important;transition:none !important} }
 /* reveal on arrival */
 .rv{opacity:0;transform:translateY(18px);transition:opacity 800ms ease-out, transform 800ms cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d, 0) * 110ms)}
@@ -984,7 +984,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
 
 
   <!-- 08 · about me: the person behind the process -->
-  <section class="me" id="me" aria-label="About me">
+  <section class="abt" id="me" aria-label="About me">
     <div class="me-wrap">
       <header class="o-top rv"><span class="label" style="color:var(--active)">08 · about me</span><span class="label dim">the person behind the process</span></header>
       <div class="me-body">
@@ -1218,7 +1218,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       cylinder(g, P, X[i][0], X[i][1], y, dim * draw, BLOCKS[i].col);
       shape(g, P, i, X[i][0], y, k, dim);
       var lab = P((X[i][0] + X[i][1]) / 2, y - RR - 46, 0);
-      g.font = '11px "IBM Plex Mono", ui-monospace, monospace'; g.textAlign = 'center'; g.fillStyle = rgba(isA ? OR : WH, (isA ? 1 : 0.55) * open * draw); g.fillText(BLOCKS[i].n, lab[0], lab[1]);
+      g.font = '11px "IBM Plex Mono", ui-monospace, monospace'; g.textAlign = 'center'; g.fillStyle = rgba(isA ? OR : WH, (isA ? 1 : 0.55) * open * draw); if (lab[0] > 16 && lab[0] < W - 16) g.fillText(BLOCKS[i].n, lab[0], lab[1]);
     });
     return active;
   }
@@ -1600,7 +1600,29 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
   function seatPanel(id, sec){ var pn = el(id); if (!pn) return; if (window.innerWidth > 760) { pn.style.bottom = ''; return; } var cp = sec.querySelector('.ccap'); if (!cp) return; var sr = sec.querySelector('.cstage').getBoundingClientRect(), ct = cp.getBoundingClientRect().top; pn.style.bottom = Math.round(sr.bottom - ct + 14) + 'px'; var hd = sec.querySelector('.chead'), top = (hd ? hd.getBoundingClientRect().bottom : sr.top) + 10, avail = ct - 14 - top, ph = pn.offsetHeight; pn.style.transformOrigin = '50% 100%'; pn.style.transform = ph > avail && avail > 80 ? 'scale(' + (avail / ph).toFixed(3) + ')' : ''; }
   function chP(sec){ if (sec.id === 'ch2') seatPanel('c2p', sec); else if (sec.id === 'ch3') seatPanel('c3p', sec); var vh = window.innerHeight, r = sec.getBoundingClientRect(); return reduce ? 1 : clamp(-r.top / Math.max(1, r.height - vh), 0, 1); }
   function onScreen(sec){ var r = sec.getBoundingClientRect(); return r.bottom > 0 && r.top < window.innerHeight; }
-  function txt(c, s, x, y, col, al, size, align){ if (al <= 0.01 || !s) return; c.font = (size || 11) + 'px "IBM Plex Mono", ui-monospace, monospace'; c.textAlign = align || 'center'; c.fillStyle = rgba(col, al); c.fillText(s, x, y); }
+  /* every canvas label goes through a per-frame queue: drawn last (on top of the drawing), strongest first,
+     kept inside the canvas, and never on top of another label · readability over completeness */
+  var LQ = new Map();
+  function txt(c, s, x, y, col, al, size, align){ if (al <= 0.01 || !s) return; var q = LQ.get(c); if (!q) { q = []; LQ.set(c, q); queueMicrotask(function(){ flushLabels(c); }); } q.push([String(s), x, y, col, al, size || 11, align || 'center', c.getTransform(), q.length]); }
+  function flushLabels(c){
+    var q = LQ.get(c); LQ.delete(c); if (!q || !q.length) return;
+    var cv = c.canvas, W = cv.width, H = cv.height, placed = [];
+    q.sort(function(a, b){ return (b[4] - a[4]) || (a[8] - b[8]); });
+    c.save();
+    q.forEach(function(L){
+      c.setTransform(L[7]); c.font = L[5] + 'px "IBM Plex Mono", ui-monospace, monospace'; c.textAlign = L[6]; c.textBaseline = 'alphabetic';
+      var wd = c.measureText(L[0]).width, lx = L[6] === 'center' ? L[1] - wd / 2 : (L[6] === 'right' || L[6] === 'end') ? L[1] - wd : L[1], T = L[7], rot = Math.abs(T.b) > 0.01 || Math.abs(T.c) > 0.01;
+      var pts = [[lx - 2, L[2] - L[5] * 0.8], [lx + wd + 2, L[2] - L[5] * 0.8], [lx - 2, L[2] + L[5] * 0.25], [lx + wd + 2, L[2] + L[5] * 0.25]].map(function(p){ return [T.a * p[0] + T.c * p[1] + T.e, T.b * p[0] + T.d * p[1] + T.f]; });
+      var bx = [Math.min.apply(null, pts.map(function(p){ return p[0]; })), Math.min.apply(null, pts.map(function(p){ return p[1]; })), Math.max.apply(null, pts.map(function(p){ return p[0]; })), Math.max.apply(null, pts.map(function(p){ return p[1]; }))];
+      var x = L[1];
+      if (!rot) { var m = 4 * T.a, sh = bx[0] < m ? m - bx[0] : bx[2] > W - m ? (W - m) - bx[2] : 0; if (sh) { x += sh / T.a; bx[0] += sh; bx[2] += sh; } }
+      if (L[4] > 0.12 && placed.some(function(b){ return bx[0] < b[2] && bx[2] > b[0] && bx[1] < b[3] && bx[3] > b[1]; })) return;
+      if (L[4] > 0.12) placed.push(bx);
+      c.lineJoin = 'round'; c.lineWidth = 3.5; c.strokeStyle = 'rgba(10,26,47,' + Math.min(0.92, L[4] * 1.1).toFixed(3) + ')'; c.strokeText(L[0], x, L[2]);
+      c.fillStyle = rgba(L[3], L[4]); c.fillText(L[0], x, L[2]);
+    });
+    c.restore();
+  }
   function disc(c, P, x, y, z, r, col, al){ if (al <= 0.01) return; c.fillStyle = rgba(col, al); c.beginPath(); for (var t = 0; t <= 48; t++) { var a = t / 48 * Math.PI * 2, q = P(x, y + Math.cos(a) * r, z + Math.sin(a) * r); if (t) c.lineTo(q[0], q[1]); else c.moveTo(q[0], q[1]); } c.fill(); }
   var GUIDE = {
     c1: [['work', 'a claude loop runs each circle: ask, check the vault, ask again until nothing new'], ['stop', 'commodity questions answered and checked · <b>the hard ones → yours</b>'], ['work', 'mapping suppliers, customers, rivals and substitutes'], ['me', 'picking the 1–3 numbers that carry the cash'], ['me', 'where it sits on the spectrum, and which way it’s moving'], ['me', 'pricing the quality against what’s expected'], ['work', 'filing every pass into the vault, linked to the space']],
@@ -1669,26 +1691,28 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       if (i < 2) disc(c, P, xs[i], 0, 0, R1[i], BL, 0.06 * n2);
       ring(c, P, xs[i], 0, 0, R1[i], hot ? OR : mem ? BL : WH, Math.max(al, mem ? 0.9 : 0) * kR, hot || mem ? 2 : 1.4);
       var below = narrow && i % 2 === 1 && col < 0.5, lq = P(xs[i], below ? -R1[i] - 22 : R1[i] + 14, 0);
-      txt(c, RN1[i], lq[0], lq[1], hot ? OR : mem ? BL : WH, 0.75 * e * (eA > 0 ? lerp(1, 0.35, eA) : 1) * (dA > 0 && !hot ? lerp(1, 0.3, dA) : 1) * (narrow ? 1 - 0.85 * E : 1) * kR, narrow ? 10 : 11);
+      txt(c, RN1[i], lq[0], lq[1], hot ? OR : mem ? BL : WH, 0.75 * e * (eA > 0 && !hot ? lerp(1, 0, eA) : 1) * (dA > 0 && !hot ? lerp(1, 0.3, dA) : 1) * (narrow ? 1 - 0.85 * E : 1) * kR * (col > 0.02 && col < 0.98 ? Math.pow(Math.abs(col * 2 - 1), 2) : 1), narrow ? 10 : 11);
     }
     /* ii · the questions: commodity ones caught by the rings, hard ones kept at the core */
-    var answered = 0, kept = 0, trayB = P(-330, -186, 0)[1] + 26, tshift = narrow ? 0 : Math.min(0, (capTop(ch1) - 34) - trayB);
+    var LBL = [], answered = 0, kept = 0, trayB = P(-330, -186, 0)[1] + 26, tshift = narrow ? 0 : Math.min(0, (capTop(ch1) - 34) - trayB);
     if (aB > 0.01 && p > 0.10) Q1.forEach(function(q){
       if (q.hard) {
         var u = (p - q.t) / 0.07; if (u < 0) return;
-        if (u < 1) { var uu = ease(u), x = lerp(-620, xs[3], uu), yy = q.y * (1 - uu * 0.6), zz = q.z * (1 - uu * 0.6); cdot(c, P, x, yy, zz, 3.2, OR, aB); if (q.lab) { var hp = P(x, yy, zz); if (!narrow || (hp[0] > 70 && hp[0] < w - 70)) txt(c, q.lab, hp[0], hp[1] - 10, OR, 0.95 * aB, narrow ? 10 : 11); } }
+        if (u < 1) { var uu = ease(u), x = lerp(-620, xs[3], uu), yy = q.y * (1 - uu * 0.6), zz = q.z * (1 - uu * 0.6); cdot(c, P, x, yy, zz, 3.2, OR, aB); if (q.lab) { var hp = P(x, yy, zz); if (!narrow || (hp[0] > 70 && hp[0] < w - 70)) LBL.push([q.lab, hp[0], hp[1] - 10, OR, 0.95 * aB, narrow ? 10 : 11, 0]); } }
         else { kept++; var ang = q.slot * 0.7 + flowT * 0.02, orr = 14 + q.slot * 2.6; cdot(c, P, xs[3], Math.sin(ang) * orr, Math.cos(ang) * orr, 3, OR, aB); }
         return;
       }
       var u2 = (p - q.t) / 0.05; if (u2 < 0) return;
-      if (u2 < 1) { var x2 = lerp(-620, xs[q.k], u2); cdot(c, P, x2, q.y, q.z, 2.2, WH, 0.85 * aB); if (q.lab) { var ep = P(x2, q.y, q.z); if (!narrow || (ep[0] > 60 && ep[0] < w - 60)) txt(c, q.lab, ep[0], ep[1] - 9, WH, 0.6 * aB, 10); } return; }
+      if (u2 < 1) { var x2 = lerp(-620, xs[q.k], u2); cdot(c, P, x2, q.y, q.z, 2.2, WH, 0.85 * aB); if (q.lab) { var ep = P(x2, q.y, q.z); if (!narrow || (ep[0] > 60 && ep[0] < w - 60)) LBL.push([q.lab, ep[0], ep[1] - 9, WH, 0.6 * aB, 10, 1]); } return; }
       var v = clamp((p - q.t - 0.05) / 0.035, 0, 1), vv = ease(v), tx = -330 + (q.slot % 28) * 24, ty = -186 - Math.floor(q.slot / 28) * 12;
       var shv = tshift * vv; cdot(c, shv ? function(x, y, z){ var r = P(x, y, z).slice(); r[1] += shv; return r; } : P, lerp(xs[q.k], tx, vv), lerp(q.y, ty, vv) + Math.sin(vv * Math.PI) * 36, lerp(q.z, 0, vv), 2.2, v < 0.12 ? WH : GR, 0.9 * aB);
       if (v >= 1) answered++;
     });
+    /* moving labels: the hard questions first, and nothing drawn on top of another label */
+    if (LBL.length) { var placed = []; LBL.sort(function(a, b){ return a[6] - b[6]; }).forEach(function(L){ c.font = L[5] + 'px "IBM Plex Mono", monospace'; var hw = c.measureText(L[0]).width / 2 + 4, bx = [L[1] - hw, L[2] - L[5], L[1] + hw, L[2] + 4]; if (placed.some(function(q){ return bx[0] < q[2] && bx[2] > q[0] && bx[1] < q[3] && bx[3] > q[1]; })) return; placed.push(bx); txt(c, L[0], L[1], L[2], L[3], L[4], L[5]); }); }
     var aT = aB * ramp(p, 0.11, 0.15);
     if (aT > 0.01) {
-      var tl = P(-330, -186, 0); txt(c, 'answered · agents, minutes · ' + answered, tl[0] - 4, tl[1] + 26 + tshift, GR, aT, 11, 'left'); c.font = '11px "IBM Plex Mono", ui-monospace, monospace'; var tw0 = c.measureText('answered · agents, minutes · ' + answered).width; stamp(c, tl[0] + tw0 + 8, tl[1] + 22 + tshift, 'QA · I check it', GR, aT, 8, 0, 'left');
+      var tl = P(-330, -186, 0); txt(c, 'answered · agents, minutes · ' + answered, tl[0] - 4, tl[1] + 26 + tshift, GR, aT, 11, 'left'); c.font = '11px "IBM Plex Mono", ui-monospace, monospace'; var tw0 = c.measureText('answered · agents, minutes · ' + answered).width; var qsx = tl[0] + tw0 + 8, qsy = tl[1] + 22 + tshift; if (qsx + 96 > w - 8) { qsx = tl[0] - 4; qsy += 18; } stamp(c, qsx, qsy, 'QA · I check it', GR, aT, 8, 0, 'left');
       var kl = P(xs[3], narrow ? R1[3] + 34 : -R1[3] - 30, 0); txt(c, 'kept for me · ' + kept, kl[0], kl[1] + 4, OR, aT, 11);
       var bw = Math.min(520, w - 32), bx = (w - bw) / 2, by = narrow ? 62 : 74, cw = bw / 10, hardDays = 0;
       for (var d = 0; d < 10; d++) { var on = d >= 7 || (d >= 1 && p > 0.15 + d * 0.024); if (on) hardDays++; c.fillStyle = on ? rgba(OR, 0.22 * aT) : rgba(WH, 0.06 * aT); c.fillRect(bx + d * cw + 2, by, cw - 4, 18); c.strokeStyle = on ? rgba(OR, 0.85 * aT) : rgba(WH, 0.25 * aT); c.lineWidth = 1; c.strokeRect(bx + d * cw + 2.5, by + 0.5, cw - 5, 17); }
@@ -1700,7 +1724,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       seg(c, P, [0, 7, narrow ? -330 : -470], [0, 7, 318], WH, 0.35 * eA, 1, [6, 8]);
       seg(c, P, [0, -9, 318], [0, -9, -286], GR, 0.55 * eA, 1);
       for (var g2 = 0; g2 < 11; g2++) { var zz2 = (narrow ? -330 : -470) + ((g2 * 72 + flowT * 2.2) % (narrow ? 650 : 790)); cdot(c, P, 0, 7, zz2, 2, WH, 0.7 * eA); }
-      var gl = P(0, 7, -230), cl = P(0, -9, 250); txt(c, 'goods →', gl[0], gl[1] - 8, WH, 0.45 * eA, 10); txt(c, '← cash', cl[0], cl[1] + 16, GR, 0.8 * eA, 10);
+      var gl = P(0, 7, -230), cl = P(0, -9, 222); txt(c, 'goods →', gl[0], gl[1] - 8, WH, 0.45 * eA, 10); txt(c, '← cash', cl[0], cl[1] + 16, GR, 0.8 * eA, 10);
       var fi = Math.floor(clamp((p - 0.505) / 0.019, 0, 4.99)); fk = p > 0.505 ? FK1[fi] : null;
       var NODES = [['sup', 0, -300, 'suppliers', 26], ['cus', 0, 318, 'customers', 26], ['ent', 250, 0, 'new entrants', -26], ['sub', -250, 0, 'substitutes', 30]];
       if (!narrow) NODES.push(['inp', 0, -470, 'inputs', 26]);
@@ -1755,7 +1779,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     if (rvq >= 0) {
       var bx0r = narrow ? 22 : w * 0.14, bx1r = narrow ? w - 22 : w * 0.86, barYr = narrow ? h * 0.36 : h * 0.42, cwR = (bx1r - bx0r) / 10;
       var SXr = function(v){ return bx0r + (v - 0.5) * cwR; }, RYr = function(r){ return barYr - 22 - r * 20; };
-      var cy0 = narrow ? h * 0.13 : h * 0.15, cy1 = narrow ? h * 0.50 : h * 0.66, sx0 = narrow ? 40 : w * 0.14, sx1 = narrow ? w - 22 : w * 0.66;
+      var cy0 = narrow ? h * 0.13 : h * 0.15, cy1 = narrow ? h * 0.50 : Math.min(h * 0.66, capTop(ch1) - 52), sx0 = narrow ? 40 : w * 0.14, sx1 = narrow ? w - 22 : w * 0.66;
       var SC = function(v){ return lerp(sx0, sx1, (v - 0.5) / 10); }, MY = function(m){ return lerp(cy1, cy0, (m - 4) / 22); };
       var dx0 = narrow ? 44 : w * 0.20, dx1 = narrow ? w - 24 : w * 0.60, DX = function(v){ return lerp(dx0, dx1, (v + 2) / 4); }, DY = function(v){ return lerp(cy1, cy0, (v + 2) / 4); };
       var mA2 = ease(ramp(rvq, 0, 0.16)), pA2 = ramp(rvq, 0.18, 0.24) * (1 - ramp(rvq, 0.38, 0.42)), dA2 = ease(ramp(rvq, 0.40, 0.52)), tq = clamp((rvq - 0.52) / 0.44, 0, 1) * 7;
@@ -1798,7 +1822,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     /* vii · compounding: notes peel off the rings into the vault */
     var aV = ramp(p, 0.885, 0.91), counts = [0, 0];
     if (aV > 0.01) {
-      var vx = narrow ? 16 : w * 0.52, vy = narrow ? h * 0.44 : h * 0.15, vw = narrow ? w - 32 : w * 0.42, vh2 = narrow ? h * 0.27 : h * 0.6;
+      var vx = narrow ? 16 : w * 0.52, vy = narrow ? h * 0.44 : h * 0.15, vw = narrow ? w - 32 : w * 0.42, vh2 = narrow ? Math.min(h * 0.27, capTop(ch1) - 30 - h * 0.44) : h * 0.6;
       c.fillStyle = rgba('#060708', 0.55 * aV); c.fillRect(vx, vy, vw, vh2); c.strokeStyle = rgba(WH, 0.2 * aV); c.strokeRect(vx + 0.5, vy + 0.5, vw - 1, vh2 - 1);
       var pad = 16, wk = ramp(p, 0.895, 0.965) * 19.6;
       counts = vaultTo(c, vx + pad, vy + pad, vw - 2 * pad, vh2 - 2 * pad, wk, aV);
@@ -2064,7 +2088,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
       var pk = qpt(NX(o1), NY(o1), sx, sy, 60, kk2); cdot2(c, pk[0], pk[1], 3, GR, tA);
       if (p > 0.66) stamp(c, narrow ? sx - 30 : sx + 26, narrow ? sy - 30 : sy - 36, narrow ? 'QA-02' : 'QA-02 · pass', GR, tA * ramp(p, 0.66, 0.68), 9, -0.05, 'left');
       if (kk1 > 0) txt(c, 'supplier side', sx - 14, sy + 22, GR, 0.9 * tA * kk1, 9, 'right');
-      if (kk2 > 0) txt(c, 'customer side', NX(o1) + 12, NY(o1) - 14, GR, 0.9 * tA * kk2, 9, 'left');
+      if (kk2 > 0) txt(c, 'customer side', NX(o1) + 14, NY(o1) + 20, GR, 0.9 * tA * kk2, 9, 'left');
     }
     /* the nodes */
     N3.forEach(function(n){
@@ -2136,7 +2160,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     /* i, ii · the pendulum and the pools */
     var pA = ramp(p, 0.0, 0.03) * (1 - ramp(p, 0.355, 0.385));
     if (pA > 0.01) {
-      var px = w * (narrow ? 0.5 : 0.42), py = h * (narrow ? 0.12 : 0.11), L = narrow ? Math.min(w * 0.26, h * 0.22) : Math.min(h * 0.40, w * 0.25);
+      var px = w * (narrow ? 0.5 : 0.42), py = h * (narrow ? 0.12 : 0.11), L = narrow ? Math.min(w * 0.26, h * 0.22) : Math.max(90, Math.min(h * 0.40, w * 0.25, capTop(ch4) - py - 184));
       var th = thetaAt(p) + (p > 0.08 && p < 0.28 && !reduce ? 0.035 * Math.sin(flowT * 0.035) : 0);
       /* the arc of sectors */
       c.save(); c.setLineDash([3, 6]); c.strokeStyle = rgba(WH, 0.25 * pA); c.beginPath(); c.arc(px, py, L + 26, Math.PI / 2 - 1.05, Math.PI / 2 + 1.05); c.stroke(); c.restore();
@@ -2375,7 +2399,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     /* i · conviction is triangulation */
     var tA = ramp(p, 0.0, 0.02) * (1 - ramp(p, 0.16, 0.19));
     if (tA > 0.01) {
-      var cx = narrow ? w * 0.5 : w * 0.40, cy = narrow ? h * 0.30 : h * 0.42, R = narrow ? Math.min(w * 0.22, h * 0.15) : Math.min(h * 0.28, w * 0.20), tot = 0, TSN = ['business', 'the ramp', 'drivers', 'risk/reward', 'primary', 'positioning?'];
+      var CT5 = capTop(ch5), cx = narrow ? w * 0.5 : w * 0.40, cy = narrow ? h * 0.30 : Math.min(h * 0.42, (CT5 + 90) / 2), R = narrow ? Math.min(w * 0.22, h * 0.15) : Math.max(70, Math.min(h * 0.28, w * 0.20, CT5 - 74 - cy, cy - 118)), tot = 0, TSN = ['business', 'the ramp', 'drivers', 'risk/reward', 'primary', 'positioning?'];
       TRI.forEach(function(t, i){
         var a = -Math.PI / 2 + i * Math.PI * 2 / 6, nx = cx + Math.cos(a) * R, ny = cy + Math.sin(a) * R, k = ramp(p, 0.01 + i * 0.012, 0.03 + i * 0.012) * tA, fill = ramp(p, 0.05 + i * 0.008, 0.09 + i * 0.008);
         var sc = t.s * fill, good = t.s >= 3; tot += sc;
@@ -2446,7 +2470,7 @@ table.mx tr.pl td:first-child{color:var(--p3)} table.mx tr.pl td i{background:no
     /* v · the scoreboard: hit rate, slugging, the circle of competence */
     var sA2 = ramp(p, 0.68, 0.71) * (1 - ramp(p, 0.845, 0.87));
     if (sA2 > 0.01) {
-      var gx = narrow ? 24 : w * 0.08, gy = narrow ? h * 0.14 : h * 0.18, cell = narrow ? 18 : 26, per = 12, shown = Math.floor(ramp(p, 0.70, 0.79) * CALLS.length), hits = 0, wsum = 0, lsum = 0;
+      var CT5b = capTop(ch5), gx = narrow ? 24 : w * 0.08, gy = narrow ? h * 0.14 : Math.max(76, Math.min(h * 0.18, CT5b - 24 - 362)), cell = narrow ? 18 : Math.max(18, Math.min(26, (CT5b - 24 - 258 - gy) / 4)), per = 12, shown = Math.floor(ramp(p, 0.70, 0.79) * CALLS.length), hits = 0, wsum = 0, lsum = 0;
       for (var i3 = 0; i3 < shown; i3++) { var cl = CALLS[i3], x = gx + (i3 % per) * cell, y = gy + Math.floor(i3 / per) * cell; if (cl.hit) { hits++; wsum += cl.mag * 1.3; } else lsum += cl.mag; c.beginPath(); c.arc(x + cell / 2, y + cell / 2, (narrow ? 5 : 7), 0, Math.PI * 2); c.fillStyle = rgba(cl.hit ? GR : '#FF8A8A', cl.hit ? 0.85 : 0.55); c.fill(); }
       var hr = shown ? hits / shown : 0, gy2 = gy + 4 * cell + 26;
       txt(c, 'every call sealed before it resolves · ' + shown + ' scored · illustrative', gx, gy - 10, WH, 0.55 * sA2, 9, 'left');
